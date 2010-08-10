@@ -70,6 +70,7 @@ CREATE TABLE MemberProfiles
 	TotalPosts		INT,
 	TotalThanks		INT,
 	CurrentExperience		FLOAT,
+	MemberLevel		INT,
 	IPAddress		NVARCHAR(50),
 	LastLogin		DATETIME DEFAULT GETDATE(),	
 	MyRss			NVARCHAR(300),
