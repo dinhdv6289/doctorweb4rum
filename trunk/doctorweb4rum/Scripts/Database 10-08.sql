@@ -33,8 +33,6 @@ CREATE TABLE Members
 	DateCreation	DATETIME DEFAULT GETDATE(),
 	AllowLogin		BIT DEFAULT 1,
 	IsOnline		BIT DEFAULT 0
---	IsActivated		BIT DEFAULT 0,
---	ActivateString	UNIQUEIDENTIFIER DEFAULT NEWID()	
 )
 
 GO
@@ -244,7 +242,7 @@ DROP PROC Sel_Roles
 GO
 CREATE PROCEDURE Sel_Roles
 AS BEGIN
-	SELECT RoleID, RoleName, [Description], TotalPosts, RankImage
+	SELECT RoleID, RoleName, Description, TotalPosts, RankImage
 		FROM Roles
 END
 
@@ -273,7 +271,7 @@ CREATE PROCEDURE Ins_MemberInfo
 @Gender			BIT,
 @Phone			NVARCHAR(15),
 @Hospital		NVARCHAR(100),
-@IP				NVARCHAR(15),
+@IPAddress				NVARCHAR(15),
 @Result			SMALLINT OUTPUT
 AS	BEGIN
 		IF(NOT EXISTS(SELECT UserName FROM Members WHERE UserName=@UserName))
@@ -285,8 +283,8 @@ AS	BEGIN
 						
 						DECLARE @MemberID	INT
 						EXEC Sel_LastMemberID @MemberID OUTPUT
-						INSERT INTO MemberProfile(MemberID,RoleID,Country,[Address],BirthDay,Gender,Phone,Hospital,IP)
-						VALUES	(@MemberID,1,@Country,@Address,@BirthDay,@Gender,@Phone,@Hospital,@IP)
+						INSERT INTO MemberProfiles(MemberID,RoleID,Country,[Address],BirthDay,Gender,Phone,Hospital,IPAddress)
+						VALUES	(@MemberID,1,@Country,@Address,@BirthDay,@Gender,@Phone,@Hospital,@IPAddress)
 						
 						INSERT INTO AllowDisplay(MemberID,DisFullName,DisEmail,DisBirthDay,DisAddress,DisYahoo,
 									DisPhone,DisHospital,DisBlog,DisSignature)
@@ -367,10 +365,10 @@ AS BEGIN
 GO
 
 
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Sel_MemberProfileByMemberID' AND TYPE = 'P')
-DROP PROC Sel_MemberProfileByMemberID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Sel_MemberProfilesByMemberID' AND TYPE = 'P')
+DROP PROC Sel_MemberProfilesByMemberID
 GO
-CREATE PROCEDURE Sel_MemberProfileByMemberID
+CREATE PROCEDURE Sel_MemberProfilesByMemberID
 @MemberID		INT
 AS
 	BEGIN
@@ -378,17 +376,17 @@ AS
 			   dmp.Country,dmp.[Address],dmp.BirthDay,dmp.Gender,dmp.Yahoo,dmp.Phone,dmp.Hospital,dmp.Blog,dmp.AboutMe,
 			   dad.DisFullName,dad.DisEmail,dad.DisBirthDay,dad.DisAddress,dad.DisYahoo,dad.DisPhone,dad.DisHospital,
 			   dad.DisBlog
-		FROM Members dm INNER JOIN MemberProfile dmp ON dm.MemberID= dmp.MemberID 
+		FROM Members dm INNER JOIN MemberProfiles dmp ON dm.MemberID= dmp.MemberID 
 			INNER JOIN AllowDisplay dad ON dad.MemberID = dm.MemberID AND dad.MemberID = dmp.MemberID 
 		WHERE dm.MemberID=@MemberID
 	END
 GO
 
 
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Udp_MemberProfile' AND TYPE = 'P')
-DROP PROC Udp_MemberProfile
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Udp_MemberProfiles' AND TYPE = 'P')
+DROP PROC Udp_MemberProfiles
 GO
-CREATE PROCEDURE Udp_MemberProfile
+CREATE PROCEDURE Udp_MemberProfiles
 @MemberID		INT,
 @FullName		NVARCHAR(50) ,
 @Email			NVARCHAR(100) ,
@@ -415,7 +413,7 @@ AS
 			Email = @Email,
 			FullName = @FullName
 		WHERE MemberID=@MemberID
-		UPDATE MemberProfile SET
+		UPDATE MemberProfiles SET
 			Country = @Country,
 			[Address] = @Address,
 			BirthDay = @BirthDay,
