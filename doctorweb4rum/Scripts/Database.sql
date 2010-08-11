@@ -2,7 +2,7 @@ USE [master]
 IF EXISTS (SELECT * FROM sysdatabases WHERE NAME= 'doctorWeb4rum') DROP DATABASE doctorWeb4rum
 
 GO
-drop DATABASE doctorWeb4rum
+--drop DATABASE doctorWeb4rum
 CREATE DATABASE doctorWeb4rum
 GO
 USE doctorWeb4rum
@@ -125,8 +125,9 @@ CREATE TABLE SubForums
 	Description		NVARCHAR(500) NOT NULL,
 	DateCreation	DATETIME DEFAULT GETDATE(),
 	Priority		INT,			
-	TotalTopics		INT,
-	TotalMessages	INT	
+	TotalTopics		INT,	
+	TotalMessages	INT,
+	ImageIcon		NVARCHAR(50)	
 )
 ALTER TABLE SubForums ADD CONSTRAINT FK_SubForums_CategoryID FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
 
@@ -139,7 +140,7 @@ CREATE TABLE Topics
 	TopicID			INT IDENTITY(1,1) PRIMARY KEY,
 	SubForumID		INT NOT NULL,
 	MemberID		INT NOT NULL,
-	PostId		INT NOT NULL,	
+	PostId			INT NOT NULL,	
 	IsLocked		BIT DEFAULT 0,
 	TotalViews		INT,
 	TotalMessages	INT,
@@ -490,6 +491,7 @@ AS BEGIN
 	INSERT INTO Roles(RoleName,Description,RankImage) VALUES (@RoleName,@Description,@RankImage)
 END
 
+GO
 ---PROCEDURE Members
 
 CREATE PROC Insert_Members
@@ -501,7 +503,7 @@ AS BEGIN
 	INSERT INTO Members (UserName,Password,Email,FullName) VALUES (@UserName,@Password,@Email,@FullName)
 END
 
----PROCCEDURE ChatMessages
+GO
 
 ---PROCEDURE MemberProfiles
 
@@ -524,6 +526,7 @@ AS BEGIN
 	INSERT INTO MemberProfiles (RoleID,Blast,Avatar,Country,Address,BirthDay,Yahoo,Phone,Hospital,Blog,IPAddress,MyRss,Signature,AboutMe) VALUES (@RoleID,@Blast,@Avatar,@Country,@Address,@BirthDay,@Yahoo,@Phone,@Hospital,@Blog,@IPAddress,@MyRss,@Signature,@AboutMe)
 END
 
+GO
 ---PROCEDURE Categories
 
 CREATE PROC Insert_Categories
@@ -533,14 +536,30 @@ AS BEGIN
 	INSERT INTO Categories (CategoryName,Priority) VALUES (@CategoryName,@Priority)			 					
 END
 
-
+GO
 ---PROCEDURE SubForums
 
 CREATE PROC Insert_SubForums
 	@CategoryID		INT,
 	@SubForumName	NVARCHAR(100),
 	@Description	NVARCHAR(500),
-	@Priority		INT
+	@Priority		INT,
+	@ImageIcon		NVARCHAR(50)
 AS BEGIN 
 	INSERT INTO SubForums (CategoryID,SubForumName,Description,Priority) VALUES (@CategoryID,@SubForumName,@Description,@Priority)	
+END
+
+GO
+---PROCEDURE Posts
+
+CREATE PROC Insert_Posts
+	@TopicID	INT,
+	@MemberID	INT,
+	@Title		NVARCHAR(100),
+	@Content	NTEXT,
+	@Experience	FLOAT,
+	@DateEdited	DATETIME,
+	@IPAddress	NVARCHAR(50)
+AS BEGIN 
+	INSERT INTO Posts (TopicID,MemberID,Title,[Content],Experience,DateEdited,IPAddress) VALUES (@TopicID,@MemberID,@Title,@Content,@Experience,@DateEdited,@IPAddress)
 END
