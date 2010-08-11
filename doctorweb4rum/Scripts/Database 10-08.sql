@@ -486,3 +486,14 @@ AS BEGIN
 	INSERT INTO Roles(RoleName,Description,RankImage) VALUES (@RoleName,@Description,@RankImage)
 END
 
+---PROCEDURE Members
+
+CREATE PROC Insert_Members
+	@UserName	NVARCHAR(30),
+	@Password	NVARCHAR(50),
+	@Email		NVARCHAR(100),
+	@FullName	NVARCHAR(50)
+AS BEGIN
+	INSERT INTO Members (UserName,Password,Email,FullName) VALUES (@UserName,@Password,@Email,@FullName)
+END
+
