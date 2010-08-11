@@ -546,7 +546,7 @@ CREATE PROC Insert_SubForums
 	@Priority		INT,
 	@ImageIcon		NVARCHAR(50)
 AS BEGIN 
-	INSERT INTO SubForums (CategoryID,SubForumName,Description,Priority) VALUES (@CategoryID,@SubForumName,@Description,@Priority)	
+	INSERT INTO SubForums (CategoryID,SubForumName,Description,Priority,ImageIcon) VALUES (@CategoryID,@SubForumName,@Description,@Priority,@ImageIcon)	
 END
 
 GO
