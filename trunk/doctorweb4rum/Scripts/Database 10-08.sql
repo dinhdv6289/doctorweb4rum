@@ -475,4 +475,14 @@ AS	BEGIN
 		SELECT 	ISNULL(MAX(ChatID),0) AS ChatID FROM ChatMessages
   	END
 
+GO
+---Procedure Roles
+
+CREATE PROC Insert_Roles
+	@RoleName		NVARCHAR(20),
+	@Description	NVARCHAR(100),
+	@RankImage		NVARCHAR(100)
+AS BEGIN 
+	INSERT INTO Roles(RoleName,Description,RankImage) VALUES (@RoleName,@Description,@RankImage)
+END
 
