@@ -2,7 +2,7 @@ USE [master]
 IF EXISTS (SELECT * FROM sysdatabases WHERE NAME= 'doctorWeb4rum') DROP DATABASE doctorWeb4rum
 
 GO
-
+drop DATABASE doctorWeb4rum
 CREATE DATABASE doctorWeb4rum
 GO
 USE doctorWeb4rum
@@ -69,6 +69,7 @@ CREATE TABLE MemberProfiles
 	Blog			NVARCHAR(100),
 	TotalPosts		INT,
 	TotalThanks		INT,
+	TotalThanked	INT,
 	CurrentExperience		FLOAT,
 	MemberLevel		INT,
 	IPAddress		NVARCHAR(50),
@@ -477,4 +478,58 @@ AS	BEGIN
 		SELECT 	ISNULL(MAX(ChatID),0) AS ChatID FROM ChatMessages
   	END
 
+
+GO
+---Procedure Roles
+
+CREATE PROC Insert_Roles
+	@RoleName		NVARCHAR(20),
+	@Description	NVARCHAR(100),
+	@RankImage		NVARCHAR(100)
+AS BEGIN 
+	INSERT INTO Roles(RoleName,Description,RankImage) VALUES (@RoleName,@Description,@RankImage)
+END
+
+---PROCEDURE Members
+
+CREATE PROC Insert_Members
+	@UserName	NVARCHAR(30),
+	@Password	NVARCHAR(50),
+	@Email		NVARCHAR(100),
+	@FullName	NVARCHAR(50)
+AS BEGIN
+	INSERT INTO Members (UserName,Password,Email,FullName) VALUES (@UserName,@Password,@Email,@FullName)
+END
+
+---PROCCEDURE ChatMessages
+
+---PROCEDURE MemberProfiles
+
+CREATE PROC Insert_MemberProfiles
+	@RoleID			INT,
+	@Blast			NVARCHAR(100),
+	@Avatar			NVARCHAR(150),
+	@Country		NVARCHAR(50),
+	@Address		NVARCHAR(255),
+	@BirthDay		DATETIME,
+	@Yahoo			NVARCHAR(100),
+	@Phone			NVARCHAR(15),
+	@Hospital		NVARCHAR(100),
+	@Blog			NVARCHAR(100),
+	@IPAddress		NVARCHAR(50),	
+	@MyRss			NVARCHAR(300),
+	@Signature		NVARCHAR(1000),
+	@AboutMe		NTEXT
+AS BEGIN
+	INSERT INTO MemberProfiles (RoleID,Blast,Avatar,Country,Address,BirthDay,Yahoo,Phone,Hospital,Blog,IPAddress,MyRss,Signature,AboutMe) VALUES (@RoleID,@Blast,@Avatar,@Country,@Address,@BirthDay,@Yahoo,@Phone,@Hospital,@Blog,@IPAddress,@MyRss,@Signature,@AboutMe)
+END
+
+---PROCEDURE Categories
+
+CREATE PROC Insert_Categories
+	@CategoryName	NVARCHAR(50),
+	@Priority		INT
+AS BEGIN 
+	INSERT INTO Categories (CategoryName,Priority) VALUES (@CategoryName,@Priority)			 					
+END
 
