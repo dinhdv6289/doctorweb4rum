@@ -533,3 +533,14 @@ AS BEGIN
 	INSERT INTO Categories (CategoryName,Priority) VALUES (@CategoryName,@Priority)			 					
 END
 
+
+---PROCEDURE SubForums
+
+CREATE PROC Insert_SubForums
+	@CategoryID		INT,
+	@SubForumName	NVARCHAR(100),
+	@Description	NVARCHAR(500),
+	@Priority		INT
+AS BEGIN 
+	INSERT INTO SubForums (CategoryID,SubForumName,Description,Priority) VALUES (@CategoryID,@SubForumName,@Description,@Priority)	
+END
