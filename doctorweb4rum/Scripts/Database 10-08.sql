@@ -70,6 +70,7 @@ CREATE TABLE MemberProfiles
 	Blog			NVARCHAR(100),
 	TotalPosts		INT,
 	TotalThanks		INT,
+	TotalThanked	INT,
 	IPAddress		NVARCHAR(50),
 	LastLogin		DATETIME DEFAULT GETDATE(),	
 	MyRss			NVARCHAR(300),
@@ -496,4 +497,31 @@ CREATE PROC Insert_Members
 AS BEGIN
 	INSERT INTO Members (UserName,Password,Email,FullName) VALUES (@UserName,@Password,@Email,@FullName)
 END
+
+---PROCCEDURE ChatMessages
+
+---PROCEDURE MemberProfiles
+
+CREATE PROC Insert_MemberProfiles
+	@RoleID			INT,
+	@Blast			NVARCHAR(100),
+	@Avatar			NVARCHAR(150),
+	@Country		NVARCHAR(50),
+	@Address		NVARCHAR(255),
+	@BirthDay		DATETIME,
+	@Yahoo			NVARCHAR(100),
+	@Phone			NVARCHAR(15),
+	@Hospital		NVARCHAR(100),
+	@Blog			NVARCHAR(100),
+	@IPAddress		NVARCHAR(50),	
+	@MyRss			NVARCHAR(300),
+	@Signature		NVARCHAR(1000),
+	@AboutMe		NTEXT
+AS BEGIN
+	INSERT INTO MemberProfiles (RoleID,Blast,Avatar,Country,Address,BirthDay,Yahoo,Phone,Hospital,Blog,IPAddress,MyRss,Signature,AboutMe) VALUES (@RoleID,@Blast,@Avatar,@Country,@Address,@BirthDay,@Yahoo,@Phone,@Hospital,@Blog,@IPAddress,@MyRss,@Signature,@AboutMe)
+END
+
+---PROCEDURE Categories
+
+CREATE PROC Insert_Categories
 
