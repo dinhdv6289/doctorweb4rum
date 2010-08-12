@@ -5,27 +5,30 @@ using DAL;
 /// <summary>
 /// Summary description for CategoryBLL
 /// </summary>
-public class CategoryBLL
+namespace BLL
 {
-	public CategoryBLL()
-	{
-		//
-		// TODO: Add constructor logic here
-		//
-	}
-
-    public Category[] getAllCategory()
+    public class CategoryBLL
     {
-        Category[] result = null;
-        try
+        public CategoryBLL()
         {
-            result = DataHelper.GetCategoryDA().getAllCategory();
+            //
+            // TODO: Add constructor logic here
+            //
         }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-        return result;
 
+        public static Category[] getAllCategory()
+        {
+            Category[] result = null;
+            try
+            {
+                result = DataHelper.GetCategoryDA().getAllCategory();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+
+        }
     }
 }
