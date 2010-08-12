@@ -3303,3 +3303,67 @@ margin-left:15px;
 .marketplace_root .sub li:first-child {
 padding-top:5px;
 }
+
+
+*
+{
+	margin:0;
+	padding:0;
+}
+
+
+
+
+
+.module
+{
+	border:1px solid #628675;
+	width: 100%;
+	margin-bottom:20px;
+	
+	
+}
+	.module .header, .module .header2
+	{
+		background-color:#628675;
+		padding-left:10px;
+		
+		
+	}
+		.module .header h2, .module .header2 h2
+		{
+			margin:0;
+			display:inline;
+			font-size:12px;
+		}
+		
+	.module .content
+	{
+		clear:both;
+		padding:10px;
+	}
+	.module .placeholder
+	{
+		margin-top:1px;
+		margin-right:2px;
+	}
+	.module .expand
+	{
+		float:right;
+		display:inline;
+		background-image:url('Images/toggle-sprite.png');
+		background-position: 0px -16px;
+		width:16px;
+		height:16px;
+		
+	}	
+	.module .collapse
+	{
+		float:right;
+		display:inline;
+		background-image:url('Images/toggle-sprite.png');
+		background-position: 0px 0px;
+		width:16px;
+		height:16px;
+	}
+	
