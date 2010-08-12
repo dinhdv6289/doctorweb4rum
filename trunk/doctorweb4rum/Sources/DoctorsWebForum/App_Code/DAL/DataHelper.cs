@@ -10,7 +10,7 @@ namespace DAL
 
         }
 
-        public static ICategoryDA GetCategoryDA()
+        public static ICategoryDA getCategoryDA()
         {
             ICategoryDA dc = null;
             if (String.IsNullOrEmpty(dataAccessStringType))
@@ -28,23 +28,23 @@ namespace DAL
             return dc;
         }
 
-        //public static IRateDA GetRateDA()
-        //{
-        //    IRateDA dc = null;
-        //    if (String.IsNullOrEmpty(dataAccessStringType))
-        //    {
-        //        throw (new NullReferenceException("DataAccessType in Web.config is null or empty"));
-        //    }
-        //    else
-        //    {
-        //        if (dataAccessStringType.Equals("SQLSERVER"))
-        //        {
-        //            Type t = Type.GetType("DAL.RateDA");
-        //            dc = (RateDA)Activator.CreateInstance(t);
-        //        }
-        //    }
-        //    return dc;
-        //}
+        public static ISubForumDA getSubForumDA()
+        {
+            ISubForumDA dc = null;
+            if (String.IsNullOrEmpty(dataAccessStringType))
+            {
+                throw (new NullReferenceException("DataAccessType in Web.config is null or empty"));
+            }
+            else
+            {
+                if (dataAccessStringType.Equals("SQLSERVER"))
+                {
+                    Type t = Type.GetType("DAL.SubForumDA");
+                    dc = (SubForumDA)Activator.CreateInstance(t);
+                }
+            }
+            return dc;
+        }
 
 
         //public static ICategoryDA GetCategoryDA()

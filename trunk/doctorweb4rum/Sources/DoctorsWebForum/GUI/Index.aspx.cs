@@ -14,6 +14,20 @@ public partial class GUI_Index : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if(!IsPostBack)
+        {
+            loadData();
+        }
+    }
 
+    private void loadData()
+    {
+        repeaterCategories.DataSource = CategoryBLL.getAllCategory();
+        repeaterCategories.DataBind();
+    }
+
+    public SubForum[] getAllSubForumsByCategoryID(int CategoryID)
+    {
+       return SubForumBLL.getlAllSubForumsByCategoryID(CategoryID);
     }
 }
