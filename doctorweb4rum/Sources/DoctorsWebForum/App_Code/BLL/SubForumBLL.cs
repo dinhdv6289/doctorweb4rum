@@ -3,25 +3,24 @@ using System.Data;
 using System.Configuration;
 using DAL;
 /// <summary>
-/// Summary description for CategoryBLL
+/// Summary description for SubForumBLL
 /// </summary>
 namespace BLL
 {
-    public class CategoryBLL
+    public class SubForumBLL
     {
-        public CategoryBLL()
+        public SubForumBLL()
         {
             //
             // TODO: Add constructor logic here
             //
         }
-
-        public static Category[] getAllCategory()
+        public static SubForum[] getlAllSubForumsByCategoryID(int CategoryID)
         {
-            Category[] result = null;
+            SubForum[] result = null;
             try
             {
-                result = DataHelper.getCategoryDA().getAllCategory();
+                result = DataHelper.getSubForumDA().getlAllSubForumsByCategoryID(CategoryID);
             }
             catch (Exception ex)
             {
