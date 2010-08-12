@@ -1,0 +1,199 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Untitled Page</title>
+    <link href="css.css" rel="stylesheet" type="text/css" />
+    <link href="css_002.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+
+    <script type="text/javascript" src="js/jquery.collapsible.js"></script>
+
+    <script type="text/javascript">
+$(document).ready(function() {
+	$.collapsible(".header", "group1");
+	$.collapsible(".header2", "group2");
+});
+    </script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="above_body">
+            <div class="floatcontainer doc_header" id="header">
+                <div>
+                    <a class="logo-image" href="" name="top">
+                        <img src="Images/dps_logo.png"></a></div>
+                <div class="toplinks" id="toplinks">
+                    <ul class="nouser">
+                        <li><a rel="nofollow" href="">Register</a></li>
+                        <li><a href="" rel="help">Help</a></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div id="ad_global_header">
+                    <div class="ad_global_header_right">
+                    </div>
+                </div>
+                <div onclick="document.location.href='http://forums.digitalpoint.com/analytics.php'"
+                    id="stats">
+                    <ul>
+                        <li>
+                            <dl>
+                                <dd id="ga_name">
+                                </dd>
+                                <dt>not set up for reporting</dt></dl>
+                        </li>
+                    </ul>
+                </div>
+                <hr />
+            </div>
+            <div class="navbar" id="navbar">
+                <ul class="navtabs floatcontainer" id="navtabs">
+                    <li class="selected"><a href="javascript://" class="navtab popupctrl" id="yui-gen1">
+                        Forum</a> </li>
+                    <li><a href="http://articles.digitalpoint.com" class="navtab">Articles</a> </li>
+                    <li><a href="http://blogs.digitalpoint.com/" class="navtab">Blogs</a></li>
+                    <li><a href="http://marketplace.digitalpoint.com/" class="navtab">Marketplace</a></li>
+                    <li><a href="http://tools.digitalpoint.com/" class="navtab">Tools</a></li>
+                    <li><a href="http://directory.digitalpoint.com/" class="navtab">Directory</a></li>
+                    <li><a accesskey="2" href="search.php?do=getdaily&amp;contenttype=vBForum_Post" class="navtab">
+                        What's New?</a></li>
+                </ul>
+                <div class="globalsearch" id="globalsearch">
+                    <form class="navbar_search" id="navbar_search" method="post" action="search.php?do=process">
+                        <input type="hidden" value="guest" name="securitytoken">
+                        <input type="hidden" value="process" name="do">
+                        <span class="textboxcontainer"><span>
+                            <input type="text" tabindex="99" class="textbox" name="query" value=""></span></span>
+                        <span class="buttoncontainer"><span>
+                            <input type="image" tabindex="100" onclick="document.getElementById('navbar_search').submit;"
+                                name="submit" src="Images/search.png" class="searchbutton"></span></span>
+                    </form>
+                    <ul class="navbar_advanced_search">
+                        <li><a accesskey="4" href="">Advanced Search</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="body_wrapper">
+            <form action="profile.php?do=dismissnotice" method="post" id="notices" class="notices">
+                <input type="hidden" name="do" value="dismissnotice" />
+                <input type="hidden" name="s" value="" />
+                <input type="hidden" name="securitytoken" value="guest" />
+                <input type="hidden" id="dismiss_notice_hidden" name="dismiss_noticeid" value="" />
+                <input type="hidden" name="url" value="" />
+                <ol>
+                    <li class="restore" id="navbar_notice_3">If this is your first visit, be sure to check
+                        out the <a href="faq.php?" target="_blank"><b>FAQ</b></a> by clicking the link above.
+                        You may have to <a href="register.php?" target="_blank"><b>register</b></a> before
+                        you can post: click the register link above to proceed. To start viewing messages,
+                        select the forum that you want to visit from the selection below. </li>
+                </ol>
+            </form>
+            <div id="pagetitle">
+                <h1>
+                    Digital Point Forums</h1>
+                <p id="welcomemessage" class="description">
+                    Welcome to the Digital Point Forums.</p>
+                <br />
+            </div>
+            <!-- main -->
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            <div class="navlinks">
+                <a rel="nofollow" href="forumdisplay.php?do=markread&amp;markreadhash=guest">Mark Forums
+                    Read</a> | <a rel="nofollow" href="showgroups.php">Admins &amp; Moderators </a>
+            </div>
+            <!-- what's going on box -->
+            <div id="wgo" class="collapse wgo_block">
+                <h2>
+                    <span><a href="spy.php">What's Going On?</a></span>
+                </h2>
+                <div class="floatcontainer">
+                    <!-- logged-in users -->
+                    <div id="wgo_onlineusers" class="wgo_subblock">
+                        <h3>
+                            <img src="http://m.dpstatic.com/misc/users_online.png" alt="Currently Active Users" />Currently
+                            Active Users</h3>
+                        <div>
+                            <p>
+                                There are currently <a href="#">1,722 users online</a>. <span class="shade">308 members
+                                    and 1,414 guests (<a href="#">view map</a>)</span></p>
+                            <p>
+                                Most users ever online was 22,414, Sep 15th 2009 at <span class="time">1:54 am</span>.</p>
+                            <ol class="commalist" id="wgo_onlineusers_list">
+                                <li><a class="username" href="">Member for Test</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!-- end logged-in users -->
+                    <div id="wgo_stats" class="wgo_subblock">
+                        <h3>
+                            <img src="http://m.dpstatic.com/misc/forum_stats.png" alt="Digital Point Forums Statistics" />Digital
+                            Point Forums Statistics</h3>
+                        <div>
+                            <dl>
+                                <dt>Threads</dt>
+                                <dd>
+                                    1,782,231</dd>
+                                <dt>Posts</dt>
+                                <dd>
+                                    13,812,350</dd>
+                                <dt>Members</dt>
+                                <dd>
+                                    378,759</dd>
+                                <dt>Active Members</dt>
+                                <dd>
+                                    59,420</dd>
+                            </dl>
+                            <p>
+                                Welcome to our newest member, <a href="#">Greg D</a></p>
+                            <dl>
+                                <dt>Blogs</dt>
+                                <dd>
+                                    <a href="http://blogs.digitalpoint.com/?do=bloglist">51</a></dd>
+                                <dt>Entries</dt>
+                                <dd>
+                                    <a href="http://blogs.digitalpoint.com/?do=list">172</a></dd>
+                                <dt>Last 24 Hours</dt>
+                                <dd>
+                                    <a href="http://blogs.digitalpoint.com/?do=list&amp;span=24">0</a></dd>
+                            </dl>
+                            <p>
+                                Latest Blog Entry, <a href="http://blogs.digitalpoint.com/entry.php?b=224">TOP SEOs
+                                    is a SCAM !!</a> by <a href="#">WorldImpulse</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end what's going on box -->
+            <%--Footer--%>
+            <div id="footer" class="floatcontainer footer">
+                <ul id="footer_links" class="footer_links">
+                    <li class="advertising"><a href="advertising.php">Advertising</a></li>
+                    <li><a href="http://www.twitter.com/digitalpoint" target="_blank" rel="nofollow"
+                        accesskey="9">Contact Us @Twitter</a></li>
+                    <li><a href="http://www.digitalpoint.com">Digital Point Solutions</a></li>
+                    <li><a href="#top" onclick="document.location.hash='top'; return false;">Top</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- closing div for body_wrapper -->
+        <div class="below_body">
+            <div id="footer_time" class="shade footer_time">
+                All times are GMT -8. The time now is <span class="time">6:01 pm</span>.</div>
+            <div id="footer_copyright" class="shade footer_copyright">
+                Get the <a href="http://articles.digitalpoint.com/" target="_blank">Sphinx-based search
+                    we use</a> for your forum.
+            </div>
+            <div id="fb-root">
+            </div>
+        </div>
+    </form>
+</body>
+</html>
