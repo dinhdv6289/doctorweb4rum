@@ -83,22 +83,22 @@ namespace DAL
             return dc;
         }
 
-        //public static ICustomersDA GetCustomersDA()
-        //{
-        //    ICustomersDA dc = null;
-        //    if (String.IsNullOrEmpty(dataAccessStringType))
-        //    {
-        //        throw (new NullReferenceException("DataAccessType in Web.config is null or empty"));
-        //    }
-        //    else
-        //    {
-        //        if (dataAccessStringType.Equals("SQLSERVER"))
-        //        {
-        //            Type t = Type.GetType("DAL.CustomerDA");
-        //            dc = (CustomerDA)Activator.CreateInstance(t);
-        //        }
-        //    }
-        //    return dc;
-        //}
+        public static IMemberDA GetMemberDA()
+        {
+            IMemberDA dc = null;
+            if (String.IsNullOrEmpty(dataAccessStringType))
+            {
+                throw (new NullReferenceException("DataAccessType in Web.config is null or empty"));
+            }
+            else
+            {
+                if (dataAccessStringType.Equals("SQLSERVER"))
+                {
+                    Type t = Type.GetType("DAL.MemberDA");
+                    dc = (MemberDA)Activator.CreateInstance(t);
+                }
+            }
+            return dc;
+        }
     }
 }
