@@ -1,0 +1,367 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterTopicsPage.master.cs"
+    Inherits="GUI_MasterTopicsPage" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Untitled Page</title>
+
+    <link href="css_002.css" rel="stylesheet" type="text/css" />
+    <link href="css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="above_body">
+            <div class="floatcontainer doc_header" id="header">
+                <div>
+                    <a class="logo-image" href="" name="top">
+                        <img src="Images/dps_logo.png"></a></div>
+                <div class="toplinks" id="toplinks">
+                    <ul class="nouser">
+                        <li><a rel="nofollow" href="">Register</a></li>
+                        <li><a href="" rel="help">Help</a></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div id="ad_global_header">
+                    <div class="ad_global_header_right">
+                    </div>
+                </div>
+                <div onclick="document.location.href='http://forums.digitalpoint.com/analytics.php'"
+                    id="stats">
+                    <ul>
+                        <li>
+                            <dl>
+                                <dd id="ga_name">
+                                </dd>
+                                <dt>not set up for reporting</dt></dl>
+                        </li>
+                    </ul>
+                </div>
+                <hr />
+            </div>
+            <div class="navbar" id="navbar">
+                <ul class="navtabs floatcontainer" id="navtabs">
+                    <li class="selected"><a href="javascript://" class="navtab popupctrl" id="yui-gen1">
+                        Forum</a> </li>
+                    <li><a href="http://articles.digitalpoint.com" class="navtab">Articles</a> </li>
+                    <li><a href="http://blogs.digitalpoint.com/" class="navtab">Blogs</a></li>
+                    <li><a href="http://marketplace.digitalpoint.com/" class="navtab">Marketplace</a></li>
+                    <li><a href="http://tools.digitalpoint.com/" class="navtab">Tools</a></li>
+                    <li><a href="http://directory.digitalpoint.com/" class="navtab">Directory</a></li>
+                    <li><a accesskey="2" href="search.php?do=getdaily&amp;contenttype=vBForum_Post" class="navtab">
+                        What's New?</a></li>
+                </ul>
+                <div class="globalsearch" id="globalsearch">
+                    <form class="navbar_search" id="navbar_search" method="post" action="search.php?do=process">
+                        <input type="hidden" value="guest" name="securitytoken">
+                        <input type="hidden" value="process" name="do">
+                        <span class="textboxcontainer"><span>
+                            <input type="text" tabindex="99" class="textbox" name="query" value=""></span></span>
+                        <span class="buttoncontainer"><span>
+                            <input type="image" tabindex="100" onclick="document.getElementById('navbar_search').submit;"
+                                name="submit" src="Images/search.png" class="searchbutton"></span></span>
+                    </form>
+                    <ul class="navbar_advanced_search">
+                        <li><a accesskey="4" href="">Advanced Search</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="body_wrapper">
+            <div id="breadcrumb" class="breadcrumb">
+                <ul class="floatcontainer">
+                    <li class="navbithome"><a href="" accesskey="1">
+                        <img src="http://m.dpstatic.com/misc/navbit-home.png" alt="Home" /></a></li>
+                    <li class="navbit"><a href="./">Forum</a></li>
+                    <li class="navbit"><a href="forumdisplay.php?f=4">Search Engines</a></li>
+                    <li class="navbit"><a href="forumdisplay.php?f=5">Google</a></li>
+                    <li class="navbit lastnavbit"><span>AdSense</span></li>
+                    <fb:like id="fb_like" href="http://forums.digitalpoint.com/forumdisplay.php?f=27"
+                        layout="button_count" width="150" font="tahoma"></fb:like>
+                </ul>
+                <hr />
+            </div>
+            <form action="profile.php?do=dismissnotice" method="post" id="notices" class="notices">
+                <input type="hidden" name="do" value="dismissnotice" />
+                <input type="hidden" name="s" value="" />
+                <input type="hidden" name="securitytoken" value="guest" />
+                <input type="hidden" id="dismiss_notice_hidden" name="dismiss_noticeid" value="" />
+                <input type="hidden" name="url" value="" />
+                <ol>
+                    <li class="restore" id="navbar_notice_3">If this is your first visit, be sure to check
+                        out the <a href="faq.php?" target="_blank"><b>FAQ</b></a> by clicking the link above.
+                        You may have to <a href="register.php?" target="_blank"><b>register</b></a> before
+                        you can post: click the register link above to proceed. To start viewing messages,
+                        select the forum that you want to visit from the selection below. </li>
+                </ol>
+            </form>
+            <div class="above_threadlist" id="above_threadlist">
+                <a id="newthreadlink_top" class="newcontent_textcontrol" rel="nofollow" href="newthread.php?do=newthread&amp;f=27">
+                    <span>+</span> Post New Thread</a>
+                <%--Phan trang--%>
+            </div>
+            <div class="pagetitle" id="pagetitle">
+                <h1>
+                    Forum: <span class="forumtitle">AdSense</span></h1>
+                <p class="description">
+                    Anything related to Google's AdSense program that allows website owners to generate
+                    advertising income by running Google ads.</p>
+            </div>
+            <%-- Begin Forum Tools  Search Forum--%>
+            <div class="above_threadlist_controls" id="above_threadlist_controls">
+                <div>
+                    <ul id="forumdisplaypopups" class="popupgroup forumdisplaypopups">
+                        <li id="forumtools" class="popupmenu nohovermenu">
+                            <h6>
+                                <a rel="nofollow" class="popupctrl" href="javascript://" id="yui-gen15">Forum Tools</a></h6>
+                            <ul class="popupbody" id="yui-gen14">
+                                <li><a rel="nofollow" href="newthread.php?do=newthread&amp;f=27">Post a New Thread…
+                                </a></li>
+                                <li><a onclick="return mark_forum_read(27);" rel="nofollow" href="forumdisplay.php?do=markread&amp;f=27&amp;markreadhash=guest">
+                                    Mark This Forum Read </a></li>
+                                <li><a rel="nofollow" href="forumdisplay.php?f=5">View Parent Forum</a></li>
+                            </ul>
+                        </li>
+                        <li id="forumsearch" class="popupmenu nohovermenu forumsearch">
+                            <h6>
+                                <a class="popupctrl" href="javascript://" id="yui-gen17">Search Forum</a></h6>
+                            <form method="get" action="search.php?do=process">
+                                <ul class="popupbody" id="yui-gen16">
+                                    <li>
+                                        <input type="text" value="Search..." name="q" class="searchbox">
+                                        <input type="submit" value="Search" class="button">
+                                    </li>
+                                    <li class="formsubmit">
+                                        <div class="submitoptions">
+                                            <label>
+                                                <input type="radio" checked="checked" value="0" name="showposts">
+                                                Show Threads</label>
+                                            <label>
+                                                <input type="radio" value="1" name="showposts">
+                                                Show Posts</label>
+                                        </div>
+                                        <div class="advancedsearchlink">
+                                            <a rel="nofollow" href="search.php?search_type=1&amp;contenttype=vBForum_Post&amp;forumchoice[]=27">
+                                                Advanced Search</a></div>
+                                    </li>
+                                </ul>
+                                <input type="hidden" value="" name="s">
+                                <input type="hidden" value="guest" name="securitytoken">
+                                <input type="hidden" value="process" name="do">
+                                <input type="hidden" value="vBForum_Post" name="contenttype">
+                                <input type="hidden" value="27" name="forumchoice[]">
+                                <input type="hidden" value="1" name="childforums">
+                                <input type="hidden" value="1" name="exactname">
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <%--End Forum Tools Search Forum--%>
+            <!-- main -->
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            <%--begin Button post new Thread--%>
+
+            <div class="noinlinemod below_threadlist" id="below_threadlist">
+            
+                <a id="newthreadlink_bottom" class="newcontent_textcontrol" rel="nofollow" href="newthread.php?do=newthread&amp;f=27">
+                    <span>+</span> Post New Thread</a>
+                    <%--begin phan trang--%>
+                <div class="threadpagenav">
+            
+                </div>
+                <%--end phan trang--%>
+            </div>
+            <%--and button post new thread--%>
+            <%--begin Forum information and options--%>
+            <div class="forum_info" id="forum_info_options">
+                <div class="collapse">
+                    <a href="forumdisplay.php?f=27&amp;sort=lastpost&amp;order=asc#top" id="collapse_forum_info"
+                        class="collapse">
+                        <img alt="" src="http://b.dpstatic.com/buttons/collapse_40b.png"></a>
+                    <h4 class="forumoptiontitle">
+                        <span class="optiontitle">Forum Information and Options</span></h4>
+                </div>
+                <div class="forum_info_block" id="forum_info">
+                    <div class="forum_info_subblock" id="forum_onlineusers">
+                        <h5>
+                            Users Browsing this Forum</h5>
+                        <div>
+                            <p>
+                                There are currently <a href="online.php">56 users browsing this forum</a>. (3 members
+                                &amp; 53 guests)</p>
+                            <ol class="commalist">
+                                <li><a href="member.php?u=377762" class="username"><span class="user25">andyvn</span></a></li>
+                                <li><a href="member.php?u=195355" class="username">soopoot</a></li>
+                                <li><a href="member.php?u=391776" class="username"><span class="user10">stator</span></a></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse">
+                    <a href="forumdisplay.php?f=27&amp;sort=lastpost&amp;order=asc#top" id="collapse_forum_options"
+                        class="collapse">
+                        <img alt="" src="http://b.dpstatic.com/buttons/collapse_40b.png"></a>
+                    <h4 class="forumoptiontitle">
+                        <span class="optiontitle">Thread Display Options</span></h4>
+                </div>
+                <div class="forum_info_form_block" id="forum_options">
+                    <form class="forum_info_form" method="get" action="forumdisplay.php" id="forum_display_options">
+                        <input type="hidden" value="" name="s">
+                        <input type="hidden" value="27" name="f">
+                        <input type="hidden" value="1" name="page">
+                        <input type="hidden" value="50" name="pp">
+                        <div>
+                            <div class="options_input_block">
+                                <label for="sel_daysprune">
+                                    Show threads from the...</label>
+                                <select name="daysprune" id="sel_daysprune" class="primary">
+                                    <option value="1">Last Day</option>
+                                    <option value="2">Last 2 Days</option>
+                                    <option value="7">Last Week</option>
+                                    <option value="10">Last 10 Days</option>
+                                    <option value="14">Last 2 Weeks</option>
+                                    <option value="30">Last Month</option>
+                                    <option value="45">Last 45 Days</option>
+                                    <option value="60">Last 2 Months</option>
+                                    <option value="75">Last 75 Days</option>
+                                    <option value="100">Last 100 Days</option>
+                                    <option value="365">Last Year</option>
+                                    <option selected="selected" value="-1">Beginning</option>
+                                </select>
+                                <p class="description">
+                                    Use this control to limit the display of threads to those newer than the specified
+                                    time frame.</p>
+                            </div>
+                            <div class="options_input_block">
+                                <label for="sel_sort">
+                                    Sort threads by:</label>
+                                <select name="sort" id="sel_sort" class="primary">
+                                    <option value="title">Thread Title</option>
+                                    <option selected="selected" value="lastpost">Last Post Time</option>
+                                    <option value="dateline">Thread Start Time</option>
+                                    <option value="replycount">Number of Replies</option>
+                                    <option value="views">Number of Views</option>
+                                    <option value="postusername">Thread Starter</option>
+                                    <option value="voteavg">Thread Rating</option>
+                                </select>
+                                <p class="description">
+                                    Allows you to choose the data by which the thread list will be sorted.</p>
+                            </div>
+                            <!-- Group of Radio Buttons -->
+                            <div class="options_input_block">
+                                <p class="label">
+                                    Order threads in...</p>
+                                <ul class="checkradio group">
+                                    <li>
+                                        <label for="radio_asc">
+                                            <input type="radio" checked="checked" value="asc" id="radio_asc" name="order">
+                                            Ascending Order</label></li>
+                                    <li>
+                                        <label for="radio_dsc">
+                                            <input type="radio" value="desc" id="radio_dsc" name="order">
+                                            Descending Order</label></li>
+                                </ul>
+                                <p class="description">
+                                    Note: when sorting by date, 'descending order' will show the newest results first.</p>
+                            </div>
+                        </div>
+                        <div class="options_input_wrapper">
+                            <div class="options_input_block">
+                                <div class="group">
+                                    <input type="submit" value="Show Threads" class="button">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="options_block_container">
+                    <div class="options_block">
+                        <div class="collapse">
+                            <a href="forumdisplay.php?f=27&amp;sort=lastpost&amp;order=asc#top" id="collapse_forum_icon_legend"
+                                class="collapse">
+                                <img alt="" src="http://b.dpstatic.com/buttons/collapse_40b.png"></a>
+                            <h4>
+                                <span class="optiontitle">Icon Legend</span></h4>
+                        </div>
+                        <div class="forum_info_block" id="forum_icon_legend">
+                            <dl class="forum_info_subblock icon_legends" id="icon_legends">
+                                <dt>
+                                    <img alt="Contains unread posts" src="http://i.dpstatic.com/statusicon/thread_new-16.png"
+                                        title="Contains unread posts"></dt><dd>Contains unread posts</dd>
+                                <dt>
+                                    <img alt="Contains no unread posts" src="http://i.dpstatic.com/statusicon/thread-16-right.png"
+                                        title="Contains no unread posts"></dt><dd>Contains no unread posts</dd>
+                                <dt>
+                                    <img alt="More than 50 replies or 500 views" src="http://i.dpstatic.com/statusicon/thread_hot_new-16.png"
+                                        title="More than 50 replies or 500 views"></dt><dd>Hot thread with unread posts</dd>
+                                <dt>
+                                    <img alt="More than 50 replies or 500 views" src="http://i.dpstatic.com/statusicon/thread_hot-16.png"
+                                        title="More than 50 replies or 500 views"></dt><dd>Hot thread with no unread posts</dd>
+                                <dt>
+                                    <img alt="Closed Thread" src="http://i.dpstatic.com/statusicon/thread_lock-16.png"
+                                        title="Closed Thread"></dt><dd>Thread is closed</dd>
+                                <dt>
+                                    <img alt="Thread Contains a Message Written By You" src="http://i.dpstatic.com/statusicon/thread_dot-16-right.png"
+                                        title="Thread Contains a Message Written By You"></dt><dd>You have posted in this thread</dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="options_block2">
+                        <div class="collapse">
+                            <a href="forumdisplay.php?f=27&amp;sort=lastpost&amp;order=asc#top" id="collapse_posting_rules"
+                                class="collapse">
+                                <img alt="" src="http://b.dpstatic.com/buttons/collapse_40b.png"></a>
+                            <h4>
+                                <span class="optiontitle">Posting Permissions</span></h4>
+                        </div>
+                        <div class="forum_info_block" id="posting_rules">
+                            <div class="info_subblock" id="thread_posting_rules">
+                                <ul class="youcandoblock" id="thread_rules">
+                                    <li>You <strong>may not</strong> post new threads</li>
+                                    <li>You <strong>may not</strong> post replies</li>
+                                    <li>You <strong>may not</strong> post attachments</li>
+                                    <li>You <strong>may not</strong> edit your posts</li>
+                                </ul>
+                                <div class="bbcodeblock" id="more_rules">
+                                    <ul>
+                                        <li><a target="_blank" href="misc.php?do=bbcode">BB code</a> is <strong>On</strong></li>
+                                        <li><a target="_blank" href="misc.php?do=showsmilies">Smilies</a> are <strong>On</strong></li>
+                                        <li><a target="_blank" href="misc.php?do=bbcode#imgcode">[IMG]</a> code is <strong>On</strong></li>
+                                        <li>HTML code is <strong>Off</strong></li>
+                                    </ul>
+                                </div>
+                                <p class="rules_link">
+                                    <a target="_blank" href="misc.php?do=showrules">Forum Rules</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%--end forum information and options--%>
+            <%--Footer--%>
+            <div id="footer" class="floatcontainer footer">
+                <ul id="footer_links" class="footer_links">
+                    <li class="advertising"><a href="advertising.php">Advertising</a></li>
+                    <li><a href="http://www.twitter.com/digitalpoint" target="_blank" rel="nofollow"
+                        accesskey="9">Contact Us @Twitter</a></li>
+                    <li><a href="http://www.digitalpoint.com">Digital Point Solutions</a></li>
+                    <li><a href="#top" onclick="document.location.hash='top'; return false;">Top</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- closing div for body_wrapper -->
+        <div class="below_body">
+            <div id="footer_time" class="shade footer_time">
+                All times are GMT -8. The time now is <span class="time">6:01 pm</span>.</div>
+            <div id="footer_copyright" class="shade footer_copyright">
+                Get the <a href="http://articles.digitalpoint.com/" target="_blank">Sphinx-based search
+                    we use</a> for your forum.
+            </div>
+            <div id="fb-root">
+            </div>
+        </div>
+    </form>
+</body>
+</html>
