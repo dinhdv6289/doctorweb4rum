@@ -139,6 +139,8 @@ CREATE TABLE Topics
 	TopicID			INT IDENTITY(1,1) PRIMARY KEY,
 	SubForumID		INT NOT NULL,
 	MemberID		INT NOT NULL,
+	Title			NVARCHAR(100) NOT NULL,
+	[Content]		NTEXT,
 	--PostId			INT NOT NULL,	
 	IsLocked		BIT DEFAULT 0,
 	TotalViews		INT,

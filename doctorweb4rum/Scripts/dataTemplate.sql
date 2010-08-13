@@ -184,14 +184,27 @@ select * from SubForums
 insert into dbo.Members(UserName,Password,Email,FullName,DateCreation,AllowLogin,IsOnline)
 values('username1','password','test@gmail.com','userName1Test',GetDate(),'true','true')
 
-insert into Topics(SubForumID,MemberID,IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
-values(1,1,'false',1,1,getdate(),1)
+insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
+values(
+	1,
+	1,
+	'The Antibiotic Crisis: 10 year window',
+	'It is been no mystery that we have been over prescribing antibiotics to the detriment of our ability to keep up with the rapidly evolving speed of drug-resistant bacteria. Here are two articles that point out a serious bacteria that seems like it has finally reached a point that we may not be able to handle.
+	I know it is long but read it anyway--it will help your verbal score. ',
+	'false',
+	1,1,getdate(),1)
 
-insert into Topics(SubForumID,MemberID,IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
-values(1,1,'false',1,1,'12/12/2008',1)
+insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
+values(
+	1,
+	1,
+	'Research question, what should I do?',
+	'Last year I researched with a professor at my school to work on a thesis. I was a freshman and the professor suggested I run a project of a student who had graduated a few years back because he had had some trouble with it. The experiment goes great and we get great data. I write my thesis and the professor also had me write an article to submit to a journal. ',
+	'false',
+	1,1,'12/12/2008',1)
 
-insert into Topics(SubForumID,MemberID,IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
-values(2,1,'false',1,1,'12/12/2008',1)
+insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
+values(2,1,'Title test','Content Test','false',1,1,'12/12/2008',1)
 
 
 
