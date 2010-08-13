@@ -68,5 +68,22 @@ namespace DAL
             }
             return result;
         }
+
+        public SubForum GetSubForumBySubForumID(int subForumID)
+        {
+            SubForum[] result;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("Select * from {0} where {1} = {2}", tableName, SubForumID, subForumID);
+                result = SelectCollection<SubForum>(columnNames, columnNames, cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result[0];
+        }
     }
 }

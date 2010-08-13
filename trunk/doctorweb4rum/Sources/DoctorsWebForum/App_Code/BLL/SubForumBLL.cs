@@ -47,5 +47,19 @@ namespace BLL
             }
             return result;
         }
+
+        public static SubForum GetSubForumBySubForumID(int subForumID)
+        {
+            SubForum result = null;
+            try
+            {
+                result = DataHelper.GetSubForumDA().GetSubForumBySubForumID(subForumID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }
