@@ -50,7 +50,7 @@ public class Role
         set { totalPosts = value; }
     }
 
-    public int RankImage
+    public string RankImage
     {
         get { return rankImage; }
         set { rankImage = value; }
