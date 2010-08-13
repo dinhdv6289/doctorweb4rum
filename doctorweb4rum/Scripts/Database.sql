@@ -126,8 +126,7 @@ CREATE TABLE SubForums
 	DateCreation	DATETIME DEFAULT GETDATE(),
 	Priority		INT,			
 	TotalTopics		INT,	
-	TotalMessages	INT,
-	ImageIcon		NVARCHAR(50)	
+	TotalMessages	INT
 )
 ALTER TABLE SubForums ADD CONSTRAINT FK_SubForums_CategoryID FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
 
@@ -140,7 +139,7 @@ CREATE TABLE Topics
 	TopicID			INT IDENTITY(1,1) PRIMARY KEY,
 	SubForumID		INT NOT NULL,
 	MemberID		INT NOT NULL,
-	PostId			INT NOT NULL,	
+	--PostId			INT NOT NULL,	
 	IsLocked		BIT DEFAULT 0,
 	TotalViews		INT,
 	TotalMessages	INT,
@@ -169,7 +168,7 @@ CREATE TABLE Posts
 GO
 ALTER TABLE Topics ADD CONSTRAINT FK_Topics_SubForumID FOREIGN KEY (SubForumID) REFERENCES SubForums(SubForumID)
 ALTER TABLE Topics ADD CONSTRAINT FK_Topics_MemberID FOREIGN KEY (MemberID) REFERENCES Members(MemberID)
-ALTER TABLE Topics ADD CONSTRAINT FK_Topics_PostId FOREIGN KEY (PostId) REFERENCES Posts(PostID)
+--ALTER TABLE Topics ADD CONSTRAINT FK_Topics_PostId FOREIGN KEY (PostId) REFERENCES Posts(PostID)
 GO
 ALTER TABLE Posts ADD CONSTRAINT FK_Posts_TopicID FOREIGN KEY (TopicID) REFERENCES Topics(TopicID)
 ALTER TABLE Posts ADD CONSTRAINT FK_Posts_MemberID FOREIGN KEY (MemberID) REFERENCES Members(MemberID)
@@ -201,21 +200,39 @@ ALTER TABLE Messages ADD CONSTRAINT FK_Messages_ToMember FOREIGN KEY (ToMember) 
 --)
 
 GO
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Rating' AND TYPE = 'U')
-DROP TABLE Rating
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'RatingTopic' AND TYPE = 'U')
+DROP TABLE RatingTopic
 GO
-CREATE TABLE Rating
+CREATE TABLE RatingTopic
 (
-	RateID		INT IDENTITY(1,1) PRIMARY KEY,
-	TypeID		INT NOT NULL,
+	RateTopicID		INT IDENTITY(1,1) PRIMARY KEY,
+	--TypeID		INT NOT NULL,
 	FromMember	INT	NOT NULL,
 	TopicID		INT NOT NULL,
 	RatePoint	INT	,
-	RatingDate	DATETIME
+	RateDate	DATETIME
 )
 --ALTER TABLE Rating ADD CONSTRAINT FK_Rating_TypeID FOREIGN KEY (TypeID) REFERENCES RateType(TypeID)
-ALTER TABLE Rating ADD CONSTRAINT FK_Rating_FromMember FOREIGN KEY (FromMember) REFERENCES Members(MemberID)
-ALTER TABLE Rating ADD CONSTRAINT FK_Rating_TopicID FOREIGN KEY (TopicID) REFERENCES Topics(TopicID)
+ALTER TABLE RatingTopic ADD CONSTRAINT FK_RatingTopic_FromMember FOREIGN KEY (FromMember) REFERENCES Members(MemberID)
+ALTER TABLE RatingTopic ADD CONSTRAINT FK_RatingTopic_TopicID FOREIGN KEY (TopicID) REFERENCES Topics(TopicID)
+
+GO
+
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'RatingPost' AND TYPE = 'U')
+DROP TABLE RatingPost
+GO
+CREATE TABLE RatingPost
+(
+	RatingPostID INT IDENTITY(1,1) PRIMARY KEY,
+	--TypeID		INT NOT NULL,
+	FromMember	INT	NOT NULL,
+	PostID		INT NOT NULL,
+	RatePoint	INT	,
+	RateDate	DATETIME
+)
+--ALTER TABLE Rating ADD CONSTRAINT FK_Rating_TypeID FOREIGN KEY (TypeID) REFERENCES RateType(TypeID)
+ALTER TABLE RatingPost ADD CONSTRAINT FK_RatingPost_FromMember FOREIGN KEY (FromMember) REFERENCES Members(MemberID)
+ALTER TABLE RatingPost ADD CONSTRAINT FK_RatingPost_PostID FOREIGN KEY (PostID) REFERENCES Posts(PostID)
 
 GO
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Moderator' AND TYPE = 'U')
@@ -230,336 +247,6 @@ CONSTRAINT PK_Moderator PRIMARY KEY (SubForumID,MemberID)
 ALTER TABLE Moderator ADD CONSTRAINT FK_Moderator_SubForumID FOREIGN KEY (SubForumID) REFERENCES SubForums(SubForumID)
 ALTER TABLE Moderator ADD CONSTRAINT FK_Moderator_MemberID FOREIGN KEY (MemberID) REFERENCES Members(MemberID)
 	
-GO
-/**************************** INSERT TABLE ********************************/
-INSERT INTO Roles VALUES('Member','Users',0,'member.gif')
-INSERT INTO Roles VALUES('Moderator','Management Posts',100,'mod.gif')
-INSERT INTO Roles VALUES('Super Moderator','Management SubForum',300,'supmod.gif')
-INSERT INTO Roles VALUES('Admin','Management Forum',500,'admin.gif')
 
 
-GO
-/***************************************************************************
-							 Select Procedure 
-****************************************************************************/
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Sel_Roles' AND TYPE = 'P')
-DROP PROC Sel_Roles
-GO
-CREATE PROCEDURE Sel_Roles
-AS BEGIN
-	SELECT RoleID, RoleName, Description, TotalPosts, RankImage
-		FROM Roles
-END
 
-GO
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Sel_LastMemberID' AND TYPE = 'P')
-DROP PROC Sel_LastMemberID
-GO
-CREATE PROCEDURE Sel_LastMemberID
-@MemberID	INT OUTPUT
-AS BEGIN
-   		SELECT 	@MemberID=ISNULL(MAX(MemberID),0) FROM Members
-   END
-
-GO
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Ins_MemberInfo' AND TYPE = 'P')
-DROP PROC Ins_MemberInfo
-GO
-CREATE PROCEDURE Ins_MemberInfo
-@UserName		NVARCHAR(30),
-@Password		NVARCHAR(50),
-@Email			NVARCHAR(100) ,
-@FullName		NVARCHAR(50) ,
-@Country		NVARCHAR(50),
-@Address		NVARCHAR(255),
-@BirthDay		DATETIME,
-@Gender			BIT,
-@Phone			NVARCHAR(15),
-@Hospital		NVARCHAR(100),
-@IPAddress				NVARCHAR(15),
-@Result			SMALLINT OUTPUT
-AS	BEGIN
-		IF(NOT EXISTS(SELECT UserName FROM Members WHERE UserName=@UserName))
-			BEGIN
-				IF(NOT EXISTS(SELECT Email FROM Members WHERE Email=@Email))
-					BEGIN
-						INSERT INTO Members(UserName,[Password],Email,FullName,DateCreation,AllowLogin,IsOnline)
-						VALUES	(@UserName,@Password,@Email,@FullName,GETDATE(),1,1)
-						
-						DECLARE @MemberID	INT
-						EXEC Sel_LastMemberID @MemberID OUTPUT
-						INSERT INTO MemberProfiles(MemberID,RoleID,Country,[Address],BirthDay,Gender,Phone,Hospital,IPAddress)
-						VALUES	(@MemberID,1,@Country,@Address,@BirthDay,@Gender,@Phone,@Hospital,@IPAddress)
-						
-						INSERT INTO AllowDisplay(MemberID,DisFullName,DisEmail,DisBirthDay,DisAddress,DisYahoo,
-									DisPhone,DisHospital,DisBlog,DisSignature)
-						VALUES(@MemberID,1,1,1,1,1,1,1,1,1)
-						
-						SET @Result = 1;
-					END
-				ELSE
-					BEGIN
-						SET @Result = -2;
-					END
-			END
-		ELSE
-			BEGIN
-				SET @Result = -1;
-			END		
-	END
-	
-GO
-
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'udp_IsOnilne' AND TYPE = 'P')
-DROP PROC udp_IsOnilne
-GO
-CREATE PROCEDURE udp_IsOnilne
-@MemberID	INT,
-@Status		BIT
-AS BEGIN
-   		UPDATE Members SET	IsOnline = @Status WHERE MemberID=@MemberID
-   END
-
-GO
-
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Sel_MemberLogin' AND TYPE = 'P')
-DROP PROC Sel_MemberLogin
-GO
-CREATE PROCEDURE Sel_MemberLogin
-@UserName		NVARCHAR(30) ,
-@Password		NVARCHAR(50) ,
-@Result			SMALLINT OUTPUT
-AS BEGIN
-	DECLARE @ID INT
-	IF(EXISTS(SELECT MemberID FROM Members WHERE UserName = @UserName))
-		BEGIN
-			SELECT @ID = MemberID FROM Members WHERE UserName = @UserName
-			IF(EXISTS(SELECT MemberID FROM Members WHERE password=@Password))
-				BEGIN
-					IF((SELECT AllowLogin FROM Members WHERE MemberID=@ID) = 1)
-						BEGIN
-							SET @Result = 1;
-							EXEC udp_IsOnilne @ID,1
-						END
-					ELSE
-						BEGIN
-							SET @Result = -3;
-						END
-				END
-			ELSE
-				BEGIN
-					SET @Result = -2;
-				END
-		END
-	ELSE
-		BEGIN
-			SET @Result = -1;
-		END
-END
-
-GO
-
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Sel_MemberIdByUserName' AND TYPE = 'P')
-DROP PROC Sel_MemberIdByUserName
-GO
-CREATE PROCEDURE Sel_MemberIdByUserName
-@UserName	 NVARCHAR(30)
-AS BEGIN
-   	SELECT MemberID FROM Members WHERE UserName=@UserName
-   END
-GO
-
-
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Sel_MemberProfilesByMemberID' AND TYPE = 'P')
-DROP PROC Sel_MemberProfilesByMemberID
-GO
-CREATE PROCEDURE Sel_MemberProfilesByMemberID
-@MemberID		INT
-AS
-	BEGIN
-		SELECT dm.Email,dm.FullName,
-			   dmp.Country,dmp.[Address],dmp.BirthDay,dmp.Gender,dmp.Yahoo,dmp.Phone,dmp.Hospital,dmp.Blog,dmp.AboutMe,
-			   dad.DisFullName,dad.DisEmail,dad.DisBirthDay,dad.DisAddress,dad.DisYahoo,dad.DisPhone,dad.DisHospital,
-			   dad.DisBlog
-		FROM Members dm INNER JOIN MemberProfiles dmp ON dm.MemberID= dmp.MemberID 
-			INNER JOIN AllowDisplay dad ON dad.MemberID = dm.MemberID AND dad.MemberID = dmp.MemberID 
-		WHERE dm.MemberID=@MemberID
-	END
-GO
-
-
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Udp_MemberProfiles' AND TYPE = 'P')
-DROP PROC Udp_MemberProfiles
-GO
-CREATE PROCEDURE Udp_MemberProfiles
-@MemberID		INT,
-@FullName		NVARCHAR(50) ,
-@Email			NVARCHAR(100) ,
-@Address		NVARCHAR(255),
-@Hospital		NVARCHAR(100),
-@BirthDay		DATETIME,
-@Gender			BIT,
-@Yahoo			NVARCHAR(100),		
-@Phone			NVARCHAR(15),
-@Blog			NVARCHAR(100),
-@Country		NVARCHAR(50),
-@AboutMe		NTEXT,
-@DisFullName	BIT ,
-@DisEmail		BIT ,
-@DisBirthDay	BIT ,
-@DisAddress		BIT ,
-@DisYahoo		BIT ,
-@DisPhone		BIT ,
-@DisHospital	BIT ,
-@DisBlog		BIT 
-AS
-	BEGIN
-		UPDATE Members	SET
-			Email = @Email,
-			FullName = @FullName
-		WHERE MemberID=@MemberID
-		UPDATE MemberProfiles SET
-			Country = @Country,
-			[Address] = @Address,
-			BirthDay = @BirthDay,
-			Gender = @Gender,
-			Yahoo = @Yahoo,
-			Phone = @Phone,
-			Hospital = @Hospital,
-			Blog = @Blog,
-			AboutMe = @AboutMe
-		WHERE MemberID=@MemberID
-		UPDATE AllowDisplay	SET
-			DisFullName = @DisFullName,
-			DisEmail = @DisEmail,
-			DisBirthDay = @DisBirthDay,
-			DisAddress = @DisAddress,
-			DisYahoo = @DisYahoo,
-			DisPhone = @DisPhone,
-			DisHospital = @DisHospital,
-			DisBlog = @DisBlog
-		WHERE MemberID=@MemberID
-	END	
-
-GO
-
-
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Sel_ChatMessages' AND TYPE = 'P')
-DROP PROC Sel_ChatMessages
-GO
-CREATE PROCEDURE Sel_ChatMessages
-AS BEGIN
-	SELECT TOP 50 ChatID,(SELECT UserName FROM Members WHERE MemberID = cm.MemberID) AS UserName, ChatContent, ChatDate
-		FROM ChatMessages cm ORDER BY cm.ChatID DESC
-END
-
-GO
-
-
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Ins_ChatMessages' AND TYPE = 'P')
-DROP PROC Ins_ChatMessages
-GO
-CREATE PROCEDURE Ins_ChatMessages
-@MemberID		INT ,
-@ChatContent	NTEXT ,
-@ChatDate		DATETIME
-AS	BEGIN
-		INSERT INTO	ChatMessages(MemberID,ChatContent,ChatDate) VALUES (@MemberID,@ChatContent,@ChatDate)
-END
-
-GO
-
-
----------
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Sel_ChatMessageGetLastMessage' AND TYPE = 'P')
-DROP PROC Sel_ChatMessageGetLastMessage
-GO
-CREATE PROCEDURE Sel_ChatMessageGetLastMessage
-AS	BEGIN
-		SELECT 	ISNULL(MAX(ChatID),0) AS ChatID FROM ChatMessages
-  	END
-
-
-GO
----Procedure Roles
-
-CREATE PROC Insert_Roles
-	@RoleName		NVARCHAR(20),
-	@Description	NVARCHAR(100),
-	@RankImage		NVARCHAR(100)
-AS BEGIN 
-	INSERT INTO Roles(RoleName,Description,RankImage) VALUES (@RoleName,@Description,@RankImage)
-END
-
-GO
----PROCEDURE Members
-
-CREATE PROC Insert_Members
-	@UserName	NVARCHAR(30),
-	@Password	NVARCHAR(50),
-	@Email		NVARCHAR(100),
-	@FullName	NVARCHAR(50)
-AS BEGIN
-	INSERT INTO Members (UserName,Password,Email,FullName) VALUES (@UserName,@Password,@Email,@FullName)
-END
-
-GO
-
----PROCEDURE MemberProfiles
-
-CREATE PROC Insert_MemberProfiles
-	@RoleID			INT,
-	@Blast			NVARCHAR(100),
-	@Avatar			NVARCHAR(150),
-	@Country		NVARCHAR(50),
-	@Address		NVARCHAR(255),
-	@BirthDay		DATETIME,
-	@Yahoo			NVARCHAR(100),
-	@Phone			NVARCHAR(15),
-	@Hospital		NVARCHAR(100),
-	@Blog			NVARCHAR(100),
-	@IPAddress		NVARCHAR(50),	
-	@MyRss			NVARCHAR(300),
-	@Signature		NVARCHAR(1000),
-	@AboutMe		NTEXT
-AS BEGIN
-	INSERT INTO MemberProfiles (RoleID,Blast,Avatar,Country,Address,BirthDay,Yahoo,Phone,Hospital,Blog,IPAddress,MyRss,Signature,AboutMe) VALUES (@RoleID,@Blast,@Avatar,@Country,@Address,@BirthDay,@Yahoo,@Phone,@Hospital,@Blog,@IPAddress,@MyRss,@Signature,@AboutMe)
-END
-
-GO
----PROCEDURE Categories
-
-CREATE PROC Insert_Categories
-	@CategoryName	NVARCHAR(50),
-	@Priority		INT
-AS BEGIN 
-	INSERT INTO Categories (CategoryName,Priority) VALUES (@CategoryName,@Priority)			 					
-END
-
-GO
----PROCEDURE SubForums
-
-CREATE PROC Insert_SubForums
-	@CategoryID		INT,
-	@SubForumName	NVARCHAR(100),
-	@Description	NVARCHAR(500),
-	@Priority		INT,
-	@ImageIcon		NVARCHAR(50)
-AS BEGIN 
-	INSERT INTO SubForums (CategoryID,SubForumName,Description,Priority,ImageIcon) VALUES (@CategoryID,@SubForumName,@Description,@Priority,@ImageIcon)	
-END
-
-GO
----PROCEDURE Posts
-
-CREATE PROC Insert_Posts
-	@TopicID	INT,
-	@MemberID	INT,
-	@Title		NVARCHAR(100),
-	@Content	NTEXT,
-	@Experience	FLOAT,
-	@DateEdited	DATETIME,
-	@IPAddress	NVARCHAR(50)
-AS BEGIN 
-	INSERT INTO Posts (TopicID,MemberID,Title,[Content],Experience,DateEdited,IPAddress) VALUES (@TopicID,@MemberID,@Title,@Content,@Experience,@DateEdited,@IPAddress)
-END

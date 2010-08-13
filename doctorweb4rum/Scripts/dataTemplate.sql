@@ -1,3 +1,12 @@
+use doctorWeb4rum
+GO
+/**************************** INSERT TABLE ********************************/
+INSERT INTO Roles VALUES('Member','Users',0,'member.gif')
+INSERT INTO Roles VALUES('Moderator','Management Posts',100,'mod.gif')
+INSERT INTO Roles VALUES('Super Moderator','Management SubForum',300,'supmod.gif')
+INSERT INTO Roles VALUES('Admin','Management Forum',500,'admin.gif')
+go
+
 insert into dbo.Categories(CategoryName,Priority) values('Pre-Medical Forums',1)
 insert into dbo.Categories(CategoryName,Priority) values('Dental Forums [ DDS / DMD ]',2)
 insert into dbo.Categories(CategoryName,Priority) values('Optometry Forums [ OD ]',3)
@@ -171,6 +180,19 @@ insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopi
 values(12,'Surgery and Surgical Subspecialties ','Discuss surgery and surgical subspecialties.',25,0,0)
 
 select * from SubForums
+
+insert into dbo.Members(UserName,Password,Email,FullName,DateCreation,AllowLogin,IsOnline)
+values('username1','password','test@gmail.com','userName1Test',GetDate(),'true','true')
+
+insert into Topics(SubForumID,MemberID,IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
+values(1,1,'false',1,1,getdate(),1)
+
+insert into Topics(SubForumID,MemberID,IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
+values(1,1,'false',1,1,'12/12/2008',1)
+
+insert into Topics(SubForumID,MemberID,IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
+values(2,1,'false',1,1,'12/12/2008',1)
+
 
 
 
