@@ -24,7 +24,7 @@ namespace DAL
         private String[] columnNames = { CategoryID, CategoryName, Priority, DateCreation };
 
 
-        public Category[] getAllCategory()
+        public Category[] GetAllCategory()
         {
             Category[] result;
             try

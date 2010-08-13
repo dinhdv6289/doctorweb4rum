@@ -1,19 +1,14 @@
 using System;
 using System.Data;
 using System.Configuration;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
+
 
 /// <summary>
 /// Summary description for Posts
 /// </summary>
-public class Posts
+public class Post
 {
-	public Posts()
+	public Post()
 	{
 		//
 		// TODO: Add constructor logic here
@@ -62,7 +57,7 @@ public class Posts
         set { content = value; }
     }
 
-    public float experience
+    public float Experience
     {
         get { return experience; }
         set { experience = value; }

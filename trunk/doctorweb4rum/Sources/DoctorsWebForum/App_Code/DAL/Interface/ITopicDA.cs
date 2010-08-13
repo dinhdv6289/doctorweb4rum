@@ -11,5 +11,6 @@ namespace DAL
 public interface ITopicDA
 {
     Topic[] GetAllTopicBySubForumID(int subForumID);
+    Topic GetTopicByTopicID(int topicID);
 }
 }

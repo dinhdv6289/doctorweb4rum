@@ -22,12 +22,12 @@
                             </h2>
                         </div>
                         <ol class="childforum" id="c_cat4">
-                            <asp:Repeater ID="repeaterSubForums" runat="server" DataSource='<%#getAllSubForumsByCategoryID(Convert.ToInt32(DataBinder.Eval(Container.DataItem, "CategoryID"))) %>'>
+                            <asp:Repeater ID="repeaterSubForums" runat="server" DataSource='<%#GetAllSubForumsByCategoryID(Convert.ToInt32(DataBinder.Eval(Container.DataItem, "CategoryID"))) %>'>
                                 <ItemTemplate>
                                     <li class="forumbit_post L2" id="forum5">
                                         <div class="forumrow table">
                                             <div class="foruminfo td">
-                                                <img alt="" id="forum_statusicon_5" class="forumicon" src='<%#getImageStatus(Convert.ToInt32(DataBinder.Eval(Container.DataItem, "SubForumID"))) %>'
+                                                <img alt="" id="forum_statusicon_5" class="forumicon" src='<%#GetImageStatus(Convert.ToInt32(DataBinder.Eval(Container.DataItem, "SubForumID"))) %>'
                                                     title="Double-click this icon to mark this forum and its contents as read" style="cursor: pointer;">
                                                 <div class="forumdata">
                                                     <div class="datacontainer">

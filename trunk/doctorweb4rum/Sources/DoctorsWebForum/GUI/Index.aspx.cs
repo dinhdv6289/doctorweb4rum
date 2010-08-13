@@ -22,16 +22,16 @@ public partial class GUI_Index : System.Web.UI.Page
 
     private void loadData()
     {
-        repeaterCategories.DataSource = CategoryBLL.getAllCategory();
+        repeaterCategories.DataSource = CategoryBLL.GetAllCategory();
         repeaterCategories.DataBind();
     }
 
-    public SubForum[] getAllSubForumsByCategoryID(int CategoryID)
+    public SubForum[] GetAllSubForumsByCategoryID(int CategoryID)
     {
-       return SubForumBLL.getlAllSubForumsByCategoryID(CategoryID);
+       return SubForumBLL.GetlAllSubForumsByCategoryID(CategoryID);
     }
 
-    public String getImageStatus(int SubForumID)
+    public String GetImageStatus(int SubForumID)
     {
         if (SubForumBLL.GetImageStatus(SubForumID))
         {
