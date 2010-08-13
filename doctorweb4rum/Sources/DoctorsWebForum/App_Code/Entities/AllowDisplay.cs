@@ -13,6 +13,7 @@ public class AllowDisplay
 		// TODO: Add constructor logic here
 		//
 	}
+
     private int memberID;
     private Boolean disFullName;
     private Boolean disEmail;
@@ -24,7 +25,47 @@ public class AllowDisplay
     private Boolean disBlog;
     private Boolean disSignature;
 
+    public int MemberID
+    {
+        get { return memberID; }
+        set { memberID = value; }
+    }
 
+    public Boolean DisFullName
+    {
+        get { return disFullName; }
+        set { disFullName = value; }
+    }
+
+    public Boolean DisEmail
+    {
+        get { return disEmail; }
+        set { disEmail = value; }
+    }
+
+    public Boolean DisBirthDay
+    {
+        get { return disBirthDay; }
+        set { disBirthDay = value; }
+    }
+
+    public Boolean DisAddress
+    {
+        get { return disAddress; }
+        set { disAddress = value; }
+    }
+
+    public Boolean DisYahoo
+    {
+        get { return disYahoo; }
+        set { disYahoo = value; }
+    }
+
+    public Boolean DisPhone
+    {
+        get { return disPhone; }
+        set { disPhone = value; }
+    }
 
     public Boolean DisHospital
     {
