@@ -27,6 +27,7 @@
                                     <li class="forumbit_post L2" id="forum5">
                                         <div class="forumrow table">
                                             <div class="foruminfo td">
+                                             
                                                 <img alt="" id="forum_statusicon_5" class="forumicon" src="http://i.dpstatic.com/statusicon/forum_new-48.png"
                                                     title="Double-click this icon to mark this forum and its contents as read" style="cursor: pointer;">
                                                 <div class="forumdata">
