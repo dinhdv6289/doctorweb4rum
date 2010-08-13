@@ -179,13 +179,13 @@ GO
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Messages' AND TYPE = 'U')
 DROP TABLE Messages
 GO
-CREATE TABLE Messages
+create TABLE Messages
 (
 	MessageID		INT IDENTITY(1,1) PRIMARY KEY,
 	FromMember		INT NOT NULL,
 	ToMember		INT NOT NULL,
 	Title			NVARCHAR(100) NOT NULL,
-	[Message]		NTEXT,
+	MessageContent	NTEXT,
 	DateSend		DATETIME DEFAULT GETDATE(),
 	IsView			BIT DEFAULT 0,
 	IsRead			BIT DEFAULT 0	 		
