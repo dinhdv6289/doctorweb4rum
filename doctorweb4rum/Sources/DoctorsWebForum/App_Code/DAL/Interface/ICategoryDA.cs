@@ -15,6 +15,6 @@ namespace DAL
 {
     public interface ICategoryDA
     {
-        Category[] getAllCategory();
+        Category[] GetAllCategory();
     }
 }

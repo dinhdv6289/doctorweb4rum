@@ -10,7 +10,7 @@ namespace DAL
 
         }
 
-        public static ICategoryDA getCategoryDA()
+        public static ICategoryDA GetCategoryDA()
         {
             ICategoryDA dc = null;
             if (String.IsNullOrEmpty(dataAccessStringType))
@@ -28,7 +28,7 @@ namespace DAL
             return dc;
         }
 
-        public static ISubForumDA getSubForumDA()
+        public static ISubForumDA GetSubForumDA()
         {
             ISubForumDA dc = null;
             if (String.IsNullOrEmpty(dataAccessStringType))
@@ -65,23 +65,23 @@ namespace DAL
             return dc;
         }
 
-        //public static IArticlesDA GetArticlesDA()
-        //{
-        //    IArticlesDA dc = null;
-        //    if (String.IsNullOrEmpty(dataAccessStringType))
-        //    {
-        //        throw (new NullReferenceException("DataAccessType in Web.config is null or empty"));
-        //    }
-        //    else
-        //    {
-        //        if (dataAccessStringType.Equals("SQLSERVER"))
-        //        {
-        //            Type t = Type.GetType("DAL.ArticlesDA");
-        //            dc = (ArticlesDA)Activator.CreateInstance(t);
-        //        }
-        //    }
-        //    return dc;
-        //}
+        public static IPostDA GetPostDA()
+        {
+            IPostDA dc = null;
+            if (String.IsNullOrEmpty(dataAccessStringType))
+            {
+                throw (new NullReferenceException("DataAccessType in Web.config is null or empty"));
+            }
+            else
+            {
+                if (dataAccessStringType.Equals("SQLSERVER"))
+                {
+                    Type t = Type.GetType("DAL.PostDA");
+                    dc = (PostDA)Activator.CreateInstance(t);
+                }
+            }
+            return dc;
+        }
 
         //public static ICustomersDA GetCustomersDA()
         //{

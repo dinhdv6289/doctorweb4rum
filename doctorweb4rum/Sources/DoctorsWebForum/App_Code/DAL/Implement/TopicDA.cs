@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Configuration;
+using System.Data.SqlClient;
 
 /// <summary>
 /// Summary description for TopicDA
@@ -44,6 +45,23 @@ namespace DAL
                 throw ex;
             }
             return result;
+        }
+
+        public Topic GetTopicByTopicID(int topicID)
+        {
+            Topic[] result;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("Select * from {0} where {1} = {2}", tableName, TopicID, topicID);
+                result = SelectCollection<Topic>(columnNames, columnNames, cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result[0];
         }
     }
 }

@@ -3,32 +3,32 @@ using System.Data;
 using System.Configuration;
 using DAL;
 /// <summary>
-/// Summary description for CategoryBLL
+/// Summary description for PostBLL
 /// </summary>
 namespace BLL
 {
-    public class CategoryBLL
+
+    public class PostBLL
     {
-        public CategoryBLL()
+        public PostBLL()
         {
             //
             // TODO: Add constructor logic here
             //
         }
 
-        public static Category[] GetAllCategory()
+        public static Post[] GetAllPostByTopicID(int topicID)
         {
-            Category[] result = null;
+            Post[] result =null;
             try
             {
-                result = DataHelper.GetCategoryDA().GetAllCategory();
+                result = DataHelper.GetPostDA().GetAllPostByTopicID(topicID);
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw ex;	
             }
             return result;
-
         }
     }
 }

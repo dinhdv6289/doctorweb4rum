@@ -30,7 +30,7 @@ namespace DAL
         private String[] columnNames = { SubForumID, CategoryID, SubForumName, Description, Priority, TotalTopics, TotalMessages };
 
 
-        public SubForum[] getlAllSubForumsByCategoryID(int CategoryID)
+        public SubForum[] GetlAllSubForumsByCategoryID(int CategoryID)
         {
             SubForum[] result;
             try

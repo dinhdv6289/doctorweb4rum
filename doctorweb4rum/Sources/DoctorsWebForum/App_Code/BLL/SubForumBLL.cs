@@ -15,12 +15,12 @@ namespace BLL
             // TODO: Add constructor logic here
             //
         }
-        public static SubForum[] getlAllSubForumsByCategoryID(int CategoryID)
+        public static SubForum[] GetlAllSubForumsByCategoryID(int CategoryID)
         {
             SubForum[] result = null;
             try
             {
-                result = DataHelper.getSubForumDA().getlAllSubForumsByCategoryID(CategoryID);
+                result = DataHelper.GetSubForumDA().GetlAllSubForumsByCategoryID(CategoryID);
             }
             catch (Exception ex)
             {
@@ -36,7 +36,7 @@ namespace BLL
             try
             {
                 DateTime nowDate = DateTime.Now;
-                DateTime temp = DataHelper.getSubForumDA().GetDateLastPostBySubForumID(SubForumID);
+                DateTime temp = DataHelper.GetSubForumDA().GetDateLastPostBySubForumID(SubForumID);
                 if (temp.Date == nowDate.Date)
                 {
                     result = true;
