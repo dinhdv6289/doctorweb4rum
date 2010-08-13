@@ -3,25 +3,39 @@ using System.Data;
 using System.Configuration;
 using DAL;
 /// <summary>
-/// Summary description for TopicBLL
+/// Summary description for MemberBLL
 /// </summary>
 namespace BLL
 {
 
-    public class TopicBLL
+    public class MemberBLL
     {
-        public TopicBLL()
+        public MemberBLL()
         {
             //
             // TODO: Add constructor logic here
             //
         }
-        public static Topic[] GetAllTopicBySubForumID(int subForumID)
+        public static Member[] GetAllMember()
         {
-            Topic[] result = null;
+            Member[] result;
             try
             {
-                result = DataHelper.GetTopicDA().GetAllTopicBySubForumID(subForumID);
+                result = DataHelper.GetMemberDA().GetAllMember();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+        
+        public static Member GetMemberByMemberID(int memberID)
+        {
+            Member result;
+            try
+            {
+                result = DataHelper.GetMemberDA().GetMemberByMemberID(memberID);
             }
             catch (Exception ex)
             {
@@ -30,30 +44,16 @@ namespace BLL
             return result;
         }
 
-        public static Topic GetTopicByTopicID(int topicID)
+        public static  MemberProfile GetMemberProfileByMemberID(int memberID)
         {
-            Topic result = null;
+            MemberProfile result;
             try
             {
-                result = DataHelper.GetTopicDA().GetTopicByTopicID(topicID);
+                result = DataHelper.GetMemberDA().GetMemberProfileByMemberID(memberID);
             }
             catch (Exception ex)
             {
                 throw ex;
-            }
-            return result;
-        }
-
-        public static int GetRatingPointByTopicID(int topicID)
-        {
-            int result = 0;
-            try
-            {
-                result = DataHelper.GetTopicDA().GetRatingPointByTopicID(topicID);
-            }
-            catch (Exception ex)
-            {
-            	throw ex;
             }
             return result;
         }

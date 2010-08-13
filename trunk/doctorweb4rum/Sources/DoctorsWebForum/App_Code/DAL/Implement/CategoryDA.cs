@@ -23,7 +23,7 @@ namespace DAL
         private const String DateCreation = "DateCreation";
         private String[] columnNames = { CategoryID, CategoryName, Priority, DateCreation };
 
-
+    
         public Category[] GetAllCategory()
         {
             Category[] result;
