@@ -242,9 +242,9 @@ AS	BEGIN
 
 
 GO
----Procedure Roles
+---Procedure InsertRoles
 
-CREATE PROC Insert_Roles
+CREATE PROC InsertRoles
 	@RoleName		NVARCHAR(20),
 	@Description	NVARCHAR(100),
 	@RankImage		NVARCHAR(100)
@@ -253,9 +253,9 @@ AS BEGIN
 END
 
 GO
----PROCEDURE Members
+---PROCEDURE InsertMembers
 
-CREATE PROC Insert_Members
+CREATE PROC InsertMembers
 	@UserName	NVARCHAR(30),
 	@Password	NVARCHAR(50),
 	@Email		NVARCHAR(100),
@@ -266,9 +266,9 @@ END
 
 GO
 
----PROCEDURE MemberProfiles
+---PROCEDURE InsertMemberProfiles
 
-CREATE PROC Insert_MemberProfiles
+CREATE PROC InsertMemberProfiles
 	@RoleID			INT,
 	@Blast			NVARCHAR(100),
 	@Avatar			NVARCHAR(150),
@@ -288,9 +288,9 @@ AS BEGIN
 END
 
 GO
----PROCEDURE Categories
+---PROCEDURE InsertCategories
 
-CREATE PROC Insert_Categories
+CREATE PROC InsertCategories
 	@CategoryName	NVARCHAR(50),
 	@Priority		INT
 AS BEGIN 
@@ -298,9 +298,9 @@ AS BEGIN
 END
 
 GO
----PROCEDURE SubForums
+---PROCEDURE InsertSubForums
 
-CREATE PROC Insert_SubForums
+CREATE PROC InsertSubForums
 	@CategoryID		INT,
 	@SubForumName	NVARCHAR(100),
 	@Description	NVARCHAR(500),
@@ -311,9 +311,9 @@ AS BEGIN
 END
 
 GO
----PROCEDURE Posts
+---PROCEDURE InsertPosts
 
-CREATE PROC Insert_Posts
+CREATE PROC InsertPosts
 	@TopicID	INT,
 	@MemberID	INT,
 	@Title		NVARCHAR(100),
@@ -324,3 +324,44 @@ CREATE PROC Insert_Posts
 AS BEGIN 
 	INSERT INTO Posts (TopicID,MemberID,Title,[Content],Experience,DateEdited,IPAddress) VALUES (@TopicID,@MemberID,@Title,@Content,@Experience,@DateEdited,@IPAddress)
 END
+
+GO
+--CREATE PROC GetAllSubForums BY CATEGORIES:
+
+CREATE PROC GetAllSubForumsByCategoriesID
+	@CategoryID		INT
+AS BEGIN
+	SELECT  SubForums.SubForumID, SubForums.SubForumName, SubForums.Description, SubForums.DateCreation, SubForums.Priority, 
+            SubForums.TotalTopics, SubForums.TotalMessages
+    FROM	Categories INNER JOIN  SubForums ON Categories.CategoryID = SubForums.CategoryID
+END
+
+GO
+--CREATE PROCEDURE GetAllToPicBySubForumsID
+DROP PROC GetAllToPicBySubForumsID
+CREATE PROC GetAllToPicBySubForumsID
+	@SubForumID		INT
+AS BEGIN
+	SELECT   Topics.TopicID, Topics.MemberID, Topics.LastPostId, Topics.IsLocked, Topics.TotalViews, 
+			 Topics.TotalMessages, Topics.DateLastPost, Topics.MoveTo
+	FROM     SubForums INNER JOIN Topics ON SubForums.SubForumID = Topics.SubForumID	
+	WHERE	 SubForums.SubForumID = @SubForumID
+END
+
+GO
+
+--CREATE PROCEDURE GetAllPostsByTopicsID
+
+CREATE PROC GetAllPostsByTopicsID
+	@TopicID	INT
+AS BEGIN
+	SELECT     Posts.PostID, Posts.TopicID, Posts.MemberID, Posts.Title, Posts.[Content], Posts.DateCreation, Posts.DateEdited, Posts.Signature, Posts.IPAddress, 
+               Topics.TopicID 
+	FROM       Posts INNER JOIN Topics ON Posts.TopicID = Topics.TopicID AND Posts.PostID = Topics.LastPostId
+	WHERE	   Topics.TopicID = @TopicID	
+END
+
+
+
+
+

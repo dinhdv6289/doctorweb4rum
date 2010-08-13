@@ -27,7 +27,6 @@ namespace BLL
                 throw ex;
             }
             return result;
-
         }
 
         public static Boolean GetImageStatus(int SubForumID)
