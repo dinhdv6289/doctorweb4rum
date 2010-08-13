@@ -26,7 +26,7 @@
                     <div class="ad_global_header_right">
                     </div>
                 </div>
-                <div onclick="document.location.href='http://forums.digitalpoint.com/analytics.php'"
+                <div onclick="document.location.href=''"
                     id="stats">
                     <ul>
                         <li>
@@ -43,11 +43,11 @@
                 <ul class="navtabs floatcontainer" id="navtabs">
                     <li class="selected"><a href="javascript://" class="navtab popupctrl" id="yui-gen1">
                         Forum</a> </li>
-                    <li><a href="http://articles.digitalpoint.com" class="navtab">Articles</a> </li>
-                    <li><a href="http://blogs.digitalpoint.com/" class="navtab">Blogs</a></li>
-                    <li><a href="http://marketplace.digitalpoint.com/" class="navtab">Marketplace</a></li>
-                    <li><a href="http://tools.digitalpoint.com/" class="navtab">Tools</a></li>
-                    <li><a href="http://directory.digitalpoint.com/" class="navtab">Directory</a></li>
+                    <li><a href="#" class="navtab">Articles</a> </li>
+                    <li><a href="#" class="navtab">Blogs</a></li>
+                    <li><a href="#" class="navtab">Marketplace</a></li>
+                    <li><a href="#" class="navtab">Tools</a></li>
+                    <li><a href="#" class="navtab">Directory</a></li>
                     <li><a accesskey="2" href="search.php?do=getdaily&amp;contenttype=vBForum_Post" class="navtab">
                         What's New?</a></li>
                 </ul>
@@ -76,7 +76,7 @@
                     <li class="navbit"><a href="forumdisplay.php?f=4">Search Engines</a></li>
                     <li class="navbit"><a href="forumdisplay.php?f=5">Google</a></li>
                     <li class="navbit lastnavbit"><span>AdSense</span></li>
-                    <fb:like id="fb_like" href="http://forums.digitalpoint.com/forumdisplay.php?f=27"
+                    <fb:like id="fb_like" href="#"
                         layout="button_count" width="150" font="tahoma"></fb:like>
                 </ul>
                 <hr />
@@ -287,9 +287,9 @@
             <div id="footer" class="floatcontainer footer">
                 <ul id="footer_links" class="footer_links">
                     <li class="advertising"><a href="advertising.php">Advertising</a></li>
-                    <li><a href="http://www.twitter.com/digitalpoint" target="_blank" rel="nofollow"
+                    <li><a href="#" target="_blank" rel="nofollow"
                         accesskey="9">Contact Us @Twitter</a></li>
-                    <li><a href="http://www.digitalpoint.com">Digital Point Solutions</a></li>
+                    <li><a href="#">Digital Point Solutions</a></li>
                     <li><a href="#top" onclick="document.location.hash='top'; return false;">Top</a></li>
                 </ul>
             </div>
@@ -299,7 +299,7 @@
             <div id="footer_time" class="shade footer_time">
                 All times are GMT -8. The time now is <span class="time">6:01 pm</span>.</div>
             <div id="footer_copyright" class="shade footer_copyright">
-                Get the <a href="http://articles.digitalpoint.com/" target="_blank">5 anh em siêu nhân</a> 
+                Get the <a href="#" target="_blank">5 anh em siêu nhân</a> 
             </div>
             <div id="fb-root">
             </div>

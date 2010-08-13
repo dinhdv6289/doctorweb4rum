@@ -54,11 +54,11 @@ $(document).ready(function() {
                 <ul class="navtabs floatcontainer" id="navtabs">
                     <li class="selected"><a href="javascript://" class="navtab popupctrl" id="yui-gen1">
                         Forum</a> </li>
-                    <li><a href="http://articles.digitalpoint.com" class="navtab">Articles</a> </li>
-                    <li><a href="http://blogs.digitalpoint.com/" class="navtab">Blogs</a></li>
-                    <li><a href="http://marketplace.digitalpoint.com/" class="navtab">Marketplace</a></li>
-                    <li><a href="http://tools.digitalpoint.com/" class="navtab">Tools</a></li>
-                    <li><a href="http://directory.digitalpoint.com/" class="navtab">Directory</a></li>
+                    <li><a href="#" class="navtab">Articles</a> </li>
+                    <li><a href="#" class="navtab">Blogs</a></li>
+                    <li><a href="#" class="navtab">Marketplace</a></li>
+                    <li><a href="#" class="navtab">Tools</a></li>
+                    <li><a href="#" class="navtab">Directory</a></li>
                     <li><a accesskey="2" href="search.php?do=getdaily&amp;contenttype=vBForum_Post" class="navtab">
                         What's New?</a></li>
                 </ul>
@@ -154,16 +154,16 @@ $(document).ready(function() {
                             <dl>
                                 <dt>Blogs</dt>
                                 <dd>
-                                    <a href="http://blogs.digitalpoint.com/?do=bloglist">51</a></dd>
+                                    <a href="#">51</a></dd>
                                 <dt>Entries</dt>
                                 <dd>
-                                    <a href="http://blogs.digitalpoint.com/?do=list">172</a></dd>
+                                    <a href="#">172</a></dd>
                                 <dt>Last 24 Hours</dt>
                                 <dd>
-                                    <a href="http://blogs.digitalpoint.com/?do=list&amp;span=24">0</a></dd>
+                                    <a href="#">0</a></dd>
                             </dl>
                             <p>
-                                Latest Blog Entry, <a href="http://blogs.digitalpoint.com/entry.php?b=224">TOP SEOs
+                                Latest Blog Entry, <a href="#">TOP SEOs
                                     is a SCAM !!</a> by <a href="#">WorldImpulse</a>
                             </p>
                         </div>
@@ -175,9 +175,9 @@ $(document).ready(function() {
             <div id="footer" class="floatcontainer footer">
                 <ul id="footer_links" class="footer_links">
                     <li class="advertising"><a href="advertising.php">Advertising</a></li>
-                    <li><a href="http://www.twitter.com/digitalpoint" target="_blank" rel="nofollow"
+                    <li><a href="#" target="_blank" rel="nofollow"
                         accesskey="9">Contact Us @Twitter</a></li>
-                    <li><a href="http://www.digitalpoint.com">Digital Point Solutions</a></li>
+                    <li><a href="#">Digital Point Solutions</a></li>
                     <li><a href="#top" onclick="document.location.hash='top'; return false;">Top</a></li>
                 </ul>
             </div>
