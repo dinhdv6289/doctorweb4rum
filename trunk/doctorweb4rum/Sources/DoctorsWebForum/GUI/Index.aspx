@@ -27,8 +27,12 @@
                                     <li class="forumbit_post L2" id="forum5">
                                         <div class="forumrow table">
                                             <div class="foruminfo td">
+<<<<<<< .mine
+                                                <img alt="" id="forum_statusicon_5" class="forumicon" src='<%#getImageStatus(Convert.ToInt32(DataBinder.Eval(Container.DataItem, "SubForumID"))) %>'
+=======
                                              
                                                 <img alt="" id="forum_statusicon_5" class="forumicon" src="http://i.dpstatic.com/statusicon/forum_new-48.png"
+>>>>>>> .r42
                                                     title="Double-click this icon to mark this forum and its contents as read" style="cursor: pointer;">
                                                 <div class="forumdata">
                                                     <div class="datacontainer">

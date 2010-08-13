@@ -46,5 +46,27 @@ namespace DAL
             }
             return result;
         }
+
+        public DateTime GetDateLastPostBySubForumID(int SubForumID)
+        {
+            DateTime result = DateTime.Now.AddDays(-5);
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("Select top(1) t.DateLastPost from Topics t inner join SubForums s on t.SubForumID = s.SubForumID where t.SubForumID = {0} order by t.TopicID", SubForumID);
+                DataSet ds = ExecuteDataset(cmd);
+                if(ds.Tables[0].Rows.Count >0)
+                {
+                    result = (DateTime)ds.Tables[0].Rows[0]["DateLastPost"];
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

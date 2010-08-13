@@ -265,5 +265,17 @@ namespace DAL
             return resultList.ToArray();
         }
 
+        protected static DataSet ExecuteDataset(SqlCommand cmd)
+        {
+            DataSet ds = null;
+            using (SqlConnection con = new SqlConnection(getConnectionString))
+            {
+                cmd.Connection = con;
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                ds = new DataSet();
+                adapter.Fill(ds);
+            }
+            return ds;
+        }
     }
 }

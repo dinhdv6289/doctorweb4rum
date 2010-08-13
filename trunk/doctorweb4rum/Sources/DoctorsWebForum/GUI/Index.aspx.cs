@@ -30,4 +30,16 @@ public partial class GUI_Index : System.Web.UI.Page
     {
        return SubForumBLL.getlAllSubForumsByCategoryID(CategoryID);
     }
+
+    public String getImageStatus(int SubForumID)
+    {
+        if (SubForumBLL.GetImageStatus(SubForumID))
+        {
+            return @"Images/forum_new-48.png";
+        }
+        else
+        {
+            return @"Images/forum_old-48.png";
+        }
+    }
 }

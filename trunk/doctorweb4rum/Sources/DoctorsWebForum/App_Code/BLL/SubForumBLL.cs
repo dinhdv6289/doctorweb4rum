@@ -29,5 +29,24 @@ namespace BLL
             return result;
 
         }
+
+        public static Boolean GetImageStatus(int SubForumID)
+        {
+            Boolean result = false;
+            try
+            {
+                DateTime nowDate = DateTime.Now;
+                DateTime temp = DataHelper.getSubForumDA().GetDateLastPostBySubForumID(SubForumID);
+                if (temp.Date == nowDate.Date)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }
