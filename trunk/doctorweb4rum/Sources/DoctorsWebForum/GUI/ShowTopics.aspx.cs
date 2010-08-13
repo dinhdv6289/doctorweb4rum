@@ -8,11 +8,31 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
-
+using BLL;
 public partial class GUI_ShowTopics : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        String subForumID = Request.QueryString["subForumID"];
+        if (subForumID != null)
+        {
+            if (!IsPostBack)
+            {
+                LoadData(Convert.ToInt32(subForumID));
+            }
+        }
+        else
+        {
+            Response.Redirect("Index.aspx");
+        }
     }
+
+    private void LoadData(int subForumID)
+    {
+        repeaterTopics.DataSource = TopicBLL.GetAllTopicBySubForumID(subForumID);
+        repeaterTopics.DataBind();
+        repeaterTopics.
+    }
+
+
 }

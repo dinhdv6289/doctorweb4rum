@@ -96,68 +96,11 @@
                 </ol>
             </form>
             <div class="above_threadlist" id="above_threadlist">
-                <a id="newthreadlink_top" class="newcontent_textcontrol" rel="nofollow" href="newthread.php?do=newthread&amp;f=27">
-                    <span>+</span> Post New Thread</a>
-                <%--Phan trang--%>
+                <a id="newthreadlink_top" class="newcontent_textcontrol" rel="nofollow" href="#">
+                    <span>+</span> Post New Topic</a>
+               
             </div>
-            <div class="pagetitle" id="pagetitle">
-                <h1>
-                    Forum: <span class="forumtitle">AdSense</span></h1>
-                <p class="description">
-                    Anything related to Google's AdSense program that allows website owners to generate
-                    advertising income by running Google ads.</p>
-            </div>
-            <%-- Begin Forum Tools  Search Forum--%>
-            <div class="above_threadlist_controls" id="above_threadlist_controls">
-                <div>
-                    <ul id="forumdisplaypopups" class="popupgroup forumdisplaypopups">
-                        <li id="forumtools" class="popupmenu nohovermenu">
-                            <h6>
-                                <a rel="nofollow" class="popupctrl" href="javascript://" id="yui-gen15">Forum Tools</a></h6>
-                            <ul class="popupbody" id="yui-gen14">
-                                <li><a rel="nofollow" href="newthread.php?do=newthread&amp;f=27">Post a New Thread…
-                                </a></li>
-                                <li><a onclick="return mark_forum_read(27);" rel="nofollow" href="forumdisplay.php?do=markread&amp;f=27&amp;markreadhash=guest">
-                                    Mark This Forum Read </a></li>
-                                <li><a rel="nofollow" href="forumdisplay.php?f=5">View Parent Forum</a></li>
-                            </ul>
-                        </li>
-                        <li id="forumsearch" class="popupmenu nohovermenu forumsearch">
-                            <h6>
-                                <a class="popupctrl" href="javascript://" id="yui-gen17">Search Forum</a></h6>
-                            <form method="get" action="search.php?do=process">
-                                <ul class="popupbody" id="yui-gen16">
-                                    <li>
-                                        <input type="text" value="Search..." name="q" class="searchbox">
-                                        <input type="submit" value="Search" class="button">
-                                    </li>
-                                    <li class="formsubmit">
-                                        <div class="submitoptions">
-                                            <label>
-                                                <input type="radio" checked="checked" value="0" name="showposts">
-                                                Show Threads</label>
-                                            <label>
-                                                <input type="radio" value="1" name="showposts">
-                                                Show Posts</label>
-                                        </div>
-                                        <div class="advancedsearchlink">
-                                            <a rel="nofollow" href="search.php?search_type=1&amp;contenttype=vBForum_Post&amp;forumchoice[]=27">
-                                                Advanced Search</a></div>
-                                    </li>
-                                </ul>
-                                <input type="hidden" value="" name="s">
-                                <input type="hidden" value="guest" name="securitytoken">
-                                <input type="hidden" value="process" name="do">
-                                <input type="hidden" value="vBForum_Post" name="contenttype">
-                                <input type="hidden" value="27" name="forumchoice[]">
-                                <input type="hidden" value="1" name="childforums">
-                                <input type="hidden" value="1" name="exactname">
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <%--End Forum Tools Search Forum--%>
+
             <!-- main -->
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
@@ -165,8 +108,8 @@
 
             <div class="noinlinemod below_threadlist" id="below_threadlist">
             
-                <a id="newthreadlink_bottom" class="newcontent_textcontrol" rel="nofollow" href="newthread.php?do=newthread&amp;f=27">
-                    <span>+</span> Post New Thread</a>
+                <a id="newthreadlink_bottom" class="newcontent_textcontrol" rel="nofollow" href="#">
+                    <span>+</span> Post New Topic</a>
                     <%--begin phan trang--%>
                 <div class="threadpagenav">
             
