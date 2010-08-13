@@ -17,6 +17,7 @@ namespace DAL
     public interface ISubForumDA
     {
         SubForum[] getlAllSubForumsByCategoryID(int CategoryID);
+        DateTime GetDateLastPostBySubForumID(int SubForumID);
     }
 
 }
