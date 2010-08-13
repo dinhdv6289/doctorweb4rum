@@ -11,6 +11,7 @@ using System.Web.UI.HtmlControls;
 using BLL;
 public partial class GUI_ShowTopics : System.Web.UI.Page
 {
+    private int subID =0;
     protected void Page_Load(object sender, EventArgs e)
     {
         String subForumID = Request.QueryString["subForumID"];
@@ -18,7 +19,8 @@ public partial class GUI_ShowTopics : System.Web.UI.Page
         {
             if (!IsPostBack)
             {
-                LoadData(Convert.ToInt32(subForumID));
+                subID = Convert.ToInt32(subForumID);
+                LoadData(subID);
             }
         }
         else
@@ -31,8 +33,11 @@ public partial class GUI_ShowTopics : System.Web.UI.Page
     {
         repeaterTopics.DataSource = TopicBLL.GetAllTopicBySubForumID(subForumID);
         repeaterTopics.DataBind();
-        repeaterTopics.
+    
     }
 
+    public SubForum GetSubForumBySubForumID(){
+        return SubForumBLL.GetSubForumBySubForumID(subID);
+    }
 
 }
