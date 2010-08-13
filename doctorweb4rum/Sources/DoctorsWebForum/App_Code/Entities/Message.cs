@@ -24,7 +24,7 @@ public class Message
     private int fromMember;
     private int toMember;
     private string title;
-    private string message;
+    private string messageContent;
     private DateTime dateSend;
     private Boolean isView;
     private Boolean isRead;
@@ -53,7 +53,12 @@ public class Message
         set { title = value; }
     }
 
-   
+    public string MessageContent
+    {
+        get { return messageContent; }
+        set { messageContent = value; }
+    }
+
     public DateTime DateSend
     {
         get { return dateSend; }
@@ -72,12 +77,8 @@ public class Message
         set { isRead = value; }
     }
 
-    
 
-    public string Message
-    {
-        get { return message; }
-        set { message = value; }
-    }
+
+   
 	
 }
