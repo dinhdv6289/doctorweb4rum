@@ -187,7 +187,7 @@ $(document).ready(function() {
             <div id="footer_time" class="shade footer_time">
                 All times are GMT -8. The time now is <span class="time">6:01 pm</span>.</div>
             <div id="footer_copyright" class="shade footer_copyright">
-                Get the <a href="#" target="_blank">4 anh em siêu nhân</a> 
+                Get the <a href="#" target="_blank">5 anh em siêu nhân</a> 
             </div>
             <div id="fb-root">
             </div>
