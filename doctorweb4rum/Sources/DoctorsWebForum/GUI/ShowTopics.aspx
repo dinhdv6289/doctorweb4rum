@@ -4,10 +4,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="pagetitle" id="pagetitle">
         <h1>
-            Forum: <span class="forumtitle">AdSense</span></h1>
+            Sub-Forum: <span class="forumtitle"><%= GetSubForumBySubForumID().SubForumName %></span></h1>
         <p class="description">
-            Anything related to Google's AdSense program that allows website owners to generate
-            advertising income by running Google ads.</p>
+            <%= GetSubForumBySubForumID().Description %></p>
     </div>
     <%-- Begin Forum Tools  Search Forum--%>
     <div class="above_threadlist_controls" id="above_threadlist_controls">
