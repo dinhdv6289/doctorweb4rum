@@ -22,6 +22,22 @@ public class Topic
     private int totalMessages;
     private DateTime dateLastPost;
     private int moveTo;
+    private String title;
+    private String content;
+
+
+    public String Content
+    {
+        get { return content; }
+        set { content = value; }
+    }
+	
+
+    public String Title
+    {
+        get { return title; }
+        set { title = value; }
+    }
 
     public int MoveTo
     {
