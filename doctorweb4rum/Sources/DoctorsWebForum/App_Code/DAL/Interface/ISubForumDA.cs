@@ -18,6 +18,7 @@ namespace DAL
     {
         SubForum[] GetlAllSubForumsByCategoryID(int CategoryID);
         DateTime GetDateLastPostBySubForumID(int SubForumID);
+        SubForum GetSubForumBySubForumID(int subForumID);
     }
 
 }
