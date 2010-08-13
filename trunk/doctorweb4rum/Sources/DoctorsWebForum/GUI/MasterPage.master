@@ -11,12 +11,6 @@
 
     <script type="text/javascript" src="js/jquery.collapsible.js"></script>
 
-    <script type="text/javascript">
-$(document).ready(function() {
-	$.collapsible(".header", "group1");
-	$.collapsible(".header2", "group2");
-});
-    </script>
 
 </head>
 <body>
@@ -187,8 +181,7 @@ $(document).ready(function() {
             <div id="footer_time" class="shade footer_time">
                 All times are GMT -8. The time now is <span class="time">6:01 pm</span>.</div>
             <div id="footer_copyright" class="shade footer_copyright">
-                Get the <a href="http://articles.digitalpoint.com/" target="_blank">Sphinx-based search
-                    we use</a> for your forum.
+                Get the <a href="#" target="_blank">4 anh em siêu nhân</a> 
             </div>
             <div id="fb-root">
             </div>
