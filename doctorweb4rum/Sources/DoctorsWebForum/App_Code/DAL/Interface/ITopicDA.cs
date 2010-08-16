@@ -14,5 +14,6 @@ public interface ITopicDA
     Topic GetTopicByTopicID(int topicID);
     RatingTopic[] GetAllRatingByTopicID(int topicID);
     int GetRatingPointByTopicID(int topicID);
+    Topic GetNewTopicBySubForumID(int subForumID);
 }
 }

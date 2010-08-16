@@ -361,7 +361,14 @@ AS BEGIN
 	WHERE	   Topics.TopicID = @TopicID	
 END
 
+CREATE PROC GetNewPostBySubForumID
+	@SubForumID	INT
+AS BEGIN
+	SELECT   Top(1)  Posts.PostID, Posts.TopicID, Posts.MemberID, Posts.Title, Posts.[Content], Posts.DateCreation, Posts.DateEdited, Posts.Signature, Posts.IPAddress
+	FROM       Posts INNER JOIN Topics ON Posts.TopicID = Topics.TopicID 
+			   INNER JOIN SubForums ON Topics.SubForumID = SubForums.SubForumID
+	WHERE	   SubForums.SubForumID = @SubForumID ORDER BY Posts.PostID DESC
+END
 
-
-
+exec GetNewPostBySubForumID 1
 

@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 namespace DAL
 {
 
-    public class TopicDA:BaseDAL,ITopicDA
+    public class TopicDA : BaseDAL, ITopicDA
     {
         public TopicDA()
         {
@@ -34,7 +34,7 @@ namespace DAL
         private const String RatePoint = "RatePoint";
         private const String RateDate = "RateDate";
 
-        private String[] columnNamesRating = {RateTopicID, FromMember, TopicID, RatePoint, RateDate};
+        private String[] columnNamesRating = { RateTopicID, FromMember, TopicID, RatePoint, RateDate };
         private String[] columnNames = { TopicID, SubForumID, MemberID, Title, Content, IsLocked, TotalViews, DateLastPost, MoveTo };
 
         public Topic[] GetAllTopicBySubForumID(int subForumID)
@@ -71,6 +71,24 @@ namespace DAL
             return result[0];
         }
 
+        public Topic GetNewTopicBySubForumID(int subForumID)
+        {
+            Topic[] result;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("Select top(1) * from {0} where {1} = {2} order by {3} desc", tableName, SubForumID, subForumID, TopicID);
+                result = SelectCollection<Topic>(columnNames, columnNames, cmd);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result[0];
+        }
+
         public RatingTopic[] GetAllRatingByTopicID(int topicID)
         {
             RatingTopic[] result;
@@ -95,7 +113,7 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = String.Format("select avg({0}) as Rate, count(*) as Rated from {1} where {2} = {3} group by {4}",RatePoint,tableNameRating,TopicID,topicID );
+                cmd.CommandText = String.Format("select avg({0}) as Rate, count(*) as Rated from {1} where {2} = {3} group by {4}", RatePoint, tableNameRating, TopicID, topicID);
                 DataSet ds = ExecuteDataset(cmd);
                 if (ds.Tables[0].Rows.Count > 0)
                 {

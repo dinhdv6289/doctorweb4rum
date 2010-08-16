@@ -20,7 +20,6 @@ public class Post
     private int memberID;
     private string title;
     private string content;
-    private float experience;
     private DateTime dateCreation;
     private DateTime dateEdited;
     private Boolean signature;
@@ -57,11 +56,6 @@ public class Post
         set { content = value; }
     }
 
-    public float Experience
-    {
-        get { return experience; }
-        set { experience = value; }
-    }
 
     public DateTime DateCreation
     {

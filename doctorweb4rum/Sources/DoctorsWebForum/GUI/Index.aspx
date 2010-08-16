@@ -37,7 +37,7 @@
                                                                     <%# Eval("SubForumName")%>
                                                                 </a>
                                                             </h2>
-                                                            <span class="viewing">(89 Viewing)</span>
+                                                            <span class="viewing">(<%= Application["ActiveUsers"].ToString()%> Viewing)</span>
                                                         </div>
                                                         <p class="forumdescription">
                                                             <%#Eval("Description")%>
@@ -103,7 +103,7 @@
                                                 <div>
                                                     <p class="lastposttitle">
                                                         <a title="Go to first unread post in thread 'Anyone work with YouTube API?'" class="threadtitle"
-                                                            href="#">dsddsds</a> <a href="">
+                                                            href="#"><%# GetNewPostBySubForumID(Convert.ToInt32(DataBinder.Eval(Container.DataItem, "SubForumID"))).Title %></a> <a href="">
                                                                 <img alt="Go to last post" src="http://b.dpstatic.com/buttons/lastpost-right.png"
                                                                     title="Go to last post"></a>
                                                     </p>

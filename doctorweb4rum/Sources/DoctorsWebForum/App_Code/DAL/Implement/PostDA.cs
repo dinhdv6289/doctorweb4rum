@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 namespace DAL
 {
 
-    public class PostDA:BaseDAL,IPostDA
+    public class PostDA : BaseDAL, IPostDA
     {
         public PostDA()
         {
@@ -23,12 +23,11 @@ namespace DAL
         private const String MemberID = "MemberID";
         private const String Title = "Title";
         private const String Content = "Content";
-        private const String Experience = "Experience";
         private const String DateCreation = "DateCreation";
         private const String DateEdited = "DateEdited";
         private const String Signature = "Signature";
         private const String IPAddress = "IPAddress";
-        private String[] columnNames = { PostID, TopicID, MemberID, Title, Content, Experience, DateCreation, DateEdited, Signature, IPAddress };
+        private String[] columnNames = { PostID, TopicID, MemberID, Title, Content, DateCreation, DateEdited, Signature, IPAddress };
 
         public Post[] GetAllPostByTopicID(int topicID)
         {
@@ -45,6 +44,26 @@ namespace DAL
                 throw ex;
             }
             return result;
+        }
+        public Post GetNewPostBySubForumID(int subForumID)
+        {
+            Post[] result = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("GetNewPostBySubForumID {0}", subForumID);
+                result = SelectCollection<Post>(columnNames, columnNames, cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            if(result.Length >0)
+            {
+                return result[0];
+            }
+            return null;
         }
     }
 }
