@@ -3317,24 +3317,35 @@ padding-top:5px;
 
 .module
 {
-	border:1px solid #628675;
-	width: 100%;
-	margin-bottom:20px;
-	
+		-moz-border-radius-topleft:5px;
+		-moz-border-radius-topright:5px;
+		-moz-box-shadow:-2px 2px 2px transparent;
+		clear:both;
+		display:block;
+		margin-bottom:1px;
+		margin-top:1px;
+		width:100%;
 	
 }
 	.module .header, .module .header2
 	{
-		background-color:#628675;
-		padding-left:10px;
-		
-		
+		-moz-border-radius-topleft:5px;
+		-moz-border-radius-topright:5px;
+		background:url("Images/newbtn_middle.png") repeat-x scroll 0 0 #527A67;
+		border:1px solid #355B4C;
+		clear:both;
+		color:#FFFFFF;
+		float:left;
+		font:bold 12px Arial,Tahoma,Calibri,Verdana,Geneva,sans-serif;
+		margin-top:8px;
+		padding:0;
+		width:100%;
 	}
 		.module .header h2, .module .header2 h2
 		{
-			margin:0;
+			font:bold 12px Tahoma,Calibri,Verdana,Geneva,sans-serif;
+			margin-left:5px;
 			display:inline;
-			font-size:12px;
 		}
 		
 	.module .content

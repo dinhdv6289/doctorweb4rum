@@ -142,7 +142,6 @@
                     </div>
                 </li>
             </ol>
-            <br />
         </ItemTemplate>
     </asp:Repeater>
 </asp:Content>
