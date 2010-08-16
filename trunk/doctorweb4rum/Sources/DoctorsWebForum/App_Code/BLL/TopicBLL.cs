@@ -70,5 +70,19 @@ namespace BLL
             }
             return result;
         }
+
+        public static int CountAmountTopicInSubForumBySubForumID(int subForumID)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetTopicDA().CountAmountTopicInSubForumBySubForumID(subForumID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

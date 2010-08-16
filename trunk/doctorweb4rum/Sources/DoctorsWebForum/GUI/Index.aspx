@@ -94,46 +94,10 @@
                                             <h4 class="nocss_label">
                                                 Forum Statistics:</h4>
                                             <ul class="forumstats td">
-                                                <li>Threads: 93,657</li>
-                                                <li>Posts: 1,172,173</li>
+                                                <li>Topics: <%#CountAmountTopicInSubForumBySubForumID(Convert.ToInt32( Eval("SubForumID")))%></li>
+                                                <li>Posts:  <%#GetCountPostBySubForumID(Convert.ToInt32(DataBinder.Eval(Container.DataItem, "SubForumID")))%></li>
                                             </ul>
-                                            <div class="forumlastpost td">
-                                                <h4 class="lastpostlabel">
-                                                    Last Post:</h4>
-                                                <div>
-                                                    <p class="lastposttitle">
-                                                        <a title="Go to first unread post in thread 'Anyone work with YouTube API?'" class="threadtitle"
-                                                            href="#"><%# GetNewPostBySubForumID(Convert.ToInt32(DataBinder.Eval(Container.DataItem, "SubForumID"))).Title %></a> <a href="">
-                                                                <img alt="Go to last post" src="http://b.dpstatic.com/buttons/lastpost-right.png"
-                                                                    title="Go to last post"></a>
-                                                    </p>
-                                                    <div class="lastpostby">
-                                                        by
-                                                        <div class="popupmenu memberaction" id="yui-gen11">
-                                                            <a title="faizagul is offline" href="" class="username offline popupctrl" id="yui-gen13">
-                                                                <strong>faizagul</strong></a>
-                                                            <ul class="popupbody memberaction_body" id="yui-gen12">
-                                                                <li class="left">
-                                                                    <img alt="" src="http://i.dpstatic.com/site_icons/profile.png">
-                                                                    <a href="">View Profile </a></li>
-                                                                <li class="right">
-                                                                    <img alt="" src="http://i.dpstatic.com/site_icons/forum.png">
-                                                                    <a rel="nofollow" href="">View Forum Posts </a></li>
-                                                                <li class="right">
-                                                                    <img alt="" src="http://i.dpstatic.com/site_icons/blog.png">
-                                                                    <a rel="nofollow" href="http://blogs.digitalpoint.com/?u=451701">View Blog Entries </a>
-                                                                </li>
-                                                                <li class="right">
-                                                                    <img alt="" src="http://i.dpstatic.com/site_icons/article.png">
-                                                                    <a rel="nofollow" href="http://articles.digitalpoint.com/list.php/author/451701-faizagul">
-                                                                        View Articles </a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <p class="lastpostdate">
-                                                        Today <span class="time">5:48 am</span></p>
-                                                </div>
-                                            </div>
+                                            <%#GetLastPostInformationBySubForumID(Convert.ToInt32( Eval("SubForumID")))%>
                                         </div>
                                     </li>
                                 </ItemTemplate>

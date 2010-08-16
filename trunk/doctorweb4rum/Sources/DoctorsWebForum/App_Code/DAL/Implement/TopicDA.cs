@@ -86,7 +86,14 @@ namespace DAL
             {
                 throw ex;
             }
-            return result[0];
+            if (result.Length > 0)
+            {
+                return result[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public RatingTopic[] GetAllRatingByTopicID(int topicID)
@@ -126,5 +133,26 @@ namespace DAL
                 throw ex;
             }
         }
+        public int CountAmountTopicInSubForumBySubForumID(int subForumID)
+        {
+            int result = 0;
+            try
+            {
+                SqlCommand command = new SqlCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandText = String.Format("SELECT COUNT (*) FROM {0} WHERE {1} = {2}", tableName, SubForumID, subForumID);
+                DataSet ds = ExecuteDataset(command);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    result = (int)ds.Tables[0].Rows[0][0];
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
     }
 }

@@ -12,5 +12,6 @@ namespace DAL
     {
         Post[] GetAllPostByTopicID(int topicID);
         Post GetNewPostBySubForumID(int subForumID);
+        int GetCountPostBySubForumID(int subForumID);
     }
 }

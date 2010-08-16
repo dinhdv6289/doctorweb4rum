@@ -32,14 +32,17 @@ namespace BLL
         
         public static Member GetMemberByMemberID(int memberID)
         {
-            Member result;
-            try
+            Member result = new Member();
+            if (memberID != 0)
             {
-                result = DataHelper.GetMemberDA().GetMemberByMemberID(memberID);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    result = DataHelper.GetMemberDA().GetMemberByMemberID(memberID);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
             return result;
         }

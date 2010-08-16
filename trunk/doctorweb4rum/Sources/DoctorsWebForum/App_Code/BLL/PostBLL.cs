@@ -44,5 +44,19 @@ namespace BLL
             }
             return result;
         }
+
+         public static int GetCountPostBySubForumID(int subForumID)
+         {
+             int result = 0;
+             try
+             {
+                 result = DataHelper.GetPostDA().GetCountPostBySubForumID(subForumID);
+             }
+             catch (Exception ex)
+             {
+                 throw ex;
+             }
+             return result;
+         }
     }
 }
