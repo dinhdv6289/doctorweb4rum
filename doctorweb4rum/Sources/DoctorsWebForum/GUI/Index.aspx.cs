@@ -42,21 +42,36 @@ public partial class GUI_Index : System.Web.UI.Page
             return @"Images/forum_old-48.png";
         }
     }
-    public Post GetNewPostBySubForumID(int subForumID)
+    public String CountAmountTopicInSubForumBySubForumID(int subForumID)
     {
-        Post temp = null;
-        temp = PostBLL.GetNewPostBySubForumID(subForumID);
-        if (temp != null)
-        {
-            return temp;
-        }
-        else
-        {
-            Post a = new Post();
-            a.PostID = 0;
-            a.Title = "Khong co bai";
-            return a;
+        return TopicBLL.CountAmountTopicInSubForumBySubForumID(subForumID).ToString();
+    }
 
+     public String GetCountPostBySubForumID(int subForumID)
+     {
+         return PostBLL.GetCountPostBySubForumID(subForumID).ToString();
+     }
+
+    public String GetLastPostInformationBySubForumID(int subForumID)
+    {
+        String result;
+        String s1 = "<div class=\"forumlastpost td\">" +
+            " <h4 class=\"lastpostlabel\"> Last Post:</h4><div><p class=\"lastposttitle\">" +
+          "<a class=\"threadtitle\" href=\"TopicDetails.aspx?TopicID=";
+        String s2 = "</a></p><div class=\"lastpostby\"> by: ";
+        String s3 = "<div class=\"popupmenu memberaction\" id=\"yui-gen11\"><a href=\"MemberProfile.aspx?MemberID=";
+        String s4 = "\" class=\"username offline popupctrl\" id=\"yui-gen13\"><strong>";
+        String s5 = "</strong></a></div></div><p class=\"lastpostdate\"><span class=\"time\">";
+        Topic topic = TopicBLL.GetNewTopicBySubForumID(subForumID);
+        if(topic!= null)
+        {
+            Member member = MemberBLL.GetMemberByMemberID(topic.MemberID);
+            result = s1 + topic.TopicID + "\">" + topic.Title + s2 + s3 + member.MemberID
+                + s4 + member.UserName + s5 +topic.DateLastPost + "</span></p>";
+        }else
+        {
+            result = "<p>No Topics</p>";
         }
+        return result;
     }
 }

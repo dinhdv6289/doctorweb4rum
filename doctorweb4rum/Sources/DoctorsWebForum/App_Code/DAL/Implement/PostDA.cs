@@ -65,5 +65,27 @@ namespace DAL
             }
             return null;
         }
+
+        public int GetCountPostBySubForumID(int subForumID)
+        {
+            int result = 0;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("SELECT  count(Posts.PostID) FROM Posts INNER JOIN  Topics ON Posts.TopicID = Topics.TopicID INNER JOIN  SubForums ON Topics.SubForumID = SubForums.SubForumID WHERE SubForums.SubForumID = {0}",subForumID);
+                DataSet ds = ExecuteDataset(cmd);
+                if(ds.Tables[0].Rows.Count>0)
+                {
+                    result = (int)ds.Tables[0].Rows[0][0];
+                }
+                
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

@@ -361,6 +361,8 @@ AS BEGIN
 	WHERE	   Topics.TopicID = @TopicID	
 END
 
+
+-- da su dung. trong visual
 CREATE PROC GetNewPostBySubForumID
 	@SubForumID	INT
 AS BEGIN
@@ -370,5 +372,23 @@ AS BEGIN
 	WHERE	   SubForums.SubForumID = @SubForumID ORDER BY Posts.PostID DESC
 END
 
+GO
 exec GetNewPostBySubForumID 1
+
+GO
+--CountAmountTopicInSubForumBySubForumID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'CountAmountTopicInSubForumBySubForumID' AND TYPE = 'P')
+DROP PROC CountAmountTopicInSubForumBySubForumID
+GO
+CREATE PROC CountAmountTopicInSubForumBySubForumID
+	@SubForumID INT
+AS BEGIN
+	SELECT COUNT (*) FROM Topics 
+	WHERE SubForumID = @SubForumID
+END
+
+GO
+
+EXEC CountAmountTopicInSubForumBySubForumID  1
+GO
 

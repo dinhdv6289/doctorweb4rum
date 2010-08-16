@@ -8,12 +8,13 @@ using System.Configuration;
 namespace DAL
 {
 
-public interface ITopicDA
-{
-    Topic[] GetAllTopicBySubForumID(int subForumID);
-    Topic GetTopicByTopicID(int topicID);
-    RatingTopic[] GetAllRatingByTopicID(int topicID);
-    int GetRatingPointByTopicID(int topicID);
-    Topic GetNewTopicBySubForumID(int subForumID);
-}
+    public interface ITopicDA
+    {
+        Topic[] GetAllTopicBySubForumID(int subForumID);
+        Topic GetTopicByTopicID(int topicID);
+        RatingTopic[] GetAllRatingByTopicID(int topicID);
+        int GetRatingPointByTopicID(int topicID);
+        Topic GetNewTopicBySubForumID(int subForumID);
+        int CountAmountTopicInSubForumBySubForumID(int subForumID);
+    }
 }
