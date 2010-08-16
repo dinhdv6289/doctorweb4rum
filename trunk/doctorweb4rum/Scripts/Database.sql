@@ -160,7 +160,6 @@ CREATE TABLE Posts
 	MemberID		INT NOT NULL,
 	Title			NVARCHAR(100) NOT NULL,
 	[Content]		NTEXT,
-	Experience		FLOAT,
 	DateCreation	DATETIME DEFAULT GETDATE(),
 	DateEdited		DATETIME,
 	Signature		BIT DEFAULT 1,
