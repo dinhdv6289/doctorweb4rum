@@ -30,5 +30,19 @@ namespace BLL
             }
             return result;
         }
+
+        public static Post GetNewPostBySubForumID(int subForumID)
+        {
+            Post result = null;
+            try
+            {
+                result = DataHelper.GetPostDA().GetNewPostBySubForumID(subForumID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

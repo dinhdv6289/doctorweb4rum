@@ -43,6 +43,19 @@ namespace BLL
             }
             return result;
         }
+        public static Topic GetNewTopicBySubForumID(int subForumID)
+        {
+            Topic result = null;
+            try
+            {
+                result = DataHelper.GetTopicDA().GetNewTopicBySubForumID(subForumID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
 
         public static int GetRatingPointByTopicID(int topicID)
         {

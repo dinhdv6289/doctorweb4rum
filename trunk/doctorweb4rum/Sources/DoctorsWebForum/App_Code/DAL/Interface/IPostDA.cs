@@ -11,5 +11,6 @@ namespace DAL
     public interface IPostDA
     {
         Post[] GetAllPostByTopicID(int topicID);
+        Post GetNewPostBySubForumID(int subForumID);
     }
 }

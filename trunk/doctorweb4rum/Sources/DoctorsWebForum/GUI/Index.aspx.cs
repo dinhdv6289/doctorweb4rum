@@ -14,7 +14,7 @@ public partial class GUI_Index : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!IsPostBack)
+        if (!IsPostBack)
         {
             loadData();
         }
@@ -28,7 +28,7 @@ public partial class GUI_Index : System.Web.UI.Page
 
     public SubForum[] GetAllSubForumsByCategoryID(int CategoryID)
     {
-       return SubForumBLL.GetlAllSubForumsByCategoryID(CategoryID);
+        return SubForumBLL.GetlAllSubForumsByCategoryID(CategoryID);
     }
 
     public String GetImageStatus(int SubForumID)
@@ -40,6 +40,23 @@ public partial class GUI_Index : System.Web.UI.Page
         else
         {
             return @"Images/forum_old-48.png";
+        }
+    }
+    public Post GetNewPostBySubForumID(int subForumID)
+    {
+        Post temp = null;
+        temp = PostBLL.GetNewPostBySubForumID(subForumID);
+        if (temp != null)
+        {
+            return temp;
+        }
+        else
+        {
+            Post a = new Post();
+            a.PostID = 0;
+            a.Title = "Khong co bai";
+            return a;
+
         }
     }
 }
