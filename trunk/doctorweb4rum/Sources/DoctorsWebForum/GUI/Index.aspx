@@ -94,7 +94,7 @@
                                             <h4 class="nocss_label">
                                                 Forum Statistics:</h4>
                                             <ul class="forumstats td">
-                                                <li>Topics: <%#CountAmountTopicInSubForumBySubForumID(Convert.ToInt32( Eval("SubForumID")))%></li>
+                                                <li>Topics: <%#CountTopicsInSubForumBySubForumID(Convert.ToInt32(Eval("SubForumID")))%></li>
                                                 <li>Posts:  <%#GetCountPostBySubForumID(Convert.ToInt32(DataBinder.Eval(Container.DataItem, "SubForumID")))%></li>
                                             </ul>
                                             <%#GetLastPostInformationBySubForumID(Convert.ToInt32( Eval("SubForumID")))%>

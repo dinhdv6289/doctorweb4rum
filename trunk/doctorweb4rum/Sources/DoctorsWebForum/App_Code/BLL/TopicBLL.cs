@@ -71,12 +71,40 @@ namespace BLL
             return result;
         }
 
-        public static int CountAmountTopicInSubForumBySubForumID(int subForumID)
+        public static int CountTopicsInSubForumBySubForumID(int subForumID)
         {
             int result = 0;
             try
             {
-                result = DataHelper.GetTopicDA().CountAmountTopicInSubForumBySubForumID(subForumID);
+                result = DataHelper.GetTopicDA().CountTopicsInSubForumBySubForumID(subForumID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public static int GetTotalViewsByTopicID(int topicID)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetTopicDA().GetTotalViewsByTopicID(topicID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public static int CountDaysOldOfTopicByTopicID(int topicID)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetTopicDA().CountDaysOldOfTopicByTopicID(topicID);
             }
             catch (Exception ex)
             {

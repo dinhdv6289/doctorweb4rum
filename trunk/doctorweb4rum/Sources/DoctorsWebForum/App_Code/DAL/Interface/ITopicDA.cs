@@ -15,6 +15,8 @@ namespace DAL
         RatingTopic[] GetAllRatingByTopicID(int topicID);
         int GetRatingPointByTopicID(int topicID);
         Topic GetNewTopicBySubForumID(int subForumID);
-        int CountAmountTopicInSubForumBySubForumID(int subForumID);
+        int CountTopicsInSubForumBySubForumID(int subForumID);
+        int GetTotalViewsByTopicID(int topicID);
+        int CountDaysOldOfTopicByTopicID(int topicID);
     }
 }

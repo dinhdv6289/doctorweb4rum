@@ -42,9 +42,9 @@ public partial class GUI_Index : System.Web.UI.Page
             return @"Images/forum_old-48.png";
         }
     }
-    public String CountAmountTopicInSubForumBySubForumID(int subForumID)
+    public String CountTopicsInSubForumBySubForumID(int subForumID)
     {
-        return TopicBLL.CountAmountTopicInSubForumBySubForumID(subForumID).ToString();
+        return TopicBLL.CountTopicsInSubForumBySubForumID(subForumID).ToString();
     }
 
      public String GetCountPostBySubForumID(int subForumID)

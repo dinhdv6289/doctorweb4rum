@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 namespace DAL
 {
 
-    public class MemberDA:BaseDAL, IMemberDA
+    public class MemberDA : BaseDAL, IMemberDA
     {
         public MemberDA()
         {
@@ -66,26 +66,26 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                throw ex;	
+                throw ex;
             }
             return result;
         }
-       public Member GetMemberByMemberID(int memberID)
-       {
-           Member[] result = null;
-           try
-           {
-               SqlCommand cmd = new SqlCommand();
-               cmd.CommandType = CommandType.Text;
-               cmd.CommandText = String.Format("Select * from {0} where {1} = {2}", tableName, MemberID, memberID);
-               result = SelectCollection<Member>(columnNames, columnNames, cmd);
-           }
-           catch (Exception ex)
-           {
-               throw ex;
-           }
-           return result[0];
-       }
+        public Member GetMemberByMemberID(int memberID)
+        {
+            Member[] result = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("Select * from {0} where {1} = {2}", tableName, MemberID, memberID);
+                result = SelectCollection<Member>(columnNames, columnNames, cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result[0];
+        }
 
         public MemberProfile GetMemberProfileByMemberID(int memberID)
         {
@@ -102,6 +102,55 @@ namespace DAL
                 throw ex;
             }
             return result[0];
+        }
+
+        public Member GetMemberOfTopicByTopicID(int topicID)
+        {
+            Member[] result = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("GetMemberOfTopicByTopicID {0}", topicID);
+                result = SelectCollection<Member>(columnNames, columnNames, cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            if (result.Length > 0)
+            {
+                return result[0];
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+
+        public Member GetLastMemberPostByTopicID(int topicID)
+        {
+            Member[] result = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("GetLastMemberPostByTopicID {0}", topicID);
+                result = SelectCollection<Member>(columnNames, columnNames, cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            if (result.Length > 0)
+            {
+                return result[0];
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

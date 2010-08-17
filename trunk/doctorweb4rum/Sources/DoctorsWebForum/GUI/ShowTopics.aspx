@@ -74,7 +74,7 @@
                                 <div class="inner">
                                     <h3 class="threadtitle">
                                         <a class="title" href="TopicDetails.aspx?topicID=<%#Eval("TopicID") %>" id="thread_title_920"><%#Eval("Title") %></a><span
-                                            class="age">2,262</span>
+                                            class="age"><%#CountDaysOldOfTopicByTopicID(Convert.ToInt32(Eval("TopicID")))%></span>
                                     </h3>
                                     <div class="threadmeta">
                                         <p class="threaddesc">
@@ -84,7 +84,7 @@
                                             wasn't sure that was permitted.</p>
                                         <div class="author">
                                             <span class="label"><a href="member.php?u=595" class="username understate" title="Started on Jun 2nd 2004 5:49 pm">
-                                                cobaltlady</a></span>
+                                                <%#GetMemberOfTopicByTopicID(Convert.ToInt32(Eval("TopicID"))).UserName%></a></span>
                                         </div>
                                     </div>
                                 </div>
@@ -96,9 +96,9 @@
                             </div>
                             <!-- threadstats -->
                             <ul class="threadstats td alt" title="">
-                                <li>Replies: <a href="misc.php?do=whoposted&amp;t=920" onclick="who(920); return false;"
-                                    class="understate">4</a></li>
-                                <li>Views: 2,291</li>
+                                <li>Posts: <a href="misc.php?do=whoposted&amp;t=920" onclick="who(920); return false;"
+                                    class="understate"><%#GetCountPostsByTopicID(Convert.ToInt32(Eval("TopicID"))) %></a></li>
+                                <li>Views: <%#GetTotalViewsByTopicID(Convert.ToInt32(Eval("TopicID")))%></li>
                                 <li class="hidden">Rating0 / 5</li>
                             </ul>
                             <!-- lastpost -->
@@ -106,8 +106,8 @@
                                 <dt class="lastpostby hidden">Last Post By</dt>
                                 <dd>
                                     <div id="yui-gen33" class="popupmenu memberaction">
-                                        <a id="yui-gen35" class="username offline popupctrl" href="member.php?u=489" title="disgust is offline">
-                                            <strong>disgust</strong></a>
+                                        <a id="yui-gen35" class="username offline popupctrl" href="Member.aspx?memberID=<%#Eval("MemberID") %>" title="disgust is offline">
+                                            <strong><%#GetLastMemberPostByTopicID(Convert.ToInt32(Eval("TopicID"))).UserName%></strong></a>
                                         <ul id="yui-gen34" class="popupbody memberaction_body">
                                             <li class="left">
                                                 <img src="http://i.dpstatic.com/site_icons/profile.png" alt="">
@@ -128,7 +128,7 @@
                                     </div>
                                 </dd>
                                 <dd>
-                                    Jun 3rd 2004 <em class="time">1:37 am</em> <a href="showthread.php?t=920#post8210"
+                                    <%#GetLastPostOfTopicByTopicID(Convert.ToInt32(Eval("TopicID"))).DateCreation%> <em class="time"></em> <a href="TopicDetails.aspx?topicIDLastPost=<%#Eval("TopicID") %>"
                                         class="lastpostdate understate" title="Go to last post">
                                         <img title="Go to last post" src="http://b.dpstatic.com/buttons/lastpost-right.png"
                                             alt="Go to last post"></a>

@@ -184,6 +184,9 @@ select * from SubForums
 insert into dbo.Members(UserName,Password,Email,FullName,DateCreation,AllowLogin,IsOnline)
 values('username1','password','test@gmail.com','userName1Test',GetDate(),'true','true')
 
+insert into dbo.Members(UserName,Password,Email,FullName,DateCreation,AllowLogin,IsOnline)
+values('username2','password','test2@gmail.com','testtt',GetDate(),'true','true')
+
 insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
 values(
 	1,
@@ -206,6 +209,12 @@ values(
 insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
 values(2,1,'Title test','Content Test','false',1,1,'12/12/2008',1)
 
+insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
+values(2,1,'Title test','Content Test','false',1,1,'12/12/2008',1)
+
+insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
+values(2,2,'Title memberID = 2','Content Test memberID = 2','false',1,1,'10/10/2008',1)
+
 
 
 
@@ -217,4 +226,8 @@ values(2,1,'Test title','test content ',getdate(),getdate(),'true','1111332323')
 
 insert into Posts(TopicID,MemberID,Title,[Content],DateCreation,DateEdited,Signature,IPAddress)
 values(3,1,'Test title3','test content 3',getdate(),getdate(),'true','1111332323')
+
+insert into Posts(TopicID,MemberID,Title,[Content],DateCreation,DateEdited,Signature,IPAddress)
+values(2,1,'Test titleabc','test content abc',getdate(),getdate(),'true','1111332323')
+
 select * from dbo.Members

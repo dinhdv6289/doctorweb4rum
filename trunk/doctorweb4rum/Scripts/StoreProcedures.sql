@@ -376,11 +376,11 @@ GO
 exec GetNewPostBySubForumID 1
 
 GO
---CountAmountTopicInSubForumBySubForumID
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'CountAmountTopicInSubForumBySubForumID' AND TYPE = 'P')
-DROP PROC CountAmountTopicInSubForumBySubForumID
+--CountTopicsInSubForumBySubForumID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'CountTopicsInSubForumBySubForumID' AND TYPE = 'P')
+DROP PROC CountTopicsInSubForumBySubForumID
 GO
-CREATE PROC CountAmountTopicInSubForumBySubForumID
+CREATE PROC CountTopicsInSubForumBySubForumID
 	@SubForumID INT
 AS BEGIN
 	SELECT COUNT (*) FROM Topics 
@@ -389,6 +389,105 @@ END
 
 GO
 
-EXEC CountAmountTopicInSubForumBySubForumID  1
+EXEC CountTopicsInSubForumBySubForumID  1
 GO
 
+--GetMemberOfTopicByMemberID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetMemberOfTopicByTopicID' AND TYPE = 'P')
+DROP PROC GetMemberOfTopicByTopicID
+GO
+CREATE PROC GetMemberOfTopicByTopicID
+	@TopicID INT
+AS BEGIN
+SELECT     Members.MemberID, Members.UserName, Members.Password, Members.Email, Members.FullName, Members.DateCreation, Members.AllowLogin, 
+                      Members.IsOnline
+FROM         Members INNER JOIN
+                      Topics ON Members.MemberID = Topics.MemberID
+WHERE Topics.TopicID = @TopicID
+END
+GO
+
+exec GetMemberOfTopicByTopicID 1
+
+go
+
+--GetCountPostsByTopicID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetCountPostsByTopicID' AND TYPE = 'P')
+DROP PROC GetCountPostsByTopicID
+GO
+CREATE PROC GetCountPostsByTopicID
+	@TopicID INT
+AS BEGIN
+SELECT     COUNT(*) 
+FROM         Posts INNER JOIN   Topics ON Posts.TopicID = Topics.TopicID
+WHERE Topics.TopicID = @TopicID
+END
+GO
+EXEC GetCountPostsByTopicID 2
+GO
+
+--GetTotalViewsByTopicID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetTotalViewsByTopicID' AND TYPE = 'P')
+DROP PROC GetTotalViewsByTopicID
+GO
+CREATE PROC GetTotalViewsByTopicID
+	@TopicID INT
+AS BEGIN
+SELECT     TotalViews
+FROM         Topics
+WHERE TopicID = @TopicID
+END
+
+GO
+EXEC GetTotalViewsByTopicID 4
+GO
+
+--GetLastPostOfTopicByTopicID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetLastPostOfTopicByTopicID' AND TYPE = 'P')
+DROP PROC GetLastPostOfTopicByTopicID
+GO
+CREATE PROC GetLastPostOfTopicByTopicID
+	@TopicID INT
+AS BEGIN
+SELECT   TOP(1)  Posts.PostID, Posts.TopicID, Posts.MemberID, Posts.Title, Posts.[Content], Posts.DateCreation, Posts.DateEdited, Posts.Signature, Posts.IPAddress
+FROM         Posts INNER JOIN  Topics ON Posts.TopicID = Topics.TopicID
+WHERE Posts.TopicID = @TopicID
+ORDER BY Posts.PostID  DESC
+END
+
+GO
+
+EXEC GetLastPostOfTopicByTopicID 2
+
+SELECT * FROM dbo.Posts
+GO
+
+--GetLastMemberPostByTopicID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetLastMemberPostByTopicID' AND TYPE = 'P')
+DROP PROC GetLastMemberPostByTopicID
+GO
+CREATE PROC GetLastMemberPostByTopicID
+	@TopicID INT
+AS BEGIN
+SELECT     TOP(1) Posts.PostID, Members.MemberID, Members.UserName, Members.Password, Members.Email, Members.FullName, Members.DateCreation, Members.AllowLogin, 
+                      Members.IsOnline, Posts.TopicID
+FROM         Members INNER JOIN  Posts ON Members.MemberID = Posts.MemberID
+WHERE Posts.TopicID = @TopicID
+ORDER BY Posts.PostID DESC
+END
+
+GO
+EXEC GetLastMemberPostByTopicID 2
+GO
+
+--CountDaysOldOfTopic
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'CountDaysOldOfTopic' AND TYPE = 'P')
+DROP PROC CountDaysOldOfTopic
+GO
+CREATE PROC CountDaysOldOfTopic
+	@TopicID INT
+AS BEGIN
+SELECT DATEDIFF(day,Topics.DateLastPost,GETDATE()) from dbo.Topics where TopicID = @TopicID
+END
+GO
+EXEC CountDaysOldOfTopic 1

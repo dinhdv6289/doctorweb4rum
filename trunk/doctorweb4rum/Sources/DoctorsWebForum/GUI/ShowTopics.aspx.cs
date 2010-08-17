@@ -40,4 +40,34 @@ public partial class GUI_ShowTopics : System.Web.UI.Page
         return SubForumBLL.GetSubForumBySubForumID(subID);
     }
 
+    public Member GetMemberOfTopicByTopicID(int topicID)
+    {
+        return MemberBLL.GetMemberOfTopicByTopicID(topicID);
+    }
+
+    public String GetCountPostsByTopicID(int topicID)
+    {
+        return PostBLL.GetCountPostsByTopicID(topicID).ToString();
+    }
+
+    public String GetTotalViewsByTopicID(int topicID)
+    {
+        return TopicBLL.GetTotalViewsByTopicID(topicID).ToString();
+    }
+
+     public Post GetLastPostOfTopicByTopicID(int topicID)
+     {
+         return PostBLL.GetLastPostOfTopicByTopicID(topicID);
+     }
+
+    public Member GetLastMemberPostByTopicID(int topicID)
+    {
+        return MemberBLL.GetLastMemberPostByTopicID(topicID);
+    }
+
+    public String CountDaysOldOfTopicByTopicID(int topicID)
+    {
+        return TopicBLL.CountDaysOldOfTopicByTopicID(topicID).ToString();
+    }
+
 }
