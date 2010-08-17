@@ -480,14 +480,14 @@ GO
 EXEC GetLastMemberPostByTopicID 2
 GO
 
---CountDaysOldOfTopic
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'CountDaysOldOfTopic' AND TYPE = 'P')
-DROP PROC CountDaysOldOfTopic
+--CountDaysOldOfTopicByTopicID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'CountDaysOldOfTopicByTopicID' AND TYPE = 'P')
+DROP PROC CountDaysOldOfTopicByTopicID
 GO
-CREATE PROC CountDaysOldOfTopic
+CREATE PROC CountDaysOldOfTopicByTopicID
 	@TopicID INT
 AS BEGIN
 SELECT DATEDIFF(day,Topics.DateLastPost,GETDATE()) from dbo.Topics where TopicID = @TopicID
 END
 GO
-EXEC CountDaysOldOfTopic 1
+EXEC CountDaysOldOfTopicByTopicID 1
