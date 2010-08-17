@@ -60,5 +60,33 @@ namespace BLL
             }
             return result;
         }
+
+        public static Member GetMemberOfTopicByTopicID(int topicID)
+        {
+            Member result;
+            try
+            {
+                result = DataHelper.GetMemberDA().GetMemberOfTopicByTopicID(topicID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public static Member GetLastMemberPostByTopicID(int topicID)
+        {
+            Member result;
+            try
+            {
+                result = DataHelper.GetMemberDA().GetLastMemberPostByTopicID(topicID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

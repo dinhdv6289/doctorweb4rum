@@ -13,5 +13,7 @@ namespace DAL
         Member[] GetAllMember();
         Member GetMemberByMemberID(int memberID);
         MemberProfile GetMemberProfileByMemberID(int memberID);
+        Member GetMemberOfTopicByTopicID(int memberID);
+        Member GetLastMemberPostByTopicID(int topicID);
     }
 }

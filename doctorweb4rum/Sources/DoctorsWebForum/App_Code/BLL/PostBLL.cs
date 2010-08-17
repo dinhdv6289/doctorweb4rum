@@ -19,14 +19,14 @@ namespace BLL
 
         public static Post[] GetAllPostByTopicID(int topicID)
         {
-            Post[] result =null;
+            Post[] result = null;
             try
             {
                 result = DataHelper.GetPostDA().GetAllPostByTopicID(topicID);
             }
             catch (Exception ex)
             {
-                throw ex;	
+                throw ex;
             }
             return result;
         }
@@ -45,12 +45,26 @@ namespace BLL
             return result;
         }
 
-         public static int GetCountPostBySubForumID(int subForumID)
+        public static int GetCountPostBySubForumID(int subForumID)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetPostDA().GetCountPostBySubForumID(subForumID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public static int GetCountPostsByTopicID(int topicID)
          {
              int result = 0;
              try
              {
-                 result = DataHelper.GetPostDA().GetCountPostBySubForumID(subForumID);
+                 result = DataHelper.GetPostDA().GetCountPostsByTopicID(topicID);
              }
              catch (Exception ex)
              {
@@ -58,5 +72,19 @@ namespace BLL
              }
              return result;
          }
+
+        public static Post GetLastPostOfTopicByTopicID(int topicID)
+        {
+            Post result = null;
+            try
+            {
+                result = DataHelper.GetPostDA().GetLastPostOfTopicByTopicID(topicID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

@@ -87,5 +87,48 @@ namespace DAL
             }
             return result;
         }
+
+        public int GetCountPostsByTopicID(int topicID)
+        {
+            int result = 0;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("GetCountPostsByTopicID {0}", topicID);
+                DataSet ds = ExecuteDataset(cmd);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    result = (int)ds.Tables[0].Rows[0][0];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+        public Post GetLastPostOfTopicByTopicID(int topicID)
+        {
+            Post[] result = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("GetLastPostOfTopicByTopicID {0}",topicID);
+                result = SelectCollection<Post>(columnNames, columnNames, cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            if (result.Length>0)
+            {
+                return result[0];
+            }else
+            {
+                return null;
+            }
+        }
     }
 }

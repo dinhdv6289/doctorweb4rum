@@ -133,21 +133,63 @@ namespace DAL
                 throw ex;
             }
         }
-        public int CountAmountTopicInSubForumBySubForumID(int subForumID)
+        public int CountTopicsInSubForumBySubForumID(int subForumID)
         {
             int result = 0;
             try
             {
-                SqlCommand command = new SqlCommand();
-                command.CommandType = CommandType.Text;
-                command.CommandText = String.Format("SELECT COUNT (*) FROM {0} WHERE {1} = {2}", tableName, SubForumID, subForumID);
-                DataSet ds = ExecuteDataset(command);
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("SELECT COUNT (*) FROM {0} WHERE {1} = {2}", tableName, SubForumID, subForumID);
+                DataSet ds = ExecuteDataset(cmd);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     result = (int)ds.Tables[0].Rows[0][0];
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public int GetTotalViewsByTopicID(int topicID)
+        {
+            int result = 0;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("GetTotalViewsByTopicID {0}",topicID);
+                DataSet ds = ExecuteDataset(cmd);
+                if(ds.Tables[0].Rows.Count>0)
+                {
+                    result = (int)ds.Tables[0].Rows[0][0];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public int CountDaysOldOfTopicByTopicID(int topicID)
+        {
+            int result = 0;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("CountDaysOldOfTopicByTopicID {0}",topicID);
+                DataSet ds = ExecuteDataset(cmd);
+                if(ds.Tables[0].Rows.Count>0)
+                {
+                    result = (int)ds.Tables[0].Rows[0][0];
+                }
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
