@@ -4,7 +4,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>Untitled Page</title>
-
     <link href="css_002.css" rel="stylesheet" type="text/css" />
     <link href="css.css" rel="stylesheet" type="text/css" />
 </head>
@@ -26,8 +25,7 @@
                     <div class="ad_global_header_right">
                     </div>
                 </div>
-                <div onclick="document.location.href=''"
-                    id="stats">
+                <div onclick="document.location.href=''" id="stats">
                     <ul>
                         <li>
                             <dl>
@@ -72,12 +70,11 @@
                 <ul class="floatcontainer">
                     <li class="navbithome"><a href="" accesskey="1">
                         <img src="http://m.dpstatic.com/misc/navbit-home.png" alt="Home" /></a></li>
-                    <li class="navbit"><a href="./">Forum</a></li>
+                    <li class="navbit"><a href="#">Forum</a></li>
                     <li class="navbit"><a href="forumdisplay.php?f=4">Search Engines</a></li>
                     <li class="navbit"><a href="forumdisplay.php?f=5">Google</a></li>
                     <li class="navbit lastnavbit"><span>AdSense</span></li>
-                    <fb:like id="fb_like" href="#"
-                        layout="button_count" width="150" font="tahoma"></fb:like>
+                    <fb:like id="fb_like" href="#" layout="button_count" width="150" font="tahoma"></fb:like>
                 </ul>
                 <hr />
             </div>
@@ -96,23 +93,25 @@
                 </ol>
             </form>
             <div class="above_threadlist" id="above_threadlist">
-                <a id="newthreadlink_top" class="newcontent_textcontrol" rel="nofollow" href="#">
-                    <span>+</span> Post New Topic</a>
-               
+                <a id="newthreadlink_top" class="newcontent_textcontrol" rel="nofollow" href="#"><span>
+                    +</span> Post New Topic</a>
             </div>
-
+            <asp:SiteMapPath ID="SiteMapPath1" runat="server" Font-Names="Verdana" Font-Size="0.8em"
+                PathSeparator=" &gt; ">
+                <PathSeparatorStyle Font-Bold="True" ForeColor="#5D7B9D" />
+                <CurrentNodeStyle ForeColor="#333333" />
+                <NodeStyle Font-Bold="True" ForeColor="#7C6F57" />
+                <RootNodeStyle Font-Bold="True" ForeColor="#5D7B9D" />
+            </asp:SiteMapPath>
             <!-- main -->
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
             <%--begin Button post new Thread--%>
-
             <div class="noinlinemod below_threadlist" id="below_threadlist">
-            
                 <a id="newthreadlink_bottom" class="newcontent_textcontrol" rel="nofollow" href="#">
                     <span>+</span> Post New Topic</a>
-                    <%--begin phan trang--%>
+                <%--begin phan trang--%>
                 <div class="threadpagenav">
-            
                 </div>
                 <%--end phan trang--%>
             </div>
@@ -287,8 +286,7 @@
             <div id="footer" class="floatcontainer footer">
                 <ul id="footer_links" class="footer_links">
                     <li class="advertising"><a href="advertising.php">Advertising</a></li>
-                    <li><a href="#" target="_blank" rel="nofollow"
-                        accesskey="9">Contact Us @Twitter</a></li>
+                    <li><a href="#" target="_blank" rel="nofollow" accesskey="9">Contact Us @Twitter</a></li>
                     <li><a href="#">Digital Point Solutions</a></li>
                     <li><a href="#top" onclick="document.location.hash='top'; return false;">Top</a></li>
                 </ul>
@@ -299,7 +297,7 @@
             <div id="footer_time" class="shade footer_time">
                 All times are GMT -8. The time now is <span class="time">6:01 pm</span>.</div>
             <div id="footer_copyright" class="shade footer_copyright">
-                Get the <a href="#" target="_blank">5 anh em siêu nhân</a> 
+                Get the <a href="#" target="_blank">5 anh em siêu nhân</a>
             </div>
             <div id="fb-root">
             </div>

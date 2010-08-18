@@ -5,18 +5,19 @@
     <title>Untitled Page</title>
     <link href="css.css" rel="stylesheet" type="text/css" />
     <link href="css_002.css" rel="stylesheet" type="text/css" />
+
     <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
 
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
 
     <script type="text/javascript" src="js/jquery.collapsible.js"></script>
-    
-<script type="text/javascript">
+
+    <script type="text/javascript">
 $(document).ready(function() {
 	$.collapsible(".header", "group1");
 	$.collapsible(".header2", "group2");
 });
-</script>
+    </script>
 
 </head>
 <body>
@@ -101,6 +102,10 @@ $(document).ready(function() {
                 <br />
             </div>
             <!-- main -->
+            <div>
+
+                <hr />
+            </div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
             <div class="navlinks">
@@ -163,8 +168,7 @@ $(document).ready(function() {
                                     <a href="#">0</a></dd>
                             </dl>
                             <p>
-                                Latest Blog Entry, <a href="#">TOP SEOs
-                                    is a SCAM !!</a> by <a href="#">WorldImpulse</a>
+                                Latest Blog Entry, <a href="#">TOP SEOs is a SCAM !!</a> by <a href="#">WorldImpulse</a>
                             </p>
                         </div>
                     </div>
@@ -175,8 +179,7 @@ $(document).ready(function() {
             <div id="footer" class="floatcontainer footer">
                 <ul id="footer_links" class="footer_links">
                     <li class="advertising"><a href="advertising.php">Advertising</a></li>
-                    <li><a href="#" target="_blank" rel="nofollow"
-                        accesskey="9">Contact Us @Twitter</a></li>
+                    <li><a href="#" target="_blank" rel="nofollow" accesskey="9">Contact Us @Twitter</a></li>
                     <li><a href="#">Digital Point Solutions</a></li>
                     <li><a href="#top" onclick="document.location.hash='top'; return false;">Top</a></li>
                 </ul>
@@ -187,7 +190,7 @@ $(document).ready(function() {
             <div id="footer_time" class="shade footer_time">
                 All times are GMT -8. The time now is <span class="time">6:01 pm</span>.</div>
             <div id="footer_copyright" class="shade footer_copyright">
-                Get the <a href="#" target="_blank">5 anh em siêu nhân</a> 
+                Get the <a href="#" target="_blank">5 anh em siêu nhân</a>
             </div>
             <div id="fb-root">
             </div>

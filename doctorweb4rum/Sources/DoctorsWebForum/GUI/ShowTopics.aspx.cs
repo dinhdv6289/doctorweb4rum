@@ -8,10 +8,12 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using System.Collections.Generic;
+using DBlock;
 using BLL;
 public partial class GUI_ShowTopics : System.Web.UI.Page
 {
-    private int subID =0;
+    private int subID = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         String subForumID = Request.QueryString["subForumID"];
@@ -21,6 +23,10 @@ public partial class GUI_ShowTopics : System.Web.UI.Page
             {
                 subID = Convert.ToInt32(subForumID);
                 LoadData(subID);
+                SubForum sf = SubForumBLL.GetSubForumBySubForumID(subID);
+                List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
+                nodes.Add(new KeyValuePair<string, Uri>(sf.SubForumName, Request.Url));
+                ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
             }
         }
         else
@@ -33,10 +39,11 @@ public partial class GUI_ShowTopics : System.Web.UI.Page
     {
         repeaterTopics.DataSource = TopicBLL.GetAllTopicBySubForumID(subForumID);
         repeaterTopics.DataBind();
-    
+
     }
 
-    public SubForum GetSubForumBySubForumID(){
+    public SubForum GetSubForumBySubForumID()
+    {
         return SubForumBLL.GetSubForumBySubForumID(subID);
     }
 
@@ -55,14 +62,31 @@ public partial class GUI_ShowTopics : System.Web.UI.Page
         return TopicBLL.GetTotalViewsByTopicID(topicID).ToString();
     }
 
-     public Post GetLastPostOfTopicByTopicID(int topicID)
-     {
-         return PostBLL.GetLastPostOfTopicByTopicID(topicID);
-     }
+    public Post GetLastPostOfTopicByTopicID(int topicID)
+    {
+        Post p = PostBLL.GetLastPostOfTopicByTopicID(topicID);
+        if (p == null)
+        {
+            return new Post();
+        }
+        else
+        {
+            return p;
+        }
+    }
 
     public Member GetLastMemberPostByTopicID(int topicID)
     {
-        return MemberBLL.GetLastMemberPostByTopicID(topicID);
+        Member mem = MemberBLL.GetLastMemberPostByTopicID(topicID);
+        if (mem == null)
+        {
+            return new Member();
+        }
+        else
+        {
+            return mem;
+        }
+
     }
 
     public String CountDaysOldOfTopicByTopicID(int topicID)
