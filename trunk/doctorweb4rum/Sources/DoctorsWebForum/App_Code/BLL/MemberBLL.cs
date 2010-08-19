@@ -29,6 +29,57 @@ namespace BLL
             }
             return result;
         }
+
+        //public static Member GetMemberByUserNamePassword(string userName, string password)
+        //{
+        //    Member result = new Member();
+        //    if (userName != "")
+        //    {
+        //        try
+        //        {
+        //            result = DataHelper.GetMemberDA().GetMemberByUserNamePassword(userName, password);
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            throw ex;
+        //        }
+        //    }
+        //    return result;
+        //}
+
+        //public static Member InsertMember()
+        //{
+        //    Member result = new Member();
+        //    if ()
+        //    {
+        //        try
+        //        {
+        //            result = DataHelper.GetMemberDA().InsertMember();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            throw ex;
+        //        }
+        //    }
+        //    return result;
+        //}
+
+        //public static Member InsertMemberProfile()
+        //{
+        //    Member result = new Member();
+        //    if ()
+        //    {
+        //        try
+        //        {
+        //            result = DataHelper.GetMemberDA().InsertMemberProfile();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            throw ex;
+        //        }
+        //    }
+        //    return result;
+        //}
         
         public static Member GetMemberByMemberID(int memberID)
         {
