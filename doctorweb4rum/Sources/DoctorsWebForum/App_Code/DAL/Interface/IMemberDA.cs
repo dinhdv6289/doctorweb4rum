@@ -15,5 +15,8 @@ namespace DAL
         MemberProfile GetMemberProfileByMemberID(int memberID);
         Member GetMemberOfTopicByTopicID(int memberID);
         Member GetLastMemberPostByTopicID(int topicID);
+        //Member GetMemberByUserNamePassword(string userName, string password);
+        //Member InsertMember();
+        //Member InsertMemberProfile();
     }
 }

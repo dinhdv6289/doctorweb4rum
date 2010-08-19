@@ -70,6 +70,75 @@ namespace DAL
             }
             return result;
         }
+
+        //public Member GetMemberByUserNamePassword(string userName, string password)
+        //{
+        //    Member[] result = null;
+        //    try
+        //    {
+        //        SqlCommand cmd = new SqlCommand();
+        //        cmd.CommandType = CommandType.Text;
+        //        cmd.CommandText = String.Format("Select * from {0} where {1} = {2} and {3} = {4}", tableName, UserName, userName, Password, password);
+        //        result = SelectCollection<Member>(columnNames, columnNames, cmd);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    return result[0];
+        //}
+
+        //public Member InsertMember()
+        //{
+        //    //Member[] result = null;
+        //    try
+        //    {
+        //        SqlCommand cmd = new SqlCommand();
+        //        cmd.CommandType = CommandType.Text;
+        //        cmd.CommandText = String.Format("InsertMembers");
+        //        //result = SelectCollection<Member>(columnNames, columnNames, cmd);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    if (result.Length > 0)
+        //    {
+        //        return 
+        //          //result[0];
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
+
+
+        //public Member InsertMemberProfile()
+        //{
+        //    //Member[] result = null;
+        //    try
+        //    {
+        //        SqlCommand cmd = new SqlCommand();
+        //        cmd.CommandType = CommandType.Text;
+        //        cmd.CommandText = String.Format("InsertMemberProfiles");
+        //        //result = SelectCollection<Member>(columnNames, columnNames, cmd);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    if (result.Length > 0)
+        //    {
+        //        return 
+        //          //result[0];
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
+
         public Member GetMemberByMemberID(int memberID)
         {
             Member[] result = null;
