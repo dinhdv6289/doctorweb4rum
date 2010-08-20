@@ -2,6 +2,14 @@
     CodeFile="Index.aspx.cs" Inherits="GUI_Index" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<div><span style="font-family: Verdana; font-size: 0.8em;">
+<span style="color: rgb(51, 51, 51); font-weight: bold;">Doctors Web Forum</span></span> <br />
+    <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+    <asp:Button ID="Button2" runat="server" Text="abc" OnClick="Button2_Click" /></div>
+ <br />
+<div>
+<hr />
+</div>
     <asp:Repeater ID="repeaterCategories" runat="server">
         <ItemTemplate>
             <ol id="forums" class="floatcontainer">

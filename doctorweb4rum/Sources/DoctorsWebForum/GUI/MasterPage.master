@@ -26,7 +26,7 @@ $(document).ready(function() {
             <div class="floatcontainer doc_header" id="header">
                 <div>
                     <a class="logo-image" href="" name="top">
-                        <img src="Images/dps_logo.png"></a></div>
+                        <img src="Images/dps_logo.png" /></a></div>
                 <div class="toplinks" id="toplinks">
                     <ul class="nouser">
                         <li><a rel="nofollow" href="">Register</a></li>
@@ -65,13 +65,13 @@ $(document).ready(function() {
                 </ul>
                 <div class="globalsearch" id="globalsearch">
                     <form class="navbar_search" id="navbar_search" method="post" action="search.php?do=process">
-                        <input type="hidden" value="guest" name="securitytoken">
-                        <input type="hidden" value="process" name="do">
+                        <input type="hidden" value="guest" name="securitytoken" />
+                        <input type="hidden" value="process" name="do" />
                         <span class="textboxcontainer"><span>
-                            <input type="text" tabindex="99" class="textbox" name="query" value=""></span></span>
+                            <input type="text" tabindex="99" class="textbox" name="query" value="" /></span></span>
                         <span class="buttoncontainer"><span>
                             <input type="image" tabindex="100" onclick="document.getElementById('navbar_search').submit;"
-                                name="submit" src="Images/search.png" class="searchbutton"></span></span>
+                                name="submit" src="Images/search.png" class="searchbutton" /></span></span>
                     </form>
                     <ul class="navbar_advanced_search">
                         <li><a accesskey="4" href="">Advanced Search</a></li>
@@ -80,32 +80,17 @@ $(document).ready(function() {
             </div>
         </div>
         <div class="body_wrapper">
-            <form action="profile.php?do=dismissnotice" method="post" id="notices" class="notices">
-                <input type="hidden" name="do" value="dismissnotice" />
-                <input type="hidden" name="s" value="" />
-                <input type="hidden" name="securitytoken" value="guest" />
-                <input type="hidden" id="dismiss_notice_hidden" name="dismiss_noticeid" value="" />
-                <input type="hidden" name="url" value="" />
-                <ol>
-                    <li class="restore" id="navbar_notice_3">If this is your first visit, be sure to check
-                        out the <a href="faq.php?" target="_blank"><b>FAQ</b></a> by clicking the link above.
-                        You may have to <a href="register.php?" target="_blank"><b>register</b></a> before
-                        you can post: click the register link above to proceed. To start viewing messages,
-                        select the forum that you want to visit from the selection below. </li>
-                </ol>
-            </form>
-            <div id="pagetitle">
-                <h1>
-                    Digital Point Forums</h1>
-                <p id="welcomemessage" class="description">
-                    Welcome to the Digital Point Forums.</p>
-                <br />
-            </div>
-            <!-- main -->
-            <div>
+        <div>
+            <asp:SiteMapPath ID="SiteMapPath1" runat="server" Font-Names="Verdana" Font-Size="0.8em"
+                PathSeparator=" &gt; ">
+                <PathSeparatorStyle Font-Bold="True" ForeColor="#5D7B9D" />
+                <CurrentNodeStyle ForeColor="#333333" />
+                <NodeStyle Font-Bold="True" ForeColor="#7C6F57" />
+                <RootNodeStyle Font-Bold="True" ForeColor="#5D7B9D" />
+            </asp:SiteMapPath>
+        </div>
 
-                <hr />
-            </div>
+            <!-- main -->
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
             <div class="navlinks">
@@ -125,7 +110,7 @@ $(document).ready(function() {
                             Active Users</h3>
                         <div>
                             <p>
-                                There are currently <a href="#">1,722 users online</a>. <span class="shade">308 members
+                                There are currently <a href="#"><%= Application["ActiveUsers"].ToString()%> users online</a>. <span class="shade"><%= Application["UsersOnline"].ToString()%> members
                                     and 1,414 guests (<a href="#">view map</a>)</span></p>
                             <p>
                                 Most users ever online was 22,414, Sep 15th 2009 at <span class="time">1:54 am</span>.</p>
