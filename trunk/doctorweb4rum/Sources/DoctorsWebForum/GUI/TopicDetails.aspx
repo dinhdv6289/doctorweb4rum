@@ -1,11 +1,15 @@
-<%@ Page Language="C#" MasterPageFile="~/GUI/MasterTopicDetailsPage.master" AutoEventWireup="true"
+<%@ Page Language="C#" MasterPageFile="~/GUI/MasterPage.master" AutoEventWireup="true"
     CodeFile="TopicDetails.aspx.cs" Inherits="GUI_TopicDetails" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+ <br />
+<div>
+<hr />
+</div>
     <div class="pagetitle" id="pagetitle">
         <h1>
-            Thread: <span class="threadtitle"><a title="Reload this Page" href="showthread.php?t=1891188">
-                Google Search Engine</a></span>
+            Thread: <span class="threadtitle"><a title="Reload this Page" href="TopicDetails.aspx?topicID=<%= GetTopic().TopicID %>">
+                <%= GetTopic().Title%></a></span>
         </h1>
     </div>
     <div class="thread_controls" id="thread_controls">
@@ -60,8 +64,7 @@
             <li id="post_14688639" class="postbit postbitim postcontainer">
                 <div class="postdetails_noavatar">
                     <div class="posthead">
-                        <span class="postdate old"><span class="date">Aug 1st 2010&nbsp;<span class="time">3:22
-                            am</span></span> </span><span class="nodecontrols"><a class="postcounter" href="showthread.php?t=1891188&amp;p=14688639#post14688639"
+                        <span class="postdate old"><span class="date"><%= GetTopic().DateLastPost %></span> </span><span class="nodecontrols"><a class="postcounter" href="showthread.php?t=1891188&amp;p=14688639#post14688639"
                                 name="post14688639">#1</a><a name="1" id="postcount14688639"></a> </span>
                     </div>
                     <div class="userinfo_noavatar">
@@ -69,7 +72,7 @@
                             <div class="username_container">
                                 <div class="popupmenu memberaction" id="yui-gen16">
                                     <a title="maihannijat is offline" href="member.php?u=429236" class="username offline popupctrl"
-                                        id="yui-gen18"><strong><span class="user25">maihannijat</span></strong></a>
+                                        id="yui-gen18"><strong><span class="user25"><%= GetMemberByMemberID(GetTopic().MemberID).UserName %></span></strong></a>
                                     <ul class="popupbody memberaction_body" id="yui-gen17">
                                         <li class="left">
                                             <img alt="" src="http://i.dpstatic.com/site_icons/profile.png">
@@ -122,27 +125,12 @@
                 <div class="postbody">
                     <div class="postrow">
                         <h2 class="posttitle icon">
-                            Google Search Engine
+                            <%= GetTopic().Title%>
                         </h2>
                         <div class="content">
                             <div id="post_message_14688639">
                                 <blockquote class="postcontent restore">
-                                    Hi,<br>
-                                    <br>
-                                    10 hours before I post a topic in this website, <a target="_blank" rel="nofollow"
-                                        href="http://ads.digitalpoint.com/go.php?k=and">and</a> now when I google about
-                                    that topic I found my one in Google First page.<br>
-                                    <br>
-                                    <!-- google_ad_section_start(weight=ignore) -->
-                                    <fieldset id="inlinebanner">
-                                        <legend><a href="advertising.php">Your Ad Here</a></legend><a rel="nofollow" target="_blank"
-                                            href="http://ads.digitalpoint.com/go.php?id=129">Links From PR9 Sites</a><br>
-                                        12 Months Permanent Link Guarantee. Check Out Our Low Prices!</fieldset>
-                                    <!-- google_ad_section_end -->
-                                    <br>
-                                    <br>
-                                    What I need to do that google index my website new content in a day? and appears
-                                    in search engine?
+                                 <%= GetTopic().Content%>
                                 </blockquote>
                             </div>
                         </div>

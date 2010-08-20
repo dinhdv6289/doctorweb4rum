@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
-using DBlock;
+using TuyenPV;
 using BLL;
 public partial class GUI_ShowTopics : System.Web.UI.Page
 {

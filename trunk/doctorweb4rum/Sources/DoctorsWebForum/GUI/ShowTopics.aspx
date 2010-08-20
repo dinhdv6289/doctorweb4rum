@@ -1,7 +1,11 @@
-<%@ Page Language="C#" MasterPageFile="~/GUI/MasterTopicsPage.master" AutoEventWireup="true"
+<%@ Page Language="C#" MasterPageFile="~/GUI/MasterPage.master" AutoEventWireup="true"
     CodeFile="ShowTopics.aspx.cs" Inherits="GUI_ShowTopics" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+ <br />
+<div>
+<hr />
+</div>
     <div class="pagetitle" id="pagetitle">
         <h1>
             Sub-Forum: <span class="forumtitle">

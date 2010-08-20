@@ -6,7 +6,7 @@
     {
         // Code that runs on application startup
         Application["ActiveUsers"] = 0;
-
+        Application["UsersOnline"] = 0;
     }
     
     void Application_End(object sender, EventArgs e) 
@@ -28,6 +28,10 @@
         Session["Start"] = "Now";
         Application.Lock();
         Application["ActiveUsers"] = System.Convert.ToInt32(Application["ActiveUsers"]) + 1;
+        if (Session["User"]!=null)
+        {
+            Application["UsersOnline"] = System.Convert.ToInt32(Application["UsersOnline"]) + 1;
+        }
         Application.UnLock();
 
     }
@@ -40,6 +44,10 @@
         // or SQLServer, the event is not raised.
         Application.Lock();
         Application["ActiveUsers"] = System.Convert.ToInt32(Application["ActiveUsers"]) - 1;
+        if (Session["User"] != null)
+        {
+            Application["UsersOnline"] = System.Convert.ToInt32(Application["UsersOnline"]) -1;
+        }
         Application.UnLock();
  
     }
