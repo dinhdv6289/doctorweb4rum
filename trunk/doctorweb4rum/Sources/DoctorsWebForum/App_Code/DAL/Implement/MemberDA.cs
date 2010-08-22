@@ -88,56 +88,39 @@ namespace DAL
         //    return result[0];
         //}
 
-        //public Member InsertMember()
-        //{
-        //    //Member[] result = null;
-        //    try
-        //    {
-        //        SqlCommand cmd = new SqlCommand();
-        //        cmd.CommandType = CommandType.Text;
-        //        cmd.CommandText = String.Format("InsertMembers");
-        //        //result = SelectCollection<Member>(columnNames, columnNames, cmd);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //    if (result.Length > 0)
-        //    {
-        //        return 
-        //          //result[0];
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
+        public int InsertMember(Member member, out int autoID)
+        {
+            int result = 0;
+            try
+            {
+                Object[] values = { member.UserName, member.Password, member.Email, member.FullName, member.DateCreation, member.AllowLogin, member.IsOnline };
+                result = InsertTableWithReturnID(tableName, columnNamesInsert1, values, out autoID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
 
 
-        //public Member InsertMemberProfile()
-        //{
-        //    //Member[] result = null;
-        //    try
-        //    {
-        //        SqlCommand cmd = new SqlCommand();
-        //        cmd.CommandType = CommandType.Text;
-        //        cmd.CommandText = String.Format("InsertMemberProfiles");
-        //        //result = SelectCollection<Member>(columnNames, columnNames, cmd);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //    if (result.Length > 0)
-        //    {
-        //        return 
-        //          //result[0];
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
+        public int InsertMemberProfile(MemberProfile memberProfile, int memberID)
+        {
+            int result = 0;
+            try
+            {
+                Object[] values ={memberID,memberProfile.RoleID,memberProfile.Blast,memberProfile.Avatar,memberProfile.Country,
+                memberProfile.Address,memberProfile.BirthDay,memberProfile.Gender,memberProfile.Yahoo,memberProfile.Phone,memberProfile.Hospital,
+                memberProfile.Blog,memberProfile.TotalPosts,memberProfile.TotalThanks,memberProfile.TotalThanked,memberProfile.CurrentExperience,
+                memberProfile.MemberLevel,memberProfile.IPAddress,memberProfile.LastLogin,memberProfile.MyRss,memberProfile.Signature,memberProfile.AboutMe};
+                result = InsertTable(tableNameMemberProfiles, memberProfileColumnNames, values);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
 
         public Member GetMemberByMemberID(int memberID)
         {
