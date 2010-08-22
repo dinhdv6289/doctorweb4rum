@@ -47,40 +47,35 @@ namespace BLL
         //    return result;
         //}
 
-        //public static Member InsertMember()
-        //{
-        //    Member result = new Member();
-        //    if ()
-        //    {
-        //        try
-        //        {
-        //            result = DataHelper.GetMemberDA().InsertMember();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            throw ex;
-        //        }
-        //    }
-        //    return result;
-        //}
+        public static int InsertMember(Member member, out int autoID)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetMemberDA().InsertMember(member, out autoID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
-        //public static Member InsertMemberProfile()
-        //{
-        //    Member result = new Member();
-        //    if ()
-        //    {
-        //        try
-        //        {
-        //            result = DataHelper.GetMemberDA().InsertMemberProfile();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            throw ex;
-        //        }
-        //    }
-        //    return result;
-        //}
-        
+            return result;
+        }
+
+        public static int InsertMemberProfile(MemberProfile memberProfile, int memberID)
+        {
+            Member result = new Member();
+            try
+            {
+                result = DataHelper.GetMemberDA().InsertMemberProfile(memberProfile, memberID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
         public static Member GetMemberByMemberID(int memberID)
         {
             Member result = new Member();
@@ -98,7 +93,7 @@ namespace BLL
             return result;
         }
 
-        public static  MemberProfile GetMemberProfileByMemberID(int memberID)
+        public static MemberProfile GetMemberProfileByMemberID(int memberID)
         {
             MemberProfile result;
             try
