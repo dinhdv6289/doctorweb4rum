@@ -19,9 +19,65 @@ $(document).ready(function() {
 });
     </script>
 
+    <link href="css_001.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript">
+       
+function ok(sender, e)
+{
+    $find('ModalPopupExtenderLogin').hide();
+    __doPostBack('LoginBtn', e); 
+}
+function okJoin(sender, e)
+{
+    $find('ModalPopupExtenderSignup').hide();
+    __doPostBack('JoinBtn', e); 
+}
+function OnKeyPress(args)
+{
+    if(args.keyCode == Sys.UI.Key.esc)
+    {
+        $find("ModalPopupExtenderLogin").hide();
+    }
+}
+ function body_onkeydown() 
+        {
+            if(event.keyCode==13 || event.keyCode==27) 
+            {
+                var _defaultButtonName=getDefautButtonName( event.keyCode==13 ?  "submitButton" : "cancelButton");
+                var frm=document.forms[0];
+                if(frm && document.all(_defaultButtonName))
+                {
+                    document.all(_defaultButtonName).click();
+                }
+            }
+        }
+        
+        function getDefautButtonName(className) 
+        {
+            var _defaultButtonName="";
+            var children = document.getElementsByTagName("input");
+            for (var i = 0; i < children.length; i++) 
+            {
+                var child = children[i];
+                var btnAction = child.buttonAction;
+                if(btnAction == className)
+                {
+                    _defaultButtonName = child.id;
+                    break;
+                }
+            }
+            return _defaultButtonName;
+        }
+
+
+    </script>
+
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
         <div class="above_body">
             <div class="floatcontainer doc_header" id="header">
                 <div>
@@ -30,10 +86,43 @@ $(document).ready(function() {
                 <div class="toplinks" id="toplinks">
                     <ul class="nouser">
                         <li><a rel="nofollow" href="">Register</a></li>
-                        <li><a href="" rel="help">Help</a></li>
+                        <li>
+                            <asp:LinkButton ID="Loginlnk" runat="server" Width="47px">Login</asp:LinkButton></li>
                         <li></li>
                     </ul>
                 </div>
+                <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtenderLogin" runat="server" TargetControlID="Loginlnk"
+                    PopupControlID="LoginPanel" BackgroundCssClass="modalBackground" DropShadow="false"
+                    OkControlID="btnLogin" OnOkScript="ok()" CancelControlID="btnCancel" />
+                <asp:Panel ID="LoginPanel" runat="server" Style="display: none" Font-Names="@MS PGothic" Width="300px">
+                    <div class="standard_error">
+                        <h2 class="blockhead">
+                            Login</h2>
+                            <div class="blockbody formcontrols">
+                                <div class="blockrow">
+                                    <label for="vb_login_username">
+                                        User Name:</label>
+                                    <asp:TextBox ID="txtUserName" runat="server" CssClass="primary textbox"></asp:TextBox>
+                                </div>
+                                <div class="blockrow">
+                                    <label for="vb_login_password">
+                                        Password:</label>
+                                    <asp:TextBox ID="txtPassword" runat="server" CssClass="primary textbox"></asp:TextBox>
+                                </div>
+                                <div class="blockrow singlecheck">
+                                    <label for="cb_cookieuser" style="width: 245px">
+                                        <asp:CheckBox ID="checkBoxRememberMe" runat="server" value="1" />
+                                        Remember Me?</label></div>
+                            </div>
+                            <div class="blockfoot actionbuttons">
+                                <div class="group">
+                                    <asp:Button ID="btnLogin" runat="server" Text="Log in" CssClass="button" OnClick="btnLogin_Click" />
+                                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="button" />
+ 
+                                </div>
+                            </div>
+                    </div>
+                </asp:Panel>
                 <div id="ad_global_header">
                     <div class="ad_global_header_right">
                     </div>
@@ -80,16 +169,15 @@ $(document).ready(function() {
             </div>
         </div>
         <div class="body_wrapper">
-        <div>
-            <asp:SiteMapPath ID="SiteMapPath1" runat="server" Font-Names="Verdana" Font-Size="0.8em"
-                PathSeparator=" &gt; ">
-                <PathSeparatorStyle Font-Bold="True" ForeColor="#5D7B9D" />
-                <CurrentNodeStyle ForeColor="#333333" />
-                <NodeStyle Font-Bold="True" ForeColor="#7C6F57" />
-                <RootNodeStyle Font-Bold="True" ForeColor="#5D7B9D" />
-            </asp:SiteMapPath>
-        </div>
-
+            <div>
+                <asp:SiteMapPath ID="SiteMapPath1" runat="server" Font-Names="Verdana" Font-Size="0.8em"
+                    PathSeparator=" &gt; ">
+                    <PathSeparatorStyle Font-Bold="True" ForeColor="#5D7B9D" />
+                    <CurrentNodeStyle ForeColor="#333333" />
+                    <NodeStyle Font-Bold="True" ForeColor="#7C6F57" />
+                    <RootNodeStyle Font-Bold="True" ForeColor="#5D7B9D" />
+                </asp:SiteMapPath>
+            </div>
             <!-- main -->
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
@@ -110,8 +198,11 @@ $(document).ready(function() {
                             Active Users</h3>
                         <div>
                             <p>
-                                There are currently <a href="#"><%= Application["ActiveUsers"].ToString()%> users online</a>. <span class="shade"><%= Application["UsersOnline"].ToString()%> members
-                                    and 1,414 guests (<a href="#">view map</a>)</span></p>
+                                There are currently <a href="#">
+                                    <%= Application["ActiveUsers"].ToString()%>
+                                    users online</a>. <span class="shade">
+                                        <%= Application["UsersOnline"].ToString()%>
+                                        members and 1,414 guests (<a href="#">view map</a>)</span></p>
                             <p>
                                 Most users ever online was 22,414, Sep 15th 2009 at <span class="time">1:54 am</span>.</p>
                             <ol class="commalist" id="wgo_onlineusers_list">
