@@ -8,11 +8,20 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using BLL;
 
 public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
+    }
+
+    protected void btnLogin_Click(object sender, EventArgs e)
+    {
+        string userName = txtUserName.Text;
+        string password = txtPassword.Text;
+        Boolean rememberMe = checkBoxRememberMe.Checked;
 
     }
 }
