@@ -207,9 +207,9 @@ you grant Digital Point Forums non-exclusive rights to publish content (posts, v
 <input name="month" value="" type="hidden">
 <input name="year" value="" type="hidden">--%>
 
-    <asp:Button ID="Button1" runat="server" Text="Complete Registration" CssClass="button" />
+    <asp:Button ID="btnCompleteRegister" runat="server" Text="Complete Registration" CssClass="button" />
 <!--<input class="button" value="Complete Registration" tabindex="1" accesskey="s" type="submit">-->
-    <asp:Button ID="Button2" runat="server" Text="Reset Fields" CssClass="button" />
+    <asp:Button ID="btnResetRegister" runat="server" Text="Reset Fields" CssClass="button" />
 <!--<input class="button" name="Reset" tabindex="1" value="Reset Fields" type="reset">-->
 </div>
 
