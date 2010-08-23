@@ -116,30 +116,22 @@ function OnKeyPress(args)
                                     User Name:</label>
                                 <asp:TextBox ID="txtUserName" runat="server" CssClass="primary textbox"></asp:TextBox>
                             </div>
-<<<<<<< .mine
                             <div class="blockrow">
                                 <label for="vb_login_password">
                                     Password:</label>
                                 <asp:TextBox ID="txtPassword" runat="server" CssClass="primary textbox"></asp:TextBox>
-=======
                             <div class="blockfoot actionbuttons">
                                 <div class="group">
                                     <asp:Button ID="btnLogin" runat="server" Text="Log in" CssClass="button" OnClick="btnLogin_Click" />
                                     <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="button" OnClick="btnCancel_Click" />
  
                                 </div>
->>>>>>> .r100
                             </div>
                             <div class="blockrow singlecheck">
                                 <label for="cb_cookieuser" style="width: 245px">
                                     <asp:CheckBox ID="checkBoxRememberMe" runat="server" value="1" />
                                     Remember Me?</label></div>
                         </div>
-                        <div class="blockfoot actionbuttons">
-                            <div class="group">
-                                <asp:Button ID="btnLogin" runat="server" Text="Log in" CssClass="button" OnClick="btnLogin_Click" />
-                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="button" />
-                            </div>
                         </div>
                     </div>
                 </asp:Panel>
