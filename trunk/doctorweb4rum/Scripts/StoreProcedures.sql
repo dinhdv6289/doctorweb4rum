@@ -491,3 +491,13 @@ SELECT DATEDIFF(day,Topics.DateLastPost,GETDATE()) from dbo.Topics where TopicID
 END
 GO
 EXEC CountDaysOldOfTopicByTopicID 1
+
+--DeleteMemberProfiles By MemberID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'DeleteMemberProfiles' AND TYPE = 'P')
+DROP PROC DeleteMemberProfiles
+CREATE PROC DeleteMemberProfiles
+	@MemberID as int
+AS BEGIN 
+delete dbo.[MemberProfiles]
+ where 	(@MemberID=MemberProfiles.MemberID)
+END
