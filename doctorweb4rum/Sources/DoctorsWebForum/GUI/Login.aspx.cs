@@ -14,7 +14,7 @@ public partial class GUI_Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
     }
 
     protected void btnReset_Click(object sender, EventArgs e)
@@ -24,13 +24,39 @@ public partial class GUI_Login : System.Web.UI.Page
     }
     protected void btnLogin_Click(object sender, EventArgs e)
     {
-        if (Roles.IsUserInRole("admin"))
+        string userName = txtUserName.Text;
+        string password = txtPassword.Text;
+        Member member = MemberBLL.GetMemberByUserNamePassword(userName, password);
+        if (member != null)
         {
-            //Response.Redirect("~/Admin/QuanLySanPham.aspx");
+            MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
+            if (memberProfile != null)
+            {
+                Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
+                if (role != null)
+                {
+                    if (role.RoleName.Equals("Member"))
+                    {
+
+                    }
+                    if (role.RoleName.Equals("Moderator"))
+                    {
+
+                    }
+                    if (role.RoleName.Equals("Super Moderator"))
+                    {
+
+                    }
+                    if (role.RoleName.Equals("Admin"))
+                    {
+
+                    }
+                }
+            }
         }
         else
         {
-            Response.Redirect("~/Index.aspx");
+            //Response.w
         }
     }
 }

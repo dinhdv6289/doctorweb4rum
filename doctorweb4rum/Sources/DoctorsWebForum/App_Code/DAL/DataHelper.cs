@@ -100,5 +100,23 @@ namespace DAL
             }
             return dc;
         }
+
+        public static IRoleDA GetRoleDA()
+        {
+            IRoleDA dc = null;
+            if (String.IsNullOrEmpty(dataAccessStringType))
+            {
+                throw (new NullReferenceException("DataAccessType in Web.config is null or empty"));
+            }
+            else
+            {
+                if (dataAccessStringType.Equals("SQLSERVER"))
+                {
+                    Type t = Type.GetType("DAL.RoleDA");
+                    dc = (RoleDA)Activator.CreateInstance(t);
+                }
+            }
+            return dc;
+        }
     }
 }

@@ -30,22 +30,7 @@ namespace BLL
             return result;
         }
 
-        public static Member GetMemberByUserNamePassword(string userName, string password)
-        {
-            Member result = new Member();
-            if (userName != "")
-            {
-                try
-                {
-                    result = DataHelper.GetMemberDA().GetMemberByUserNamePassword(userName, password);                    
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-            return result;
-        }
+
 
         public static int InsertMember(Member member, out int autoID)
         {
@@ -131,6 +116,23 @@ namespace BLL
             catch (Exception ex)
             {
                 throw ex;
+            }
+            return result;
+        }
+
+        public static Member GetMemberByUserNamePassword(string userName, string password)
+        {
+            Member result = null;
+            if (userName.Length >0 || userName != null)
+            {
+                try
+                {
+                    result = DataHelper.GetMemberDA().GetMemberByUserNamePassword(userName, password);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
             return result;
         }
