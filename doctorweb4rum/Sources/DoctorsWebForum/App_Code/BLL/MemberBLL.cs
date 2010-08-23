@@ -64,7 +64,7 @@ namespace BLL
 
         public static int InsertMemberProfile(MemberProfile memberProfile, int memberID)
         {
-            Member result = new Member();
+            int result = 0;
             try
             {
                 result = DataHelper.GetMemberDA().InsertMemberProfile(memberProfile, memberID);
