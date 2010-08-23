@@ -75,12 +75,5 @@ public partial class GUI_Index : System.Web.UI.Page
         }
         return result;
     }
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-
-    }
-    protected void Button2_Click(object sender, EventArgs e)
-    {
-
-    }
+   
 }

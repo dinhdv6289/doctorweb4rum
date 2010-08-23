@@ -286,7 +286,7 @@
                 <ul id="footer_links" class="footer_links">
                     <li class="advertising"><a href="advertising.php">Advertising</a></li>
                     <li><a href="#" target="_blank" rel="nofollow" accesskey="9">Contact Us @Twitter</a></li>
-                    <li><a href="#">Digital Point Solutions</a></li>
+                    <li><a href="#">Doctors Web Solutions</a></li>
                     <li><a href="#top" onclick="document.location.hash='top'; return false;">Top</a></li>
                 </ul>
             </div>
