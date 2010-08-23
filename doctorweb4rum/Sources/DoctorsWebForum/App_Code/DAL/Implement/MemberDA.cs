@@ -19,10 +19,11 @@ namespace DAL
         }
 
         private const String tableName = "Members";
-        private const String tableName2 = "MemberProfiles";
+        private const String tableNameMemberProfiles = "MemberProfiles";
         private const String MemberID = "MemberID";
         private const String UserName = "UserName";
         private const String Password = "Password";
+        private const String Email = "Email";
         private const String FullName = "FullName";
         private const String DateCreation = "DateCreation";
         private const String AllowLogin = "AllowLogin";
@@ -50,7 +51,8 @@ namespace DAL
         private const String AboutMe = "AboutMe";
 
 
-        private String[] columnNames = { MemberID, UserName, Password, FullName, DateCreation, AllowLogin, IsOnline };
+        private String[] columnNames = { MemberID, UserName, Password, Email, FullName, DateCreation, AllowLogin, IsOnline };
+        private String[] columnNamesInsert1 = { UserName, Password, FullName, DateCreation, AllowLogin, IsOnline };
         private String[] memberProfileColumnNames ={ MemberID, RoleID, Blast, Avatar, Country, Address, BirthDay, Gender, Yahoo, 
                                                     Phone, Hospital, Blog, TotalPosts, TotalThanks, TotalThanked, CurrentExperience,
                                                     MemberLevel, IPAddress, LastLogin, MyRss, Signature, AboutMe};
@@ -71,22 +73,22 @@ namespace DAL
             return result;
         }
 
-        public Member GetMemberByUserNamePassword(string userName, string password)
-        {
-            Member[] result = null;
-            try
-            {
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = String.Format("Select * from {0} where {1} = {2} and {3} = {4}", tableName, UserName, userName, Password, password);
-                result = SelectCollection<Member>(columnNames, columnNames, cmd);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return result[0];
-        }
+        //public Member GetMemberByUserNamePassword(string userName, string password)
+        //{
+        //    Member[] result = null;
+        //    try
+        //    {
+        //        SqlCommand cmd = new SqlCommand();
+        //        cmd.CommandType = CommandType.Text;
+        //        cmd.CommandText = String.Format("Select * from {0} where {1} = {2} and {3} = {4}", tableName, UserName, userName, Password, password);
+        //        result = SelectCollection<Member>(columnNames, columnNames, cmd);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    return result[0];
+        //}
 
         public int InsertMember(Member member, out int autoID)
         {
@@ -146,7 +148,7 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = String.Format("Select * from {0} where {1} = {2}", tableName2, MemberID, memberID);
+                cmd.CommandText = String.Format("Select * from {0} where {1} = {2}", tableNameMemberProfiles, MemberID, memberID);
                 result = SelectCollection<MemberProfile>(memberProfileColumnNames, memberProfileColumnNames, cmd);
             }
             catch (Exception ex)
