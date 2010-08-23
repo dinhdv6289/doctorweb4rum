@@ -21,7 +21,7 @@ $(document).ready(function() {
 
     <link href="css_001.css" rel="stylesheet" type="text/css" />
 
-    <script type="text/javascript">
+<%--    <script type="text/javascript">
        
 function ok(sender, e)
 {
@@ -71,7 +71,7 @@ function OnKeyPress(args)
         }
 
 
-    </script>
+    </script>--%>
 
 </head>
 <body>
@@ -93,7 +93,7 @@ function OnKeyPress(args)
                 </div>
                 <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtenderLogin" runat="server" TargetControlID="Loginlnk"
                     PopupControlID="LoginPanel" BackgroundCssClass="modalBackground" DropShadow="false"
-                    OkControlID="btnLogin" OnOkScript="ok()" CancelControlID="btnCancel" />
+                    OkControlID="btnLogin" OnOkScript="" CancelControlID="btnCancel" />
                 <asp:Panel ID="LoginPanel" runat="server" Style="display: none" Font-Names="@MS PGothic" Width="300px">
                     <div class="standard_error">
                         <h2 class="blockhead">
@@ -117,7 +117,7 @@ function OnKeyPress(args)
                             <div class="blockfoot actionbuttons">
                                 <div class="group">
                                     <asp:Button ID="btnLogin" runat="server" Text="Log in" CssClass="button" OnClick="btnLogin_Click" />
-                                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="button" />
+                                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="button" OnClick="btnCancel_Click" />
  
                                 </div>
                             </div>
@@ -149,7 +149,7 @@ function OnKeyPress(args)
                     <li><a href="#" class="navtab">Marketplace</a></li>
                     <li><a href="#" class="navtab">Tools</a></li>
                     <li><a href="#" class="navtab">Directory</a></li>
-                    <li><a accesskey="2" href="search.php?do=getdaily&amp;contenttype=vBForum_Post" class="navtab">
+                    <li><a accesskey="2" href="#" class="navtab">
                         What's New?</a></li>
                 </ul>
                 <div class="globalsearch" id="globalsearch">
@@ -182,7 +182,7 @@ function OnKeyPress(args)
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
             <div class="navlinks">
-                <a rel="nofollow" href="forumdisplay.php?do=markread&amp;markreadhash=guest">Mark Forums
+                <a rel="nofollow" href="#">Mark Forums
                     Read</a> | <a rel="nofollow" href="showgroups.php">Admins &amp; Moderators </a>
             </div>
             <!-- what's going on box -->
@@ -254,7 +254,7 @@ function OnKeyPress(args)
             <%--Footer--%>
             <div id="footer" class="floatcontainer footer">
                 <ul id="footer_links" class="footer_links">
-                    <li class="advertising"><a href="advertising.php">Advertising</a></li>
+                    <li class="advertising"><a href="#">Advertising</a></li>
                     <li><a href="#" target="_blank" rel="nofollow" accesskey="9">Contact Us @Twitter</a></li>
                     <li><a href="#">Digital Point Solutions</a></li>
                     <li><a href="#top" onclick="document.location.hash='top'; return false;">Top</a></li>
