@@ -73,22 +73,6 @@ namespace DAL
             return result;
         }
 
-        //public Member GetMemberByUserNamePassword(string userName, string password)
-        //{
-        //    Member[] result = null;
-        //    try
-        //    {
-        //        SqlCommand cmd = new SqlCommand();
-        //        cmd.CommandType = CommandType.Text;
-        //        cmd.CommandText = String.Format("Select * from {0} where {1} = {2} and {3} = {4}", tableName, UserName, userName, Password, password);
-        //        result = SelectCollection<Member>(columnNames, columnNames, cmd);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //    return result[0];
-        //}
 
         public int InsertMember(Member member, out int autoID)
         {
@@ -191,6 +175,30 @@ namespace DAL
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = String.Format("GetLastMemberPostByTopicID {0}", topicID);
+                result = SelectCollection<Member>(columnNames, columnNames, cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            if (result.Length > 0)
+            {
+                return result[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public Member GetMemberByUserNamePassword(string userName, string password)
+        {
+            Member[] result = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("GetMemberByUserNamePassword {0},{1}", userName, password);
                 result = SelectCollection<Member>(columnNames, columnNames, cmd);
             }
             catch (Exception ex)

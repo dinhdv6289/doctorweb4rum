@@ -187,6 +187,16 @@ values('username1','password','test@gmail.com','userName1Test',GetDate(),'true',
 insert into dbo.Members(UserName,Password,Email,FullName,DateCreation,AllowLogin,IsOnline)
 values('username2','password','test2@gmail.com','testtt',GetDate(),'true','true')
 
+insert into dbo.MemberProfiles(MemberID,RoleID,Blast,Avatar,Country,Address,BirthDay,Gender,Yahoo,
+Phone,Hospital,Blog,TotalPosts,TotalThanks,TotalThanked,CurrentExperience,MemberLevel,IPAddress,
+LastLogin,MyRss,Signature,AboutMe) 
+values(
+1,1,'Blast Content','avarta.gif','Viet Nam','Ha noi','08/18/1987','true','yahoo.com',
+'0987123123','Viet Nam Cuba','blog.com',2,2,5,2,1,'102.12.434.23',getdate(),'','learn','not about'
+)
+select * from roles
+select * from members
+select * from MemberProfiles
 insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
 values(
 	1,
@@ -231,3 +241,5 @@ insert into Posts(TopicID,MemberID,Title,[Content],DateCreation,DateEdited,Signa
 values(2,1,'Test titleabc','test content abc',getdate(),getdate(),'true','1111332323')
 
 select * from dbo.Members
+
+
