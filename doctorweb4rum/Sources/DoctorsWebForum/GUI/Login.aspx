@@ -21,10 +21,7 @@
 
 <div class="blockrow restore">
 <ol>
-<li>You are not logged in. Fill in the form at the bottom of this page and try again.</li>
-<li>You may not have sufficient privileges to access this page. Are you trying to edit someone else's post, access administrative features or some other privileged system?</li>
-<li>If you are trying to post, the administrator may have disabled your account, or it may be awaiting activation.</li>
-</ol>
+<li>You are not logged in. Fill in the form at the bottom of this page and try again.</li><li>You may not have sufficient privileges to access this page. Are you trying to edit someone else's post, access administrative features or some other privileged system?</li><li>If you are trying to post, the administrator may have disabled your account, or it may be awaiting activation.</li></ol>
 </div>
 
 
@@ -49,8 +46,8 @@
 </div>
 <div class="blockfoot actionbuttons">
 <div class="group">
-    <asp:Button ID="btnLogin" runat="server" Text="Log in" CssClass="button"   />
-    <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="button"  />
+    <asp:Button ID="btnLogin" runat="server" Text="Log in" CssClass="button" OnClick="btnLogin_Click"   />
+    <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="button" OnClick="btnReset_Click"  />
 <%--<input class="button" value="Log in" accesskey="s" tabindex="1" type="submit">
 <input class="button" value="Reset Fields" accesskey="r" tabindex="1" type="reset">--%>
 </div>
