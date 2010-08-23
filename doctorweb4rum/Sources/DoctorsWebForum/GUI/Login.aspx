@@ -3,18 +3,6 @@
 <div class="standard_error">
 <h2 class="blockhead">Message</h2>
 
-<form class="block vbform" method="post" action="login.php?do=login" onsubmit="md5hash(vb_login_password, vb_login_md5password, vb_login_md5password_utf, 0)">
-<input name="do" value="login" type="hidden">
-<input name="vb_login_md5password" type="hidden">
-<input name="vb_login_md5password_utf" type="hidden">
-<input name="s" value="506f6795e84fdcce515a19b4738de819" type="hidden">
-<input name="securitytoken" value="guest" type="hidden">
-
-
-
-
-<input name="url" value="/member.php?u=427084" type="hidden">
-
 <div class="blockbody formcontrols">
 
 <h3 class="blocksubhead">You are not logged in or you do not have permission to access this page. This could be due to one of several reasons:</h3>
@@ -40,7 +28,6 @@
 <div class="blockrow singlecheck">
 <label for="cb_cookieuser" style="width: 245px">
     <asp:CheckBox ID="checkBoxRememberMe" runat="server" value="1" /> Remember Me?</label>
-<%--<input name="cookieuser" id="cb_cookieuser" value="1" tabindex="1" type="checkbox">--%>
 </div>
 
 </div>
@@ -48,12 +35,10 @@
 <div class="group">
     <asp:Button ID="btnLogin" runat="server" Text="Log in" CssClass="button" OnClick="btnLogin_Click"   />
     <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="button" OnClick="btnReset_Click"  />
-<%--<input class="button" value="Log in" accesskey="s" tabindex="1" type="submit">
-<input class="button" value="Reset Fields" accesskey="r" tabindex="1" type="reset">--%>
 </div>
 </div>
 
-</form>
+
 
 </div>
 </asp:Content>

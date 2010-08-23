@@ -35,7 +35,7 @@ public class MemberProfile
     private int totalPosts;
     private int totalThanks;
     private int totalThanked;
-    private float currentExperience;
+    private Double currentExperience;
     private int memberLevel;
     private string ipAddress;
     private DateTime lastLogin;
@@ -133,7 +133,7 @@ public class MemberProfile
         set { totalThanked = value; }
     }
 
-    public float CurrentExperience
+    public Double CurrentExperience
     {
         get { return currentExperience; }
         set { currentExperience = value; }

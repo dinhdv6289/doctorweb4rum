@@ -198,7 +198,7 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = String.Format("GetMemberByUserNamePassword {0},{1}", userName, password);
+                cmd.CommandText = String.Format("GetMemberByUserNamePassword '{0}' , '{1}'", userName, password);
                 result = SelectCollection<Member>(columnNames, columnNames, cmd);
             }
             catch (Exception ex)
