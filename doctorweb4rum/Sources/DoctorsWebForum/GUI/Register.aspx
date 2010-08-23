@@ -115,27 +115,6 @@ regname_verif = new vB_AJAX_NameVerify('regname_verif', 'regusername');
 
 
 <h3 class="blocksubhead">Additional Information</h3>
-<div class="section">
-
-<div class="blockrow">
-
-<label for="referrerfield_ctrl">Referrer:</label>
-<div class="rightcol">
-<div id="referrerfield" class="popupmenu nomouseover noclick nohovermenu">
-    <asp:TextBox ID="TextBox6" runat="server" CssClass="primary textbox popupctrl" ></asp:TextBox>
-<!--<input autocomplete="off" id="referrerfield_ctrl" class="primary textbox popupctrl" name="referrername" value="" tabindex="1" maxlength="25" type="text">-->
-<div id="referrerfield_body" class="popupbody"></div>
-</div>
-<script type="text/javascript" src="http://s.dpstatic.com/s/vbulletin_ajax_suggest.js?v=406"></script>
-<script type="text/javascript">
-<!--
-rnc = new vB_AJAX_NameSuggest('rnc', 'referrerfield_ctrl', 'referrerfield');
-rnc.allow_multiple = false;
-//-->
-</script>
-<p class="description">If you were referred to this site by an existing member of Doctor Forums, enter their username here.</p>
-</div>
-</div>
 
 <div class="blockrow">
 <label>Receive Email...</label>
@@ -160,7 +139,7 @@ rnc.allow_multiple = false;
 
 
 </div>
-</div>
+
 
 
 <h2 class="blockhead">Forum Rules</h2>
@@ -169,23 +148,23 @@ rnc.allow_multiple = false;
 <div class="blockrow">
 <p class="label">In order to proceed, you must agree with the following rules:</p>
 <div id="forumrules" class="restore">
-    <asp:TextBox ID="TextBox7" runat="server" Enabled="False" TextMode="MultiLine" Height="86px" Width="558px">
-    <p><strong>Forum Rules</strong></p>
+     <asp:TextBox ID="TextBox7" runat="server" Enabled="False" TextMode="MultiLine" Height="86px" Width="636px">
+    Forum Rules
 
-<p>Registration to this forum is free! We do insist that you abide by the rules and policies detailed
+Registration to this forum is free! We do insist that you abide by the rules and policies detailed
 below. If you agree to the terms, please check the 'I agree' checkbox and press the 'Complete Registration' button below.
-If you would like to cancel the registration, click <a href="./">here</a>
-to return to the forums index.</p>
-<p>Although the administrators and moderators of Digital Point Forums will attempt to keep all objectionable
+If you would like to cancel the registration, click &lt;a href=&quot;./&quot;&gt;here&lt;/a&gt;
+to return to the forums index.
+Although the administrators and moderators of Digital Point Forums will attempt to keep all objectionable
 messages off this site, it is impossible for us to review all messages.  All messages express the views of
 the author, and neither the owners of Digital Point Forums, nor vBulletin Solutions, Inc. (developers of vBulletin)
-will be held responsible for the content of any message.</p>
+will be held responsible for the content of any message.
 
-<p>By agreeing to these rules, you warrant that you will not post any messages that are obscene, vulgar,
+By agreeing to these rules, you warrant that you will not post any messages that are obscene, vulgar,
 sexually-oriented, hateful, threatening, or otherwise violative of any laws.  By agreeing to these rules,
-you grant Digital Point Forums non-exclusive rights to publish content (posts, visitor messages, etc.) you create here.</p>
+you grant Digital Point Forums non-exclusive rights to publish content (posts, visitor messages, etc.) you create here.
 
-<p>The owners of Digital Point Forums reserve the right to remove, edit, move or close any content item for any reason.</p>
+The owners of Digital Point Forums reserve the right to remove, edit, move or close any content item for any reason.
     </asp:TextBox>
 <%--
 <p><strong>Forum Rules</strong></p>
@@ -210,10 +189,6 @@ you grant Digital Point Forums non-exclusive rights to publish content (posts, v
 <div class="blockrow singlecheck">
 <label for="cb_rules_agree" class="full">
     <asp:CheckBox ID="CheckBox3" runat="server" /> <!--<input name="agree" id="cb_rules_agree" tabindex="1" value="1" type="checkbox">--> <strong>I have read, and agree to abide by the Digital Point Forums rules.</strong></label>
-</div>
-<div class="blockrow singlecheck">
-<label for="cb_rules_duplicate" class="full">
-    <asp:CheckBox ID="CheckBox4" runat="server" /> <!--<input name="duplicate" id="cb_rules_duplicate" tabindex="1" value="1" type="checkbox">--> <strong>I have never registered under a different username.</strong></label>
 </div>
 </div>
 </div>
