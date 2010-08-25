@@ -18,5 +18,7 @@ namespace DAL
         int CountTopicsInSubForumBySubForumID(int subForumID);
         int GetTotalViewsByTopicID(int topicID);
         int CountDaysOldOfTopicByTopicID(int topicID);
+        int InsertTopic(Topic topic, out int resultStatus);
+        DataSet TopicDetailsByTopicID(int topicID);
     }
 }

@@ -86,5 +86,19 @@ namespace BLL
             }
             return result;
         }
+
+        public static  int InsertPost(Post post)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetPostDA().InsertPost(post);
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

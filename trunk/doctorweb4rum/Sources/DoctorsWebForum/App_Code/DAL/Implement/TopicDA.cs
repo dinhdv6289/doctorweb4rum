@@ -35,7 +35,9 @@ namespace DAL
         private const String RateDate = "RateDate";
 
         private String[] columnNamesRating = { RateTopicID, FromMember, TopicID, RatePoint, RateDate };
-        private String[] columnNames = { TopicID, SubForumID, MemberID, Title, Content, IsLocked, TotalViews, DateCreate, MoveTo };
+        private String[] columnNames = { TopicID, SubForumID, MemberID, Title, Content, IsLocked, TotalViews, TotalMessages, DateCreate, MoveTo };
+        private String[] columnNamesForInsert = { SubForumID, MemberID, Title, Content, IsLocked, TotalViews, TotalMessages, MoveTo };
+
 
         public Topic[] GetAllTopicBySubForumID(int subForumID)
         {
@@ -161,9 +163,9 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = String.Format("GetTotalViewsByTopicID {0}",topicID);
+                cmd.CommandText = String.Format("GetTotalViewsByTopicID {0}", topicID);
                 DataSet ds = ExecuteDataset(cmd);
-                if(ds.Tables[0].Rows.Count>0)
+                if (ds.Tables[0].Rows.Count > 0)
                 {
                     result = (int)ds.Tables[0].Rows[0][0];
                 }
@@ -182,9 +184,9 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = String.Format("CountDaysOldOfTopicByTopicID {0}",topicID);
+                cmd.CommandText = String.Format("CountDaysOldOfTopicByTopicID {0}", topicID);
                 DataSet ds = ExecuteDataset(cmd);
-                if(ds.Tables[0].Rows.Count>0)
+                if (ds.Tables[0].Rows.Count > 0)
                 {
                     result = (int)ds.Tables[0].Rows[0][0];
                 }
@@ -196,5 +198,46 @@ namespace DAL
             return result;
         }
 
+        public int InsertTopic(Topic topic, out int resultStatus)
+        {
+            int result = 0;
+            resultStatus = 0;
+            try
+            {
+                Object[] values = { topic.SubForumID, topic.MemberID, topic.Title, topic.Content, topic.IsLocked, topic.TotalViews, topic.TotalMessages, topic.MoveTo };
+                result = InsertIntoTableTypeStoreReturnID("InsertTopic", columnNamesForInsert, values, out resultStatus);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public DataSet TopicDetailsByTopicID(int topicID)
+        {
+            DataSet dataSetTopicDetails = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("TopicDetailsByTopicID {0}", topicID);
+                dataSetTopicDetails = ExecuteDataset(cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            if (dataSetTopicDetails.Tables[0].Rows.Count > 0)
+            {
+                return dataSetTopicDetails;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
     }
 }

@@ -28,6 +28,7 @@ namespace DAL
         private const String Signature = "Signature";
         private const String IPAddress = "IPAddress";
         private String[] columnNames = { PostID, TopicID, MemberID, Title, Content, DateCreation, DateEdited, Signature, IPAddress };
+        private String[] columnNamesForInsert = { TopicID, MemberID, Title, Content, DateEdited, Signature, IPAddress };
 
         public Post[] GetAllPostByTopicID(int topicID)
         {
@@ -45,6 +46,7 @@ namespace DAL
             }
             return result;
         }
+
         public Post GetNewPostBySubForumID(int subForumID)
         {
             Post[] result = null;
@@ -129,6 +131,21 @@ namespace DAL
             {
                 return null;
             }
+        }
+
+        public  int InsertPost(Post post)
+        {
+            int result = 0;
+            try
+            {
+                Object[] values ={ post.TopicID, post.MemberID, post.Title, post.Content, post.DateEdited, post.Signature, post.IPAddress };
+                result = ProcessTableTypeStore("InsertPost", columnNamesForInsert, values);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
         }
     }
 }

@@ -180,6 +180,17 @@ go
 exec GetRoleByRoleID 1
 go
 
+--SelectLatestTopicID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'SelectLatestTopicID' AND TYPE = 'P')
+DROP PROC SelectLatestTopicID
+GO
+CREATE PROCEDURE SelectLatestTopicID
+@TopicID	INT OUTPUT
+AS BEGIN
+   		SELECT 	@TopicID=ISNULL(MAX(TopicID),0) FROM dbo.Topics
+   END
+
+GO
 
 --InsertTopic
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'InsertTopic' AND TYPE = 'P')
@@ -193,11 +204,12 @@ CREATE PROC InsertTopic
 	@IsLocked bit,
 	@TotalViews int,
 	@TotalMessages int,
-	@DateCreate datetime,
-	@MoveTo int
+	@MoveTo int,
+	@Result SMALLINT OUTPUT
 AS BEGIN 
-	Insert into  dbo.Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateCreate,MoveTo) 
-	values (@SubForumID,@MemberID,@Title,@Content,@IsLocked,@TotalViews,@TotalMessages,@DateCreate,@MoveTo)
+	Insert into  dbo.Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,MoveTo) 
+	values (@SubForumID,@MemberID,@Title,@Content,@IsLocked,@TotalViews,@TotalMessages,@MoveTo)
+	SELECT  @Result = @@Identity
 END
 
 go
@@ -211,13 +223,12 @@ CREATE PROC InsertPost
 	@MemberID int,
 	@Title nvarchar(100),
 	@Content ntext,
-	@DateCreation datetime,
 	@DateEdited datetime,
 	@Signature bit,
 	@IPAddress nvarchar(50)
 AS BEGIN 
-	Insert into  dbo.Posts(TopicID,MemberID,Title,[Content],DateCreation,DateEdited,Signature,IPAddress) 
-	values (@TopicID,@MemberID,@Title,@Content,@DateCreation,@DateEdited,@Signature,@IPAddress)
+	Insert into  dbo.Posts(TopicID,MemberID,Title,[Content],DateEdited,Signature,IPAddress) 
+	values (@TopicID,@MemberID,@Title,@Content,@DateEdited,@Signature,@IPAddress)
 END
 
 go
@@ -239,8 +250,8 @@ select * from Roles
 --           Roles ON MemberProfiles.RoleID = Roles.RoleID
 --WHERE	   Members.UserName = @UserName AND Members.Password = @Password
 --END
+go
 
---Insert Member
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'SelectLatestMemberID' AND TYPE = 'P')
 DROP PROC SelectLatestMemberID
 GO
@@ -295,3 +306,28 @@ AS	BEGIN
 			END		
 	END
 --End Insert Member
+
+
+-- Informations for TopicDetailsByTopicID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'TopicDetailsByTopicID' AND TYPE = 'P')
+DROP PROC TopicDetailsByTopicID
+GO
+CREATE PROCEDURE TopicDetailsByTopicID
+@TopicID	INT 
+AS BEGIN
+SELECT     Members.MemberID, Members.UserName, Members.Email, Members.FullName, Members.DateCreation, Members.AllowLogin, Members.IsPublic, Members.IsOnline, 
+                      MemberProfiles.RoleID, MemberProfiles.Blast, MemberProfiles.Avatar, MemberProfiles.Country, MemberProfiles.Address, MemberProfiles.BirthDay, 
+                      MemberProfiles.Gender, MemberProfiles.Yahoo, MemberProfiles.Phone, MemberProfiles.Hospital, MemberProfiles.Blog, MemberProfiles.TotalPosts, 
+                      MemberProfiles.TotalThanks, MemberProfiles.TotalThanked, MemberProfiles.CurrentExperience, MemberProfiles.MemberLevel, MemberProfiles.IPAddress, 
+                      MemberProfiles.LastLogin, MemberProfiles.MyRss, MemberProfiles.Signature, MemberProfiles.AboutMe, Posts.PostID, Posts.TopicID, Posts.[Content], 
+                      Posts.DateCreation AS DateCreationOfPosts, Posts.DateEdited, Posts.Signature AS SignatureOfPosts, Posts.IPAddress AS IPAddressOfPost
+FROM         Members INNER JOIN
+                      MemberProfiles ON Members.MemberID = MemberProfiles.MemberID INNER JOIN
+                      Posts ON Members.MemberID = Posts.MemberID
+WHERE Posts.TopicID = @TopicID
+END
+
+GO
+
+EXEC TopicDetailsByTopicID 1
+GO

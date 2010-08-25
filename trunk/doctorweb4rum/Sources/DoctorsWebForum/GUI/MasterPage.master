@@ -224,8 +224,7 @@ function OnKeyPress(args)
                     <!-- end logged-in users -->
                     <div id="wgo_stats" class="wgo_subblock">
                         <h3>
-                            <img src="http://m.dpstatic.com/misc/forum_stats.png" alt="Doctors Web Forums Statistics" />Digital
-                            Point Forums Statistics</h3>
+                            <img src="http://m.dpstatic.com/misc/forum_stats.png" alt="Doctors Web Forums Statistics" />Doctors Web Forums  Statistics</h3>
                         <div>
                             <dl>
                                 <dt>Threads</dt>
