@@ -240,8 +240,58 @@ select * from Roles
 --WHERE	   Members.UserName = @UserName AND Members.Password = @Password
 --END
 
+--Insert Member
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'SelectLatestMemberID' AND TYPE = 'P')
+DROP PROC SelectLatestMemberID
+GO
+CREATE PROCEDURE SelectLatestMemberID
+@MemberID	INT OUTPUT
+AS BEGIN
+   		SELECT 	@MemberID=ISNULL(MAX(MemberID),0) FROM Members
+   END
 
+GO
 
-
-
-
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'InsertMemberInfo' AND TYPE = 'P')
+DROP PROC InsertMemberInfo
+GO
+CREATE PROCEDURE InsertMemberInfo
+@UserName		NVARCHAR(30),
+@Password		NVARCHAR(50),
+@Email			NVARCHAR(100),
+@FullName		NVARCHAR(50) ,
+@Country		NVARCHAR(50),
+@Address		NVARCHAR(255),
+@BirthDay		DATETIME,
+@Gender			BIT,
+@Yahoo			NVARCHAR(50),
+@Phone			NVARCHAR(15),
+@Hospital		NVARCHAR(100),
+@AboutMe		NVARCHAR(15),
+@IsPublic		BIT,
+@Result			SMALLINT OUTPUT
+AS	BEGIN
+		IF(NOT EXISTS(SELECT UserName FROM Members WHERE UserName=@UserName))
+			BEGIN
+				IF(NOT EXISTS(SELECT Email FROM Members WHERE Email=@Email))
+					BEGIN
+						INSERT INTO Members(UserName,[Password],Email,FullName,DateCreation,AllowLogin,IsPublic,IsOnline)
+						VALUES	(@UserName,@Password,@Email,@FullName,GETDATE(),@IsPublic,1,1)
+						
+						DECLARE @MemberID	INT
+						EXEC SelectLatestMemberID @MemberID OUTPUT
+						INSERT INTO MemberProfiles(MemberID,RoleID,Country,[Address],BirthDay,Gender,Yahoo,Phone,Hospital,AboutMe)
+						VALUES	(@MemberID,1,@Country,@Address,@BirthDay,@Gender,@Yahoo,@Phone,@Hospital,@AboutMe)
+						SET @Result = 1;
+					END
+				ELSE
+					BEGIN
+						SET @Result = -2;
+					END
+			END
+		ELSE
+			BEGIN
+				SET @Result = -1;
+			END		
+	END
+--End Insert Member

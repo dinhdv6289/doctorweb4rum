@@ -86,8 +86,7 @@ function OnKeyPress(args)
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server">
-        </asp:ScriptManager>
+        <asp:ScriptManager ID="ScriptManager1" runat="server" />
         <div class="above_body">
             <div class="floatcontainer doc_header" id="header">
                 <div>

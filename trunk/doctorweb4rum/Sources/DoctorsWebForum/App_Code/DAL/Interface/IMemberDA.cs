@@ -18,7 +18,9 @@ namespace DAL
         Member GetMemberByUserNamePassword(string userName, string password);
         //Member GetMemberByUserNamePassword(string userName, string password);
         int InsertMember(Member member, out int autoID);
-        int InsertMemberProfile(MemberProfile memberProfile, int memberID);
+        int InsertMemberProfile(MemberProfile memberProfile);
+        int InsertMemberInfo(Member member, MemberProfile memProfile,out int resultStatus);
+
         
     }
 }
