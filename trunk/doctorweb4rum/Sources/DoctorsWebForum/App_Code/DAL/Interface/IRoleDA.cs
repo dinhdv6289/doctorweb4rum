@@ -11,5 +11,6 @@ namespace DAL
     public interface IRoleDA
     {
         Role GetRoleByRoleID(int roleID);
+        int InsertTest();
     }
 }

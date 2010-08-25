@@ -68,7 +68,7 @@ public partial class GUI_Index : System.Web.UI.Page
         {
             Member member = MemberBLL.GetMemberByMemberID(topic.MemberID);
             result = s1 + topic.TopicID + "\">" + topic.Title + s2 + s3 + member.MemberID
-                + s4 + member.UserName + s5 +topic.DateLastPost + "</span></p>";
+                + s4 + member.UserName + s5 +topic.DateCreate + "</span></p>";
         }else
         {
             result = "<p>No Topics</p>";

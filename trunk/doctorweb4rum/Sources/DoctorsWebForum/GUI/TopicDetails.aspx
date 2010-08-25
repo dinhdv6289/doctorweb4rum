@@ -64,7 +64,7 @@
             <li id="post_14688639" class="postbit postbitim postcontainer">
                 <div class="postdetails_noavatar">
                     <div class="posthead">
-                        <span class="postdate old"><span class="date"><%= GetTopic().DateLastPost %></span> </span><span class="nodecontrols"><a class="postcounter" href="showthread.php?t=1891188&amp;p=14688639#post14688639"
+                        <span class="postdate old"><span class="date"><%= GetTopic().DateCreate %></span> </span><span class="nodecontrols"><a class="postcounter" href="showthread.php?t=1891188&amp;p=14688639#post14688639"
                                 name="post14688639">#1</a><a name="1" id="postcount14688639"></a> </span>
                     </div>
                     <div class="userinfo_noavatar">

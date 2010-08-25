@@ -1,30 +1,32 @@
 /***************************************************************************
 							 Select Procedure 
 ****************************************************************************/
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Sel_Roles' AND TYPE = 'P')
-DROP PROC Sel_Roles
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'SelectRoles' AND TYPE = 'P')
+DROP PROC SelectRoles
 GO
-CREATE PROCEDURE Sel_Roles
+CREATE PROCEDURE SelectRoles
 AS BEGIN
 	SELECT RoleID, RoleName, Description, TotalPosts, RankImage
 		FROM Roles
 END
 
 GO
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Sel_LastMemberID' AND TYPE = 'P')
-DROP PROC Sel_LastMemberID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'SelectLatestMemberID' AND TYPE = 'P')
+DROP PROC SelectLatestMemberID
 GO
-CREATE PROCEDURE Sel_LastMemberID
+CREATE PROCEDURE SelectLatestMemberID
 @MemberID	INT OUTPUT
 AS BEGIN
    		SELECT 	@MemberID=ISNULL(MAX(MemberID),0) FROM Members
    END
 
 GO
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Ins_MemberInfo' AND TYPE = 'P')
-DROP PROC Ins_MemberInfo
+
+
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'InsertMemberInfo' AND TYPE = 'P')
+DROP PROC InsertMemberInfo
 GO
-CREATE PROCEDURE Ins_MemberInfo
+CREATE PROCEDURE InsertMemberInfo
 @UserName		NVARCHAR(30),
 @Password		NVARCHAR(50),
 @Email			NVARCHAR(100) ,
@@ -35,7 +37,7 @@ CREATE PROCEDURE Ins_MemberInfo
 @Gender			BIT,
 @Phone			NVARCHAR(15),
 @Hospital		NVARCHAR(100),
-@IPAddress				NVARCHAR(15),
+@IPAddress		NVARCHAR(15),
 @Result			SMALLINT OUTPUT
 AS	BEGIN
 		IF(NOT EXISTS(SELECT UserName FROM Members WHERE UserName=@UserName))
@@ -46,7 +48,7 @@ AS	BEGIN
 						VALUES	(@UserName,@Password,@Email,@FullName,GETDATE(),1,1)
 						
 						DECLARE @MemberID	INT
-						EXEC Sel_LastMemberID @MemberID OUTPUT
+						EXEC SelectLatestMemberID @MemberID OUTPUT
 						INSERT INTO MemberProfiles(MemberID,RoleID,Country,[Address],BirthDay,Gender,Phone,Hospital,IPAddress)
 						VALUES	(@MemberID,1,@Country,@Address,@BirthDay,@Gender,@Phone,@Hospital,@IPAddress)
 						
@@ -358,3 +360,15 @@ AS BEGIN
 	FROM       Posts INNER JOIN Topics ON Posts.TopicID = Topics.TopicID AND Posts.PostID = Topics.LastPostId
 	WHERE	   Topics.TopicID = @TopicID	
 END
+
+
+create proc InsertTest
+@RoleName nvarchar(20),
+@Description nvarchar(100),
+@TotalPosts int,
+@RankImage nvarchar(100)
+as begin
+insert into dbo.Roles(RoleName,Description,TotalPosts,RankImage) values(@RoleName,@Description,@TotalPosts,@RankImage)
+end
+
+select * from Roles

@@ -31,5 +31,19 @@ namespace BLL
             }
             return result;
         }
+
+        public static int InsertTest()
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetRoleDA().InsertTest();
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

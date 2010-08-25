@@ -26,7 +26,7 @@ namespace DAL
         private const String IsLocked = "IsLocked";
         private const String TotalViews = "TotalViews";
         private const String TotalMessages = "TotalMessages";
-        private const String DateLastPost = "DateLastPost";
+        private const String DateCreate = "DateCreate";
         private const String MoveTo = "MoveTo";
         private const String tableNameRating = "RatingTopic";
         private const String RateTopicID = "RateTopicID";
@@ -35,7 +35,7 @@ namespace DAL
         private const String RateDate = "RateDate";
 
         private String[] columnNamesRating = { RateTopicID, FromMember, TopicID, RatePoint, RateDate };
-        private String[] columnNames = { TopicID, SubForumID, MemberID, Title, Content, IsLocked, TotalViews, DateLastPost, MoveTo };
+        private String[] columnNames = { TopicID, SubForumID, MemberID, Title, Content, IsLocked, TotalViews, DateCreate, MoveTo };
 
         public Topic[] GetAllTopicBySubForumID(int subForumID)
         {

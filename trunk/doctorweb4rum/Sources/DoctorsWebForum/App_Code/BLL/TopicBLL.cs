@@ -43,6 +43,7 @@ namespace BLL
             }
             return result;
         }
+
         public static Topic GetNewTopicBySubForumID(int subForumID)
         {
             Topic result = null;

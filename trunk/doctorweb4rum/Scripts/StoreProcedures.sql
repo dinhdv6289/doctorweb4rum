@@ -2,6 +2,9 @@ use doctorWeb4rum
 GO
 
 -- da su dung. trong visual
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetNewPostBySubForumID' AND TYPE = 'P')
+DROP PROC GetNewPostBySubForumID
+GO
 CREATE PROC GetNewPostBySubForumID
 	@SubForumID	INT
 AS BEGIN
@@ -39,7 +42,7 @@ CREATE PROC GetMemberOfTopicByTopicID
 	@TopicID INT
 AS BEGIN
 SELECT     Members.MemberID, Members.UserName, Members.Password, Members.Email, Members.FullName, Members.DateCreation, Members.AllowLogin, 
-                      Members.IsOnline
+                     Members.IsPublic, Members.IsOnline
 FROM         Members INNER JOIN
                       Topics ON Members.MemberID = Topics.MemberID
 WHERE Topics.TopicID = @TopicID
@@ -109,7 +112,7 @@ CREATE PROC GetLastMemberPostByTopicID
 	@TopicID INT
 AS BEGIN
 SELECT     TOP(1) Posts.PostID, Members.MemberID, Members.UserName, Members.Password, Members.Email, Members.FullName, Members.DateCreation, Members.AllowLogin, 
-                      Members.IsOnline, Posts.TopicID
+                      Members.IsPublic,Members.IsOnline, Posts.TopicID
 FROM         Members INNER JOIN  Posts ON Members.MemberID = Posts.MemberID
 WHERE Posts.TopicID = @TopicID
 ORDER BY Posts.PostID DESC
@@ -126,7 +129,7 @@ GO
 CREATE PROC CountDaysOldOfTopicByTopicID
 	@TopicID INT
 AS BEGIN
-SELECT DATEDIFF(day,Topics.DateLastPost,GETDATE()) from dbo.Topics where TopicID = @TopicID
+SELECT DATEDIFF(day,Topics.DateCreate,GETDATE()) from dbo.Topics where TopicID = @TopicID
 END
 GO
 EXEC CountDaysOldOfTopicByTopicID 1
@@ -134,6 +137,7 @@ EXEC CountDaysOldOfTopicByTopicID 1
 --DeleteMemberProfiles By MemberID
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'DeleteMemberProfiles' AND TYPE = 'P')
 DROP PROC DeleteMemberProfiles
+go
 CREATE PROC DeleteMemberProfiles
 	@MemberID as int
 AS BEGIN 
@@ -151,7 +155,7 @@ CREATE PROC GetMemberByUserNamePassword
 	@UserName nvarchar(30),
 	@Password nvarchar(50)
 AS BEGIN 
-SELECT     MemberID, UserName, Password, Email, FullName, DateCreation, AllowLogin, IsOnline
+SELECT     MemberID, UserName, Password, Email, FullName, DateCreation, AllowLogin, IsPublic,IsOnline
 FROM         Members
 WHERE		UserName = @UserName AND Password = @Password
 END
@@ -177,6 +181,47 @@ exec GetRoleByRoleID 1
 go
 
 
+--InsertTopic
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'InsertTopic' AND TYPE = 'P')
+DROP PROC InsertTopic
+go
+CREATE PROC InsertTopic
+	@SubForumID int,
+	@MemberID int,
+	@Title nvarchar(100),
+	@Content ntext,
+	@IsLocked bit,
+	@TotalViews int,
+	@TotalMessages int,
+	@DateCreate datetime,
+	@MoveTo int
+AS BEGIN 
+	Insert into  dbo.Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateCreate,MoveTo) 
+	values (@SubForumID,@MemberID,@Title,@Content,@IsLocked,@TotalViews,@TotalMessages,@DateCreate,@MoveTo)
+END
+
+go
+
+--InsertPost
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'InsertPost' AND TYPE = 'P')
+DROP PROC InsertPost
+go
+CREATE PROC InsertPost
+	@TopicID int,
+	@MemberID int,
+	@Title nvarchar(100),
+	@Content ntext,
+	@DateCreation datetime,
+	@DateEdited datetime,
+	@Signature bit,
+	@IPAddress nvarchar(50)
+AS BEGIN 
+	Insert into  dbo.Posts(TopicID,MemberID,Title,[Content],DateCreation,DateEdited,Signature,IPAddress) 
+	values (@TopicID,@MemberID,@Title,@Content,@DateCreation,@DateEdited,@Signature,@IPAddress)
+END
+
+go
+
 
 select * from Roles
 
@@ -194,6 +239,8 @@ select * from Roles
 --           Roles ON MemberProfiles.RoleID = Roles.RoleID
 --WHERE	   Members.UserName = @UserName AND Members.Password = @Password
 --END
+
+
 
 
 
