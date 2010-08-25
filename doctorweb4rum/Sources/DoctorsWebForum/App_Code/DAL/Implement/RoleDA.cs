@@ -27,6 +27,8 @@ namespace DAL
         private const String RankImage = "RankImage";
 
         private String[] columnNames = { RoleID, RoleName, Description, TotalPosts, RankImage };
+        private String[] columnNamesToInsert = { RoleName, Description, TotalPosts, RankImage };
+
 
         public Role GetRoleByRoleID(int roleID)
         {
@@ -50,6 +52,22 @@ namespace DAL
             {
                 return null;
             }
+
+        }
+
+        public int InsertTest()
+        {
+            int k = 0;
+            try
+            {
+                Object[] values ={ "roleName", "Description", 1, "test.jpg" };
+                k = ProcessTableTypeStore("InsertTest", columnNamesToInsert, values);
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            return k;
 
         }
 

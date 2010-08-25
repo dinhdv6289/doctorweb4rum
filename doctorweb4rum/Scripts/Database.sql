@@ -32,6 +32,7 @@ CREATE TABLE Members
 	FullName		NVARCHAR(50) NOT NULL,
 	DateCreation	DATETIME DEFAULT GETDATE(),
 	AllowLogin		BIT DEFAULT 1,
+	IsPublic		BIT,
 	IsOnline		BIT DEFAULT 0
 )
 
@@ -82,26 +83,7 @@ ALTER TABLE MemberProfiles ADD CONSTRAINT FK_MemberProfiles_RoleID FOREIGN KEY (
 ALTER TABLE MemberProfiles ADD CONSTRAINT FK_MemberProfiles_MemberID FOREIGN KEY (MemberID) REFERENCES Members(MemberID)
 
 GO
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'AllowDisplay' AND TYPE = 'U')
-DROP TABLE AllowDisplay
-GO
-CREATE TABLE AllowDisplay
-(
-	MemberID		INT PRIMARY KEY NOT NULL,
-	DisFullName		BIT DEFAULT 1,
-	DisEmail		BIT DEFAULT 1,
-	DisBirthDay		BIT DEFAULT 1,
-	DisAddress		BIT DEFAULT 1,
-	DisYahoo		BIT DEFAULT 1,
-	DisPhone		BIT DEFAULT 1,
-	DisHospital		BIT DEFAULT 1,
-	DisBlog			BIT DEFAULT 1,	
-	DisSignature	BIT DEFAULT 1
-)
 
-ALTER TABLE AllowDisplay ADD CONSTRAINT FK_AllowDisplay_MemberID FOREIGN KEY (MemberID) REFERENCES Members(MemberID)
-
-GO
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'Categories' AND TYPE = 'U')
 DROP TABLE Categories
 GO
@@ -141,11 +123,10 @@ CREATE TABLE Topics
 	MemberID		INT NOT NULL,
 	Title			NVARCHAR(100) NOT NULL,
 	[Content]		NTEXT,
-	--PostId			INT NOT NULL,	
 	IsLocked		BIT DEFAULT 0,
 	TotalViews		INT,
 	TotalMessages	INT,
-	DateLastPost	DATETIME,
+	DateCreate	    DATETIME DEFAULT GETDATE(),
 	MoveTo			INT
 )
 
@@ -169,7 +150,6 @@ CREATE TABLE Posts
 GO
 ALTER TABLE Topics ADD CONSTRAINT FK_Topics_SubForumID FOREIGN KEY (SubForumID) REFERENCES SubForums(SubForumID)
 ALTER TABLE Topics ADD CONSTRAINT FK_Topics_MemberID FOREIGN KEY (MemberID) REFERENCES Members(MemberID)
---ALTER TABLE Topics ADD CONSTRAINT FK_Topics_PostId FOREIGN KEY (PostId) REFERENCES Posts(PostID)
 GO
 ALTER TABLE Posts ADD CONSTRAINT FK_Posts_TopicID FOREIGN KEY (TopicID) REFERENCES Topics(TopicID)
 ALTER TABLE Posts ADD CONSTRAINT FK_Posts_MemberID FOREIGN KEY (MemberID) REFERENCES Members(MemberID)
@@ -192,14 +172,6 @@ create TABLE Messages
 ALTER TABLE Messages ADD CONSTRAINT FK_Messages_FromMember FOREIGN KEY (FromMember) REFERENCES Members(MemberID)
 ALTER TABLE Messages ADD CONSTRAINT FK_Messages_ToMember FOREIGN KEY (ToMember) REFERENCES Members(MemberID)
 
---GO
---
---CREATE TABLE RateType
---(
---	TypeID		INT IDENTITY(1,1) PRIMARY KEY,
---	RatePoint	INT	
---)
-
 GO
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'RatingTopic' AND TYPE = 'U')
 DROP TABLE RatingTopic
@@ -207,13 +179,11 @@ GO
 CREATE TABLE RatingTopic
 (
 	RateTopicID		INT IDENTITY(1,1) PRIMARY KEY,
-	--TypeID		INT NOT NULL,
 	FromMember	INT	NOT NULL,
 	TopicID		INT NOT NULL,
 	RatePoint	INT	,
 	RateDate	DATETIME
 )
---ALTER TABLE Rating ADD CONSTRAINT FK_Rating_TypeID FOREIGN KEY (TypeID) REFERENCES RateType(TypeID)
 ALTER TABLE RatingTopic ADD CONSTRAINT FK_RatingTopic_FromMember FOREIGN KEY (FromMember) REFERENCES Members(MemberID)
 ALTER TABLE RatingTopic ADD CONSTRAINT FK_RatingTopic_TopicID FOREIGN KEY (TopicID) REFERENCES Topics(TopicID)
 
@@ -225,13 +195,11 @@ GO
 CREATE TABLE RatingPost
 (
 	RatingPostID INT IDENTITY(1,1) PRIMARY KEY,
-	--TypeID		INT NOT NULL,
 	FromMember	INT	NOT NULL,
 	PostID		INT NOT NULL,
 	RatePoint	INT	,
 	RateDate	DATETIME
 )
---ALTER TABLE Rating ADD CONSTRAINT FK_Rating_TypeID FOREIGN KEY (TypeID) REFERENCES RateType(TypeID)
 ALTER TABLE RatingPost ADD CONSTRAINT FK_RatingPost_FromMember FOREIGN KEY (FromMember) REFERENCES Members(MemberID)
 ALTER TABLE RatingPost ADD CONSTRAINT FK_RatingPost_PostID FOREIGN KEY (PostID) REFERENCES Posts(PostID)
 

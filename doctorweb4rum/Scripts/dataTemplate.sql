@@ -181,11 +181,11 @@ values(12,'Surgery and Surgical Subspecialties ','Discuss surgery and surgical s
 
 select * from SubForums
 
-insert into dbo.Members(UserName,Password,Email,FullName,DateCreation,AllowLogin,IsOnline)
-values('username1','password','test@gmail.com','userName1Test',GetDate(),'true','true')
+insert into dbo.Members(UserName,Password,Email,FullName,DateCreation,AllowLogin,IsPublic,IsOnline)
+values('username1','password','test@gmail.com','userName1Test',GetDate(),'true','true','true')
 
-insert into dbo.Members(UserName,Password,Email,FullName,DateCreation,AllowLogin,IsOnline)
-values('username2','password','test2@gmail.com','testtt',GetDate(),'true','true')
+insert into dbo.Members(UserName,Password,Email,FullName,DateCreation,AllowLogin,IsPublic,IsOnline)
+values('username2','password','test2@gmail.com','testtt',GetDate(),'true','true','true')
 
 insert into dbo.MemberProfiles(MemberID,RoleID,Blast,Avatar,Country,Address,BirthDay,Gender,Yahoo,
 Phone,Hospital,Blog,TotalPosts,TotalThanks,TotalThanked,CurrentExperience,MemberLevel,IPAddress,
@@ -197,7 +197,7 @@ values(
 select * from roles
 select * from members
 select * from MemberProfiles
-insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
+insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateCreate,MoveTo) 
 values(
 	1,
 	1,
@@ -207,7 +207,7 @@ values(
 	'false',
 	1,1,getdate(),1)
 
-insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
+insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateCreate,MoveTo) 
 values(
 	1,
 	1,
@@ -216,13 +216,13 @@ values(
 	'false',
 	1,1,'12/12/2008',1)
 
-insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
+insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateCreate,MoveTo) 
 values(2,1,'Title test','Content Test','false',1,1,'12/12/2008',1)
 
-insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
+insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateCreate,MoveTo) 
 values(2,1,'Title test','Content Test','false',1,1,'12/12/2008',1)
 
-insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateLastPost,MoveTo) 
+insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateCreate,MoveTo) 
 values(2,2,'Title memberID = 2','Content Test memberID = 2','false',1,1,'10/10/2008',1)
 
 

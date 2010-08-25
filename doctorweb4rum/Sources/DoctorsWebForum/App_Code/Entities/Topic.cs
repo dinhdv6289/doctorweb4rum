@@ -20,7 +20,7 @@ public class Topic
     private Boolean isLocked;
     private int totalViews;
     private int totalMessages;
-    private DateTime dateLastPost;
+    private DateTime dateCreate;
     private int moveTo;
     private String title;
     private String content;
@@ -44,12 +44,12 @@ public class Topic
         get { return moveTo; }
         set { moveTo = value; }
     }
-	
 
-    public DateTime DateLastPost
+
+    public DateTime DateCreate
     {
-        get { return dateLastPost; }
-        set { dateLastPost = value; }
+        get { return dateCreate; }
+        set { dateCreate = value; }
     }
 	
 

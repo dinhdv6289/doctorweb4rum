@@ -122,6 +122,84 @@ namespace DAL
             }
             return result;
         }
+
+        protected int ProcessTableTypeStore(String procName, String[] columnNames, Object[] values)
+        {
+            int result = 0;
+            if (procName != null || procName.Length > 0)
+            {
+                try
+                {
+                    using (SqlConnection connection = new SqlConnection(getConnectionString))
+                    {
+                        SqlCommand cmd = new SqlCommand(procName, connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Clear();
+                        
+                        for (int i = 0; i < columnNames.Length; i++)
+                        {
+                            if (columnNames[i] != null)
+                            {
+                                if (values[i] != null)
+                                {
+                                    cmd.Parameters.AddWithValue("@" + columnNames[i], values[i]);
+                                }
+                            }
+                        }
+                        connection.Open();
+                        result = cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+            }
+            return result;
+        }
+
+        protected int InsertIntoTableTypeStoreReturnID(String procName, String[] columnNames, Object[] values, out int autoID)
+        {
+            int result = 0;
+            autoID = 0;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(getConnectionString))
+                {
+                    SqlCommand cmd = new SqlCommand(procName, connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Clear();
+                    for (int i = 0; i < columnNames.Length; i++)
+                    {
+                        if (values[i] != null)
+                        {
+                            cmd.Parameters.AddWithValue("@" + columnNames[i], values[i]);
+                        }
+                    }
+                    SqlParameter autoIDParameter = new SqlParameter("@autoID", SqlDbType.Int);
+                    autoIDParameter.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(autoIDParameter);
+                    connection.Open();
+                    result = cmd.ExecuteNonQuery();
+                    try
+                    {
+                        if (autoIDParameter.Value != null)
+                            autoID = (int)autoIDParameter.Value;
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw ex;
+
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
         protected static int UpdateTable(String tableName, String[] columnNames, Object[] values, String[] keyColumns, Object[] keyValues)
         {
             int result = 0;
