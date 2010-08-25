@@ -15,5 +15,6 @@ namespace DAL
         int GetCountPostBySubForumID(int subForumID);
         int GetCountPostsByTopicID(int topicID);
         Post GetLastPostOfTopicByTopicID(int topicID);
+        int InsertPost(Post post);
     }
 }

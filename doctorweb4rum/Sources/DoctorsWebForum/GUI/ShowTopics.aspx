@@ -2,6 +2,10 @@
     CodeFile="ShowTopics.aspx.cs" Inherits="GUI_ShowTopics" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+            <div class="above_threadlist" id="above_threadlist">
+                <a id="newthreadlink_top" class="newcontent_textcontrol" rel="nofollow" href="NewTopic.aspx?subForumID=<%= Request.QueryString["subForumID"] %>"><span>
+                    +</span> Post New Topic</a>
+            </div>
  <br />
 <div>
 <hr />
@@ -178,4 +182,14 @@ What about google for feed / can anyone just email a post(along with the google 
             <input name="forumid" value="69" type="hidden">
         </form>
     </div>
+                <%--begin Button post new Thread--%>
+            <div class="noinlinemod below_threadlist" id="below_threadlist">
+                <a id="newthreadlink_bottom" class="newcontent_textcontrol" rel="nofollow" href="NewTopic.aspx?subForumID=<%= Request.QueryString["subForumID"] %>">
+                    <span>+</span> Post New Topic</a>
+                <%--begin phan trang--%>
+                <div class="threadpagenav">
+                </div>
+                <%--end phan trang--%>
+            </div>
+            <%--and button post new thread--%>
 </asp:Content>

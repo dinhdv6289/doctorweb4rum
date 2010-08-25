@@ -153,7 +153,7 @@ namespace DAL
                         result = cmd.ExecuteNonQuery();
                     }
                 }
-                catch (SqlException ex)
+                catch (Exception ex)
                 {
                     throw ex;
                 }
