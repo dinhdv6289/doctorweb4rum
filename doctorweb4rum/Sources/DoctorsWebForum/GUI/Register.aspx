@@ -66,27 +66,29 @@
                         <li>
                             <label for="password">
                                 Full Name:</label>
-                            <asp:TextBox ID="TextBox2" runat="server" CssClass="textbox"></asp:TextBox>
+                            <asp:TextBox ID="txtFullName" runat="server" CssClass="textbox"></asp:TextBox>
                         </li>
                         <li>
                             <label for="passwordconfirm">
                                 Address:</label>
-                            <asp:TextBox ID="TextBox3" runat="server" CssClass="textbox"></asp:TextBox>
+                            <asp:TextBox ID="txtAddress" runat="server" CssClass="textbox"></asp:TextBox>
                         </li>
                         <li>
                             <label for="passwordconfirm">
                                 Country:</label>
-                            <asp:TextBox ID="TextBox1" runat="server" CssClass="textbox"></asp:TextBox>
+                            <asp:TextBox ID="txtCountry" runat="server" CssClass="textbox"></asp:TextBox>
                         </li>
                         <li>
                             <label for="passwordconfirm">
                                 BirthDay:</label>
-                            <asp:TextBox ID="txtBirthDay" runat="server" CssClass="textbox" ></asp:TextBox>
+                            <asp:TextBox ID="txtBirthDay" runat="server" CssClass="textbox"></asp:TextBox>
                         </li>
                         <li>
                             <label for="passwordconfirm">
                                 Gender:</label>
                             <asp:DropDownList ID="DropDownList1" runat="server">
+                                <asp:ListItem>Male</asp:ListItem>
+                                <asp:ListItem>Female</asp:ListItem>
                             </asp:DropDownList>
                         </li>
                     </ul>
@@ -96,22 +98,22 @@
                         <li>
                             <label for="email">
                                 Yahoo:</label>
-                            <asp:TextBox ID="TextBox4" runat="server" CssClass="textbox"></asp:TextBox>
+                            <asp:TextBox ID="txtYahoo" runat="server" CssClass="textbox"></asp:TextBox>
                         </li>
                         <li>
                             <label for="email">
                                 Phone:</label>
-                            <asp:TextBox ID="TextBox8" runat="server" CssClass="textbox"></asp:TextBox>
+                            <asp:TextBox ID="txtPhone" runat="server" CssClass="textbox"></asp:TextBox>
                         </li>
                         <li>
                             <label for="email">
                                 Hospital:</label>
-                            <asp:TextBox ID="TextBox9" runat="server" CssClass="textbox"></asp:TextBox>
+                            <asp:TextBox ID="txtHospital" runat="server" CssClass="textbox"></asp:TextBox>
                         </li>
                         <li>
                             <label for="emailconfirm">
                                 About Me:</label>
-                            <asp:TextBox ID="TextBox5" runat="server" CssClass="textbox" Height="55px" TextMode="MultiLine"
+                            <asp:TextBox ID="txtAboutMe" runat="server" CssClass="textbox" Height="55px" TextMode="MultiLine"
                                 Width="434px"></asp:TextBox>
                         </li>
                     </ul>
@@ -146,8 +148,8 @@
                     <p class="label">
                         In order to proceed, you must agree with the following rules:</p>
                     <div id="forumrules" class="restore">
-                        <asp:TextBox ID="forumrules" runat="server" Enabled="False" TextMode="MultiLine"
-                            Height="86px" CssClass="restore" Width="100%">
+                        <asp:TextBox ID="forumrules" runat="server" Width="100%" CssClass="restore" Height="86px"
+                            TextMode="MultiLine" Enabled="False">
     Forum Rules
 
 Registration to this forum is free! We do insist that you abide by the rules and policies detailed
@@ -166,21 +168,21 @@ you grant Doctors Web Forums non-exclusive rights to publish content (posts, vis
 The owners of Doctors Web Forums reserve the right to remove, edit, move or close any content item for any reason.
                         </asp:TextBox>
                     </div>
-                </div>
-                <div class="blockrow singlecheck">
-                    <label for="cb_rules_agree" class="full">
-                        <asp:CheckBox ID="CheckBox3" runat="server" />
-                        <strong>I have read, and agree to abide by the Doctors Web Forums rules.</strong></label>
+                    <div class="blockrow singlecheck">
+                        <label class="full" for="cb_rules_agree">
+                            <asp:CheckBox ID="cbHaveread" runat="server"></asp:CheckBox>
+                            <strong>I have read, and agree to abide by the Doctors Web Forums rules.</strong></label>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="blockfoot actionbuttons">
-            <div class="group">
-                <asp:Button ID="btnCompleteRegister" runat="server" Text="Complete Registration"
-                    CssClass="button" OnClick="btnCompleteRegister_Click" />
-                <asp:Button ID="btnResetRegister" runat="server" Text="Reset Fields" CssClass="button"
-                    OnClick="btnResetRegister_Click" />
+            <div class="blockfoot actionbuttons">
+                <div class="group">
+                    <asp:Button ID="btnCompleteRegister" OnClick="btnCompleteRegister_Click" runat="server"
+                        CssClass="button" Text="Complete Registration">
+                    </asp:Button>
+                    <asp:Button ID="btnResetRegister" OnClick="btnResetRegister_Click" runat="server"
+                        CssClass="button" Text="Reset Fields"></asp:Button>
+                </div>
             </div>
-        </div>
         </div>
 </asp:Content>

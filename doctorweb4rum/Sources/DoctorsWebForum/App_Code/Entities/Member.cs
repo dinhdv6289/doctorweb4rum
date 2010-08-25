@@ -27,6 +27,14 @@ public class Member
     private string fullName;
     private DateTime dateCreation;
     private Boolean allowLogin;
+    private Boolean isPublic;
+
+    public Boolean IsPublic
+    {
+        get { return isPublic; }
+        set { isPublic = value; }
+    }
+	
     private Boolean isOnline;
 
     public int MemberID

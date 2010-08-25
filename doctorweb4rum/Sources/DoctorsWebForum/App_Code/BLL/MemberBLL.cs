@@ -47,12 +47,12 @@ namespace BLL
             return result;
         }
 
-        public static int InsertMemberProfile(MemberProfile memberProfile, int memberID)
+        public static int InsertMemberProfile(MemberProfile memberProfile)
         {
             int result = 0;
             try
             {
-                result = DataHelper.GetMemberDA().InsertMemberProfile(memberProfile, memberID);
+                result = DataHelper.GetMemberDA().InsertMemberProfile(memberProfile);
             }
             catch (Exception ex)
             {
@@ -133,6 +133,20 @@ namespace BLL
                 {
                     throw ex;
                 }
+            }
+            return result;
+        }
+        public static int InsertMemberInfo(Member member, MemberProfile memProfile, out int resultStatus)
+        {
+            int result = 0;
+            resultStatus = 0;
+            try
+            {
+                result = DataHelper.GetMemberDA().InsertMemberInfo(member, memProfile, out resultStatus);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             return result;
         }

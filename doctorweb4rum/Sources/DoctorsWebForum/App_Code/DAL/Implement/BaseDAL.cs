@@ -110,7 +110,10 @@ namespace DAL
                     cmd.CommandText = sql;
                     for (int i = 0; i < colNames.Length; i++)
                     {
-                        cmd.Parameters.AddWithValue(colNames[i], values[i]);
+                        if (values[i] != null)
+                        {
+                            cmd.Parameters.AddWithValue(colNames[i], values[i]);
+                        }
                     }
                     connection.Open();
                     result = cmd.ExecuteNonQuery();
@@ -158,10 +161,10 @@ namespace DAL
             return result;
         }
 
-        protected int InsertIntoTableTypeStoreReturnID(String procName, String[] columnNames, Object[] values, out int autoID)
+        protected int InsertIntoTableTypeStoreReturnID(String procName, String[] columnNames, Object[] values, out int result)
         {
-            int result = 0;
-            autoID = 0;
+            int result1 = 0;
+            result = 0;
             try
             {
                 using (SqlConnection connection = new SqlConnection(getConnectionString))
@@ -176,15 +179,15 @@ namespace DAL
                             cmd.Parameters.AddWithValue("@" + columnNames[i], values[i]);
                         }
                     }
-                    SqlParameter autoIDParameter = new SqlParameter("@autoID", SqlDbType.Int);
-                    autoIDParameter.Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(autoIDParameter);
+                    SqlParameter resultParameter = new SqlParameter("@Result", SqlDbType.Int);
+                    resultParameter.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(resultParameter);
                     connection.Open();
-                    result = cmd.ExecuteNonQuery();
+                    result1 = cmd.ExecuteNonQuery();
                     try
                     {
-                        if (autoIDParameter.Value != null)
-                            autoID = (int)autoIDParameter.Value;
+                        if (resultParameter.Value != null)
+                            result = (int)resultParameter.Value;
                     }
                     catch (SqlException ex)
                     {
@@ -197,7 +200,7 @@ namespace DAL
             {
                 throw ex;
             }
-            return result;
+            return result1;
         }
 
         protected static int UpdateTable(String tableName, String[] columnNames, Object[] values, String[] keyColumns, Object[] keyValues)

@@ -27,6 +27,7 @@ namespace DAL
         private const String FullName = "FullName";
         private const String DateCreation = "DateCreation";
         private const String AllowLogin = "AllowLogin";
+        private const String IsPublic = "IsPublic";
         private const String IsOnline = "IsOnline";
         private const String RoleID = "RoleID";
         private const String Blast = "Blast";
@@ -51,8 +52,8 @@ namespace DAL
         private const String AboutMe = "AboutMe";
 
 
-        private String[] columnNames = { MemberID, UserName, Password, Email, FullName, DateCreation, AllowLogin, IsOnline };
-        private String[] columnNamesInsert1 = { UserName, Password, FullName, DateCreation, AllowLogin, IsOnline };
+        private String[] columnNames = { MemberID, UserName, Password, Email, FullName, DateCreation, AllowLogin, IsPublic, IsOnline };
+        private String[] columnNamesInsert1 = { UserName, Password, Email, FullName, DateCreation, AllowLogin, IsPublic, IsOnline };
         private String[] memberProfileColumnNames ={ MemberID, RoleID, Blast, Avatar, Country, Address, BirthDay, Gender, Yahoo, 
                                                     Phone, Hospital, Blog, TotalPosts, TotalThanks, TotalThanked, CurrentExperience,
                                                     MemberLevel, IPAddress, LastLogin, MyRss, Signature, AboutMe};
@@ -79,7 +80,7 @@ namespace DAL
             int result = 0;
             try
             {
-                Object[] values = { member.UserName, member.Password, member.Email, member.FullName, member.DateCreation, member.AllowLogin, member.IsOnline };
+                Object[] values = { member.UserName, member.Password, member.Email, member.FullName, member.DateCreation, member.AllowLogin,member.IsPublic, member.IsOnline };
                 result = InsertTableWithReturnID(tableName, columnNamesInsert1, values, out autoID);
             }
             catch (Exception ex)
@@ -90,12 +91,12 @@ namespace DAL
         }
 
 
-        public int InsertMemberProfile(MemberProfile memberProfile, int memberID)
+        public int InsertMemberProfile(MemberProfile memberProfile)
         {
             int result = 0;
             try
             {
-                Object[] values ={memberID,memberProfile.RoleID,memberProfile.Blast,memberProfile.Avatar,memberProfile.Country,
+                Object[] values ={memberProfile.MemberID,memberProfile.RoleID,memberProfile.Blast,memberProfile.Avatar,memberProfile.Country,
                 memberProfile.Address,memberProfile.BirthDay,memberProfile.Gender,memberProfile.Yahoo,memberProfile.Phone,memberProfile.Hospital,
                 memberProfile.Blog,memberProfile.TotalPosts,memberProfile.TotalThanks,memberProfile.TotalThanked,memberProfile.CurrentExperience,
                 memberProfile.MemberLevel,memberProfile.IPAddress,memberProfile.LastLogin,memberProfile.MyRss,memberProfile.Signature,memberProfile.AboutMe};
@@ -213,6 +214,25 @@ namespace DAL
             {
                 return null;
             }
+        }
+
+        public int InsertMemberInfo(Member member, MemberProfile memProfile, out int resultStatus)
+        {
+            resultStatus = 0;
+            int result = 0;
+            String[] columnNamesInfo = {UserName, Password, Email, FullName, Country, Address, BirthDay, Gender, Yahoo, 
+                                                    Phone, Hospital, AboutMe, IsPublic};
+            Object[] values = {member.UserName, member.Password, member.Email, member.FullName, memProfile.Country, memProfile.Address, 
+                memProfile.BirthDay, memProfile.Gender, memProfile.Yahoo,  memProfile.Phone, memProfile.Hospital, memProfile.AboutMe, member.IsPublic};
+            try
+            {
+              result =  InsertIntoTableTypeStoreReturnID("InsertMemberInfo", columnNamesInfo, values, out resultStatus);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
         }
     }
 }
