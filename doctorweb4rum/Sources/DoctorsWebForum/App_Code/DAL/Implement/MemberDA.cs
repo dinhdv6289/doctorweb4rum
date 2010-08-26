@@ -234,5 +234,31 @@ namespace DAL
             }
             return result;
         }
+        public int UserNameIsExist(String userName)
+        {
+            int result = 0;
+            try
+            {
+              result =  RecordExisted(tableName, UserName, userName);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+        public int EmailIsExist(String email)
+        {
+            int result = 0;
+            try
+            {
+                result = RecordExisted(tableName, Email, email);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

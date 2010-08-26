@@ -20,7 +20,8 @@ namespace DAL
         int InsertMember(Member member, out int autoID);
         int InsertMemberProfile(MemberProfile memberProfile);
         int InsertMemberInfo(Member member, MemberProfile memProfile,out int resultStatus);
-
+        int UserNameIsExist(String userName);
+        int EmailIsExist(String email);
         
     }
 }
