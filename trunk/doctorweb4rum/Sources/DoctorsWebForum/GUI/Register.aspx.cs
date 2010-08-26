@@ -16,10 +16,10 @@ public partial class GUI_Register : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!IsPostBack)
+        if (!IsPostBack)
         {
             List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
-            nodes.Add(new KeyValuePair<string, Uri>("Registration", Request.Url));
+            nodes.Add(new KeyValuePair<string, Uri>("Register", Request.Url));
             ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
         }
 
@@ -55,7 +55,6 @@ public partial class GUI_Register : System.Web.UI.Page
         Boolean haveRead = cbHaveread.Checked;
         if (haveRead)
         {
-            int memberID = 0;
             Member mem = new Member();
             mem.UserName = userName;
             mem.Password = password;
@@ -91,28 +90,39 @@ public partial class GUI_Register : System.Web.UI.Page
             memProfile.TotalPosts = 0;
             memProfile.TotalThanked = 0;
             memProfile.TotalThanks = 0;
-
-            int resultStatus = 0;
-            int result = 0;
-            result = MemberBLL.InsertMemberInfo(mem, memProfile,out resultStatus);
-            if (resultStatus == 1)
+            if (Page.IsValid)
             {
-                //OK
-                Response.Write("<script>alert('Okie !!!')</script>");
-            }else if (resultStatus == -1)
-            {
-                //UserName da ton tai
-                Response.Write("<script>alert('UserName is EXIST !!!')</script>");
-            }else if (resultStatus == -2)
-            {
-                //Email da ton tai
-                Response.Write("<script>alert('Email  is EXIST !!!')</script>");
-            }
-            else
-            {
-                //Loi
-                Response.Write("<script>alert('Error !!!')</script>");
+                int resultStatus = 0;
+                int result = 0;
+                result = MemberBLL.InsertMemberInfo(mem, memProfile, out resultStatus);
+                if (resultStatus == 1)
+                {
+                    //OK
+                }
+                else if (resultStatus == -1)
+                {
+                    //UserName is exist
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('UserName is Exist !');window.location.href='Register.aspx';</script>");
+                }
+                else if (resultStatus == -2)
+                {
+                    //Email is exist
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('Email is Exist !');window.location.href='Register.aspx';</script>");
+                }
+                else
+                {
+                    //Error
+                    Page.ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('Error !');window.location.href='Register.aspx';</script>");
+                }
             }
         }
+    }
+    protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        args.IsValid = !(MemberBLL.UserNameIsExist(txtUserName.Text));
+    }
+    protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        args.IsValid = !(MemberBLL.EmailIsExist(txtEmail.Text));
     }
 }

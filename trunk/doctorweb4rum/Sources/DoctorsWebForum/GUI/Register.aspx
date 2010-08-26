@@ -7,57 +7,83 @@
         <hr />
         <br />
     </div>
-    <h2 class="blockhead">
-        Register at Doctor Web Forums</h2>
-    <div class="blockbody formcontrols">
-        <h3 class="blocksubhead">
-            Required Information</h3>
-        <div class="section">
-            <div class="blockrow">
-                <label for="regusername">
-                    User Name:</label>
-                <div class="rightcol">
-                    <asp:TextBox ID="txtUserName" runat="server" CssClass="primary textbox"></asp:TextBox>
-                    <div id="reg_verif_div" class="primary" style="display: none;">
+    <br />
+    <div class="vbform block">
+        <h2 class="blockhead">
+            Register at Doctor Web Forums</h2>
+        <div class="blockbody formcontrols">
+            <h3 class="blocksubhead">
+                Required Information</h3>
+            <div class="section">
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="registerValidate"
+                    CssClass="blockrow" />
+                <div class="blockrow">
+                    <label for="regusername">
+                        User Name:</label>
+                    <div class="rightcol">
+                        <asp:TextBox ID="txtUserName" runat="server" CssClass="primary textbox"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="The UserName is not null."
+                            ValidationGroup="registerValidate" ControlToValidate="txtUserName" Display="Dynamic">*</asp:RequiredFieldValidator>
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="The UserName is string have 6 - 25 characters."
+                            ValidationGroup="registerValidate" ValidationExpression="^.{6,25}$" ControlToValidate="txtUserName"
+                            Display="Dynamic">*</asp:RegularExpressionValidator>
+                        <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="User Name is used !"
+                            ControlToValidate="txtUserName" Display="Dynamic" OnServerValidate="CustomValidator1_ServerValidate"
+                            ValidationGroup="registerValidate">*</asp:CustomValidator>
+                        <div id="reg_verif_div" class="primary" style="display: none;">
+                        </div>
+                        <p class="description">
+                            Please enter the name by which you would like to log-in and be known on this site.</p>
                     </div>
+                </div>
+                <div class="blockrow">
+                    <ul class="group">
+                        <li>
+                            <label for="password">
+                                Password:</label>
+                            <asp:TextBox ID="txtPassword" runat="server" CssClass="textbox" TextMode="Password"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtPassword"
+                                Display="Dynamic" ErrorMessage="The password is not null." ValidationGroup="registerValidate">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtPassword"
+                                Display="Dynamic" ErrorMessage="The password is more 6 characters.." ValidationExpression=".{6,}"
+                                ValidationGroup="registerValidate">*</asp:RegularExpressionValidator></li><li>
+                                    <label for="passwordconfirm">
+                                        Confirm Password:</label>
+                                    <asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="textbox" TextMode="Password"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtConfirmPassword"
+                                        Display="Dynamic" ErrorMessage="The confirm password is not null." ValidationGroup="registerValidate">*</asp:RequiredFieldValidator>
+                                    <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToCompare="txtPassword"
+                                        ControlToValidate="txtConfirmPassword" Display="Dynamic" ErrorMessage="Password do not match."
+                                        ValidationGroup="registerValidate">*</asp:CompareValidator></li></ul>
                     <p class="description">
-                        Please enter the name by which you would like to log-in and be known on this site.</p>
+                        Please enter a password for your user account. Note that passwords are case-sensitive.</p>
+                </div>
+                <div class="blockrow">
+                    <ul class="group">
+                        <li>
+                            <label for="email">
+                                Email Address:</label>
+                            <asp:TextBox ID="txtEmail" runat="server" CssClass="textbox"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="The Email is not null."
+                                ControlToValidate="txtEmail" Display="Dynamic" ValidationGroup="registerValidate">*</asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Email address is invalid."
+                                ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="registerValidate"
+                                ControlToValidate="txtEmail" Display="Dynamic">*</asp:RegularExpressionValidator>
+                            <asp:CustomValidator ID="CustomValidator2" runat="server" ControlToValidate="txtEmail"
+                                Display="Dynamic" ErrorMessage="The Email is used." OnServerValidate="CustomValidator2_ServerValidate"
+                                ValidationGroup="registerValidate">*</asp:CustomValidator></li><li>
+                                    <label for="emailconfirm">
+                                        Confirm Email Address:</label>
+                                    <asp:TextBox ID="txtConfirmEmail" runat="server" CssClass="textbox"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtConfirmEmail"
+                                        Display="Dynamic" ErrorMessage="The confirm email  is not null." ValidationGroup="registerValidate">*</asp:RequiredFieldValidator>
+                                    <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtEmail"
+                                        ControlToValidate="txtConfirmEmail" Display="Dynamic" ErrorMessage="Email is not match."
+                                        ToolTip="Email is not match." ValidationGroup="registerValidate">*</asp:CompareValidator></li></ul>
+                    <p class="description">
+                        Please enter a valid email address for yourself.</p>
                 </div>
             </div>
-            <div class="blockrow">
-                <ul class="group">
-                    <li>
-                        <label for="password">
-                            Password:</label>
-                        <asp:TextBox ID="txtPassword" runat="server" CssClass="textbox" TextMode="Password"></asp:TextBox>
-                    </li>
-                    <li>
-                        <label for="passwordconfirm">
-                            Confirm Password:</label>
-                        <asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="textbox" TextMode="Password"></asp:TextBox>
-                    </li>
-                </ul>
-                <p class="description">
-                    Please enter a password for your user account. Note that passwords are case-sensitive.</p>
-            </div>
-            <div class="blockrow">
-                <ul class="group">
-                    <li>
-                        <label for="email">
-                            Email Address:</label>
-                        <asp:TextBox ID="txtEmail" runat="server" CssClass="textbox"></asp:TextBox>
-                    </li>
-                    <li>
-                        <label for="emailconfirm">
-                            Confirm Email Address:</label>
-                        <asp:TextBox ID="txtConfirmEmail" runat="server" CssClass="textbox"></asp:TextBox>
-                    </li>
-                </ul>
-                <p class="description">
-                    Please enter a valid email address for yourself.</p>
-            </div>
-        </div>
-        <div class="blockbody formcontrols">
             <h3 class="blocksubhead">
                 Profile Information</h3>
             <div class="section">
@@ -139,16 +165,14 @@
                         complain about not knowing why you received an infraction).</p>
                 </div>
             </div>
-        </div>
-        <h3 class="blocksubhead">
-            Forum Rules</h3>
-        <div class="blockbody formcontrols">
+            <h3 class="blocksubhead">
+                Forum Rules</h3>
             <div class="section">
                 <div class="blockrow">
                     <p class="label">
                         In order to proceed, you must agree with the following rules:</p>
                     <div id="forumrules" class="restore">
-                        <asp:TextBox ID="forumrules" runat="server" Width="100%" CssClass="restore" Height="86px"
+                        <asp:TextBox ID="forumrule123" runat="server" Width="100%" Height="86px"
                             TextMode="MultiLine" Enabled="False">
     Forum Rules
 
@@ -178,11 +202,12 @@ The owners of Doctors Web Forums reserve the right to remove, edit, move or clos
             <div class="blockfoot actionbuttons">
                 <div class="group">
                     <asp:Button ID="btnCompleteRegister" OnClick="btnCompleteRegister_Click" runat="server"
-                        CssClass="button" Text="Complete Registration">
+                        CssClass="button" Text="Complete Registration" ValidationGroup="registerValidate">
                     </asp:Button>
                     <asp:Button ID="btnResetRegister" OnClick="btnResetRegister_Click" runat="server"
                         CssClass="button" Text="Reset Fields"></asp:Button>
                 </div>
             </div>
         </div>
+    </div>
 </asp:Content>

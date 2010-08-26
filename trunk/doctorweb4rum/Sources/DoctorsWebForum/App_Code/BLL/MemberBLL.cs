@@ -150,5 +150,41 @@ namespace BLL
             }
             return result;
         }
+
+        public static Boolean UserNameIsExist(String userName)
+        {
+            Boolean result = false;
+            try
+            {
+                int a = DataHelper.GetMemberDA().UserNameIsExist(userName);
+                if (a>0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public static Boolean EmailIsExist(String email)
+        {
+            Boolean result = false;
+            try
+            {
+                int a = DataHelper.GetMemberDA().EmailIsExist(email);
+                if (a > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }
