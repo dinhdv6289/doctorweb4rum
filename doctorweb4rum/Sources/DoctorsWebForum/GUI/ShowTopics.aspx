@@ -106,7 +106,7 @@ What about google for feed / can anyone just email a post(along with the google 
                                                 <a href="showthread.php?t=1907333&amp;goto=newpost" id="thread_gotonew_1907333">
                                                     <img title="Go to first new post" class="gotonewpost" src="http://b.dpstatic.com/buttons/firstnew.png"
                                                         alt="Go to first new post"></a> <a class="title threadtitle_unread" href="TopicDetails.aspx?topicID=<%#Eval("TopicID") %>"
-                                                            id="thread_title_1907333"><%#Eval("Title") %></a><span class="age one"><%#CountDaysOldOfTopicByTopicID(Convert.ToInt32(Eval("TopicID")))%></span>
+                                                            id="thread_title_1907333"><%#Eval("Title") %></a><span class="age"><%#CountDaysOldOfTopicByTopicID(Convert.ToInt32(Eval("TopicID")))%></span>
                                             </h3>
                                             <div class="threadmeta">
                                                 <p class="threaddesc">

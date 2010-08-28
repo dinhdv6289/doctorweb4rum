@@ -91,7 +91,21 @@ public partial class GUI_ShowTopics : System.Web.UI.Page
 
     public String CountDaysOldOfTopicByTopicID(int topicID)
     {
-        return TopicBLL.CountDaysOldOfTopicByTopicID(topicID).ToString();
+        String result = "";
+        int dayOld = TopicBLL.CountDaysOldOfTopicByTopicID(topicID);
+        switch (dayOld)
+        {
+            case 0:
+                result = "Today";
+                break;
+            case 1:
+                result = "Yesterday";
+                break;
+            default:
+                result = dayOld.ToString() + " days old";
+                break;
+        }
+        return result;
     }
 
 }

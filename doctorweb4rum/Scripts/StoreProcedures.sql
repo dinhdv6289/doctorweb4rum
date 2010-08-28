@@ -331,3 +331,34 @@ GO
 
 EXEC TopicDetailsByTopicID 1
 GO
+
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'SearchTopic' AND TYPE = 'P')
+DROP PROC SearchTopic
+GO
+CREATE PROCEDURE SearchTopic
+@KeySearch			NVARCHAR(500),
+@CategoryID			INT,	
+@SubForumID			INT,
+@UserName			NVARCHAR(50),
+@FromDateCreate		DATETIME,
+@ToDateCreate		DATETIME
+AS
+BEGIN
+SET @UserName = '%' + @UserName + '%';
+SET @KeySearch = '%' + @KeySearch + '%';
+SELECT    Topics.*
+FROM         Categories INNER JOIN
+                      SubForums ON Categories.CategoryID = SubForums.CategoryID INNER JOIN
+                      Topics ON SubForums.SubForumID = Topics.SubForumID INNER JOIN
+                      Members ON Topics.MemberID = Members.MemberID
+		AND (@CategoryID = 0 OR Categories.CategoryID = @CategoryID)
+		AND (@SubForumID = 0 OR SubForums.SubForumID = @SubForumID)
+		AND (@UserName IS NULL  OR Members.UserName LIKE @UserName)
+		AND (@FromDateCreate IS NULL OR Topics.DateCreate >= @FromDateCreate)
+		AND (@ToDateCreate IS NULL OR Topics.DateCreate <= @ToDateCreate)
+		AND (@KeySearch IS NULL OR Topics.Title LIKE @KeySearch OR Topics.Content LIKE @KeySearch)
+END
+
+EXEC SearchTopic '', 0, 0, '', null, null
+
+select * from topics

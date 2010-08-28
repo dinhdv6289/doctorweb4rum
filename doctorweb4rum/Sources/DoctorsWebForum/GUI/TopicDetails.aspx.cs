@@ -14,16 +14,16 @@ using BLL;
 
 public partial class GUI_TopicDetails : System.Web.UI.Page
 {
-    private int ID = 0;
+    protected int topicID = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         string TopicID = Request["topicID"];
         if (!string.IsNullOrEmpty(TopicID))
         {
-            ID = Convert.ToInt32(TopicID);
+            topicID = Convert.ToInt32(TopicID);
             if (!IsPostBack)
             {
-                Topic tp = TopicBLL.GetTopicByTopicID(ID);
+                Topic tp = TopicBLL.GetTopicByTopicID(topicID);
                 SubForum sf = SubForumBLL.GetSubForumBySubForumID(tp.SubForumID);
                 List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
                 nodes.Add(new KeyValuePair<string, Uri>(sf.SubForumName, new Uri(Request.Url, string.Format("ShowTopics.aspx?subForumID={0}", sf.SubForumID))));
