@@ -1219,12 +1219,7 @@ font-size:11px;
 .threadbit .age:before {
 content:" - ";
 }
-.threadbit .age:after {
-content:" days old";
-}
-.threadbit .age.one:after {
-content:" day old";
-}
+
 .threadbit .price {
 float:right;
 font-size:11px;

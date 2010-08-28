@@ -2,6 +2,11 @@
     CodeFile="Register.aspx.cs" Inherits="GUI_Register" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<script type="text/javascript">
+    $(function() {
+		$("#<%= txtBirthDay.ClientID %>").datepicker();
+	});
+</script>
     <div>
         <br />
         <hr />

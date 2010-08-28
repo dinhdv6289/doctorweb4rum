@@ -60,7 +60,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 }
                 else
                 {
-                    Response.Redirect("Login.aspx");
+                    //Response.Redirect("Login.aspx");
                 }
             }
             else
@@ -74,4 +74,16 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
 
     }
+    protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        string userName = txtUserName.Text;
+        string password = txtPassword.Text;
+        Member member = MemberBLL.GetMemberByUserNamePassword(userName, password);
+        if (member == null)
+        {
+            args.IsValid = false;
+        }
+    }
+
 }
+
