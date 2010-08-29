@@ -21,6 +21,7 @@ public partial class GUI_Register : System.Web.UI.Page
             List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
             nodes.Add(new KeyValuePair<string, Uri>("Register", Request.Url));
             ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
+            this.Page.Title = "Register at Doctors WebForum";
         }
 
     }

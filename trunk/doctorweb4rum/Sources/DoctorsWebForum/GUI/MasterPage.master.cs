@@ -14,7 +14,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
     }
 
     protected void btnLogin_Click(object sender, EventArgs e)
@@ -85,5 +85,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
         }
     }
 
+    protected void btnSearch_Click(object sender, ImageClickEventArgs e)
+    {
+        Response.Redirect("Search.aspx?searchString="+txtSearch.Text);
+    }
 }
 

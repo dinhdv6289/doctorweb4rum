@@ -8,49 +8,53 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
-using System.Collections.Generic;
-using TuyenPV;
 using BLL;
-public partial class GUI_ShowTopics : System.Web.UI.Page
+using TuyenPV;
+using System.Collections.Specialized;
+using System.Collections.Generic;
+public partial class GUI_SearchResults : System.Web.UI.Page
 {
-    private int subID = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
-        String subForumID = Request.QueryString["subForumID"];
-        if (subForumID != null)
+        if (!Page.IsPostBack)
         {
-            if (!IsPostBack)
+            if (Session["keysSearch"] != null)
             {
-                subID = Convert.ToInt32(subForumID);
-                LoadData(subID);
-                SubForum sf = SubForumBLL.GetSubForumBySubForumID(subID);
+                NameValueCollection nameValuesCollection = (NameValueCollection)Session["keysSearch"];
+                string keySearchString = (string)nameValuesCollection["keySearchString"];
+                string categories = (string)nameValuesCollection["Categories"];
+                string subForums = (string)nameValuesCollection["SubForums"];
+                string txtKeyUserName = (string)nameValuesCollection["txtKeyUserName"];
+                string txtFromDateCreate = (string)nameValuesCollection["txtFromDateCreate"];
+                string txtToDateCreate = (string)nameValuesCollection["txtToDateCreate"];
+
+                Topic[] topics = TopicBLL.SearchTopic(keySearchString, categories, subForums, txtKeyUserName, txtFromDateCreate, txtToDateCreate);
+                if (topics != null)
+                {
+                    repeaterTopics.DataSource = topics;
+                    repeaterTopics.DataBind();
+                }
+                else
+                {
+                    Response.Redirect("Search.aspx");
+                }
                 
-                List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
-                nodes.Add(new KeyValuePair<string, Uri>(sf.SubForumName, Request.Url));
-                ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
-                this.Page.Title = sf.SubForumName;
             }
+            else
+            {
+                Response.Redirect("Search.aspx");
+            }
+
         }
-        else
-        {
-            Response.Redirect("Index.aspx");
-        }
-    }
-
-    private void LoadData(int subForumID)
-    {
-        repeaterTopics.DataSource = TopicBLL.GetAllTopicBySubForumID(subForumID);
-        repeaterTopics.DataBind();
-
-    }
-
-    public SubForum GetSubForumBySubForumID()
-    {
-        return SubForumBLL.GetSubForumBySubForumID(subID);
+        List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
+        nodes.Add(new KeyValuePair<string, Uri>("Search Results", Request.Url));
+        ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
+        this.Page.Title = "Search Results";
     }
 
     public Member GetMemberOfTopicByTopicID(int topicID)
     {
+
         return MemberBLL.GetMemberOfTopicByTopicID(topicID);
     }
 
@@ -109,5 +113,4 @@ public partial class GUI_ShowTopics : System.Web.UI.Page
         }
         return result;
     }
-
 }

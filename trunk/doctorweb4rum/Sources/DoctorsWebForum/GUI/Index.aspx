@@ -83,10 +83,10 @@
                                             </div>
                                             <h4 class="nocss_label">
                                                 Forum Actions:</h4>
-                                            <ul class="forumactionlinks td">
+                                          <%--  <ul class="forumactionlinks td">
                                                 <li class="forumactionlink rsslink"><a title="View this forum's RSS feed" href="">View
                                                     this forum's RSS feed</a></li>
-                                            </ul>
+                                            </ul>--%>
                                             <h4 class="nocss_label">
                                                 Forum Statistics:</h4>
                                             <ul class="forumstats td">

@@ -29,20 +29,13 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
                 nodes.Add(new KeyValuePair<string, Uri>(sf.SubForumName, new Uri(Request.Url, string.Format("ShowTopics.aspx?subForumID={0}", sf.SubForumID))));
                 nodes.Add(new KeyValuePair<string, Uri>(tp.Title, Request.Url));
                 ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
-
-                //Post[] postsList = PostBLL.GetAllPostByTopicID(Convert.ToInt32(TopicID)); 
-                //if(postsList != null)
-                //{
-                //    repeaterPosts.DataSource = postsList;
-                //    repeaterPosts.DataBind();
-                //}
-
                 DataSet dataSetTopicDetails = TopicBLL.TopicDetailsByTopicID(Convert.ToInt32(TopicID));
                 if(dataSetTopicDetails != null)
                 {
                     repeaterPosts.DataSource = dataSetTopicDetails.Tables[0];
                     repeaterPosts.DataBind();
                 }
+                this.Page.Title = tp.Title;
             }
         }
     }
@@ -68,4 +61,24 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
         return mem;
     }
 
+
+    public MemberProfile GetMemberProfileByMemberID(int memberID)
+    {
+        MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(memberID);
+        if (memberProfile == null)
+        {
+            memberProfile = new MemberProfile();
+        }
+        return memberProfile;
+    }
+
+    //public Member GetMemberByMemberID(int memberID)
+    //{
+    //    Member mem = MemberBLL.GetMemberByMemberID(memberID);
+    //    if (mem == null)
+    //    {
+    //        mem = new Member();
+    //    }
+    //    return mem;
+    //}
 }
