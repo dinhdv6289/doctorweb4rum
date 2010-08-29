@@ -357,6 +357,7 @@ FROM         Categories INNER JOIN
 		AND (@FromDateCreate IS NULL OR Topics.DateCreate >= @FromDateCreate)
 		AND (@ToDateCreate IS NULL OR Topics.DateCreate <= @ToDateCreate)
 		AND (@KeySearch IS NULL OR Topics.Title LIKE @KeySearch OR Topics.Content LIKE @KeySearch)
+		ORDER BY Topics.DateCreate DESC
 END
 
 EXEC SearchTopic '', 0, 0, '', null, null

@@ -10,14 +10,7 @@
     <asp:Repeater ID="repeaterCategories" runat="server">
         <ItemTemplate>
             <ol id="forums" class="floatcontainer">
-                <li id="cat4" class="forumbit_nopost L1">
-                    <%--            <div class="forumhead foruminfo L1 collapse">
-                <h2>
-                    <span class="forumtitle"><a href="">Search Engines</a></span> <span class="forumlastpost">
-                        Last Post</span> <a href="#top" id="collapse_c_cat4" class="collapse" >
-                            <img title="Collapse this Category" alt="" src="http://b.dpstatic.com/buttons/collapse_40b.png"></a>
-                </h2>
-            </div>--%>
+                <li class="forumbit_nopost L1">
                     <div class="module">
                         <div class="header">
                             <h2>
@@ -32,8 +25,7 @@
                                     <li class="forumbit_post L2" id="forum5">
                                         <div class="forumrow table">
                                             <div class="foruminfo td">
-                                                <img alt="" id="forum_statusicon_5" class="forumicon" src='<%#GetImageStatus(Convert.ToInt32(DataBinder.Eval(Container.DataItem, "SubForumID"))) %>'
-                                                    title="Double-click this icon to mark this forum and its contents as read" style="cursor: pointer;">
+                                                <img alt="" id="forum_statusicon_5" class="forumicon" src='<%#GetImageStatus(Convert.ToInt32(DataBinder.Eval(Container.DataItem, "SubForumID"))) %>' style="cursor: pointer;">
                                                 <div class="forumdata">
                                                     <div class="datacontainer">
                                                         <div class="titleline">
@@ -42,7 +34,6 @@
                                                                     <%# Eval("SubForumName")%>
                                                                 </a>
                                                             </h2>
-                                                            <span class="viewing">(<%= Application["ActiveUsers"].ToString()%> Viewing)</span>
                                                         </div>
                                                         <p class="forumdescription">
                                                             <%#Eval("Description")%>

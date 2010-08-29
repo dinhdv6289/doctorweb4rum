@@ -185,7 +185,8 @@ function OnKeyPress(args)
                                 name="submit" src="Images/search.png" class="searchbutton" /></span></span>
                     </form>
     <ul class="navbar_advanced_search">
-        <li><a accesskey="4" href="">Advanced Search</a></li>
+        <li>
+            <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="Search.aspx">Advance Search</asp:LinkButton></li>
     </ul>
     </div> </div> </div>
     <div class="body_wrapper">
@@ -222,7 +223,7 @@ function OnKeyPress(args)
                                 <%= Application["ActiveUsers"].ToString()%>
                                 users online</a>. <span class="shade">
                                     <%= Application["UsersOnline"].ToString()%>
-                                    members and 1,414 guests (<a href="#">view map</a>)</span></p>
+                                    members and 1,414 guests</span></p>
                         <p>
                             Most users ever online was 22,414, Sep 15th 2009 at <span class="time">1:54 am</span>.</p>
                         <ol class="commalist" id="wgo_onlineusers_list">
@@ -284,7 +285,7 @@ function OnKeyPress(args)
     <!-- closing div for body_wrapper -->
     <div class="below_body">
         <div id="footer_time" class="shade footer_time">
-            All times are GMT -8. The time now is <span class="time">6:01 pm</span>.</div>
+            All times are GMT +7. The time now is <span class="time">6:01 pm</span>.</div>
         <div id="footer_copyright" class="shade footer_copyright">
             Get the <a href="#" target="_blank">5 anh em siêu nhân</a>
         </div>

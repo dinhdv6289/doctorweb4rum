@@ -326,6 +326,7 @@ clear:both;
 display:block;
 float:left;
 margin-top:5px;
+margin-bottom:5px;
 width:100%;
 }
 .threadlist hr {
@@ -760,8 +761,8 @@ background:none repeat scroll 0 0 transparent;
 border-top:0 none;
 }
 .threadlisthead {
--moz-border-radius-topleft:0;
--moz-border-radius-topright:0;
+-moz-border-radius-topleft:5px;
+-moz-border-radius-topright:5px;
 -moz-box-shadow:-2px 2px 2px transparent;
 background:url("http://i.dpstatic.com/gradients/gradient-white-down.png") repeat-x scroll 0 0 #527A67;
 border:1px solid #355B4C;
