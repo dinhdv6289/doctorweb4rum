@@ -16,6 +16,20 @@ namespace BLL
             // TODO: Add constructor logic here
             //
         }
+        public static Topic[] SearchTopic(String KeySearch, String CategoryID, String SubForumID, String UserName, String FromDateCreate, String ToDateCreate)
+        {
+            Topic[] result = null;
+            try
+            {
+                result = DataHelper.GetTopicDA().SearchTopic(KeySearch, CategoryID, SubForumID, UserName, FromDateCreate, ToDateCreate);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
         public static Topic[] GetAllTopicBySubForumID(int subForumID)
         {
             Topic[] result = null;
