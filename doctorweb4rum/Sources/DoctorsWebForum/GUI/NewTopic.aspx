@@ -1,6 +1,8 @@
 <%@ Page Language="C#" MasterPageFile="~/GUI/MasterPage.master" AutoEventWireup="true"
     CodeFile="NewTopic.aspx.cs" Inherits="GUI_NewTopic" Title="Untitled Page" %>
 
+<%@ Register Assembly="obout_Editor" Namespace="OboutInc.Editor" TagPrefix="obout" %>
+
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -34,10 +36,12 @@
                 <div class="blockrow texteditor" id="vB_Editor_001">
 
                     <!-- / Editor Scripts -->
-                    <telerik:RadEditor ID="radEditor" runat="server" Skin="Telerik" >
+<%--                    <telerik:RadEditor ID="radEditor" runat="server" Skin="Telerik" >
                         <Content>
                         </Content>
-                    </telerik:RadEditor>
+                    </telerik:RadEditor>--%>
+                    <obout:Editor ID="Editor1" runat="server" PreviewMode="true" FixedToolbar="false" >
+                    </obout:Editor>
                 </div>
                 
                 

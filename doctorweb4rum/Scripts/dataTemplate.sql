@@ -194,6 +194,14 @@ values(
 1,1,'Blast Content','avarta.gif','Viet Nam','Ha noi','08/18/1987','true','yahoo.com',
 '0987123123','Viet Nam Cuba','blog.com',2,2,5,2,1,'102.12.434.23',getdate(),'','learn','not about'
 )
+
+insert into dbo.MemberProfiles(MemberID,RoleID,Blast,Avatar,Country,Address,BirthDay,Gender,Yahoo,
+Phone,Hospital,Blog,TotalPosts,TotalThanks,TotalThanked,CurrentExperience,MemberLevel,IPAddress,
+LastLogin,MyRss,Signature,AboutMe) 
+values(
+2,1,'Blast Content','avarta.gif','Viet Nam','Ha noi','08/18/1987','true','yahoo.com',
+'0987123123','Viet Nam Cuba','blog.com',2,2,5,2,1,'102.12.434.23',getdate(),'','learn','not about'
+)
 select * from roles
 select * from members
 select * from MemberProfiles

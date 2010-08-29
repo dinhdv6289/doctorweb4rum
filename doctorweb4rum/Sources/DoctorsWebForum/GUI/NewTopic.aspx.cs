@@ -28,6 +28,7 @@ public partial class GUI_NewTopic : System.Web.UI.Page
                 List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
                 nodes.Add(new KeyValuePair<string, Uri>(sf.SubForumName, Request.Url));
                 ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
+                this.Page.Title = sf.SubForumName + "  - New Topic";
             }
         }
         else
@@ -43,7 +44,7 @@ public partial class GUI_NewTopic : System.Web.UI.Page
     protected void btnSubmitNewTopic_Click(object sender, EventArgs e)
     {
         string title = txtTitle.Text;
-        string contents = radEditor.Text;
+        string contents = Editor1.Content;
         if (title != null || title.Length > 0 || contents.Length > 0 || contents != null)
         {
             Topic newTopic = new Topic();

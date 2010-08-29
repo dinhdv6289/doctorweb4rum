@@ -15,16 +15,17 @@ namespace BLL
             // TODO: Add constructor logic here
             //
         }
-        public static SubForum[] GetlAllSubForumsByCategoryID(int CategoryID)
+        public static SubForum[] GetAllSubForumsByCategoryID(int CategoryID)
         {
             SubForum[] result = null;
             try
             {
-                result = DataHelper.GetSubForumDA().GetlAllSubForumsByCategoryID(CategoryID);
+                result = DataHelper.GetSubForumDA().GetAllSubForumsByCategoryID(CategoryID);
             }
             catch (Exception ex)
             {
                 throw ex;
+
             }
             return result;
         }

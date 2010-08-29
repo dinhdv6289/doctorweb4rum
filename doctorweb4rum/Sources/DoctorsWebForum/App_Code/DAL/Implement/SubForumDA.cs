@@ -30,7 +30,7 @@ namespace DAL
         private String[] columnNames = { SubForumID, CategoryID, SubForumName, Description, Priority, TotalTopics, TotalMessages };
 
 
-        public SubForum[] GetlAllSubForumsByCategoryID(int CategoryID)
+        public SubForum[] GetAllSubForumsByCategoryID(int CategoryID)
         {
             SubForum[] result;
             try
@@ -39,6 +39,7 @@ namespace DAL
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = String.Format("Select * from {0} where CategoryID = {1}", tableName, CategoryID);
                 result = SelectCollection<SubForum>(columnNames, columnNames, cmd);
+
             }
             catch (Exception ex)
             {

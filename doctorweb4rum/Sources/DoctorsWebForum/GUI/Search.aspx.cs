@@ -9,13 +9,18 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using BLL;
+using TuyenPV;
+using System.Collections.Specialized;
+using System.Collections.Generic;
 
 public partial class GUI_Search : System.Web.UI.Page
 {
+    private string searchString = "";
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
+            lblErrors.Text = "";
             Category[] categories = CategoryBLL.GetAllCategory();
             DropDownList1.Items.Add(new ListItem("--Select Category--", "0"));
             foreach (Category c in categories)
@@ -24,7 +29,29 @@ public partial class GUI_Search : System.Web.UI.Page
             }
             DropDownList2.Items.Add(new ListItem("--Select SubForum--", "0"));
             DropDownList2.Enabled = false;
+            try
+            {
+                searchString = Request.QueryString["searchString"];
+                if (searchString == null || searchString == "")
+                {
+                    lblErrors.Text = "Please add more constraints to your search. Searches that return all or most of the database are a bad idea.";
+
+                }
+                else
+                {
+                    InitialValuesToSearch();
+                }
+            }
+            catch (Exception ex)
+            {
+                lblErrors.Text = "Please add more constraints to your search. Searches that return all or most of the database are a bad idea.";
+            }
+
         }
+        List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
+        nodes.Add(new KeyValuePair<string, Uri>("Search", Request.Url));
+        ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
+        this.Page.Title = "Search";
     }
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -38,7 +65,7 @@ public partial class GUI_Search : System.Web.UI.Page
         {
             DropDownList2.Items.Clear();
             DropDownList2.Items.Add(new ListItem("--Select SubForum--", "0"));
-            SubForum[] subForums = SubForumBLL.GetlAllSubForumsByCategoryID(Convert.ToInt32(DropDownList1.SelectedValue));
+            SubForum[] subForums = SubForumBLL.GetAllSubForumsByCategoryID(Convert.ToInt32(DropDownList1.SelectedValue));
             foreach (SubForum s in subForums)
             {
                 DropDownList2.Items.Add(new ListItem(s.SubForumName, s.SubForumID.ToString()));
@@ -48,10 +75,45 @@ public partial class GUI_Search : System.Web.UI.Page
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
-        repeaterTopics.DataSource = TopicBLL.SearchTopic(txtKeySearch.Text, DropDownList1.SelectedValue,
-            DropDownList2.SelectedValue, txtKeyUserName.Text, txtFromDateCreate.Text, txtToDateCreate.Text);
-        repeaterTopics.DataBind();
+        if (txtKeySearch.Text == "" || txtKeySearch.Text == null)
+        {
+            lblErrors.Text = "Please add more constraints to your search. Searches that return all or most of the database are a bad idea.";
+        }
+        else
+        {
+            
+            InitialValuesToSearch2();
+        }
+    }
 
+    private void InitialValuesToSearch()
+    {
+        Session.RemoveAll();
+        lblErrors.Text = "";
+        NameValueCollection myCol = new NameValueCollection();
+        myCol.Add("keySearchString", searchString);
+        myCol.Add("Categories", DropDownList1.SelectedValue);
+        myCol.Add("SubForums", DropDownList2.SelectedValue);
+        myCol.Add("txtKeyUserName", txtKeyUserName.Text);
+        myCol.Add("txtFromDateCreate", txtFromDateCreate.Text);
+        myCol.Add("txtToDateCreate", txtToDateCreate.Text);
+        Session.Add("keysSearch", myCol);
+        Response.Redirect("SearchResults.aspx");
+    }
+
+    private void InitialValuesToSearch2()
+    {
+        Session.RemoveAll();
+        lblErrors.Text = "";
+        NameValueCollection myCol = new NameValueCollection();
+        myCol.Add("keySearchString", txtKeySearch.Text);
+        myCol.Add("Categories", DropDownList1.SelectedValue);
+        myCol.Add("SubForums", DropDownList2.SelectedValue);
+        myCol.Add("txtKeyUserName", txtKeyUserName.Text);
+        myCol.Add("txtFromDateCreate", txtFromDateCreate.Text);
+        myCol.Add("txtToDateCreate", txtToDateCreate.Text);
+        Session.Add("keysSearch", myCol);
+        Response.Redirect("SearchResults.aspx");
     }
 
     public Member GetMemberOfTopicByTopicID(int topicID)

@@ -17,11 +17,12 @@ public partial class GUI_Index : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            loadData();
+            LoadData();
+            this.Title = "Doctors WebForum";
         }
     }
 
-    private void loadData()
+    private void LoadData()
     {
         repeaterCategories.DataSource = CategoryBLL.GetAllCategory();
         repeaterCategories.DataBind();
@@ -29,7 +30,7 @@ public partial class GUI_Index : System.Web.UI.Page
 
     public SubForum[] GetAllSubForumsByCategoryID(int CategoryID)
     {
-        return SubForumBLL.GetlAllSubForumsByCategoryID(CategoryID);
+        return SubForumBLL.GetAllSubForumsByCategoryID(CategoryID);
     }
 
     public String GetImageStatus(int SubForumID)
