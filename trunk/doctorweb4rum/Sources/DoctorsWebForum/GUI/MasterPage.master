@@ -145,10 +145,7 @@ $(document).ready(function() {
             <!-- main -->
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
-            <div class="navlinks">
-                <a rel="nofollow" href="#">Mark Forums Read</a> | <a rel="nofollow" href="showgroups.php">
-                    Admins &amp; Moderators </a>
-            </div>
+
             <!-- what's going on box -->
             <div id="wgo" class="collapse wgo_block">
                 <h2>

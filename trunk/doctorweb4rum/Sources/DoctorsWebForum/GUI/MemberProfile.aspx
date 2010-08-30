@@ -371,7 +371,7 @@ vBulletin.register_control("vB_ProfilefieldEditor", "4");
                                         </tr>
                                     </table>
                                 </td>
-                                <td class="blockbody" align="center" valign="top" align="left" style="padding: 5px;">
+                                <td class="blockbody" align="center" valign="top" style="padding: 5px;">
                                     <table border="0" width="100%" align="center">
                                         <tr>
                                             <td>
