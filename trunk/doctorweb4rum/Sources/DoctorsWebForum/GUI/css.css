@@ -4923,4 +4923,30 @@ right:20px;
 		height:16px;
 	}
 	
-	
+.ratingStar
+{
+	float:right;
+	padding-right:10px;
+	text-align:right;
+	border:0 solid #A8A8A8;
+}
+.ratingStar .ratingItem {
+    font-size: 0pt;
+    width: 13px;
+    height: 12px;
+    margin: 0px;
+    padding: 0px;
+    display: block;
+    background-repeat: no-repeat;
+	cursor:pointer;
+}
+.ratingStar .Filled {
+    background-image: url(Images/rating/ratingStarFilled.png);
+}
+.ratingStar .Empty {
+    background-image: url(Images/rating/ratingStarEmpty.png);
+}
+.ratingStar .Saved {
+    background-image: url(Images/rating/ratingStarSaved.png);
+}
+

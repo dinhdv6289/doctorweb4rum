@@ -15,14 +15,17 @@ using BLL;
 public partial class GUI_TopicDetails : System.Web.UI.Page
 {
     protected int topicID = 0;
+    //protected Member memberLogin = null;
     protected void Page_Load(object sender, EventArgs e)
     {
         string TopicID = Request["topicID"];
         if (!string.IsNullOrEmpty(TopicID))
         {
+            
             topicID = Convert.ToInt32(TopicID);
             if (!IsPostBack)
             {
+                //memberLogin = (Member)Session["UserLogin"];
                 Topic tp = TopicBLL.GetTopicByTopicID(topicID);
                 SubForum sf = SubForumBLL.GetSubForumBySubForumID(tp.SubForumID);
                 List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
@@ -36,6 +39,8 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
                     repeaterPosts.DataBind();
                 }
                 this.Page.Title = tp.Title;
+                int[] result = TopicBLL.GetRatingPoint(topicID);
+                topicRating.CurrentRating = result[1];
             }
         }
     }
@@ -81,4 +86,19 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
     //    }
     //    return mem;
     //}
+    protected void topicRating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
+    {
+        //if (memberLogin != null)
+        //{
+            //int rate = topicRating.CurrentRating;
+            //RatingTopic rt = new RatingTopic();
+            //rt.RateDate = DateTime.Now;
+            //rt.RatePoint = rate;
+            //rt.FromMember = memberLogin.MemberID;
+            //rt.TopicID = topicID;
+            //TopicBLL.InsertRatingTopic(rt);
+            //topicRating.CurrentRating = TopicBLL.GetRatingPoint(topicID)[0];
+        //}       
+    }
+
 }

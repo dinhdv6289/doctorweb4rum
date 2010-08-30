@@ -35,6 +35,7 @@ namespace DAL
         private const String RateDate = "RateDate";
 
         private String[] columnNamesRating = { RateTopicID, FromMember, TopicID, RatePoint, RateDate };
+        private String[] columnNamesRatingForInsert = { FromMember, TopicID, RatePoint, RateDate };
         private String[] columnNames = { TopicID, SubForumID, MemberID, Title, Content, IsLocked, TotalViews, TotalMessages, DateCreate, MoveTo };
         private String[] columnNamesForInsert = { SubForumID, MemberID, Title, Content, IsLocked, TotalViews, TotalMessages, MoveTo };
 
@@ -47,7 +48,7 @@ namespace DAL
                 FromDateCreate = "null";
             }
             else
-            { 
+            {
                 FromDateCreate = "'" + FromDateCreate + "'";
             }
             if (ToDateCreate.Length == 0 || ToDateCreate.Equals(""))
@@ -271,6 +272,44 @@ namespace DAL
                 return null;
             }
 
+        }
+
+        public int[] GetRatingPoint(int topicID)
+        {
+            DataSet ds = null;
+            int[] result = { 0, 0 };
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("select count(*) as TotalRate, avg(RatePoint) as RatingPoint from RatingTopic where {0} = {1} group by TopicID", TopicID, topicID);
+                ds = ExecuteDataset(cmd);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    result[0] = (int)ds.Tables[0].Rows[0]["TotalRate"];
+                    result[1] = (int)ds.Tables[0].Rows[0]["RatingPoint"];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public int InsertRateTopic(RatingTopic rateTopic)
+        {
+            int result = 0;
+            try
+            {
+                object[] values = { rateTopic.FromMember, rateTopic.TopicID, rateTopic.RatePoint, rateTopic.RateDate };
+                result = InsertTable(tableNameRating, columnNamesRatingForInsert, values);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
         }
     }
 }

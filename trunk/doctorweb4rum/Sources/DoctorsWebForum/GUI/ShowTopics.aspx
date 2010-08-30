@@ -33,7 +33,7 @@
                 <ItemTemplate>
                     <ol id="threads" class="threads">
                         <li class="threadbit new" id="thread_1907333">
-                            <div class="rating2 nonsticky">
+                            <div class="<%#GetRating(Convert.ToInt32(Eval("TopicID"))) %> nonsticky">
                                 <div class="threadinfo" title="">
                                     <!--  status icon block -->
                                     <a class="threadstatus" rel="vB::AJAX"></a>

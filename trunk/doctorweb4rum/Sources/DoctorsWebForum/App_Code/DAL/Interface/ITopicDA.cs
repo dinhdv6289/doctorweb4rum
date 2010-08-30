@@ -21,5 +21,7 @@ namespace DAL
         int InsertTopic(Topic topic, out int resultStatus);
         DataSet TopicDetailsByTopicID(int topicID);
         Topic[] SearchTopic(String KeySearch, String CategoryID, String SubForumID, String UserName, String FromDateCreate, String ToDateCreate);
+        int[] GetRatingPoint(int topicID);
+        int InsertRateTopic(RatingTopic rateTopic);
     }
 }

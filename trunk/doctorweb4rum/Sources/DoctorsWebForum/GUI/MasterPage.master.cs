@@ -19,11 +19,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void btnLogin_Click(object sender, EventArgs e)
     {
-        if (!Page.IsValid)
-        {
-            ModalPopupExtenderLogin.Enabled = true;
-            ModalPopupExtenderLogin.Show();
-        }
         if (Page.IsValid)
         {
             string userName = txtUserName.Text;

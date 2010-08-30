@@ -86,7 +86,6 @@
                         <div class="content">
                             <div id="post_message_14688639">
                                 <blockquote class="postcontent restore">
-                                    <quote>dsadas dsa das das </quote>
                                     <%= GetTopic().Content%>                                   
                                </blockquote>
                             </div>
@@ -95,22 +94,20 @@
                 </div>
                 <div class="postfoot">
                     <div class="textcontrols floatcontainer">
-                        <span class="postcontrols">
-                            <img style="display: none" id="Img2" src="http://m.dpstatic.com/misc/progress.gif"
-                                alt="" />
-                            <a id="qr_14688798" class='quickreply'  href="NewReply.aspx?topicID=<%= Request.QueryString["topicID"] %>"
-                                rel="nofollow">
-                                <img id="replyimg_14688798" src="clear.gif" alt="" />
-                                Reply</a> <span class="seperator">&nbsp;</span> <a rel="nofollow" href="NewReply.aspx?topicID=<%= Request.QueryString["topicID"] %>&withQuote=1"
-                                    class="newreply" id="qrwq_14688639">Reply With Quote</a><span class="seperator">&nbsp;</span>
-                            <span class="postlinking"></span> </span><span class="postlinking">
+                                
+<SPAN class="postcontrols"><IMG style="DISPLAY: none" id="Img2" alt="" src="http://m.dpstatic.com/misc/progress.gif" /> <A id="qr_14688798" class="quickreply" href='NewReply.aspx?topicID=<%= Request.QueryString["topicID"] %>' rel="nofollow"><IMG id="replyimg_14688798" alt="" src="clear.gif" /> Reply</A> <SPAN class="seperator">&nbsp;</SPAN> <A id="qrwq_14688639" class="newreply" href='NewReply.aspx?topicID=<%= Request.QueryString["topicID"] %>&withQuote=1' rel="nofollow">Reply With Quote</A><SPAN class="seperator">&nbsp;</SPAN>
+ <ajaxToolkit:Rating id="topicRating" runat="Server" CssClass="ratingStar" EmptyStarCssClass="Empty" FilledStarCssClass="Filled" WaitingStarCssClass="Saved" StarCssClass="ratingItem"  AutoPostBack="True" OnChanged="topicRating_Changed"></ajaxToolkit:Rating> </SPAN>
+
+                            <span class="postlinking">
                                     <span title="14688639" class="reputationpopupmenu popupmenu popupcustom" id="yui-gen71">
                                         <a id="reputation_14688639" rel="nofollow" title="Add to this user's reputation"
                                             href="reputation.php?do=addreputation&amp;p=14688639" class="popupctrl reputation">
                                            
                                             &nbsp;</a></span> &nbsp;<a title="Report Post" rel="nofollow" href="#"
                                                 class="report">&nbsp;</a>
-                                    &nbsp; </span>
+                                    &nbsp; 
+                                    
+                                    </span>
                     </div>
                 </div>
                 <hr/>
