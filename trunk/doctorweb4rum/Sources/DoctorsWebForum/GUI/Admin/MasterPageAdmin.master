@@ -168,42 +168,6 @@ $(document).ready(function() {
             </div>
             <!-- stats_mini -->
             <div id="view-stats_mini" class="block">
-                <div class="mini_stats">
-                    <div class="userinfo blockbody">
-                        <h5 class="blocksubhead smaller">
-                            Mini Statistics</h5>
-                        <div class="blockrow">
-                            <dl class="stats">
-                                <dt>Join Date</dt>
-                                <dd>
-                                    Aug 8th 2010</dd>
-                            </dl>
-                            <dl class="stats">
-                                <dt>Current Activity</dt>
-                                <dd>
-                                    Viewing User Profile
-                                </dd>
-                            </dl>
-                            <dl class="stats">
-                                <dt>Last Activity</dt>
-                                <dd>
-                                    Today <span class="time">12:44 pm</span></dd>
-                            </dl>
-                            <dl class="stats">
-                                <dt>Blog Entries</dt>
-                                <dd>
-                                    0</dd>
-                            </dl>
-                        </div>
-                    </div>
-                    <!-- blockbody -->
-                </div>
-                <!-- widget block mini_stats -->
-            </div>
-            <div class="underblock">
-            </div>
-            <!-- / stats_mini -->
-            <div class="friends_mini friends block">
                 <h5 class="blocksubhead smaller">
                     <a class="textcontrol imagecontrol" href="profile.php?do=buddylist">
                         <img src="http://b.dpstatic.com/buttons/edit_40b.png" alt="Edit" /></a> <span class="friends_total">
@@ -211,63 +175,189 @@ $(document).ready(function() {
                 </h5>
                 <div class="blockbody">
                     <div class="blockrow">
-                        <!--<ul class="friendcontrol">
-</ul>-->
-                        <div>
-                            Your friends list is empty
-                        </div>
+                        <ul id="Ul1" class="usermenu">
+                        <li><a href="private.php?do=newpm&amp;u=451746">
+                            <img src="http://i.dpstatic.com/site_icons/message.png" alt="Send Private Message"
+                                class="inlineimg" />
+                            Send Private Message</a></li>
+                        <li><a href="sendmessage.php?do=mailmember&amp;u=451746">
+                            <img src="http://i.dpstatic.com/site_icons/email.png" alt="Email" class="inlineimg" />
+                            Send Email</a> </li>
+                        <li class="separator"></li>
+                        <li><a href="search.php?do=finduser&amp;userid=451746&amp;contenttype=vBForum_Post&amp;showposts=1">
+                            <img src="http://i.dpstatic.com/site_icons/forum.png" alt="Find all posts" class="inlineimg" />
+                            Find all posts</a></li>
+                        <li><a href="search.php?do=finduser&amp;userid=451746&amp;starteronly=1&amp;contenttype=vBForum_Thread">
+                            <img src="http://i.dpstatic.com/site_icons/forum.png" alt="Find all started threads"
+                                class="inlineimg" />
+                            Find all started threads</a></li>
+                        <li><a href="http://articles.digitalpoint.com/list.php?r=author/451746-letcomvn"
+                            rel='nofollow'>
+                            <img src="http://i.dpstatic.com/site_icons/article.png" class="inlineimg" alt="" />
+                            View Articles</a></li>
+                        <li><a href="http://blogs.digitalpoint.com/?u=451746" rel='nofollow'>
+                            <img src="http://i.dpstatic.com/site_icons/blog.png" class="inlineimg" alt="" />
+                            View Blog Entries</a></li>
+                    </ul>
                     </div>
                 </div>
+                <!-- widget block mini_stats -->
             </div>
             <div class="underblock">
+            </div>
+            <!-- / stats_mini -->
+           <div id="Div1" class="block">
+                <h5 class="blocksubhead smaller">
+                    <a class="textcontrol imagecontrol" href="profile.php?do=buddylist">
+                        <img src="http://b.dpstatic.com/buttons/edit_40b.png" alt="Edit" /></a> <span class="friends_total">
+                            0</span> Friends
+                </h5>
+                <div class="blockbody">
+                    <div class="blockrow">
+                        <ul id="Ul2" class="usermenu">
+                        <li><a href="private.php?do=newpm&amp;u=451746">
+                            <img src="http://i.dpstatic.com/site_icons/message.png" alt="Send Private Message"
+                                class="inlineimg" />
+                            Send Private Message</a></li>
+                        <li><a href="sendmessage.php?do=mailmember&amp;u=451746">
+                            <img src="http://i.dpstatic.com/site_icons/email.png" alt="Email" class="inlineimg" />
+                            Send Email</a> </li>
+                        <li class="separator"></li>
+                        <li><a href="search.php?do=finduser&amp;userid=451746&amp;contenttype=vBForum_Post&amp;showposts=1">
+                            <img src="http://i.dpstatic.com/site_icons/forum.png" alt="Find all posts" class="inlineimg" />
+                            Find all posts</a></li>
+                        <li><a href="search.php?do=finduser&amp;userid=451746&amp;starteronly=1&amp;contenttype=vBForum_Thread">
+                            <img src="http://i.dpstatic.com/site_icons/forum.png" alt="Find all started threads"
+                                class="inlineimg" />
+                            Find all started threads</a></li>
+                        <li><a href="http://articles.digitalpoint.com/list.php?r=author/451746-letcomvn"
+                            rel='nofollow'>
+                            <img src="http://i.dpstatic.com/site_icons/article.png" class="inlineimg" alt="" />
+                            View Articles</a></li>
+                        <li><a href="http://blogs.digitalpoint.com/?u=451746" rel='nofollow'>
+                            <img src="http://i.dpstatic.com/site_icons/blog.png" class="inlineimg" alt="" />
+                            View Blog Entries</a></li>
+                    </ul>
+                    </div>
+                </div>
+                <!-- widget block mini_stats -->
             </div>
             <div class="underblock">
             </div>
             <!-- groups -->
-            <div id="view-groups" class="block">
-                <div class="groups">
-                    <h5 class="blocksubhead smaller">
-                        <a href="group.php" class="textcontrol">Join Groups</a> <span class="group_count">0</span>
-                        Groups
-                    </h5>
-                    <div class="allgroups blockbody">
-                        <div class="blockrow">
-                            You are not a member of any groups
-                        </div>
+            <div id="Div2" class="block">
+                <h5 class="blocksubhead smaller">
+                    <a class="textcontrol imagecontrol" href="profile.php?do=buddylist">
+                        <img src="http://b.dpstatic.com/buttons/edit_40b.png" alt="Edit" /></a> <span class="friends_total">
+                            0</span> Friends
+                </h5>
+                <div class="blockbody">
+                    <div class="blockrow">
+                        <ul id="Ul3" class="usermenu">
+                        <li><a href="private.php?do=newpm&amp;u=451746">
+                            <img src="http://i.dpstatic.com/site_icons/message.png" alt="Send Private Message"
+                                class="inlineimg" />
+                            Send Private Message</a></li>
+                        <li><a href="sendmessage.php?do=mailmember&amp;u=451746">
+                            <img src="http://i.dpstatic.com/site_icons/email.png" alt="Email" class="inlineimg" />
+                            Send Email</a> </li>
+                        <li class="separator"></li>
+                        <li><a href="search.php?do=finduser&amp;userid=451746&amp;contenttype=vBForum_Post&amp;showposts=1">
+                            <img src="http://i.dpstatic.com/site_icons/forum.png" alt="Find all posts" class="inlineimg" />
+                            Find all posts</a></li>
+                        <li><a href="search.php?do=finduser&amp;userid=451746&amp;starteronly=1&amp;contenttype=vBForum_Thread">
+                            <img src="http://i.dpstatic.com/site_icons/forum.png" alt="Find all started threads"
+                                class="inlineimg" />
+                            Find all started threads</a></li>
+                        <li><a href="http://articles.digitalpoint.com/list.php?r=author/451746-letcomvn"
+                            rel='nofollow'>
+                            <img src="http://i.dpstatic.com/site_icons/article.png" class="inlineimg" alt="" />
+                            View Articles</a></li>
+                        <li><a href="http://blogs.digitalpoint.com/?u=451746" rel='nofollow'>
+                            <img src="http://i.dpstatic.com/site_icons/blog.png" class="inlineimg" alt="" />
+                            View Blog Entries</a></li>
+                    </ul>
                     </div>
                 </div>
-                <!-- This is to emulate the block separator in template memberinfo_block -->
+                <!-- widget block mini_stats -->
             </div>
             <div class="underblock">
             </div>
-            <div class="block">
-                <!-- / Done block separator -->
-                <div class="groups">
-                    <h5 class="blocksubhead smaller">
-                        <a href="profile.php?do=editusergroups" class="textcontrol">Join Groups</a> <span
-                            class="group_count">0</span> Permission Groups
-                    </h5>
-                    <div class="allgroups blockbody">
-                        <div class="blockrow">
-                            You are not a member of any groups
-                        </div>
+           <div id="Div3" class="block">
+                <h5 class="blocksubhead smaller">
+                    <a class="textcontrol imagecontrol" href="profile.php?do=buddylist">
+                        <img src="http://b.dpstatic.com/buttons/edit_40b.png" alt="Edit" /></a> <span class="friends_total">
+                            0</span> Friends
+                </h5>
+                <div class="blockbody">
+                    <div class="blockrow">
+                        <ul id="Ul4" class="usermenu">
+                        <li><a href="private.php?do=newpm&amp;u=451746">
+                            <img src="http://i.dpstatic.com/site_icons/message.png" alt="Send Private Message"
+                                class="inlineimg" />
+                            Send Private Message</a></li>
+                        <li><a href="sendmessage.php?do=mailmember&amp;u=451746">
+                            <img src="http://i.dpstatic.com/site_icons/email.png" alt="Email" class="inlineimg" />
+                            Send Email</a> </li>
+                        <li class="separator"></li>
+                        <li><a href="search.php?do=finduser&amp;userid=451746&amp;contenttype=vBForum_Post&amp;showposts=1">
+                            <img src="http://i.dpstatic.com/site_icons/forum.png" alt="Find all posts" class="inlineimg" />
+                            Find all posts</a></li>
+                        <li><a href="search.php?do=finduser&amp;userid=451746&amp;starteronly=1&amp;contenttype=vBForum_Thread">
+                            <img src="http://i.dpstatic.com/site_icons/forum.png" alt="Find all started threads"
+                                class="inlineimg" />
+                            Find all started threads</a></li>
+                        <li><a href="http://articles.digitalpoint.com/list.php?r=author/451746-letcomvn"
+                            rel='nofollow'>
+                            <img src="http://i.dpstatic.com/site_icons/article.png" class="inlineimg" alt="" />
+                            View Articles</a></li>
+                        <li><a href="http://blogs.digitalpoint.com/?u=451746" rel='nofollow'>
+                            <img src="http://i.dpstatic.com/site_icons/blog.png" class="inlineimg" alt="" />
+                            View Blog Entries</a></li>
+                    </ul>
                     </div>
                 </div>
+                <!-- widget block mini_stats -->
             </div>
             <div class="underblock">
             </div>
             <!-- / groups -->
             <!-- visitors -->
-            <div id="view-visitors" class="block">
-                <div class="visitors">
-                    <h5 class="blocksubhead smaller">
-                        Recent Visitors</h5>
-                    <div class="blockbody">
-                        <div class="blockrow">
-                            <span class="totalvisits">This page has had <strong>0</strong> visits</span>
-                        </div>
+            <div id="Div4" class="block">
+                <h5 class="blocksubhead smaller">
+                    <a class="textcontrol imagecontrol" href="profile.php?do=buddylist">
+                        <img src="http://b.dpstatic.com/buttons/edit_40b.png" alt="Edit" /></a> <span class="friends_total">
+                            0</span> Friends
+                </h5>
+                <div class="blockbody">
+                    <div class="blockrow">
+                        <ul id="Ul5" class="usermenu">
+                        <li><a href="private.php?do=newpm&amp;u=451746">
+                            <img src="http://i.dpstatic.com/site_icons/message.png" alt="Send Private Message"
+                                class="inlineimg" />
+                            Send Private Message</a></li>
+                        <li><a href="sendmessage.php?do=mailmember&amp;u=451746">
+                            <img src="http://i.dpstatic.com/site_icons/email.png" alt="Email" class="inlineimg" />
+                            Send Email</a> </li>
+                        <li class="separator"></li>
+                        <li><a href="search.php?do=finduser&amp;userid=451746&amp;contenttype=vBForum_Post&amp;showposts=1">
+                            <img src="http://i.dpstatic.com/site_icons/forum.png" alt="Find all posts" class="inlineimg" />
+                            Find all posts</a></li>
+                        <li><a href="search.php?do=finduser&amp;userid=451746&amp;starteronly=1&amp;contenttype=vBForum_Thread">
+                            <img src="http://i.dpstatic.com/site_icons/forum.png" alt="Find all started threads"
+                                class="inlineimg" />
+                            Find all started threads</a></li>
+                        <li><a href="http://articles.digitalpoint.com/list.php?r=author/451746-letcomvn"
+                            rel='nofollow'>
+                            <img src="http://i.dpstatic.com/site_icons/article.png" class="inlineimg" alt="" />
+                            View Articles</a></li>
+                        <li><a href="http://blogs.digitalpoint.com/?u=451746" rel='nofollow'>
+                            <img src="http://i.dpstatic.com/site_icons/blog.png" class="inlineimg" alt="" />
+                            View Blog Entries</a></li>
+                    </ul>
                     </div>
                 </div>
+                <!-- widget block mini_stats -->
             </div>
             <div class="underblock">
             </div>
