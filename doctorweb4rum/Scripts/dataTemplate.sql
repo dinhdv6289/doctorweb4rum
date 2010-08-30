@@ -233,8 +233,14 @@ values(2,1,'Title test','Content Test','false',1,1,'12/12/2008',1)
 insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateCreate,MoveTo) 
 values(2,2,'Title memberID = 2','Content Test memberID = 2','false',1,1,'10/10/2008',1)
 
-
-
+insert into RatingTopic(FromMember,TopicID,RatePoint,RateDate)
+values(1,1,3,getdate())
+insert into RatingTopic(FromMember,TopicID,RatePoint,RateDate)
+values(2,1,5,getdate())
+insert into RatingTopic(FromMember,TopicID,RatePoint,RateDate)
+values(1,2,4,getdate())
+insert into RatingTopic(FromMember,TopicID,RatePoint,RateDate)
+values(2,2,1,getdate())
 
 insert into Posts(TopicID,MemberID,Title,[Content],DateCreation,DateEdited,Signature,IPAddress)
 values(1,1,'Test title','test content ',getdate(),getdate(),'true','1111332323')

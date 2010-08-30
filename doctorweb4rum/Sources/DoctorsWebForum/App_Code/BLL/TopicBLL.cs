@@ -156,5 +156,33 @@ namespace BLL
              }
              return dataSetTopicDetails;
          }
+
+        public static int[] GetRatingPoint(int topicID)
+        {
+            int[] result = { 0, 0 };
+            try
+            {
+                result = DataHelper.GetTopicDA().GetRatingPoint(topicID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public static int InsertRatingTopic(RatingTopic rating)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetTopicDA().InsertRateTopic(rating);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

@@ -110,4 +110,9 @@ public partial class GUI_ShowTopics : System.Web.UI.Page
         return result;
     }
 
+    public String GetRating(int topicID)
+    {
+        int[] result = TopicBLL.GetRatingPoint(topicID);
+        return "rating" + result[1].ToString();
+    }
 }
