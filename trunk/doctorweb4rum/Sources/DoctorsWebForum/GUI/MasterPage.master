@@ -37,12 +37,27 @@ $(document).ready(function() {
                     <a class="logo-image" href="" name="top">
                         <img src="Images/dps_logo.png" alt="" /></a></div>
                 <div class="toplinks" id="toplinks">
+                    <% if (Session["UserLogin"] != null)
+                       {
+                           Member mem = (Member)Session["UserLogin"];
+                    %>
+                    <ul class="isuser">
+                        <li>
+                            <asp:LinkButton ID="Logoutlnk" runat="server" OnClick="Logoutlnk_Click">Logout</asp:LinkButton></li>
+                        <li class="welcomelink">Welcome, <a href="EditProfileMember.aspx?memberID=<%=mem.MemberID%>" alt="View profile">
+                            <%=mem.UserName%>
+                        </a></li>
+                    </ul>
+                    <%}
+                      else
+                      {%>
                     <ul class="nouser">
                         <li>
                             <asp:LinkButton ID="Registerlnk" runat="server" Width="47px" PostBackUrl="Register.aspx">Register</asp:LinkButton></li><li>
                                 <asp:LinkButton ID="Loginlnk" runat="server" Width="47px" CausesValidation="false">Login</asp:LinkButton></li><li>
                                 </li>
                     </ul>
+                    <%} %>
                 </div>
                 <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtenderLogin" runat="server" TargetControlID="Loginlnk"
                     PopupControlID="LoginPanel" BackgroundCssClass="modalBackground" DropShadow="false"
@@ -116,15 +131,13 @@ $(document).ready(function() {
                 </ul>
                 <div class="globalsearch" id="globalsearch">
                     <div class="navbar_search">
-                        <span class="textboxcontainer">
-                            <span>
-                                <asp:TextBox ID="txtSearch" runat="server" CssClass="textbox"></asp:TextBox>
-                            </span>
-                        </span>
-                        <span class="buttoncontainer"><span>
-                            <asp:ImageButton ID="btnSearch" runat="server" CssClass="searchbutton" ImageUrl="Images/search.png" OnClick="btnSearch_Click"/>
+                        <span class="textboxcontainer"><span>
+                            <asp:TextBox ID="txtSearch" runat="server" CssClass="textbox"></asp:TextBox>
+                        </span></span><span class="buttoncontainer"><span>
+                            <asp:ImageButton ID="btnSearch" runat="server" CssClass="searchbutton" ImageUrl="Images/search.png"
+                                OnClick="btnSearch_Click" />
                         </span></span>
-                        </div>
+                    </div>
                     <ul class="navbar_advanced_search">
                         <li>
                             <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="Search.aspx">Advance Search</asp:LinkButton></li>

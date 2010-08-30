@@ -24,7 +24,7 @@
         <div>
             <div class="threadlisthead table">
                 <div>
-                    <span class="threadinfo">Title / Thread Starter </span></span> <span class="threadstats td">
+                    <span class="threadinfo">Title / Thread Starter </span><span class="threadstats td">
                         Replies / Views</span> <span class="threadlastpost td">Last Post By</span>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <ItemTemplate>
                     <ol id="threads" class="threads">
                         <li class="threadbit new" id="thread_1907333">
-                            <div class="rating0 nonsticky">
+                            <div class="rating2 nonsticky">
                                 <div class="threadinfo" title="">
                                     <!--  status icon block -->
                                     <a class="threadstatus" rel="vB::AJAX"></a>
