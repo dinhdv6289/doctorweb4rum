@@ -217,4 +217,8 @@
     <a id="newreplylink_bottom" class="newcontent_textcontrol" href="NewReply.aspx?topicID=<%= Request.QueryString["topicID"] %>">
         <span>+</span> Reply to Topic</a>
     <br />
+                <div class="navlinks">
+                <a rel="nofollow" href="#">Mark Forums Read</a> | <a rel="nofollow" href="showgroups.php">
+                    Admins &amp; Moderators </a>
+            </div>
 </asp:Content>
