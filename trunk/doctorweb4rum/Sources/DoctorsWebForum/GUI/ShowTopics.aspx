@@ -97,6 +97,7 @@
         </div>
     </div>
     <br />
+    <br />
     <%--begin Button post new Thread--%>
     <div class="noinlinemod below_threadlist" id="below_threadlist">
         <a id="newthreadlink_bottom" class="newcontent_textcontrol" rel="nofollow" href="NewTopic.aspx?subForumID=<%= Request.QueryString["subForumID"] %>">
@@ -106,5 +107,7 @@
         </div>
         <%--end phan trang--%>
     </div>
+    <br />
+    <br />
     <%--and button post new thread--%>
 </asp:Content>

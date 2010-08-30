@@ -20,6 +20,7 @@ public partial class GUI_Search : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            lblErrors.Text = "";
             Category[] categories = CategoryBLL.GetAllCategory();
             DropDownList1.Items.Add(new ListItem("--Select Category--", "0"));
             foreach (Category c in categories)
@@ -51,7 +52,7 @@ public partial class GUI_Search : System.Web.UI.Page
         nodes.Add(new KeyValuePair<string, Uri>("Search", Request.Url));
         ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
         this.Page.Title = "Search";
-        lblErrors.Text = "";
+        
     }
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -88,7 +89,7 @@ public partial class GUI_Search : System.Web.UI.Page
 
     private void InitialValuesToSearch()
     {
-        Session.RemoveAll();
+        Session.Remove("keysSearch");
         lblErrors.Text = "";
         NameValueCollection myCol = new NameValueCollection();
         myCol.Add("keySearchString", searchString);
@@ -103,7 +104,7 @@ public partial class GUI_Search : System.Web.UI.Page
 
     private void InitialValuesToSearch2()
     {
-        Session.RemoveAll();
+        Session.Remove("keysSearch");
         lblErrors.Text = "";
         NameValueCollection myCol = new NameValueCollection();
         myCol.Add("keySearchString", txtKeySearch.Text);
