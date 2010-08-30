@@ -29,14 +29,14 @@ public partial class GUI_SearchResults : System.Web.UI.Page
                 string txtToDateCreate = (string)nameValuesCollection["txtToDateCreate"];
 
                 Topic[] topics = TopicBLL.SearchTopic(keySearchString, categories, subForums, txtKeyUserName, txtFromDateCreate, txtToDateCreate);
-                if (topics != null)
+                if (topics.Length >0)
                 {
                     repeaterTopics.DataSource = topics;
                     repeaterTopics.DataBind();
                 }
                 else
                 {
-                    Response.Redirect("Search.aspx");
+                    Response.Redirect("Search.aspx?searchString=");
                 }
                 
             }
