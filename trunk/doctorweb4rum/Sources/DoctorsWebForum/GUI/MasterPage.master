@@ -35,7 +35,7 @@ $(document).ready(function() {
             <div class="floatcontainer doc_header" id="header">
                 <div>
                     <a class="logo-image" href="" name="top">
-                        <img src="Images/dps_logo.png" /></a></div>
+                        <img src="Images/dps_logo.png" alt="" /></a></div>
                 <div class="toplinks" id="toplinks">
                     <ul class="nouser">
                         <li>
