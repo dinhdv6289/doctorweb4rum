@@ -86,8 +86,9 @@
                         <div class="content">
                             <div id="post_message_14688639">
                                 <blockquote class="postcontent restore">
-                                    <%= GetTopic().Content%>
-                                </blockquote>
+                                    <quote>dsadas dsa das das </quote>
+                                    <%= GetTopic().Content%>                                   
+                               </blockquote>
                             </div>
                         </div>
                     </div>

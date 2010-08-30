@@ -36,6 +36,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                     MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
                     if (memberProfile != null)
                     {
+                        Session.Add("UserLogin", member);
                         Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
                         if (role != null)
                         {
@@ -88,6 +89,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void btnSearch_Click(object sender, ImageClickEventArgs e)
     {
         Response.Redirect("Search.aspx?searchString="+txtSearch.Text);
+    }
+    protected void Logoutlnk_Click(object sender, EventArgs e)
+    {
+        Session.Remove("UserLogin");
     }
 }
 
