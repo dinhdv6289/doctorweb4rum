@@ -44,8 +44,8 @@
                     <div class="posthead">
                         <span class="postdate old"><span class="date">
                             <%= GetTopic().DateCreate %>
-                        </span></span><span class="nodecontrols"><a class="postcounter" href="#"
-                            name="post14688639">#1</a><a name="1" id="postcount14688639"></a> </span>
+                        </span></span><span class="nodecontrols"><a class="postcounter" href="#post1"
+                            name="post1">#1</a></span>
                     </div>
                     <div class="userinfo_noavatar">
                         <div class="contact">
@@ -137,8 +137,8 @@
                     <div class="posthead">
                         <span class="postdate old"><span class="date">
                             <%#Eval("DateCreationOfPosts")%>
-                        </span></span><span class="nodecontrols"><a class="postcounter" href="#"
-                            name="post14688639">#1</a><a name="1" id="postcount14688639"></a> </span>
+                        </span></span><span class="nodecontrols"><a class="postcounter" href="#post<%#Container.ItemIndex + 2 %>"
+                            name="post<%#Container.ItemIndex + 2 %>">#<%#Container.ItemIndex + 2 %></a></span>
                     </div>
                     <div class="userinfo_noavatar">
                         <div class="contact">
