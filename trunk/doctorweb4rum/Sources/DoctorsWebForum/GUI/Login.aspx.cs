@@ -34,12 +34,19 @@ public partial class GUI_Login : System.Web.UI.Page
                 MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
                 if (memberProfile != null)
                 {
+                    string origin = Request.QueryString["ReturnURL"];
+                    if (origin == null)
+                    {
+                        
+                        origin = "Index.aspx";
+                    }
+                    Session.Add("UserLoged", member);
                     Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
                     if (role != null)
                     {
                         if (role.RoleName.Equals("Member"))
                         {
-                            Response.Redirect("Index.aspx");
+                            Response.Redirect(origin);
                         }
                         if (role.RoleName.Equals("Moderator"))
                         {

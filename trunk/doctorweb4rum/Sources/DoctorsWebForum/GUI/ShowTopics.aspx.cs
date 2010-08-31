@@ -138,4 +138,15 @@ public partial class GUI_ShowTopics : System.Web.UI.Page
 
     }
     #endregion
+    protected void LinkButton1_Click(object sender, EventArgs e)
+    {
+        String subForumID = Request.QueryString["subForumID"];
+        if (Session["UserLoged"]!=null)
+        {
+            Response.Redirect("NewTopic.aspx?subForumID=" + subForumID);
+        }else
+        {           
+            Response.Redirect("Login.aspx?ReturnURL=NewTopic.aspx?subForumID=" + subForumID);
+        }
+    }
 }
