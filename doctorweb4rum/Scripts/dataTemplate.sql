@@ -257,3 +257,10 @@ values(2,1,'Test titleabc','test content abc',getdate(),getdate(),'true','111133
 select * from dbo.Members
 
 
+
+select * from dbo.ThankPost
+select * from dbo.ThankTopic
+select * from dbo.RatingTopic
+select count(*) from topics tp inner join thanktopic t on tp.topicid = t.topicid
+where tp.memberid = 1
+select * from topics

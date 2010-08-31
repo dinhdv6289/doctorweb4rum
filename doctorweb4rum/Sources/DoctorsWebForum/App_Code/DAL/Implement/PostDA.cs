@@ -27,8 +27,9 @@ namespace DAL
         private const String DateEdited = "DateEdited";
         private const String Signature = "Signature";
         private const String IPAddress = "IPAddress";
-        private String[] columnNames = { PostID, TopicID, MemberID, Title, Content, DateCreation, DateEdited, Signature, IPAddress };
-        private String[] columnNamesForInsert = { TopicID, MemberID, Title, Content, DateEdited, Signature, IPAddress };
+        private const String Quote = "Quote";
+        private String[] columnNames = { PostID, TopicID, MemberID, Content, DateCreation, DateEdited, Signature, IPAddress, Quote };
+        private String[] columnNamesForInsert = { TopicID, MemberID, Content, DateEdited, Signature, IPAddress, Quote };
 
         public Post[] GetAllPostByTopicID(int topicID)
         {
@@ -61,7 +62,7 @@ namespace DAL
             {
                 throw ex;
             }
-            if(result.Length >0)
+            if (result.Length > 0)
             {
                 return result[0];
             }
@@ -75,13 +76,13 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = String.Format("SELECT  count(Posts.PostID) FROM Posts INNER JOIN  Topics ON Posts.TopicID = Topics.TopicID INNER JOIN  SubForums ON Topics.SubForumID = SubForums.SubForumID WHERE SubForums.SubForumID = {0}",subForumID);
+                cmd.CommandText = String.Format("SELECT  count(Posts.PostID) FROM Posts INNER JOIN  Topics ON Posts.TopicID = Topics.TopicID INNER JOIN  SubForums ON Topics.SubForumID = SubForums.SubForumID WHERE SubForums.SubForumID = {0}", subForumID);
                 DataSet ds = ExecuteDataset(cmd);
-                if(ds.Tables[0].Rows.Count>0)
+                if (ds.Tables[0].Rows.Count > 0)
                 {
                     result = (int)ds.Tables[0].Rows[0][0];
                 }
-                
+
             }
             catch (System.Exception ex)
             {
@@ -117,28 +118,29 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = String.Format("GetLastPostOfTopicByTopicID {0}",topicID);
+                cmd.CommandText = String.Format("GetLastPostOfTopicByTopicID {0}", topicID);
                 result = SelectCollection<Post>(columnNames, columnNames, cmd);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            if (result.Length>0)
+            if (result.Length > 0)
             {
                 return result[0];
-            }else
+            }
+            else
             {
                 return null;
             }
         }
 
-        public  int InsertPost(Post post)
+        public int InsertPost(Post post)
         {
             int result = 0;
             try
             {
-                Object[] values ={ post.TopicID, post.MemberID, post.Title, post.Content, post.DateEdited, post.Signature, post.IPAddress };
+                Object[] values ={ post.TopicID, post.MemberID, post.Content, post.DateEdited, post.Signature, post.IPAddress, post.Quote };
                 result = ProcessTableTypeStore("InsertPost", columnNamesForInsert, values);
 
             }
@@ -147,6 +149,30 @@ namespace DAL
                 throw ex;
             }
             return result;
+        }
+
+        public Post GetPostByPostID(int postID)
+        {
+            Post[] result = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("GetPostByPostID {0}", postID);
+                result = SelectCollection<Post>(columnNames, columnNames, cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            if (result.Length > 0)
+            {
+                return result[0];
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

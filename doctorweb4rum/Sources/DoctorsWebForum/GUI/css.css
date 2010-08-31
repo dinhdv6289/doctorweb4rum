@@ -3861,10 +3861,10 @@ padding-left:15px;
 width:49%;
 }
 .postbit .posthead .postdate.old, .postbitlegacy .posthead .postdate.old {
-background:url("http://i.dpstatic.com/statusicon/post_old.png") no-repeat scroll left center transparent;
+background:url("Images/post_old.png") no-repeat scroll left center transparent;
 }
 .postbit .posthead .postdate.new, .postbitlegacy .posthead .postdate.new {
-background:url("http://i.dpstatic.com/statusicon/post_new.png") no-repeat scroll left center transparent;
+background:url("Images/post_new.png") no-repeat scroll left center transparent;
 }
 .postbit .postdate .time {
 color:#FFFFFF;
@@ -3934,7 +3934,7 @@ display:inline;
 font-weight:normal;
 }
 .postbit.premium .userinfo, .postbit.premium .userinfo_noavatar {
-background-image:url("http://m.dpstatic.com/misc/premium.png");
+background-image:url("Images/premium.png");
 background-position:70% center;
 background-repeat:no-repeat;
 }
@@ -4031,7 +4031,7 @@ height:auto;
 padding-bottom:5px;
 }
 .birthdays .posthead {
-background:url("http://i.dpstatic.com/buttons/newbtn_middle.png") repeat-x scroll 0 0 #6F9777;
+background:url("Images/newbtn_middle.png") repeat-x scroll 0 0 #6F9777;
 border:1px solid #355B4C;
 color:#FFFFFF;
 font:12px Tahoma,Calibri,Verdana,Geneva,sans-serif;
@@ -4265,138 +4265,138 @@ padding-top:2px;
 padding-top:2px;
 }
 .postbitlegacy .postfoot .textcontrols a.editpost, .postbit .postfoot .textcontrols a.editpost, .eventbit .eventfoot .textcontrols a.editevent {
-background:url("http://b.dpstatic.com/buttons/edit_40b.png") no-repeat scroll left center transparent;
+background:url("Images/edit_40b.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 
 .postbitlegacy .postfoot .textcontrols a.quickreply:hover, .postbit .postfoot .textcontrols a.quickreply:hover, .postbitlegacy .postfoot .textcontrols a.forwardpost:hover, .postbit .postfoot .textcontrols a.forwardpost:hover {
-background:url("http://b.dpstatic.com/buttons/reply_40b-hover.png") no-repeat scroll left center transparent;
+background:url("Images/reply_40b-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.editpost:hover, .postbit .postfoot .textcontrols a.post_thanks_button:hover, .eventbit .eventfoot .textcontrols a.editevent:hover {
 background:url("Images/post_thanks_button_hover.png") no-repeat scroll left center transparent;
 border:0 none;
-padding:0 0 0 20px;
+padding:10 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.quickreply, .postbit .postfoot .textcontrols a.quickreply, .postbitlegacy .postfoot .textcontrols a.forwardpost, .postbit .postfoot .textcontrols a.forwardpost {
-background:url("http://b.dpstatic.com/buttons/reply_40b.png") no-repeat scroll left center transparent;
+background:url("Images/reply_40b.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.quickreply:hover, .postbit .postfoot .textcontrols a.quickreply:hover, .postbitlegacy .postfoot .textcontrols a.forwardpost:hover, .postbit .postfoot .textcontrols a.forwardpost:hover {
-background:url("http://b.dpstatic.com/buttons/reply_40b-hover.png") no-repeat scroll left center transparent;
+background:url("Images/reply_40b-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.newreply, .postbit .postfoot .textcontrols a.newreply {
-background:url("http://b.dpstatic.com/buttons/quote_40b.png") no-repeat scroll left center transparent;
+background:url("Images/quote_40b.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.newreply:hover, .postbit .postfoot .textcontrols a.newreply:hover {
-background:url("http://b.dpstatic.com/buttons/quote_40b-hover.png") no-repeat scroll left center transparent;
+background:url("Images/quote_40b-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.multiquote, .postbit .postfoot .textcontrols a.multiquote {
-background:url("http://b.dpstatic.com/buttons/multiquote-back_40b.png") no-repeat scroll left center transparent;
+background:url("Images/multiquote-back_40b.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.multiquote:hover, .postbit .postfoot .textcontrols a.multiquote:hover {
-background:url("http://b.dpstatic.com/buttons/multiquote_40b-hover.png") no-repeat scroll left center transparent;
+background:url("Images/multiquote_40b-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.promotecms, .postbit .postfoot .textcontrols a.promotecms {
-background:url("http://i.dpstatic.com/cms/promote_small.png") no-repeat scroll left center transparent;
+background:url("Images/promote_small.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.promotecms:hover, .postbit .postfoot .textcontrols a.promotecms:hover {
-background:url("http://i.dpstatic.com/cms/promote_small-hover.png") no-repeat scroll left center transparent;
+background:url("Images/promote_small-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.infraction, .postbit .postfoot .textcontrols a.infraction {
-background:url("http://b.dpstatic.com/buttons/add-infraction_sm.png") no-repeat scroll left center transparent;
+background:url("Images/add-infraction_sm.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.infraction:hover, .postbit .postfoot .textcontrols a.infraction:hover {
-background:url("http://b.dpstatic.com/buttons/add-infraction_sm-hover.png") no-repeat scroll left center transparent;
+background:url("Images/add-infraction_sm-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.report, .postbit .postfoot .textcontrols a.report {
-background:url("http://b.dpstatic.com/buttons/report-40b.png") no-repeat scroll left center transparent;
+background:url("Images/report-40b.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.report:hover, .postbit .postfoot .textcontrols a.report:hover {
-background:url("http://b.dpstatic.com/buttons/report-40b-hover.png") no-repeat scroll left center transparent;
+background:url("Images/report-40b-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.blog, .postbit .postfoot .textcontrols a.blog {
-background:url("http://m.dpstatic.com/misc/blog/blogpost_40b.png") no-repeat scroll left center transparent;
+background:url("Images/blogpost_40b.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.blog:hover, .postbit .postfoot .textcontrols a.blog:hover {
-background:url("http://m.dpstatic.com/misc/blog/blogpost_40b-hover.png") no-repeat scroll left center transparent;
+background:url("Images/blogpost_40b-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.reputation, .postbit .postfoot .textcontrols a.reputation {
-background:url("http://b.dpstatic.com/buttons/reputation-40b.png") no-repeat scroll left center transparent;
+background:url("Images/reputation-40b.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.reputation:hover, .postbit .postfoot .textcontrols a.reputation:hover {
-background:url("http://b.dpstatic.com/buttons/reputation-40b-hover.png") no-repeat scroll left center transparent;
+background:url("Images/reputation-40b-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.ip, .postbit .postfoot .textcontrols a.ip {
-background:url("http://b.dpstatic.com/buttons/ip-40b.png") no-repeat scroll left center transparent;
+background:url("Images/ip-40b.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.ip:hover, .postbit .postfoot .textcontrols a.ip:hover {
-background:url("http://b.dpstatic.com/buttons/ip-40b-hover.png") no-repeat scroll left center transparent;
+background:url("Images/ip-40b-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.redcard, .postbit .postfoot .textcontrols a.redcard {
-background:url("http://b.dpstatic.com/buttons/red-card_sm.png") no-repeat scroll left center transparent;
+background:url("Images/red-card_sm.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.redcard:hover, .postbit .postfoot .textcontrols a.redcard:hover {
-background:url("http://b.dpstatic.com/buttons/red-card_sm-hover.png") no-repeat scroll left center transparent;
+background:url("") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.yellowcard, .postbit .postfoot .textcontrols a.yellowcard {
-background:url("http://b.dpstatic.com/buttons/yellow-card_sm.png") no-repeat scroll left center transparent;
+background:url("Images/yellow-card_sm.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.yellowcard:hover, .postbit .postfoot .textcontrols a.yellowcard:hover {
-background:url("http://b.dpstatic.com/buttons/yellow-card_sm-hover.png") no-repeat scroll left center transparent;
+background:url("") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.deleted, .postbit .postfoot .textcontrols a.deleted {
-background:url("http://b.dpstatic.com/buttons/deleted_sm.png") no-repeat scroll left center transparent;
+background:url("") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.deleted:hover, .postbit .postfoot .textcontrols a.deleted:hover {
-background:url("http://b.dpstatic.com/buttons/deleted_sm-hover.png") no-repeat scroll left center transparent;
+background:url("") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
@@ -4429,7 +4429,7 @@ width:100%;
 display:none;
 }
 .postbitdeleted .posthead, .postbitignored .posthead {
-background:url("http://i.dpstatic.com/buttons/newbtn_middle.png") repeat-x scroll 0 0 #6F9777;
+background:url("Images/newbtn_middle.png") repeat-x scroll 0 0 #6F9777;
 border:1px solid #355B4C;
 color:#FFFFFF;
 display:table;
@@ -4440,7 +4440,7 @@ padding:4px 0;
 width:100%;
 }
 .postbitdeleted .posthead .date, .postbitignored .posthead .date {
-background:url("http://i.dpstatic.com/statusicon/post_old.png") no-repeat scroll left center transparent;
+background:url("Images/post_old.png") no-repeat scroll left center transparent;
 color:#FFFFFF;
 display:inline-block;
 font:12px Tahoma,Calibri,Verdana,Geneva,sans-serif;
@@ -4589,21 +4589,21 @@ color:#777777;
 margin-left:50px;
 }
 .marketplace_bit .verified {
-background:url("http://m.dpstatic.com/misc/site-verified-large.png") no-repeat scroll 99% 90% transparent;
+background:url("Images/site-verified-large.png") no-repeat scroll 99% 90% transparent;
 }
 .marketplace_bit .premium {
-background:url("http://m.dpstatic.com/misc/premium.png") no-repeat scroll 99% 90% transparent;
+background:url("Images/premium.png") no-repeat scroll 99% 90% transparent;
 }
 .marketplace_bit .nonsticky {
-background:url("http://i.dpstatic.com/gradients/grey-up.png") repeat-x scroll left bottom #EAF4E9;
+background:url("Images/grey-up.png") repeat-x scroll left bottom #EAF4E9;
 min-height:146px;
 }
 .postbitlegacy .postfoot .textcontrols a.bump, .postbit .postfoot .textcontrols a.bump {
-background:url("http://b.dpstatic.com/buttons/bump.png") no-repeat scroll left center transparent;
+background:url("Images/bump.png") no-repeat scroll left center transparent;
 padding-left:20px;
 }
 .postbitlegacy .postfoot .textcontrols a.bump:hover, .postbit .postfoot .textcontrols a.bump:hover {
-background:url("http://b.dpstatic.com/buttons/bump-hover.png") no-repeat scroll left center transparent;
+background:url("Images/bump-hover.png") no-repeat scroll left center transparent;
 padding-left:20px;
 }
 blockquote.align_left {
@@ -4694,7 +4694,7 @@ padding-bottom:0;
 padding-right:10px;
 }
 .polloptionsblock {
-background:url("http://i.dpstatic.com/misc/poll_question_mark.png") no-repeat scroll 30px 10px #F3F3F3;
+background:url("Images/poll_question_mark.png") no-repeat scroll 30px 10px #F3F3F3;
 padding-left:120px;
 }
 .pollresultsblock {

@@ -17,11 +17,12 @@ public partial class GUI_NewTopic : System.Web.UI.Page
     private int subID = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
-        String subForumID = Request.QueryString["subForumID"];
-        if (subForumID != null)
+        if (!IsPostBack)
         {
-            if (!IsPostBack)
+            String subForumID = Request.QueryString["subForumID"];
+            if (subForumID != null)
             {
+                lblErrors.Text = "";
                 Session.Add("subForumID", subForumID);
                 subID = Convert.ToInt32(subForumID);
                 SubForum sf = SubForumBLL.GetSubForumBySubForumID(subID);
@@ -30,11 +31,12 @@ public partial class GUI_NewTopic : System.Web.UI.Page
                 ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
                 this.Page.Title = sf.SubForumName + "  - New Topic";
             }
+            else
+            {
+                Response.Redirect("ShowTopics.aspx?subForumID=" + Session["subForumID"].ToString());
+            }
         }
-        else
-        {
-            Response.Redirect("ShowTopics.aspx?subForumID=" + Session["subForumID"].ToString());
-        }
+
     }
 
     public SubForum GetSubForumBySubForumID()
@@ -45,28 +47,55 @@ public partial class GUI_NewTopic : System.Web.UI.Page
     {
         string title = txtTitle.Text;
         string contents = Editor1.Content;
-        if (title != null || title.Length > 0 || contents.Length > 0 || contents != null)
+        if (checkBoxBelieve.Checked)
         {
-            Topic newTopic = new Topic();
-            if (Request.QueryString["subForumID"] != null || Request.QueryString["subForumID"].Length > 0)
+            if (title != null || title.Length > 0 || contents.Length > 0 || contents != null)
             {
-                newTopic.SubForumID = Convert.ToInt32(Request.QueryString["subForumID"]);
-                newTopic.MemberID = 1;// MemberID fix cung' bang 1. vi chua co Session Login.
-                newTopic.Title = title;
-                newTopic.Content = contents;
-                newTopic.IsLocked = false;
-                newTopic.TotalViews = 0;
-                newTopic.TotalMessages = 0;
-                newTopic.MoveTo = 0;
-                int resultStatus = 0;
-                int result = TopicBLL.InsertTopic(newTopic, out resultStatus);
-                if (resultStatus > 0)
+                if (title.Length < 100)
                 {
-                    Response.Redirect("TopicDetails.aspx?topicID=" + resultStatus.ToString());
+                    Topic newTopic = new Topic();
+                    if (Request.QueryString["subForumID"] != null || Request.QueryString["subForumID"].Length > 0)
+                    {
+                        newTopic.SubForumID = Convert.ToInt32(Request.QueryString["subForumID"]);
+                        Member memberloged = (Member)Session["UserLoged"];
+                        if (memberloged != null)
+                        {
+                            newTopic.MemberID = memberloged.MemberID;
+                        }
+                        newTopic.Title = title;
+                        newTopic.Content = contents;
+                        newTopic.IsLocked = false;
+                        newTopic.TotalViews = 0;
+                        newTopic.TotalMessages = 0;
+                        newTopic.MoveTo = 0;
+                        int resultStatus = 0;
+                        int result = TopicBLL.InsertTopic(newTopic, out resultStatus);
+                        if (resultStatus > 0)
+                        {
+                            Response.Redirect("TopicDetails.aspx?topicID=" + resultStatus.ToString());
+                        }
+                    }
+                }
+                else
+                {
+                    //Validation The length of Topic must more than 100 character.
+                    lblErrors.Text = "The length of Topic must more than 100 character!";
+
                 }
             }
+            else
+            {
+                lblErrors.Text = "Title and content must not null!";
+                //validation title and content must not null.
+                //   Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('Title and content must not null!');window.location.href='NewTopic.aspx';</script>");
+            }
         }
-
+        else
+        {
+            lblErrors.Text = "Please check i believe  is the BEST section for this topic!";
+            //validation. please check i believe  is the BEST section for this topic
+            // Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('Title and content must not null!');window.location.href='NewTopic.aspx';</script>");
+        }
 
     }
 }

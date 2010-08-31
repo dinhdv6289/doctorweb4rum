@@ -33,10 +33,10 @@ namespace DAL
         private const String FromMember = "FromMember";
         private const String RatePoint = "RatePoint";
         private const String RateDate = "RateDate";
-
+        private const String DateEdited = "DateEdited";
         private String[] columnNamesRating = { RateTopicID, FromMember, TopicID, RatePoint, RateDate };
         private String[] columnNamesRatingForInsert = { FromMember, TopicID, RatePoint, RateDate };
-        private String[] columnNames = { TopicID, SubForumID, MemberID, Title, Content, IsLocked, TotalViews, TotalMessages, DateCreate, MoveTo };
+        private String[] columnNames = { TopicID, SubForumID, MemberID, Title, Content, IsLocked, TotalViews, TotalMessages, DateCreate, MoveTo, DateEdited };
         private String[] columnNamesForInsert = { SubForumID, MemberID, Title, Content, IsLocked, TotalViews, TotalMessages, MoveTo };
 
 

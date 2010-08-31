@@ -168,7 +168,7 @@ $(document).ready(function() {
                     <!-- logged-in users -->
                     <div id="wgo_onlineusers" class="wgo_subblock">
                         <h3>
-                            <img src="http://m.dpstatic.com/misc/users_online.png" alt="Currently Active Users" />Currently
+                            <img src="Images/users_online.png" alt="Currently Active Users" />Currently
                             Active Users</h3>
                         <div>
                             <p>
@@ -187,7 +187,7 @@ $(document).ready(function() {
                     <!-- end logged-in users -->
                     <div id="wgo_stats" class="wgo_subblock">
                         <h3>
-                            <img src="http://m.dpstatic.com/misc/forum_stats.png" alt="Doctors Web Forums Statistics" />Doctors
+                            <img src="Images/forum_stats.png" alt="Doctors Web Forums Statistics" />Doctors
                             Web Forums Statistics</h3>
                         <div>
                             <dl>
