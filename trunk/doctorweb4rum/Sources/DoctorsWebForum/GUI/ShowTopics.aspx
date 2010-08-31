@@ -1,5 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/GUI/MasterPage.master" AutoEventWireup="true"
     CodeFile="ShowTopics.aspx.cs" Inherits="GUI_ShowTopics" Title="Untitled Page" %>
+    <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="PagingControls" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="above_threadlist" id="above_threadlist">
@@ -104,6 +105,7 @@
             <span>+</span> Post New Topic</a>
         <%--begin phan trang--%>
         <div class="threadpagenav">
+            <CC1:COLLECTIONPAGER id="CollectionPager1" runat="server" ResultsLocation="None" ShowFirstLast="True" BackNextLocation="Split" BackNextDisplay="HyperLinks" PageSize="2" ControlCssClass="pagination" ShowLabel="False" PageNumbersDisplay="Numbers" PageNumbersSeparator="&nbsp;" BackNextButtonStyle="" BackNextLinkSeparator="" BackNextStyle="" ShowPageNumbers="True" SliderSize="3" UseSlider="True" IgnoreQueryString="False" ResultsFormat="Results  {0} to {1} of {2}" ResultsStyle="float:left;"></CC1:COLLECTIONPAGER>
         </div>
         <%--end phan trang--%>
     </div>

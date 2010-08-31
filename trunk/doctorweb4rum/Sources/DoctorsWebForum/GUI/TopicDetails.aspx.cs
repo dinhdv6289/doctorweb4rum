@@ -33,8 +33,11 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
                 DataSet dataSetTopicDetails = TopicBLL.TopicDetailsByTopicID(Convert.ToInt32(TopicID));
                 if(dataSetTopicDetails != null)
                 {
-                    repeaterPosts.DataSource = dataSetTopicDetails.Tables[0];
-                    repeaterPosts.DataBind();
+                    CollectionPager1.DataSource = dataSetTopicDetails.Tables[0].DefaultView;
+                    CollectionPager1.BindToControl = repeaterPosts;
+                    repeaterPosts.DataSource = CollectionPager1.DataSourcePaged;
+                    //repeaterPosts.DataSource = dataSetTopicDetails.Tables[0];
+                    //repeaterPosts.DataBind();
                 }
                 this.Page.Title = tp.Title;
                 int[] result = TopicBLL.GetRatingPoint(topicID);
@@ -119,4 +122,23 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
         }
         return result;
     }
+    #region Web Form Designer generated code
+    override protected void OnInit(EventArgs e)
+    {
+        //
+        // CODEGEN: This call is required by the ASP.NET Web Form Designer.
+        //
+        InitializeComponent();
+        base.OnInit(e);
+    }
+
+    /// <summary>
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
+    /// </summary>
+    private void InitializeComponent()
+    {
+
+    }
+    #endregion
 }
