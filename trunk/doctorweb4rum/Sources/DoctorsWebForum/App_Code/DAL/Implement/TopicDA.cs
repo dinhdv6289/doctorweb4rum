@@ -311,5 +311,47 @@ namespace DAL
             }
             return result;
         }
+
+        public int ThankTopic(int memberID, int topicID)
+        {
+            int result = 0;
+            try
+            {
+                object[] values = { memberID, topicID, DateTime.Now };
+                String[] columnNamesThanks = { "FromMember", "TopicID", "ThankDate" };
+                result = InsertTable("ThankTopic", columnNamesThanks, values);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public Boolean isThanked(int topicID, int memberID)
+        {
+            Boolean result = false;
+            try
+            {
+                DataSet ds = new DataSet();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = string.Format("select count(*) as IsThanked from ThankTopic where FromMember = {0} and TopicID = {1}", memberID, topicID);
+                ds = ExecuteDataset(cmd);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    int a = (int)ds.Tables[0].Rows[0][0];
+                    if (a > 0)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

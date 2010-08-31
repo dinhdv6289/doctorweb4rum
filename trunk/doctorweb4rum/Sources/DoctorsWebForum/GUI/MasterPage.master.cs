@@ -19,8 +19,17 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void btnLogin_Click(object sender, EventArgs e)
     {
+        if (!Page.IsValid)
+        {
+            ModalPopupExtenderLogin.Enabled = true;
+            ModalPopupExtenderLogin.Show();
+        }
         if (Page.IsValid)
         {
+            
+            ModalPopupExtenderLogin.Enabled = false;
+            ModalPopupExtenderLogin.Hide();
+            ModalPopupExtenderLogin.Dispose();
             string userName = txtUserName.Text;
             string password = txtPassword.Text;
             if (userName.Length > 0 || userName != null || password.Length > 0 || password != null)
@@ -31,7 +40,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                     MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
                     if (memberProfile != null)
                     {
-                        Session.Add("UserLogin", member);
+                        Session.Add("UserLoged", member);
                         Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
                         if (role != null)
                         {
@@ -87,7 +96,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     }
     protected void Logoutlnk_Click(object sender, EventArgs e)
     {
-        Session.Remove("UserLogin");
+        Session.Remove("UserLoged");
     }
 }
 

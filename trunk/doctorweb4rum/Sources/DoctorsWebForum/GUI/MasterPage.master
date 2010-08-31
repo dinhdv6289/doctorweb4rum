@@ -37,15 +37,15 @@ $(document).ready(function() {
                     <a class="logo-image" href="" name="top">
                         <img src="Images/dps_logo.png" alt="" /></a></div>
                 <div class="toplinks" id="toplinks">
-                    <% if (Session["UserLogin"] != null)
+                    <% if (Session["UserLoged"] != null)
                        {
-                           Member mem = (Member)Session["UserLogin"];
+                           Member memberloged = (Member)Session["UserLoged"];
                     %>
                     <ul class="isuser">
                         <li>
                             <asp:LinkButton ID="Logoutlnk" runat="server" OnClick="Logoutlnk_Click">Logout</asp:LinkButton></li>
-                        <li class="welcomelink">Welcome, <a href="EditProfileMember.aspx?memberID=<%=mem.MemberID%>" alt="View profile">
-                            <%=mem.UserName%>
+                        <li class="welcomelink">Welcome, <a href="EditProfileMember.aspx?memberID=<%=memberloged.MemberID%>" alt="View profile">
+                            <%=memberloged.UserName%>
                         </a></li>
                     </ul>
                     <%}
@@ -54,14 +54,14 @@ $(document).ready(function() {
                     <ul class="nouser">
                         <li>
                             <asp:LinkButton ID="Registerlnk" runat="server" Width="47px" PostBackUrl="Register.aspx">Register</asp:LinkButton></li><li>
-                                <asp:LinkButton ID="Loginlnk" runat="server" Width="47px" CausesValidation="false">Login</asp:LinkButton></li><li>
-                                </li>
+                            <asp:LinkButton ID="Loginlnk" runat="server" Width="47px" CausesValidation="false">Login</asp:LinkButton></li><li>
+                        </li>
                     </ul>
-                    <%} %>
-                </div>
-                <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtenderLogin" runat="server" TargetControlID="Loginlnk"
+                    <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtenderLogin" runat="server" TargetControlID="Loginlnk"
                     PopupControlID="LoginPanel" BackgroundCssClass="modalBackground" DropShadow="false"
                     CancelControlID="btnCancel" Drag="false" />
+                    <%} %>
+                </div>
                 <asp:Panel ID="LoginPanel" runat="server" Style="display: none" Font-Names="@MS PGothic"
                     Width="300px">
                     <div class="standard_error">
