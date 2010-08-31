@@ -51,21 +51,21 @@
                         <div class="contact">
                             <div class="username_container">
                                 <div class="popupmenu memberaction" id="yui-gen16">
-                                    <a title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is offline" href="member.php?u=429236" class="username offline popupctrl"
+                                    <a title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is offline" href="MemberProfile.aspx?memberID=<%= GetTopic().MemberID%>" class="username offline popupctrl"
                                         id="yui-gen18"><strong><span class="user25">
                                             <%= GetMemberByMemberID(GetTopic().MemberID).UserName %>
                                         </span></strong></a>
                                 </div>
                                
                                 <% if(GetMemberByMemberID(GetTopic().MemberID).IsOnline){ %>
-                                <img border="0" alt="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is online" src="Images/users-online.png"
+                                <img border="0" alt="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is online" src="Images/user-online.png"
                                     class="inlineimg onlinestatus" title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is online">
                                     <%}else{ %>
                                      <img border="0"alt="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is offline" src="Images/user-offline.png"
                                     class="inlineimg onlinestatus" title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is offline">
                                     <%} %>
                                 <span class="usertitle"><%= GetMemberByMemberID(GetTopic().MemberID).FullName %> </span><span id="repdisplay_14688639_429236" class="postbit_reputation">
-                                    <img alt="maihannijat is on a distinguished road" src="http://i.dpstatic.com/reputation/reputation_pos.png"
+                                    <img alt="maihannijat is on a distinguished road" src="Images/reputation_pos.png"
                                         class="repimg" title="maihannijat is on a distinguished road">
                                 </span>
                                 <div class="imlinks">
@@ -96,7 +96,7 @@
                     <div class="textcontrols floatcontainer">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always" ChildrenAsTriggers="True">
             <ContentTemplate>                                
-<SPAN class="postcontrols"><IMG style="DISPLAY: none" id="Img2" alt="" src="http://m.dpstatic.com/misc/progress.gif" /> <A id="qr_14688798" class="quickreply" href='NewReply.aspx?topicID=<%= Request.QueryString["topicID"] %>' rel="nofollow"><IMG id="replyimg_14688798" alt="" src="clear.gif" /> Reply</A> <SPAN class="seperator">&nbsp;</SPAN> <A id="qrwq_14688639" class="newreply" href='NewReply.aspx?topicID=<%= Request.QueryString["topicID"] %>&withQuote=1' rel="nofollow">Reply With Quote</A><SPAN class="seperator">&nbsp;</SPAN>
+<SPAN class="postcontrols"><IMG style="DISPLAY: none" id="Img2" alt="" src="Images/progress.gif" /> <A id="qr_14688798" class="quickreply" href='NewReply.aspx?topicID=<%= Request.QueryString["topicID"] %>' rel="nofollow"><IMG id="replyimg_14688798" alt="" src="clear.gif" /> Reply</A> <SPAN class="seperator">&nbsp;</SPAN> <A id="qrwq_14688639" class="newreply" href='NewReply.aspx?topicID=<%= Request.QueryString["topicID"] %>&withQuote=1' rel="nofollow">Reply With Quote</A><SPAN class="seperator">&nbsp;</SPAN>
  <ajaxToolkit:Rating id="topicRating" runat="Server" CssClass="ratingStar" EmptyStarCssClass="Empty" FilledStarCssClass="Filled" WaitingStarCssClass="Saved" StarCssClass="ratingItem"  AutoPostBack="True" OnChanged="topicRating_Changed"></ajaxToolkit:Rating> </SPAN>
 
                             <span class="postlinking">
@@ -144,15 +144,15 @@
                         <div class="contact">
                             <div class="username_container">
                                 <div class="popupmenu memberaction" id="yui-gen16">
-                                    <a title="maihannijat is offline" href="member.php?u=429236" class="username offline popupctrl"
+                                    <a title="maihannijat is offline" href="MemberProfile.aspx?memberID=<%#Eval("MemberID")%>" class="username offline popupctrl"
                                         id="yui-gen18"><strong><span class="user25">
                                             <%#Eval("UserName")%>
                                         </span></strong></a>
                                 </div>
-                                <img border="0" alt="maihannijat is offline" src="http://i.dpstatic.com/statusicon/user-offline.png"
+                                <img border="0" alt="maihannijat is offline" src="Images/user-offline.png"
                                     class="inlineimg onlinestatus" title="maihannijat is offline">
                                 <span class="usertitle"><%#Eval("FullName")%> </span><span id="repdisplay_14688639_429236" class="postbit_reputation">
-                                    <img alt="maihannijat is on a distinguished road" src="http://i.dpstatic.com/reputation/reputation_pos.png"
+                                    <img alt="maihannijat is on a distinguished road" src="Images/reputation_pos.png"
                                         class="repimg" title="maihannijat is on a distinguished road">
                                 </span>
                                 <div class="imlinks">
@@ -191,20 +191,20 @@
                 <div class="postfoot">
                     <div class="textcontrols floatcontainer">
                         <span class="postcontrols">
-                            <img style="display: none" id="Img2" src="http://m.dpstatic.com/misc/progress.gif"
+                            <img style="display: none" id="Img2" src="Images/progress.gif"
                                 alt="" />
-                            <a id="qr_14688798" class='quickreply' href="newreply.php?do=newreply&amp;p=14688798"
+                            <a id="qr_14688798" class='quickreply' href="NewReplyToPost.aspx?topicID=<%#Eval("TopicID")%>&postID=<%#Eval("PostID")%>"
                                 rel="nofollow">
                                 <img id="replyimg_14688798" src="clear.gif" alt="" />
-                                Reply</a> <span class="seperator">&nbsp;</span> <a rel="nofollow" href="newreply.php?do=newreply&amp;p=14688639"
+                                Reply</a> <span class="seperator">&nbsp;</span> <a rel="nofollow" href="NewReplyToPost.aspx?topicID=<%#Eval("TopicID")%>&postID=<%#Eval("PostID")%>&postWithQuote=1"
                                     class="newreply" id="qrwq_14688639">Reply With Quote</a><span class="seperator">&nbsp;</span>
                             <span class="postlinking"></span> </span><span class="postlinking">
                                     <span title="14688639" class="reputationpopupmenu popupmenu popupcustom" id="yui-gen71">
                                         <a id="reputation_14688639" rel="nofollow" title="Add to this user's reputation"
                                             href="#" class="popupctrl reputation">
-                                            <!--<img src="http://b.dpstatic.com/buttons/reputation-40b.png" alt="Add to this user's reputation" />-->
+                                            
                                             &nbsp;</a></span> &nbsp;<a title="Report Post" rel="nofollow" href="#"
-                                                class="report"><!-- <img src="http://b.dpstatic.com/buttons/report-40b.png" alt="Report Post" /> -->&nbsp;</a>
+                                                class="report">&nbsp;</a>
                                     &nbsp; </span>
                     </div>
                 </div>

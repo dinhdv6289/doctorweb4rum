@@ -8,7 +8,7 @@ GO
 CREATE PROC GetNewPostBySubForumID
 	@SubForumID	INT
 AS BEGIN
-	SELECT   Top(1)  Posts.PostID, Posts.TopicID, Posts.MemberID, Posts.Title, Posts.[Content], Posts.DateCreation, Posts.DateEdited, Posts.Signature, Posts.IPAddress
+	SELECT   Top(1)  Posts.PostID, Posts.TopicID, Posts.MemberID,  Posts.[Content], Posts.DateCreation, Posts.DateEdited, Posts.Signature, Posts.IPAddress,Posts.Quote
 	FROM       Posts INNER JOIN Topics ON Posts.TopicID = Topics.TopicID 
 			   INNER JOIN SubForums ON Topics.SubForumID = SubForums.SubForumID
 	WHERE	   SubForums.SubForumID = @SubForumID ORDER BY Posts.PostID DESC
@@ -91,7 +91,7 @@ GO
 CREATE PROC GetLastPostOfTopicByTopicID
 	@TopicID INT
 AS BEGIN
-SELECT   TOP(1)  Posts.PostID, Posts.TopicID, Posts.MemberID, Posts.Title, Posts.[Content], Posts.DateCreation, Posts.DateEdited, Posts.Signature, Posts.IPAddress
+SELECT   TOP(1)  Posts.PostID, Posts.TopicID, Posts.MemberID, Posts.[Content], Posts.DateCreation, Posts.DateEdited, Posts.Signature, Posts.IPAddress, Posts.Quote
 FROM         Posts INNER JOIN  Topics ON Posts.TopicID = Topics.TopicID
 WHERE Posts.TopicID = @TopicID
 ORDER BY Posts.PostID  DESC
@@ -221,14 +221,14 @@ go
 CREATE PROC InsertPost
 	@TopicID int,
 	@MemberID int,
-	@Title nvarchar(100),
 	@Content ntext,
 	@DateEdited datetime,
 	@Signature bit,
-	@IPAddress nvarchar(50)
+	@IPAddress nvarchar(50),
+	@Quote ntext
 AS BEGIN 
-	Insert into  dbo.Posts(TopicID,MemberID,Title,[Content],DateEdited,Signature,IPAddress) 
-	values (@TopicID,@MemberID,@Title,@Content,@DateEdited,@Signature,@IPAddress)
+	Insert into  dbo.Posts(TopicID,MemberID,[Content],DateEdited,Signature,IPAddress,Quote) 
+	values (@TopicID,@MemberID,@Content,@DateEdited,@Signature,@IPAddress,@Quote)
 END
 
 go
@@ -320,7 +320,7 @@ SELECT     Members.MemberID, Members.UserName, Members.Email, Members.FullName, 
                       MemberProfiles.Gender, MemberProfiles.Yahoo, MemberProfiles.Phone, MemberProfiles.Hospital, MemberProfiles.Blog, MemberProfiles.TotalPosts, 
                       MemberProfiles.TotalThanks, MemberProfiles.TotalThanked, MemberProfiles.CurrentExperience, MemberProfiles.MemberLevel, MemberProfiles.IPAddress, 
                       MemberProfiles.LastLogin, MemberProfiles.MyRss, MemberProfiles.Signature, MemberProfiles.AboutMe, Posts.PostID, Posts.TopicID, Posts.[Content], 
-                      Posts.DateCreation AS DateCreationOfPosts, Posts.DateEdited, Posts.Signature AS SignatureOfPosts, Posts.IPAddress AS IPAddressOfPost
+                      Posts.DateCreation AS DateCreationOfPosts, Posts.DateEdited, Posts.Signature AS SignatureOfPosts, Posts.IPAddress AS IPAddressOfPost,Posts.Quote
 FROM         Members INNER JOIN
                       MemberProfiles ON Members.MemberID = MemberProfiles.MemberID INNER JOIN
                       Posts ON Members.MemberID = Posts.MemberID
@@ -363,3 +363,20 @@ END
 EXEC SearchTopic '', 0, 0, '', null, null
 
 select * from topics
+
+--GetPostByPostID
+
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetPostByPostID' AND TYPE = 'P')
+DROP PROC GetPostByPostID
+go
+CREATE PROC GetPostByPostID
+	@PopicID int
+AS BEGIN 
+	select * from dbo.Posts where PostID = @PopicID
+END
+
+go
+
+exec GetPostByPostID 1
+go
+select * from Posts

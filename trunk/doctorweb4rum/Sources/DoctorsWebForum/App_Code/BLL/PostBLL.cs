@@ -100,5 +100,19 @@ namespace BLL
             }
             return result;
         }
+
+        public static Post GetPostByPostID(int postID)
+        {
+            Post result = null;
+            try
+            {
+                result = DataHelper.GetPostDA().GetPostByPostID(postID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

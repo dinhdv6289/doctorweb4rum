@@ -1,9 +1,8 @@
 <%@ Page Language="C#" MasterPageFile="~/GUI/MasterPage.master" AutoEventWireup="true" CodeFile="NewReply.aspx.cs" Inherits="GUI_NewReply" Title="Untitled Page" %>
-
 <%@ Register Assembly="obout_Editor" Namespace="OboutInc.Editor" TagPrefix="obout" %>
-<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+        <br />
         <div class="vbform block">
         <h2 class="blockhead">
             Your Message</h2>

@@ -31,7 +31,18 @@ public partial class GUI_NewReply : System.Web.UI.Page
                 {
                     if (withQuote == "1" || withQuote.Equals("1"))
                     {
-                        Editor1.Content = "<span style=\"font-style: italic;font-size: 8pt;\">" + topic.Content + "</span>";
+                        //Editor1.Content = "<span style=\"font-style: italic;font-size: 8pt;\">" + topic.Content + "</span>";
+                        Editor1.Content = "<div class=\"bbcode_container\">"+
+                            "<div class=\"bbcode_quote\">"+
+                                "<div class=\"quote_container\">"+
+                                "<div class=\"bbcode_quote_container\">"+
+                                "</div>"+
+                                "<div class=\"bbcode_postedby\">"+
+                                "<img alt=\"Quote\" src=\"Images/quote_icon.png\" title=\"Quote\">"+
+                                "Originally Posted by"+ 
+                                "<strong>"+ "ten user"+"</strong>" +"</div>"+
+                                "<div class=\"message\">" + topic.Content + "</div></div></div></div>";
+
                     }
                     else
                     {
@@ -64,8 +75,11 @@ public partial class GUI_NewReply : System.Web.UI.Page
             if (Request.QueryString["topicID"] != null || Request.QueryString["topicID"].Length > 0)
             {
                 newPost.TopicID = Convert.ToInt32(Request.QueryString["topicID"]);
-                newPost.MemberID = 1;// MemberID fix cung' bang 1. vi chua co Session Login.
-                newPost.Title = "sau phai bo title di.";
+                Member memberloged = (Member)Session["UserLoged"];
+                if (memberloged != null)
+                {
+                    newPost.MemberID = memberloged.MemberID;
+                }
                 newPost.Content = contents;
                 newPost.DateEdited = DateTime.Now;
                 newPost.Signature = true;

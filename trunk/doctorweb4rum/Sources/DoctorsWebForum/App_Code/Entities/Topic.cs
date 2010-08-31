@@ -24,7 +24,13 @@ public class Topic
     private int moveTo;
     private String title;
     private String content;
+    private DateTime dateEdited;
 
+    public DateTime DateEdited
+    {
+        get { return dateEdited; }
+        set { dateEdited = value; }
+    }
 
     public String Content
     {

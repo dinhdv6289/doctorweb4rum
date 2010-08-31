@@ -5,7 +5,7 @@ clear:both;
 .forumhead {
 -moz-border-radius-topleft:5px;
 -moz-border-radius-topright:5px;
-background:url("http://i.dpstatic.com/buttons/newbtn_middle.png") repeat-x scroll 0 0 #527A67;
+background:url("Images/newbtn_middle.png") repeat-x scroll 0 0 #527A67;
 border:1px solid #355B4C;
 clear:both;
 color:#FFFFFF;
@@ -35,13 +35,13 @@ color:#499441;
 -moz-box-shadow:-2px 2px 2px transparent;
 }
 .forumhead + .childforum .L2:first-child .forumrow, .forumhead + .L2 .forumrow {
-background:url("http://i.dpstatic.com/gradients/grey-up.png") repeat-x scroll left bottom #EAF4E9;
+background:url("Images/grey-up.png") repeat-x scroll left bottom #EAF4E9;
 }
 .forumrow + .childsubforum .forumrow, .forumhead + .childforum .L2:first-child .L2 .forumrow, .forumhead + .childforum .L2 .L2:first-child .forumrow {
-background:url("http://i.dpstatic.com/gradients/grey-up.png") repeat-x scroll left bottom #EAF4E9;
+background:url("Images/grey-up.png") repeat-x scroll left bottom #EAF4E9;
 }
 .forumbit_nopost .forumbit_nopost .forumrow, .forumbit_post .forumrow {
-background:url("http://i.dpstatic.com/gradients/grey-up.png") repeat-x scroll left bottom #EAF4E9;
+background:url("Images/grey-up.png") repeat-x scroll left bottom #EAF4E9;
 border-bottom:1px solid #355B4C;
 border-left:1px solid #355B4C;
 border-right:1px solid #355B4C;
@@ -91,7 +91,7 @@ display:block;
 width:100%;
 }
 .forumbit_nopost .subforumdescription {
-background:url("http://i.dpstatic.com/gradients/subheading-gradient-alpha.png") repeat-x scroll 0 0 #85AB9C;
+background:url("Images/subheading-gradient-alpha.png") repeat-x scroll 0 0 #85AB9C;
 color:#3E3E3E;
 font-weight:normal;
 padding:5px 10px;
@@ -114,7 +114,7 @@ font-size:12px;
 width:21%;
 }
 .forumbit_nopost .forumhead a.collapse img {
-background:url("http://b.dpstatic.com/buttons/collapse_collapsed_40b.png") no-repeat scroll 0 0 transparent;
+background:url("Images/collapse_collapsed_40b.png") no-repeat scroll 0 0 transparent;
 clear:left;
 display:block;
 float:right;
@@ -196,7 +196,7 @@ margin-right:10px;
 font-weight:bold;
 }
 .childsubforum .forumbit_post .foruminfo .forumdata .datacontainer .forumtitle a {
-background:url("http://m.dpstatic.com/misc/child_forum.png") no-repeat scroll left top transparent;
+background:url("Images/child_forum.png") no-repeat scroll left top transparent;
 padding-left:1.8em;
 }
 .forumbit_post .foruminfo .forumdata .viewing {
@@ -230,13 +230,13 @@ display:block;
 padding-left:18px;
 }
 .forumactionlinks .rsslink {
-background-image:url("http://m.dpstatic.com/misc/rss_40b.png");
+background-image:url("Images/rss_40b.png");
 }
 .forumactionlinks .subslink {
-background-image:url("http://m.dpstatic.com/misc/subscribed.png");
+background-image:url("Images/subscribed.png");
 }
 .forumactionlinks .unsubslink {
-background-image:url("http://m.dpstatic.com/misc/unsubscribed_40b.png");
+background-image:url("");
 }
 .forumbit_post .forumdescription {
 clear:both;
@@ -374,7 +374,7 @@ top:2px;
 }
 .above_threadlist_controls {
 -moz-border-radius:2px 2px 2px 2px;
-background:url("http://i.dpstatic.com/buttons/newbtn_middle.png") repeat-x scroll 0 0 #92BAA7;
+background:url("Images/newbtn_middle.png") repeat-x scroll 0 0 #92BAA7;
 border:1px solid #527A67;
 clear:both;
 display:block;
@@ -404,7 +404,7 @@ max-width:240px;
 min-width:240px;
 }
 .forumdisplaypopups a.popupctrl, .forumdisplaypopups.popupgroup .popupmenu a.popupctrl {
-background:url("http://m.dpstatic.com/misc/black_downward_arrow.png") no-repeat scroll left center transparent;
+background:url("Images/black_downward_arrow.png") no-repeat scroll left center transparent;
 border:0 none;
 clear:right;
 color:#4E4E4E;
@@ -502,7 +502,7 @@ font:bold 11px Tahoma,Calibri,Verdana,Geneva,sans-serif;
 padding:3.33333px 6.66667px;
 }
 .navpopupmenu.popupmenu.nohovermenu a.textcontrol, .navpopupmenu.popupmenu.nohovermenu a.popupctrl {
-background:url("http://i.dpstatic.com/buttons/newbtn_middle.png") repeat-x scroll left top #E9E9E9;
+background:url("Images/newbtn_middle.png") repeat-x scroll left top #E9E9E9;
 border:1px solid #435F5F;
 color:#424242;
 font:bold 11px Tahoma,Calibri,Verdana,Geneva,sans-serif;
@@ -513,7 +513,7 @@ position:relative;
 top:0;
 }
 .navpopupmenu.popupmenu.nohovermenu a.popupctrl span.ctrlcontainer {
-background:url("http://m.dpstatic.com/misc/black_downward_arrow.png") no-repeat scroll left center transparent;
+background:url("Images/black_downward_arrow.png") no-repeat scroll left center transparent;
 padding-left:15px;
 }
 * html .navpopupmenu.popupmenu.nohovermenu a.textcontrol:hover, .navpopupmenu.popupmenu.nohovermenu a.popupctrl:hover {
@@ -521,7 +521,7 @@ background:none repeat scroll 0 0 #EFEFEF;
 color:#419473;
 }
 .navpopupmenu.popupmenu.nohovermenu a.textcontrol:hover, .navpopupmenu.popupmenu.nohovermenu a.popupctrl:hover {
-background:url("http://g.dpstatic.com/gradients/generic_button.png") repeat-x scroll 0 0 #EFEFEF;
+background:url("Images/generic_button.png") repeat-x scroll 0 0 #EFEFEF;
 color:#419473;
 }
 .announcements {
@@ -585,7 +585,7 @@ width:100%;
 -moz-border-radius-topleft:5px;
 -moz-border-radius-topright:5px;
 -moz-box-shadow:-2px 0 2px transparent;
-background:url("http://i.dpstatic.com/buttons/newbtn_middle.png") repeat-x scroll 0 0 #527A67;
+background:url("Images/newbtn_middle.png") repeat-x scroll 0 0 #527A67;
 border:1px solid #355B4C;
 color:#FFFFFF;
 font:bold 12px Tahoma,Calibri,Verdana,Geneva,sans-serif;
@@ -609,7 +609,7 @@ padding:4px 0 4px 10px;
 }
 .forum_info_block, .forum_info_form {
 -moz-box-shadow:-2px 2px 2px transparent;
-background:url("http://i.dpstatic.com/gradients/gradient-greytowhite.png") repeat-x scroll 0 0 #EAF4E9;
+background:url("Images/gradient-greytowhite.png") repeat-x scroll 0 0 #EAF4E9;
 border-bottom:1px solid #355B4C;
 border-left:1px solid #355B4C;
 border-right:1px solid #355B4C;
@@ -740,7 +740,7 @@ width:auto;
 }
 .forumbits .forumbit_nopost .forumhead {
 -moz-border-radius:0 0 0 0;
-background:url("http://i.dpstatic.com/buttons/newbtn_middle.png") repeat-x scroll 0 0 #527A67;
+background:url("Images/newbtn_middle.png") repeat-x scroll 0 0 #527A67;
 border-color:-moz-use-text-color #355B4C #355B4C;
 border-right:1px solid #355B4C;
 border-style:none solid solid;
@@ -764,7 +764,7 @@ border-top:0 none;
 -moz-border-radius-topleft:5px;
 -moz-border-radius-topright:5px;
 -moz-box-shadow:-2px 2px 2px transparent;
-background:url("http://i.dpstatic.com/gradients/gradient-white-down.png") repeat-x scroll 0 0 #527A67;
+background:url("Images/gradient-white-down.png") repeat-x scroll 0 0 #527A67;
 border:1px solid #355B4C;
 color:#FFFFFF;
 display:block;
@@ -868,7 +868,7 @@ position:relative;
 right:0;
 }
 .threadbit .sticky {
-background:url("http://i.dpstatic.com/gradients/grey-up.png") repeat-x scroll left bottom #E8F9E8;
+background:url("Images/grey-up.png") repeat-x scroll left bottom #E8F9E8;
 border-color:#FFFFFF #355B4C #355B4C;
 border-right:1px solid #355B4C;
 border-style:solid;
@@ -880,7 +880,7 @@ position:relative;
 width:100%;
 }
 .threadbit .nonthread {
-background:url("http://i.dpstatic.com/gradients/grey-up.png") repeat-x scroll left bottom #EAF4E9;
+background:url("Images/grey-up.png") repeat-x scroll left bottom #EAF4E9;
 border-color:#FFFFFF #355B4C #355B4C;
 border-right:1px solid #355B4C;
 border-style:solid;
@@ -912,10 +912,10 @@ border-bottom:1px solid #92BAA7;
 border-bottom:1px solid #355B4C;
 }
 .threadbit .nonsticky, .threadbit .discussionrow {
-background:url("http://i.dpstatic.com/gradients/grey-up.png") repeat-x scroll left bottom #EAF4E9;
+background:url("Images/grey-up.png") repeat-x scroll left bottom #EAF4E9;
 }
 .threadbit .deleted, .threadbit .ignored {
-background:url("http://i.dpstatic.com/gradients/gradient-black-down_sm.png") repeat-x scroll 0 0 #E5E5E5;
+background:url("Images/gradient-black-down_sm.png") repeat-x scroll 0 0 #E5E5E5;
 }
 .threadinfo .threaddesc {
 height:0;
@@ -1003,7 +1003,7 @@ width:23%;
 width:20%;
 }
 .threadbit .alt {
-background:url("http://i.dpstatic.com/gradients/grey-up.png") repeat-x scroll left bottom #E2ECE1;
+background:url("Images/grey-up.png") repeat-x scroll left bottom #E2ECE1;
 border-left:1px solid #92BAA7;
 border-right:1px solid #92BAA7;
 }
@@ -1082,61 +1082,61 @@ position:relative;
 width:60px;
 }
 .threadbit .threadstatus {
-background-image:url("http://i.dpstatic.com/statusicon/thread_old-30.png");
+background-image:url("Images/thread_old-30.png");
 }
 .threadbit.dot .threadstatus {
-background-image:url("http://i.dpstatic.com/statusicon/thread_dot-30-right.png");
+background-image:url("Images/thread_dot-30-right.png");
 }
 .threadbit.dot.hot .threadstatus {
-background-image:url("http://i.dpstatic.com/statusicon/thread_dot_hot-30-right.png");
+background-image:url("Images/thread_dot_hot-30-right.png");
 }
 .threadbit.dot.hot.lock .threadstatus {
-background-image:url("http://i.dpstatic.com/statusicon/thread_dot_hot_lock-30-right.png");
+background-image:url("Images/thread_dot_hot_lock-30-right.png");
 }
 .threadbit.dot.hot.lock.new .threadstatus {
-background-image:url("http://i.dpstatic.com/statusicon/thread_dot_hot_lock_new-30-right.png");
+background-image:url("Images/thread_dot_hot_lock_new-30-right.png");
 }
 .threadbit.dot.hot.new .threadstatus {
-background-image:url("http://i.dpstatic.com/statusicon/thread_dot_hot_new-30-right.png");
+background-image:url("Images/thread_dot_hot_new-30-right.png");
 }
 .threadbit.dot.lock .threadstatus {
-background-image:url("http://i.dpstatic.com/statusicon/thread_dot_lock-30-right.png");
+background-image:url("Images/thread_dot_lock-30-right.png");
 }
 .threadbit.dot.lock.new .threadstatus {
-background-image:url("http://i.dpstatic.com/statusicon/thread_dot_lock_new-30-right.png");
+background-image:url("Images/thread_dot_lock_new-30-right.png");
 }
 .threadbit.dot.new .threadstatus {
-background-image:url("http://i.dpstatic.com/statusicon/thread_dot_new-30-right.png");
+background-image:url("Images/thread_dot_new-30-right.png");
 }
 .threadbit.hot .threadstatus {
-background-image:url("http://i.dpstatic.com/statusicon/thread_hot-30.png");
+background-image:url("Images/thread_hot-30.png");
 }
 .threadbit.hot.lock .threadstatus {
-background-image:url("http://i.dpstatic.com/statusicon/thread_hot_lock-30.png");
+background-image:url("Images/thread_hot_lock-30.png");
 }
 .threadbit.hot.lock.new .threadstatus {
-background-image:url("http://i.dpstatic.com/statusicon/thread_hot_lock_new-30.png");
+background-image:url("Images/thread_hot_lock_new-30.png");
 }
 .threadbit.hot.new .threadstatus {
-background-image:url("http://i.dpstatic.com/statusicon/thread_hot_new-30.png");
+background-image:url("Images/thread_hot_new-30.png");
 }
 .threadbit.lock .threadstatus {
-background-image:url("http://i.dpstatic.com/statusicon/thread_lock-30.png");
+background-image:url("Images/thread_lock-30.png");
 }
 .threadbit.lock.new .threadstatus {
-background-image:url("http://i.dpstatic.com/statusicon/thread_lock_new-30.png");
+background-image:url("Images/thread_lock_new-30.png");
 }
 .threadbit.moved .threadstatus {
-background-image:url("http://i.dpstatic.com/statusicon/thread_moved-30.png");
+background-image:url("Images/thread_moved-30.png");
 }
 .threadbit.moved.new .threadstatus {
-background-image:url("http://i.dpstatic.com/statusicon/thread_moved_new-30.png");
+background-image:url("Images/thread_moved_new-30.png");
 }
 .new .threadstatus {
-background-image:url("http://i.dpstatic.com/statusicon/thread_new-30.png");
+background-image:url("Images/thread_new-30.png");
 }
 .threadbit .deleted .threadstatus {
-background:url("http://i.dpstatic.com/statusicon/thread_deleted_30-right.png") no-repeat scroll 10px 4px transparent;
+background:url("Images/thread_deleted_30-right.png") no-repeat scroll 10px 4px transparent;
 clear:right;
 display:block;
 float:left;
@@ -1149,23 +1149,23 @@ margin-right:10px;
 padding-left:0;
 }
 .threadbit .rating1 .threadtitle {
-background-image:url("http://i.dpstatic.com/rating/rating-trans-15_1.png");
+background-image:url("Images/rating-trans-15_1.png");
 padding-right:15px;
 }
 .threadbit .rating2 .threadtitle {
-background-image:url("http://i.dpstatic.com/rating/rating-trans-15_2.png");
+background-image:url("Images/rating-trans-15_2.png");
 padding-right:30px;
 }
 .threadbit .rating3 .threadtitle {
-background-image:url("http://i.dpstatic.com/rating/rating-trans-15_3.png");
+background-image:url("Images/rating-trans-15_3.png");
 padding-right:45px;
 }
 .threadbit .rating4 .threadtitle {
-background-image:url("http://i.dpstatic.com/rating/rating-trans-15_4.png");
+background-image:url("Images/rating-trans-15_4.png");
 padding-right:60px;
 }
 .threadbit .rating5 .threadtitle {
-background-image:url("http://i.dpstatic.com/rating/rating-trans-15_5.png");
+background-image:url("Images/rating-trans-15_5.png");
 padding-right:75px;
 }
 .threadbit .title {
@@ -1235,7 +1235,7 @@ font-weight:normal;
 font-size:11px;
 }
 .threadbit.premium .sticky, .threadbit.premium .nonsticky, .threadbit.premium .replies, .threadbit.premium .threadlastpost {
-background:url("http://i.dpstatic.com/gradients/grey-up.png") repeat-x scroll left bottom #9DC996;
+background:url("Images/grey-up.png") repeat-x scroll left bottom #9DC996;
 }
 .threadbit.premium .alt {
 background-color:#95C18E;
@@ -1258,7 +1258,7 @@ clear:both;
 .forumhead {
 -moz-border-radius-topleft:5px;
 -moz-border-radius-topright:5px;
-background:url("http://i.dpstatic.com/buttons/newbtn_middle.png") repeat-x scroll 0 0 #527A67;
+background:url("Images/newbtn_middle.png") repeat-x scroll 0 0 #527A67;
 border:1px solid #355B4C;
 clear:both;
 color:#FFFFFF;
@@ -1288,13 +1288,13 @@ color:#499441;
 -moz-box-shadow:-2px 2px 2px transparent;
 }
 .forumhead + .childforum .L2:first-child .forumrow, .forumhead + .L2 .forumrow {
-background:url("http://i.dpstatic.com/gradients/grey-up.png") repeat-x scroll left bottom #EAF4E9;
+background:url("Images/grey-up.png") repeat-x scroll left bottom #EAF4E9;
 }
 .forumrow + .childsubforum .forumrow, .forumhead + .childforum .L2:first-child .L2 .forumrow, .forumhead + .childforum .L2 .L2:first-child .forumrow {
-background:url("http://i.dpstatic.com/gradients/grey-up.png") repeat-x scroll left bottom #EAF4E9;
+background:url("Images/grey-up.png") repeat-x scroll left bottom #EAF4E9;
 }
 .forumbit_nopost .forumbit_nopost .forumrow, .forumbit_post .forumrow {
-background:url("http://i.dpstatic.com/gradients/grey-up.png") repeat-x scroll left bottom #EAF4E9;
+background:url("Images/grey-up.png") repeat-x scroll left bottom #EAF4E9;
 border-bottom:1px solid #355B4C;
 border-left:1px solid #355B4C;
 border-right:1px solid #355B4C;
@@ -1344,7 +1344,7 @@ display:block;
 width:100%;
 }
 .forumbit_nopost .subforumdescription {
-background:url("http://i.dpstatic.com/gradients/subheading-gradient-alpha.png") repeat-x scroll 0 0 #85AB9C;
+background:url("Images/subheading-gradient-alpha.png") repeat-x scroll 0 0 #85AB9C;
 color:#3E3E3E;
 font-weight:normal;
 padding:5px 10px;
@@ -1367,7 +1367,7 @@ font-size:12px;
 width:21%;
 }
 .forumbit_nopost .forumhead a.collapse img {
-background:url("http://b.dpstatic.com/buttons/collapse_collapsed_40b.png") no-repeat scroll 0 0 transparent;
+background:url("Images/collapse_collapsed_40b.png") no-repeat scroll 0 0 transparent;
 clear:left;
 display:block;
 float:right;
@@ -1449,7 +1449,7 @@ margin-right:10px;
 font-weight:bold;
 }
 .childsubforum .forumbit_post .foruminfo .forumdata .datacontainer .forumtitle a {
-background:url("http://m.dpstatic.com/misc/child_forum.png") no-repeat scroll left top transparent;
+background:url("Images/child_forum.png") no-repeat scroll left top transparent;
 padding-left:1.8em;
 }
 .forumbit_post .foruminfo .forumdata .viewing {
@@ -1483,13 +1483,13 @@ display:block;
 padding-left:18px;
 }
 .forumactionlinks .rsslink {
-background-image:url("http://m.dpstatic.com/misc/rss_40b.png");
+background-image:url("Images/rss_40b.png");
 }
 .forumactionlinks .subslink {
-background-image:url("http://m.dpstatic.com/misc/subscribed.png");
+background-image:url("Images/subscribed.png");
 }
 .forumactionlinks .unsubslink {
-background-image:url("http://m.dpstatic.com/misc/unsubscribed_40b.png");
+background-image:url("");
 }
 .forumbit_post .forumdescription {
 clear:both;
@@ -1591,7 +1591,7 @@ width:100%;
 .wgo_block h2 {
 -moz-border-radius-topleft:5px;
 -moz-border-radius-topright:5px;
-background:url("http://i.dpstatic.com/buttons/newbtn_middle.png") repeat-x scroll 0 0 #527A67;
+background:url("Images/newbtn_middle.png") repeat-x scroll 0 0 #527A67;
 border:1px solid #355B4C;
 color:#FFFFFF;
 font:bold 12px Tahoma,Calibri,Verdana,Geneva,sans-serif;
@@ -1610,7 +1610,7 @@ display:block;
 padding:4px 0 4px 10px;
 }
 .wgo_block div.floatcontainer {
-background:url("http://i.dpstatic.com/gradients/gradient-greytowhite.png") repeat-x scroll 0 0 #EAF4E9;
+background:url("Images/gradient-greytowhite.png") repeat-x scroll 0 0 #EAF4E9;
 }
 .wgo_block .wgo_subblock {
 border-bottom:1px solid #92BAA7;
@@ -1720,7 +1720,7 @@ margin-left:-28px;
 #sidebar_container .block {
 -moz-border-radius-topleft:5px;
 -moz-border-radius-topright:5px;
-background:url("http://i.dpstatic.com/misc/blog/top-highlight.png") repeat-x scroll left top #EAF4E9;
+background:url("Images/top-highlight.png") repeat-x scroll left top #EAF4E9;
 margin-bottom:4px;
 padding:6px;
 }
@@ -1733,11 +1733,11 @@ padding:0;
 }
 #sidebar_container .blockrow {
 -moz-border-radius:5px 5px 5px 5px;
-background:url("http://i.dpstatic.com/misc/blog/gradient-black-down.png") repeat-x scroll 0 0 #E2ECE1;
+background:url("Images/gradient-black-down.png") repeat-x scroll 0 0 #E2ECE1;
 border-top:1px solid #E2ECE1;
 }
 #sidebar_container .underblock {
-background:url("http://i.dpstatic.com/misc/blog/bottom-shadow.png") repeat-x scroll left bottom transparent;
+background:url("Images/bottom-shadow.png") repeat-x scroll left bottom transparent;
 height:9px;
 }
 #sidebar_container .blockrow, #sidebar_container .blocksubhead {
@@ -1877,22 +1877,22 @@ margin-top:10px;
 .member_summary a.textcontrol:hover, .member_summary a.imagecontrol:hover{background: none;}
 .member_summary .imagecontrol img{float: right;position: relative;top: -4px;}
 .member_summary h1{ font: bold 16px Tahoma, Calibri, Verdana, Geneva, sans-serif;} 
-.member_summary .block{margin-bottom:4px;padding:6px;background:#EAF4E9 url(http://i.dpstatic.com/misc/blog/top-highlight.png) repeat-x left top;-moz-border-radius-topleft:5px;-moz-border-radius-topright:5px;-webkit-border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;}.member_summary #view_stats_mini.block{background-image:none;}.member_summary .block .blockbody{color:;background:#E2ECE1;-moz-border-radius:5px;-webkit-border-radius: 5px;padding:0;border:1px solid #95BBAC;}.member_summary .block .blockrow{background:#E2ECE1;border-top:1px solid #E2ECE1;-moz-border-radius:5px;-webkit-border-radius: 5px;background:#E2ECE1 url(http://i.dpstatic.com/misc/blog/gradient-black-down.png) repeat-x left top;}
-.member_summary .underblock{height:9px;background:transparent url(http://i.dpstatic.com/misc/blog/bottom-shadow.png) repeat-x left bottom;}
+.member_summary .block{margin-bottom:4px;padding:6px;background:#EAF4E9 url(Images/top-highlight.png) repeat-x left top;-moz-border-radius-topleft:5px;-moz-border-radius-topright:5px;-webkit-border-top-left-radius: 5px;-webkit-border-top-right-radius: 5px;}.member_summary #view_stats_mini.block{background-image:none;}.member_summary .block .blockbody{color:;background:#E2ECE1;-moz-border-radius:5px;-webkit-border-radius: 5px;padding:0;border:1px solid #95BBAC;}.member_summary .block .blockrow{background:#E2ECE1;border-top:1px solid #E2ECE1;-moz-border-radius:5px;-webkit-border-radius: 5px;background:#E2ECE1 url(Images/gradient-black-down.png) repeat-x left top;}
+.member_summary .underblock{height:9px;background:transparent url(Images/bottom-shadow.png) repeat-x left bottom;}
 .member_summary .blockrow, .member_summary .blocksubhead{padding:10px 6px 10px 6px;color: #424242;}
 .member_summary .blocksubhead{background:transparent none;height:17px;padding: 5px 6px;border:none;outline:none;font-weight:bold;}
 .member_summary .blocksubhead img{vertical-align:middle;}.member_summary .blocksubhead.smaller, .member_summary .blockrow{font-size:12px;}
 .member_summary .blocksubhead a.username{padding-right:20px;}
-.member_summary .blocksubhead a.username.offline{background:url(http://i.dpstatic.com/statusicon/user-offline.png) top right no-repeat;}
-.member_summary .blocksubhead a.username.online{background:url(http://i.dpstatic.com/statusicon/user-online.png) top right no-repeat;}
-.member_summary .blocksubhead a.username.invisible{background:url(http://i.dpstatic.com/statusicon/user-invisible.png) top right no-repeat;}
+.member_summary .blocksubhead a.username.offline{background:url(Images/user-offline.png) top right no-repeat;}
+.member_summary .blocksubhead a.username.online{background:url(Images/user-online.png) top right no-repeat;}
+.member_summary .blocksubhead a.username.invisible{background:url(Images/user-invisible.png) top right no-repeat;}
 .member_summary .mainblock .usertitle{font-weight:normal;font-size:11px;}.member_summary .mainblock .usertitle.premium{font-weight:bold;}
 .member_summary .mainblock .blocksubhead{height:auto;}
 .member_summary .mainblock{margin-bottom:8px;}
 .member_summary .mainblock a.avatar .avatarcontainer{margin: 0 auto;text-align: center;display:block;}
 .member_summary .mainblock a.avatar .avatarcontainer img{border: 3px solid rgb(255, 255, 255);outline:1px solid #d9d9d9;max-width: 220px;height: auto;!important}
 #usermenu{font-size:11px;margin-left: 10px;}
-#usermenu.premium{ background-image:url(http://m.dpstatic.com/misc/premium.png);background-position:95% top;background-repeat:no-repeat;}
+#usermenu.premium{ background-image:url(Images/premium.png);background-position:95% top;background-repeat:no-repeat;}
 #usermenu li{margin-bottom: 2px;}
 #usermenu li a{color: #3e3e3e}
 #usermenu li.separator{height: 1px;margin-top: 2px;background: #355B4C;margin-right: 10px;}
@@ -1952,7 +1952,7 @@ margin-top:10px;
  .profile_content .friends_list li a.image_friend_link{clear:both;position: absolute;top: 10px;left: 10px;width: 60px;overflow:hidden;}
  .profile_content .friends_list li a.image_friend_link img{height: 60px;width: auto !important;max-width: 60px;}
  .profile_content .friends_list li .friend_info{}
- .profile_content .breakfriendship{background-image: url(http://m.dpstatic.com/misc/cross.png);background-repeat: no-repeat;position: absolute;width: 16px;height: 16px;overflow: hidden;right: 10px;margin-top: -32px;}
+ .profile_content .breakfriendship{background-image: url(Images/cross.png);background-repeat: no-repeat;position: absolute;width: 16px;height: 16px;overflow: hidden;right: 10px;margin-top: -32px;}
  .profile_content .breakfriendship a{padding-left: 16px;} 
  .profile_content .subsectionhead-understate{font-weight:bold;background: rgb(255, 255, 255);position:relative;top: 6.5px;display:block;float: left;padding-top: 5px;padding-right: 5px;}
  .profile_content .subsection{clear:both;border-top: 1px solid #d8d8d8;padding-top: 10px;}

@@ -18,13 +18,18 @@ public class Post
     private int postID;
     private int topicID;
     private int memberID;
-    private string title;
     private string content;
     private DateTime dateCreation;
     private DateTime dateEdited;
     private Boolean signature;
     private string ipAddress;
+    private string quote;
 
+    public string Quote
+    {
+        get { return quote; }
+        set { quote = value; }
+    }
 
     public int PostID
     {
@@ -42,12 +47,6 @@ public class Post
     {
         get { return memberID; }
         set { memberID = value; }
-    }
-
-    public string Title
-    {
-        get { return title; }
-        set { title = value; }
     }
 
     public string Content
