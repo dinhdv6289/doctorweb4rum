@@ -62,5 +62,20 @@ namespace BLL
             }
             return result;
         }
+
+        public static int InsertSubForum(SubForum subforum, out int resultStatus)
+        {
+            int result = 0;
+            resultStatus = 0;
+            try
+            {
+                result = DataHelper.GetSubForumDA().InsertSubForum(subforum, out resultStatus);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

@@ -30,8 +30,6 @@ namespace BLL
             return result;
         }
 
-
-
         public static int InsertMember(Member member, out int autoID)
         {
             int result = 0;
