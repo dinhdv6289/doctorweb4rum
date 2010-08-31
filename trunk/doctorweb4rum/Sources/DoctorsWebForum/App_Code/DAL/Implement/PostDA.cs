@@ -140,6 +140,7 @@ namespace DAL
             {
                 Object[] values ={ post.TopicID, post.MemberID, post.Title, post.Content, post.DateEdited, post.Signature, post.IPAddress };
                 result = ProcessTableTypeStore("InsertPost", columnNamesForInsert, values);
+
             }
             catch (Exception ex)
             {

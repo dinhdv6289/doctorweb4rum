@@ -28,8 +28,8 @@ namespace DAL
         private const String TotalTopics = "TotalTopics";
         private const String TotalMessages = "TotalMessages";
         private String[] columnNames = { SubForumID, CategoryID, SubForumName, Description, Priority, TotalTopics, TotalMessages };
-
-
+        private String[] columnNamesForInsert = { SubForumName, Description, DateCreation };
+        
         public SubForum[] GetAllSubForumsByCategoryID(int CategoryID)
         {
             SubForum[] result;
@@ -85,6 +85,22 @@ namespace DAL
                 throw ex;
             }
             return result[0];
+        }
+
+        public int InsertSubForum(SubForum subforum, out int resultStatus)
+        {
+            int result = 0;
+            resultStatus = 0;
+            try
+            {                
+                Object[] values = { subforum.SubForumName, subforum.Description, subforum.DateCreation };                
+                result = InsertIntoTableTypeStoreReturnID("InsertSubForum", columnNamesForInsert, values, out resultStatus);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
         }
     }
 }
