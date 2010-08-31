@@ -40,13 +40,14 @@ public partial class MasterPage : System.Web.UI.MasterPage
                     MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
                     if (memberProfile != null)
                     {
+
                         Session.Add("UserLoged", member);
                         Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
                         if (role != null)
                         {
                             if (role.RoleName.Equals("Member"))
                             {
-                                Response.Redirect("Index.aspx");
+                                //Response.Redirect(origin);
                             }
                             if (role.RoleName.Equals("Moderator"))
                             {

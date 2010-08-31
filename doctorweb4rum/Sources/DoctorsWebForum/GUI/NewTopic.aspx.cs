@@ -23,7 +23,6 @@ public partial class GUI_NewTopic : System.Web.UI.Page
             if (subForumID != null)
             {
                 lblErrors.Text = "";
-                Session.Add("subForumID", subForumID);
                 subID = Convert.ToInt32(subForumID);
                 SubForum sf = SubForumBLL.GetSubForumBySubForumID(subID);
                 List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
@@ -33,7 +32,7 @@ public partial class GUI_NewTopic : System.Web.UI.Page
             }
             else
             {
-                Response.Redirect("ShowTopics.aspx?subForumID=" + Session["subForumID"].ToString());
+                Response.Redirect("ShowTopics.aspx?subForumID=" + subForumID);                
             }
         }
 
@@ -41,7 +40,7 @@ public partial class GUI_NewTopic : System.Web.UI.Page
 
     public SubForum GetSubForumBySubForumID()
     {
-        return SubForumBLL.GetSubForumBySubForumID(subID);
+        return SubForumBLL.GetSubForumBySubForumID(Convert.ToInt32(Request.QueryString["subForumID"]));
     }
     protected void btnSubmitNewTopic_Click(object sender, EventArgs e)
     {
@@ -51,7 +50,7 @@ public partial class GUI_NewTopic : System.Web.UI.Page
         {
             if (title != null || title.Length > 0 || contents.Length > 0 || contents != null)
             {
-                if (title.Length < 100)
+                if (title.Length <= 150 && title.Length >= 15)
                 {
                     Topic newTopic = new Topic();
                     if (Request.QueryString["subForumID"] != null || Request.QueryString["subForumID"].Length > 0)
