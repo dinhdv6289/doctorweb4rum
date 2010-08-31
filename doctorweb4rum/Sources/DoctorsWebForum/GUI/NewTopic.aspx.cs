@@ -32,7 +32,7 @@ public partial class GUI_NewTopic : System.Web.UI.Page
             }
             else
             {
-                Response.Redirect("ShowTopics.aspx?subForumID=" + subForumID);                
+                Response.Redirect("Index.aspx");                
             }
         }
 
