@@ -15,7 +15,6 @@ using BLL;
 public partial class GUI_TopicDetails : System.Web.UI.Page
 {
     protected int topicID = 0;
-    //protected Member memberLogin = null;
     protected void Page_Load(object sender, EventArgs e)
     {
         string TopicID = Request["topicID"];
@@ -25,7 +24,6 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
             topicID = Convert.ToInt32(TopicID);
             if (!IsPostBack)
             {
-                //memberLogin = (Member)Session["UserLogin"];
                 Topic tp = TopicBLL.GetTopicByTopicID(topicID);
                 SubForum sf = SubForumBLL.GetSubForumBySubForumID(tp.SubForumID);
                 List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
@@ -88,17 +86,37 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
     //}
     protected void topicRating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
     {
-        //if (memberLogin != null)
-        //{
-            //int rate = topicRating.CurrentRating;
-            //RatingTopic rt = new RatingTopic();
-            //rt.RateDate = DateTime.Now;
-            //rt.RatePoint = rate;
-            //rt.FromMember = memberLogin.MemberID;
-            //rt.TopicID = topicID;
-            //TopicBLL.InsertRatingTopic(rt);
-            //topicRating.CurrentRating = TopicBLL.GetRatingPoint(topicID)[0];
-        //}       
+       Member memberLogin = (Member)Session["UserLoged"];
+        if (memberLogin != null)
+        {
+            int rate = Convert.ToInt32(e.Value);
+            RatingTopic rt = new RatingTopic();
+            rt.RateDate = DateTime.Now;
+            rt.RatePoint = rate;
+            rt.FromMember = memberLogin.MemberID;
+            rt.TopicID = topicID;
+            TopicBLL.InsertRatingTopic(rt);
+            topicRating.CurrentRating = TopicBLL.GetRatingPoint(topicID)[1];
+        }       
     }
 
+    protected void LinkButton1_Click(object sender, EventArgs e)
+    {
+        Member memberLogin = (Member)Session["UserLoged"];
+        if (memberLogin != null)
+        {           
+            TopicBLL.ThankTopic(memberLogin.MemberID,topicID);
+        }       
+    }
+
+    public Boolean isThanked()
+    {
+        Boolean result = false;
+        Member memberLogin = (Member)Session["UserLoged"];
+        if (memberLogin != null)
+        {
+            result = TopicBLL.isThanked(topicID, memberLogin.MemberID);
+        }
+        return result;
+    }
 }

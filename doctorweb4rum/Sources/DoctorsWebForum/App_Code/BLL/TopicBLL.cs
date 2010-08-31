@@ -184,5 +184,33 @@ namespace BLL
             }
             return result;
         }
+
+        public static int ThankTopic(int memberID, int topicID)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetTopicDA().ThankTopic(memberID, topicID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+         public static Boolean isThanked(int topicID, int memberID)
+         {
+             Boolean result = false;
+             try
+             {
+                 result = DataHelper.GetTopicDA().isThanked(topicID, memberID);
+             }
+             catch (Exception ex)
+             {
+                 throw ex;
+             }
+             return result;
+         }
     }
 }

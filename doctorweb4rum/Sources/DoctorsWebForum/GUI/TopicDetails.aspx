@@ -94,20 +94,28 @@
                 </div>
                 <div class="postfoot">
                     <div class="textcontrols floatcontainer">
-                                
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always" ChildrenAsTriggers="True">
+            <ContentTemplate>                                
 <SPAN class="postcontrols"><IMG style="DISPLAY: none" id="Img2" alt="" src="http://m.dpstatic.com/misc/progress.gif" /> <A id="qr_14688798" class="quickreply" href='NewReply.aspx?topicID=<%= Request.QueryString["topicID"] %>' rel="nofollow"><IMG id="replyimg_14688798" alt="" src="clear.gif" /> Reply</A> <SPAN class="seperator">&nbsp;</SPAN> <A id="qrwq_14688639" class="newreply" href='NewReply.aspx?topicID=<%= Request.QueryString["topicID"] %>&withQuote=1' rel="nofollow">Reply With Quote</A><SPAN class="seperator">&nbsp;</SPAN>
  <ajaxToolkit:Rating id="topicRating" runat="Server" CssClass="ratingStar" EmptyStarCssClass="Empty" FilledStarCssClass="Filled" WaitingStarCssClass="Saved" StarCssClass="ratingItem"  AutoPostBack="True" OnChanged="topicRating_Changed"></ajaxToolkit:Rating> </SPAN>
 
                             <span class="postlinking">
-                                    <span title="14688639" class="reputationpopupmenu popupmenu popupcustom" id="yui-gen71">
-                                        <a id="reputation_14688639" rel="nofollow" title="Add to this user's reputation"
-                                            href="reputation.php?do=addreputation&amp;p=14688639" class="popupctrl reputation">
-                                           
-                                            &nbsp;</a></span> &nbsp;<a title="Report Post" rel="nofollow" href="#"
+                            <% if (isThanked())
+                            {
+                            }
+                               else
+                               {
+                             %>
+                                <asp:LinkButton ID="LinkButton1" runat="server" CssClass="post_thanks_button" OnClick="LinkButton1_Click">Thanks</asp:LinkButton> 
+                                <%} %>
+                                &nbsp;
+                                <a title="Report Post" rel="nofollow" href="#"
                                                 class="report">&nbsp;</a>
                                     &nbsp; 
                                     
                                     </span>
+ </ContentTemplate>
+ </asp:UpdatePanel>
                     </div>
                 </div>
                 <hr/>
