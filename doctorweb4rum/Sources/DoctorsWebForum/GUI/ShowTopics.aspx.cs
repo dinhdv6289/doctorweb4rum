@@ -39,8 +39,11 @@ public partial class GUI_ShowTopics : System.Web.UI.Page
 
     private void LoadData(int subForumID)
     {
-        repeaterTopics.DataSource = TopicBLL.GetAllTopicBySubForumID(subForumID);
-        repeaterTopics.DataBind();
+        CollectionPager1.DataSource = TopicBLL.GetAllTopicBySubForumID(subForumID);
+        CollectionPager1.BindToControl = repeaterTopics;
+        repeaterTopics.DataSource = CollectionPager1.DataSourcePaged;
+        //repeaterTopics.DataSource = TopicBLL.GetAllTopicBySubForumID(subForumID);
+        //repeaterTopics.DataBind();
 
     }
 
@@ -115,4 +118,24 @@ public partial class GUI_ShowTopics : System.Web.UI.Page
         int[] result = TopicBLL.GetRatingPoint(topicID);
         return "rating" + result[1].ToString();
     }
+
+    #region Web Form Designer generated code
+    override protected void OnInit(EventArgs e)
+    {
+        //
+        // CODEGEN: This call is required by the ASP.NET Web Form Designer.
+        //
+        InitializeComponent();
+        base.OnInit(e);
+    }
+
+    /// <summary>
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
+    /// </summary>
+    private void InitializeComponent()
+    {
+
+    }
+    #endregion
 }

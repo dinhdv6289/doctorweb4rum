@@ -1060,6 +1060,9 @@ top:3px;
 .pagination dt.label {
 display:none;
 }
+.pagination span c {
+display:none;
+}
 .pagination span.selected a {
 background:url("http://i.dpstatic.com/buttons/newbtn_middle.png") repeat scroll 0 0 #AACCBB;
 border:1px solid #355B4C;
@@ -1069,6 +1072,17 @@ height:15.99px;
 margin-left:1px;
 padding:2px 4px;
 }
+.pagination span b {
+background:url("http://i.dpstatic.com/buttons/newbtn_middle.png") repeat scroll 0 0 #AACCBB;
+border:1px solid #355B4C;
+color:#FFFFFF;
+font-weight:bold;
+height:15.99px;
+margin-left:1px;
+padding:2px 4px;
+}
+
+
 .pagination .separator, .pagination .elipsis {
 background:none repeat scroll 0 0 transparent;
 border:0 none;
