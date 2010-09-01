@@ -18,8 +18,8 @@
                             it may be awaiting activation.</li></ol>
             </div>
             <p class="blockrow">
-                The administrator may have required you to <a href=""
-                    rel="nofollow">register</a> before you can view this page.</p>
+                The administrator may have required you to <a href="Register.aspx"
+                    rel="nofollow">Register</a> before you can view this page.</p>
             <h3 class="blocksubhead">
                 Log in</h3>
             <div class="blockrow">
@@ -30,7 +30,7 @@
             <div class="blockrow">
                 <label for="vb_login_password">
                     Password:</label>
-                <asp:TextBox ID="txtPassword" runat="server" CssClass="primary textbox"></asp:TextBox>
+                <asp:TextBox ID="txtPassword" runat="server" CssClass="primary textbox"  TextMode="Password"></asp:TextBox>
             </div>
             <div class="blockrow singlecheck">
                 <label for="cb_cookieuser" style="width: 245px">

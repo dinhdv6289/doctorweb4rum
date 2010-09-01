@@ -45,6 +45,7 @@
         <div class="blockfoot actionbuttons">
             <div class="group">
                 <asp:Button ID="btnSubmitNewTopic" runat="server" Text="Submit New Topic" CssClass="button" OnClick="btnSubmitNewTopic_Click" />
+                <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="button" OnClick="btnCancel_Click" />
             </div>
         </div>
         </div>

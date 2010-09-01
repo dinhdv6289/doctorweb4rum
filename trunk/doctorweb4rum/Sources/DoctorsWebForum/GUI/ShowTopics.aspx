@@ -4,8 +4,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="above_threadlist" id="above_threadlist">
-        <a id="newthreadlink_top" class="newcontent_textcontrol" rel="nofollow" href="NewTopic.aspx?subForumID=<%= Request.QueryString["subForumID"] %>">
-            <span>+</span> Post New Topic</a>
+    <asp:LinkButton ID="LinkButton2" runat="server"  CssClass="newcontent_textcontrol" OnClick="LinkButton2_Click"><span>+ </span>Post New Topic</asp:LinkButton>
+<%--        <a id="newthreadlink_top" class="newcontent_textcontrol" rel="nofollow" href="NewTopic.aspx?subForumID=<%= Request.QueryString["subForumID"] %>">
+            <span>+</span> Post New Topic</a>--%>
     </div>
     <br />
     <div>
@@ -85,7 +86,7 @@
                                         <%#GetLastPostOfTopicByTopicID(Convert.ToInt32(Eval("TopicID"))).DateCreation%>
                                         <em class="time"></em><a href="TopicDetails.aspx?topicIDLastPost=<%#Eval("TopicID") %>"
                                             class="lastpostdate understate" title="Go to last post">
-                                            <img title="Go to last post" src="http://b.dpstatic.com/buttons/lastpost-right.png"
+                                            <img title="Go to last post" src="Images/lastpost-right.png"
                                                 alt="Go to last post"></a>
                                     </dd>
                                 </dl>

@@ -14,7 +14,6 @@ using BLL;
 
 public partial class GUI_NewTopic : System.Web.UI.Page
 {
-    private int subID = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
@@ -23,7 +22,7 @@ public partial class GUI_NewTopic : System.Web.UI.Page
             if (subForumID != null)
             {
                 lblErrors.Text = "";
-                subID = Convert.ToInt32(subForumID);
+                int subID = Convert.ToInt32(subForumID);
                 SubForum sf = SubForumBLL.GetSubForumBySubForumID(subID);
                 List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
                 nodes.Add(new KeyValuePair<string, Uri>(sf.SubForumName, Request.Url));
@@ -32,7 +31,7 @@ public partial class GUI_NewTopic : System.Web.UI.Page
             }
             else
             {
-                Response.Redirect("Index.aspx");                
+                Response.Redirect("Index.aspx");
             }
         }
 
@@ -42,6 +41,7 @@ public partial class GUI_NewTopic : System.Web.UI.Page
     {
         return SubForumBLL.GetSubForumBySubForumID(Convert.ToInt32(Request.QueryString["subForumID"]));
     }
+
     protected void btnSubmitNewTopic_Click(object sender, EventArgs e)
     {
         string title = txtTitle.Text;
@@ -96,5 +96,16 @@ public partial class GUI_NewTopic : System.Web.UI.Page
             // Page.ClientScript.RegisterStartupScript(this.GetType(), "", "<script>alert('Title and content must not null!');window.location.href='NewTopic.aspx';</script>");
         }
 
+    }
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        if (Request.QueryString["subForumID"] != null)
+        {
+            Response.Redirect("ShowTopics.aspx?subForumID=" + Request.QueryString["subForumID"]);
+        }
+        else
+        {
+            Response.Redirect("Index.aspx");
+        }
     }
 }

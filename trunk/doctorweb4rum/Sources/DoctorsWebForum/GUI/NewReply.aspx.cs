@@ -14,35 +14,27 @@ using BLL;
 
 public partial class GUI_NewReply : System.Web.UI.Page
 {
-    private int topicId = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         String topicID = Request.QueryString["topicID"];
         String withQuote = Request.QueryString["withQuote"];
-
-        if (topicID != null)
+        if (!IsPostBack)
         {
-            if (!IsPostBack)
+            if (topicID != null)
             {
-                Session.Add("topicID", topicID);
-                topicId = Convert.ToInt32(topicID);
+                int topicId = Convert.ToInt32(topicID);
                 Topic topic = TopicBLL.GetTopicByTopicID(topicId);
+                List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
+                nodes.Add(new KeyValuePair<string, Uri>(topic.Title, Request.Url));
+                ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
+                this.Page.Title = topic.Title;
                 try
                 {
                     if (withQuote == "1" || withQuote.Equals("1"))
                     {
                         //Editor1.Content = "<span style=\"font-style: italic;font-size: 8pt;\">" + topic.Content + "</span>";
-                        Editor1.Content = "<div class=\"bbcode_container\">"+
-                            "<div class=\"bbcode_quote\">"+
-                                "<div class=\"quote_container\">"+
-                                "<div class=\"bbcode_quote_container\">"+
-                                "</div>"+
-                                "<div class=\"bbcode_postedby\">"+
-                                "<img alt=\"Quote\" src=\"Images/quote_icon.png\" title=\"Quote\">"+
-                                "Originally Posted by"+ 
-                                "<strong>"+ "ten user"+"</strong>" +"</div>"+
-                                "<div class=\"message\">" + topic.Content + "</div></div></div></div>";
-
+                        Editor1.Content = Quote(topic.Content, ((Member)Session["UserLoged"]).UserName);
+                        
                     }
                     else
                     {
@@ -53,16 +45,20 @@ public partial class GUI_NewReply : System.Web.UI.Page
                 {
 
                 }
-                List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
-                nodes.Add(new KeyValuePair<string, Uri>(topic.Title, Request.Url));
-                ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
-                this.Page.Title = topic.Title;
             }
+            else
+            {
+                Response.Redirect("TopicDetails.aspx?topicID=" + Request.QueryString["topicID"]);
+            }
+
         }
-        else
-        {
-            Response.Redirect("TopicDetails.aspx?topicID=" + Session["topicID"].ToString());
-        }
+
+    }
+
+    private string Quote(string content, string userNamePosted)
+    {
+        return "<div class=\"bbcode_container\"><div class=\"bbcode_quote\"><div class=\"quote_container\"><div class=\"bbcode_quote_container\"></div><div class=\"bbcode_postedby\"><img alt=\"Quote\" src=\"Images/quote_icon.png\" title=\"Quote\">" +
+                                "Originally Posted by <strong> " + userNamePosted + "</strong>" + "</div><div class=\"message\">" + content + "</div></div></div></div>"; 
     }
 
 
@@ -80,24 +76,43 @@ public partial class GUI_NewReply : System.Web.UI.Page
                 {
                     newPost.MemberID = memberloged.MemberID;
                 }
-                newPost.Content = contents;
+                Topic topic = TopicBLL.GetTopicByTopicID(Convert.ToInt32(Request.QueryString["topicID"]));
+                if (topic != null)
+                {
+                    newPost.Quote = Quote(topic.Content, ((Member)Session["UserLoged"]).UserName);
+                    string quote2 = Quote(topic.Content, ((Member)Session["UserLoged"]).UserName);
+                    string newContents = contents.Replace(quote2+'"', null);
+                   
+                    
+                    newPost.Content = newContents;
+                }
+                //string newContents = contents.Replace(newPost.Quote, null);
+               // newPost.Content = newContents;
                 newPost.DateEdited = DateTime.Now;
                 newPost.Signature = true;
                 newPost.IPAddress = "5564545455";
                 int result = PostBLL.InsertPost(newPost);
                 if (result > 0)
                 {
-                    Response.Redirect("TopicDetails.aspx?topicID=" + Session["topicID"].ToString());
+                    Response.Redirect("TopicDetails.aspx?topicID=" + Request.QueryString["topicID"]);
                 }
             }
             else
             {
-                Server.Transfer("TopicDetails.aspx?topicID=" + Session["topicID"].ToString());
+                Server.Transfer("TopicDetails.aspx?topicID=" + Request.QueryString["topicID"]);
             }
         }
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("TopicDetails.aspx?topicID=" + Session["topicID"].ToString());
+        if (Request.QueryString["topicID"] != null)
+        {
+            Response.Redirect("TopicDetails.aspx?topicID=" + Request.QueryString["topicID"]);
+        }
+        else
+        {
+            Response.Redirect("Index.aspx");
+        }
+        
     }
 }
