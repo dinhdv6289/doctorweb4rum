@@ -20,6 +20,7 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
         if (!IsPostBack)
         {
             string TopicID = Request["topicID"];
+            topicID = Convert.ToInt32(TopicID);
             if (!string.IsNullOrEmpty(TopicID))
             {
                 topicID = Convert.ToInt32(TopicID);
@@ -35,8 +36,6 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
                     CollectionPager1.DataSource = dataSetTopicDetails.Tables[0].DefaultView;
                     CollectionPager1.BindToControl = repeaterPosts;
                     repeaterPosts.DataSource = CollectionPager1.DataSourcePaged;
-                    //repeaterPosts.DataSource = dataSetTopicDetails.Tables[0];
-                    //repeaterPosts.DataBind();
                 }
                 this.Page.Title = tp.Title;
                 int[] result = TopicBLL.GetRatingPoint(topicID);
@@ -46,6 +45,21 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
 
     }
 
+
+    protected void loadData()
+    {
+        string TopicID = Request["topicID"];
+        if (!string.IsNullOrEmpty(TopicID))
+        {
+            DataSet dataSetTopicDetails = TopicBLL.TopicDetailsByTopicID(Convert.ToInt32(TopicID));
+            if (dataSetTopicDetails != null)
+            {
+                CollectionPager1.DataSource = dataSetTopicDetails.Tables[0].DefaultView;
+                CollectionPager1.BindToControl = repeaterPosts;
+                repeaterPosts.DataSource = CollectionPager1.DataSourcePaged;
+            }
+        }
+    }
 
     public Topic GetTopic()
     {
@@ -141,6 +155,49 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
 
     }
     #endregion
+    protected void repeaterPosts_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName.Equals("ThankClick"))
+        {
+            int postID = Convert.ToInt32(e.CommandArgument);
+            Member memberLogin = (Member)Session["UserLoged"];
+            if (memberLogin != null)
+            {
+                PostBLL.ThankPost(memberLogin.MemberID, postID);
+                loadData();
+            }
+        }
+    }
+
+    public Boolean isPostThanked(int postID)
+    {
+        Boolean result = true;
+        Member memberLogin = (Member)Session["UserLoged"];
+        if (memberLogin != null)
+        {
+            result = !PostBLL.isThanked(postID, memberLogin.MemberID);
+        }
+        else
+        {
+            result = false;
+        }
+        return result;
+    }
+    protected void Rating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
+    {
+        Member memberLogin = (Member)Session["UserLoged"];
+        if (memberLogin != null)
+        {
+            int rate = Convert.ToInt32(e.Value);
+            RatingPost rp = new RatingPost();
+            rp.RateDate = DateTime.Now;
+            rp.RatePoint = rate;
+            rp.FromMember = memberLogin.MemberID;
+            rp.PostID = Convert.ToInt32(e.Tag);
+            PostBLL.InsertRatePost(rp);
+            loadData();
+        }
+    }
     protected void LinkButton2_Click(object sender, EventArgs e)
     {
         CheckLoginToNewReply();
