@@ -79,7 +79,7 @@ public partial class GUI_NewReply : System.Web.UI.Page
                 Topic topic = TopicBLL.GetTopicByTopicID(Convert.ToInt32(Request.QueryString["topicID"]));
                 if (topic != null)
                 {
-                    newPost.Quote = Quote(topic.Content, ((Member)Session["UserLoged"]).UserName);
+//                    newPost.Quote = Quote(topic.Content, ((Member)Session["UserLoged"]).UserName);
                     string quote2 = Quote(topic.Content, ((Member)Session["UserLoged"]).UserName);
                     string newContents = contents.Replace(quote2+'"', null);
                    

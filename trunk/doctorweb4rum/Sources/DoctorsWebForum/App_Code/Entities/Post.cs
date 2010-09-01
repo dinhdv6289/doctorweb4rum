@@ -23,13 +23,14 @@ public class Post
     private DateTime dateEdited;
     private Boolean signature;
     private string ipAddress;
-    private string quote;
+    private int quoteID;
 
-    public string Quote
+    public int QuoteID
     {
-        get { return quote; }
-        set { quote = value; }
+        get { return quoteID; }
+        set { quoteID = value; }
     }
+
 
     public int PostID
     {
