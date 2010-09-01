@@ -321,16 +321,18 @@ SELECT     Members.MemberID, Members.UserName, Members.Email, Members.FullName, 
                       MemberProfiles.TotalThanks, MemberProfiles.TotalThanked, MemberProfiles.CurrentExperience, MemberProfiles.MemberLevel, MemberProfiles.IPAddress, 
                       MemberProfiles.LastLogin, MemberProfiles.MyRss, MemberProfiles.Signature, MemberProfiles.AboutMe, Posts.PostID, Posts.TopicID, Posts.[Content], 
                       Posts.DateCreation AS DateCreationOfPosts, Posts.DateEdited, Posts.Signature AS SignatureOfPosts, Posts.IPAddress AS IPAddressOfPost,Posts.QuoteID,
-			"RatingPoint" = CASE WHEN (select avg(RatePoint) from RatingPost where RatingPost.PostID = Posts.PostID group by PostID) is null THEN 0 Else (select avg(RatePoint) from RatingPost where PostID = Posts.PostID group by PostID) END
+			"RatingPoint" = CASE WHEN (select avg(RatePoint) from RatingPost where RatingPost.PostID = Posts.PostID group by PostID) is null THEN 0 Else (select avg(RatePoint) from RatingPost where PostID = Posts.PostID group by PostID) END,
+			(select Posts.Content from Posts where Posts.PostID = Posts.QuoteID) as Quote
 FROM         Members INNER JOIN
                       MemberProfiles ON Members.MemberID = MemberProfiles.MemberID INNER JOIN
                       Posts ON Members.MemberID = Posts.MemberID
 WHERE Posts.TopicID = @TopicID
 END
 
+
 GO
 
-EXEC TopicDetailsByTopicID 1
+EXEC TopicDetailsByTopicID 2
 GO
 
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'SearchTopic' AND TYPE = 'P')

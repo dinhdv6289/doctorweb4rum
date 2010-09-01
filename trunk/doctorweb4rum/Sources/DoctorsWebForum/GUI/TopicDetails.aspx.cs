@@ -43,7 +43,24 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
         }
 
     }
+        
+    public String GetQuote(int quoteID)
+    {
+        String quote = null;
+        if (quoteID!=0)
+        {
+            Post p = PostBLL.GetPostByPostID(Convert.ToInt32(quoteID));
+            Member mem = MemberBLL.GetMemberByMemberID(p.MemberID);
+           quote = Quote(p.Content, mem.UserName);
+        }
+        return quote;
+    }
 
+    private string Quote(string content, string userNamePosted)
+    {
+        return "<div class=\"bbcode_container\"><div class=\"bbcode_quote\"><div class=\"quote_container\"><div class=\"bbcode_quote_container\"></div><div class=\"bbcode_postedby\"><img alt=\"Quote\" src=\"Images/quote_icon.png\" title=\"Quote\">" +
+                                "Originally Posted by <strong> " + userNamePosted + "</strong>" + "</div><div class=\"message\">" + content + "</div></div></div></div>";
+    }
 
     protected void loadData()
     {

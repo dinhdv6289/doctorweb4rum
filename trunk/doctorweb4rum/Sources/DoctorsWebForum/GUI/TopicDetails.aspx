@@ -139,16 +139,16 @@
                         <div class="contact">
                             <div class="username_container">
                                 <div class="popupmenu memberaction" id="yui-gen16">
-                                    <a title="maihannijat is offline" href="MemberProfile.aspx?memberID=<%#Eval("MemberID")%>" class="username offline popupctrl"
+                                    <a title=" <%#Eval("UserName")%> is offline" href="MemberProfile.aspx?memberID=<%#Eval("MemberID")%>" class="username offline popupctrl"
                                         id="yui-gen18"><strong><span class="user25">
                                             <%#Eval("UserName")%>
                                         </span></strong></a>
                                 </div>
-                                <img border="0" alt="maihannijat is offline" src="Images/user-offline.png"
-                                    class="inlineimg onlinestatus" title="maihannijat is offline">
+                                <img border="0" alt=" <%#Eval("UserName")%> is offline" src="Images/user-offline.png"
+                                    class="inlineimg onlinestatus" title=" <%#Eval("UserName")%> is offline">
                                 <span class="usertitle"><%#Eval("FullName")%> </span><span id="repdisplay_14688639_429236" class="postbit_reputation">
-                                    <img alt="maihannijat is on a distinguished road" src="Images/reputation_pos.png"
-                                        class="repimg" title="maihannijat is on a distinguished road">
+                                    <img alt=" <%#Eval("UserName")%> is on a distinguished road" src="Images/reputation_pos.png"
+                                        class="repimg" title=" <%#Eval("UserName")%> is on a distinguished road">
                                 </span>
                                 <div class="imlinks">
                                 </div>
@@ -176,9 +176,7 @@
                         </h2>
                         <div class="content">
                             <div id="post_message_14688639">
-                                <blockquote class="postcontent restore">
-                                    <%#Eval("Quote") %>
-                                </blockquote>
+                                <%#GetQuote(Convert.ToInt32(Eval("QuoteID"))) %>
                                 <%#Eval("Content") %>
                             </div>
                         </div>
@@ -193,7 +191,7 @@
 <A id="A1" class="quickreply" href='NewReplyToPost.aspx?topicID=<%#Eval("TopicID")%>&postID=<%#Eval("PostID")%>' rel="nofollow">
 <IMG id="IMG3" alt="" src="clear.gif" /> Reply</A> 
 <SPAN class="seperator">&nbsp;</SPAN>
-<A id="A2" class="newreply" href='NewReplyToPost.aspx?topicID=<%#Eval("TopicID")%>&postID=<%#Eval("PostID")%>&postWithQuote=1'
+<A id="A2" class="newreply" href='NewReplyWithQuote.aspx?topicID=<%#Eval("TopicID")%>&postID=<%#Eval("PostID")%>'
  rel="nofollow">Reply With Quote</A><SPAN class="seperator">&nbsp;</SPAN>
  <ajaxToolkit:Rating id="postRating" runat="Server" CurrentRating='<%#Convert.ToInt32(Eval("RatingPoint"))%>' 
  CssClass="ratingStar" Tag='<%#Eval("PostID")%>' EmptyStarCssClass="Empty" OnChanged="Rating_Changed" FilledStarCssClass="Filled"
