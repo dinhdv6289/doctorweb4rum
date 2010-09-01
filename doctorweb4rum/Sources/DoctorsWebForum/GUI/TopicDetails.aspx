@@ -188,6 +188,7 @@
         <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Always" ChildrenAsTriggers="True">
             <ContentTemplate>                                
 <SPAN class="postcontrols"><IMG style="DISPLAY: none" id="Img1" alt="" src="Images/progress.gif" /> 
+<a name="vB::QuickEdit::14883481" href="EditPost.aspx?postID=<%#Eval("PostID")%>" class="editpost"> Edit Post</a>
 <A id="A1" class="quickreply" href='NewReplyToPost.aspx?topicID=<%#Eval("TopicID")%>&postID=<%#Eval("PostID")%>' rel="nofollow">
 <IMG id="IMG3" alt="" src="clear.gif" /> Reply</A> 
 <SPAN class="seperator">&nbsp;</SPAN>
@@ -222,10 +223,6 @@
      <asp:LinkButton ID="replylink" runat="server" CssClass="newcontent_textcontrol" OnClick="LinkButton2_Click"><span>+ </span>Reply to Topic</asp:LinkButton>
                 <div class="pagination_bottom">
             <CC1:COLLECTIONPAGER id="CollectionPager1" runat="server" ResultsLocation="None" ShowFirstLast="True" BackNextLocation="Split" BackNextDisplay="HyperLinks" PageSize="2" ControlCssClass="pagination" ShowLabel="False" PageNumbersDisplay="Numbers" PageNumbersSeparator="&nbsp;" BackNextButtonStyle="" BackNextLinkSeparator="" BackNextStyle="" ShowPageNumbers="True" SliderSize="3" UseSlider="True" IgnoreQueryString="False" ResultsFormat="Results  {0} to {1} of {2}" ResultsStyle="float:left;"></CC1:COLLECTIONPAGER>
-            </div>
-                <div class="navlinks">
-                <a rel="nofollow" href="#">Mark Forums Read</a> | <a rel="nofollow" href="showgroups.php">
-                    Admins &amp; Moderators </a>
             </div>
 
             </div>
