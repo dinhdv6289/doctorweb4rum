@@ -23,7 +23,6 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
             topicID = Convert.ToInt32(TopicID);
             if (!string.IsNullOrEmpty(TopicID))
             {
-                topicID = Convert.ToInt32(TopicID);
                 Topic tp = TopicBLL.GetTopicByTopicID(topicID);
                 SubForum sf = SubForumBLL.GetSubForumBySubForumID(tp.SubForumID);
                 List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
@@ -106,12 +105,13 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
         Member memberLogin = (Member)Session["UserLoged"];
         if (memberLogin != null)
         {
+            string TopicID = Request["topicID"];
             int rate = Convert.ToInt32(e.Value);
             RatingTopic rt = new RatingTopic();
             rt.RateDate = DateTime.Now;
             rt.RatePoint = rate;
             rt.FromMember = memberLogin.MemberID;
-            rt.TopicID = topicID;
+            rt.TopicID = Convert.ToInt32(TopicID);
             TopicBLL.InsertRatingTopic(rt);
             topicRating.CurrentRating = TopicBLL.GetRatingPoint(topicID)[1];
         }
@@ -122,17 +122,23 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
         Member memberLogin = (Member)Session["UserLoged"];
         if (memberLogin != null)
         {
-            TopicBLL.ThankTopic(memberLogin.MemberID, topicID);
+            string TopicID = Request["topicID"];
+            TopicBLL.ThankTopic(memberLogin.MemberID, Convert.ToInt32(TopicID));
+            loadData();
         }
     }
 
     public Boolean isThanked()
     {
-        Boolean result = false;
+        Boolean result = true;
         Member memberLogin = (Member)Session["UserLoged"];
         if (memberLogin != null)
         {
             result = TopicBLL.isThanked(topicID, memberLogin.MemberID);
+        }
+        else
+        {
+            result = true;
         }
         return result;
     }
