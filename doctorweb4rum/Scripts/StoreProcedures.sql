@@ -320,7 +320,8 @@ SELECT     Members.MemberID, Members.UserName, Members.Email, Members.FullName, 
                       MemberProfiles.Gender, MemberProfiles.Yahoo, MemberProfiles.Phone, MemberProfiles.Hospital, MemberProfiles.Blog, MemberProfiles.TotalPosts, 
                       MemberProfiles.TotalThanks, MemberProfiles.TotalThanked, MemberProfiles.CurrentExperience, MemberProfiles.MemberLevel, MemberProfiles.IPAddress, 
                       MemberProfiles.LastLogin, MemberProfiles.MyRss, MemberProfiles.Signature, MemberProfiles.AboutMe, Posts.PostID, Posts.TopicID, Posts.[Content], 
-                      Posts.DateCreation AS DateCreationOfPosts, Posts.DateEdited, Posts.Signature AS SignatureOfPosts, Posts.IPAddress AS IPAddressOfPost,Posts.Quote
+                      Posts.DateCreation AS DateCreationOfPosts, Posts.DateEdited, Posts.Signature AS SignatureOfPosts, Posts.IPAddress AS IPAddressOfPost,Posts.Quote,
+			"RatingPoint" = CASE WHEN (select avg(RatePoint) from RatingPost where RatingPost.PostID = Posts.PostID group by PostID) is null THEN 0 Else (select avg(RatePoint) from RatingPost where PostID = Posts.PostID group by PostID) END
 FROM         Members INNER JOIN
                       MemberProfiles ON Members.MemberID = MemberProfiles.MemberID INNER JOIN
                       Posts ON Members.MemberID = Posts.MemberID
@@ -379,8 +380,3 @@ go
 
 exec GetPostByPostID 1
 go
-select * from Posts
-
-<div class="bbcode_container"><div class="bbcode_quote"><div class="quote_container"><div class="bbcode_quote_container"></div><div class="bbcode_postedby"><img title="Quote" src="Images/quote_icon.png" alt="Quote" />Originally Posted by<strong>ten user</strong></div><div class="message">sssssssssssssssssssssssssssssggggggggggggggf<br /></div></div></div></div>rrrrrrrrrrrrrrrrrrrrrewwerwer
-
-<div class="bbcode_container"><div class="bbcode_quote"><div class="quote_container"><div class="bbcode_quote_container"></div><div class="bbcode_postedby"><img title="Quote" src="Images/quote_icon.png" alt="Quote" />Originally Posted by<strong>ten user</strong></div><div class="message">ddddddddddddddddddddddddddddddddsssssssssssd<br /></div></div></div></div>fffffffffffffffffffffffffffffffffffffffffffffffddddddddddddddddddddddddddddd
