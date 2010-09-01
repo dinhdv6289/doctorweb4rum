@@ -36,7 +36,7 @@ public partial class GUI_NewReplyToPost : System.Web.UI.Page
                     if (postWithQuote == "1" || postWithQuote.Equals("1"))
                     {
                         //Editor1.Content = "<span style=\"font-style: italic;font-size: 8pt;\">" + topic.Content + "</span>";
-                        Editor1.Content = post.Quote;
+                       // Editor1.Content = post.Quote;
                         //Editor1.Content = "<div class=\"bbcode_container\">" +
                         //    "<div class=\"bbcode_quote\">" +
                         //        "<div class=\"quote_container\">" +
@@ -91,16 +91,16 @@ public partial class GUI_NewReplyToPost : System.Web.UI.Page
                 newPost.DateEdited = DateTime.Now;
                 newPost.Signature = true;
                 newPost.IPAddress = "5564545455";
-                newPost.Quote = "<div class=\"bbcode_container\">" +
-                            "<div class=\"bbcode_quote\">" +
-                                "<div class=\"quote_container\">" +
-                                "<div class=\"bbcode_quote_container\">" +
-                                "</div>" +
-                                "<div class=\"bbcode_postedby\">" +
-                                "<img alt=\"Quote\" src=\"Images/quote_icon.png\" title=\"Quote\">" +
-                                "Originally Posted by" +
-                                "<strong>" + "ten user" + "</strong>" + "</div>" +
-                                "<div class=\"message\">" + post.Content + "</div></div></div></div>";
+                ////newPost.Quote = "<div class=\"bbcode_container\">" +
+                //            "<div class=\"bbcode_quote\">" +
+                //                "<div class=\"quote_container\">" +
+                //                "<div class=\"bbcode_quote_container\">" +
+                //                "</div>" +
+                //                "<div class=\"bbcode_postedby\">" +
+                //                "<img alt=\"Quote\" src=\"Images/quote_icon.png\" title=\"Quote\">" +
+                //                "Originally Posted by" +
+                //                "<strong>" + "ten user" + "</strong>" + "</div>" +
+                //                "<div class=\"message\">" + post.Content + "</div></div></div></div>";
                 int result = PostBLL.InsertPost(newPost);
                 if (result > 0)
                 {
