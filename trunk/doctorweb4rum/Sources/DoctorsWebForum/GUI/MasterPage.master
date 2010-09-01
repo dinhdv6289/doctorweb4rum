@@ -175,8 +175,9 @@ $(document).ready(function() {
                                 There are currently <a href="#">
                                     <%= Application["ActiveUsers"].ToString()%>
                                     users online</a>. <span class="shade">
-                                        <%= Application["UsersOnline"].ToString()%>
-                                        members and 1,414 guests</span></p>
+                                        <%= MembersOnline().ToString()%>
+                                        members and <%= (Convert.ToInt32(Application["ActiveUsers"].ToString()) - MembersOnline())
+                                                        %> guests</span></p>
                             <p>
                                 Most users ever online was 22,414, Sep 15th 2009 at <span class="time">1:54 am</span>.</p>
                             <ol class="commalist" id="wgo_onlineusers_list">

@@ -30,6 +30,33 @@ namespace BLL
             return result;
         }
 
+        public static int UpdateMember(Member member)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetMemberDA().UpdateMember(member);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public static int MembersOnline()
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetMemberDA().MembersOnline();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
         public static int InsertMember(Member member, out int autoID)
         {
             int result = 0;

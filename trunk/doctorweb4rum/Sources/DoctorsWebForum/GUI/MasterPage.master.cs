@@ -26,10 +26,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         }
         if (Page.IsValid)
         {
-            
-            ModalPopupExtenderLogin.Enabled = false;
             ModalPopupExtenderLogin.Hide();
-            ModalPopupExtenderLogin.Dispose();
             string userName = txtUserName.Text;
             string password = txtPassword.Text;
             if (userName.Length > 0 || userName != null || password.Length > 0 || password != null)
@@ -37,6 +34,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 Member member = MemberBLL.GetMemberByUserNamePassword(userName, password);
                 if (member != null)
                 {
+                    Session["id"] = member.MemberID;
+                    member.IsOnline = true;
+                    MemberBLL.UpdateMember(member);
                     MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
                     if (memberProfile != null)
                     {
@@ -98,7 +98,17 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void Logoutlnk_Click(object sender, EventArgs e)
     {
         Session.Remove("UserLoged");
-        //Response.Redirect("Index.aspx");
+        if (Session["id"] != null)
+        {
+            Member member = BLL.MemberBLL.GetMemberByMemberID(Convert.ToInt32(Session["id"].ToString()));
+            member.IsOnline = false;
+            BLL.MemberBLL.UpdateMember(member);
+        };
+    }
+
+    public int MembersOnline()
+    {
+        return MemberBLL.MembersOnline();
     }
 }
 
