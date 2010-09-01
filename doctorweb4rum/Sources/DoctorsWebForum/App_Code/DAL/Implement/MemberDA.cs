@@ -74,7 +74,43 @@ namespace DAL
             return result;
         }
 
+        public int UpdateMember(Member member)
+        {
+            int result = 0;
+            try
+            {
+                string[] a = { "MemberID" };
+                object[] b = { member.MemberID};
+                object[] values = { member.UserName, member.Password, member.Email, member.FullName, member.DateCreation, member.AllowLogin, member.IsPublic, member.IsOnline };
+                result = UpdateTable(tableName, columnNamesInsert1, values, a, b);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
 
+        public int MembersOnline()
+        {
+            int result = 0;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select count(*) as MembersOnline from Members where IsOnline = 'true'";
+                DataSet ds = ExecuteDataset(cmd);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    result = (int)ds.Tables[0].Rows[0]["MembersOnline"];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
         public int InsertMember(Member member, out int autoID)
         {
             int result = 0;

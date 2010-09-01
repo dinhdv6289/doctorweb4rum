@@ -5,8 +5,7 @@
     void Application_Start(object sender, EventArgs e) 
     {
         // Code that runs on application startup
-        Application["ActiveUsers"] = 0;
-        Application["UsersOnline"] = 0;
+        Application["ActiveUsers"] = 0;       
     }
     
     void Application_End(object sender, EventArgs e) 
@@ -28,12 +27,9 @@
         Session["Start"] = "Now";
         Application.Lock();
         Application["ActiveUsers"] = System.Convert.ToInt32(Application["ActiveUsers"]) + 1;
-        if (Session["User"]!=null)
-        {
-            Application["UsersOnline"] = System.Convert.ToInt32(Application["UsersOnline"]) + 1;
-        }
         Application.UnLock();
-
+        Session["UserLoged"] = null;
+        
     }
 
     void Session_End(object sender, EventArgs e) 
@@ -44,12 +40,14 @@
         // or SQLServer, the event is not raised.
         Application.Lock();
         Application["ActiveUsers"] = System.Convert.ToInt32(Application["ActiveUsers"]) - 1;
-        if (Session["User"] != null)
-        {
-            Application["UsersOnline"] = System.Convert.ToInt32(Application["UsersOnline"]) -1;
-        }
         Application.UnLock();
- 
+        if (Session["id"] != null)
+        {
+            Member member = BLL.MemberBLL.GetMemberByMemberID(Convert.ToInt32(Session["id"].ToString()));
+            member.IsOnline = false;
+            BLL.MemberBLL.UpdateMember(member);
+        }
+        Session.Abandon();
     }
        
 </script>

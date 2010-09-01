@@ -22,6 +22,8 @@ namespace DAL
         int InsertMemberInfo(Member member, MemberProfile memProfile,out int resultStatus);
         int UserNameIsExist(String userName);
         int EmailIsExist(String email);
+        int UpdateMember(Member member);
+        int MembersOnline();
         
     }
 }
