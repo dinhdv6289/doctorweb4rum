@@ -20,7 +20,7 @@
                 <div class="blockrow texteditor" id="vB_Editor_001">
 
                     <!-- / Editor Scripts -->
-                     <obout:Editor ID="Editor1" runat="server" PreviewMode="true" FixedToolbar="false" >
+                     <obout:Editor ID="Editor1" runat="server" PreviewMode="true" FixedToolbar="false">
                     </obout:Editor>
                 </div>
                 

@@ -13,28 +13,28 @@ using TuyenPV;
 using BLL;
 public partial class GUI_ShowTopics : System.Web.UI.Page
 {
-    private int subID = 0;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        String subForumID = Request.QueryString["subForumID"];
-        if (subForumID != null)
+        if (!IsPostBack)
         {
-            if (!IsPostBack)
+            String subForumID = Request.QueryString["subForumID"];
+            if (subForumID != null)
             {
-                subID = Convert.ToInt32(subForumID);
+               int subID = Convert.ToInt32(subForumID);
                 LoadData(subID);
                 SubForum sf = SubForumBLL.GetSubForumBySubForumID(subID);
-                
                 List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
                 nodes.Add(new KeyValuePair<string, Uri>(sf.SubForumName, Request.Url));
                 ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
                 this.Page.Title = sf.SubForumName;
             }
+            else
+            {
+                Response.Redirect("Index.aspx");
+            }
         }
-        else
-        {
-            Response.Redirect("Index.aspx");
-        }
+
     }
 
     private void LoadData(int subForumID)
@@ -49,7 +49,13 @@ public partial class GUI_ShowTopics : System.Web.UI.Page
 
     public SubForum GetSubForumBySubForumID()
     {
-        return SubForumBLL.GetSubForumBySubForumID(subID);
+        String subForumID = Request.QueryString["subForumID"];
+        SubForum result = new SubForum();
+        if (subForumID!=null)
+        {
+            result = SubForumBLL.GetSubForumBySubForumID(Convert.ToInt32(subForumID));
+        }
+        return result;
     }
 
     public Member GetMemberOfTopicByTopicID(int topicID)
@@ -140,13 +146,24 @@ public partial class GUI_ShowTopics : System.Web.UI.Page
     #endregion
     protected void LinkButton1_Click(object sender, EventArgs e)
     {
+        CheckLoginToNewTopic();
+    }
+
+    private void CheckLoginToNewTopic()
+    {
         String subForumID = Request.QueryString["subForumID"];
-        if (Session["UserLoged"]!=null)
+        if (Session["UserLoged"] != null)
         {
             Response.Redirect("NewTopic.aspx?subForumID=" + subForumID);
-        }else
-        {           
+        }
+        else
+        {
             Response.Redirect("Login.aspx?ReturnURL=NewTopic.aspx?subForumID=" + subForumID);
         }
+    }
+
+    protected void LinkButton2_Click(object sender, EventArgs e)
+    {
+        CheckLoginToNewTopic();
     }
 }

@@ -17,13 +17,12 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
     protected int topicID = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
-        string TopicID = Request["topicID"];
-        if (!string.IsNullOrEmpty(TopicID))
+        if (!IsPostBack)
         {
-            
-            topicID = Convert.ToInt32(TopicID);
-            if (!IsPostBack)
+            string TopicID = Request["topicID"];
+            if (!string.IsNullOrEmpty(TopicID))
             {
+                topicID = Convert.ToInt32(TopicID);
                 Topic tp = TopicBLL.GetTopicByTopicID(topicID);
                 SubForum sf = SubForumBLL.GetSubForumBySubForumID(tp.SubForumID);
                 List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
@@ -31,7 +30,7 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
                 nodes.Add(new KeyValuePair<string, Uri>(tp.Title, Request.Url));
                 ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
                 DataSet dataSetTopicDetails = TopicBLL.TopicDetailsByTopicID(Convert.ToInt32(TopicID));
-                if(dataSetTopicDetails != null)
+                if (dataSetTopicDetails != null)
                 {
                     CollectionPager1.DataSource = dataSetTopicDetails.Tables[0].DefaultView;
                     CollectionPager1.BindToControl = repeaterPosts;
@@ -42,8 +41,9 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
                 this.Page.Title = tp.Title;
                 int[] result = TopicBLL.GetRatingPoint(topicID);
                 topicRating.CurrentRating = result[1];
-            }
+            }// chuyen den trang thong bao No Thread specified. If you followed a valid link, please notify the administrator
         }
+
     }
 
 
@@ -89,7 +89,7 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
     //}
     protected void topicRating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
     {
-       Member memberLogin = (Member)Session["UserLoged"];
+        Member memberLogin = (Member)Session["UserLoged"];
         if (memberLogin != null)
         {
             int rate = Convert.ToInt32(e.Value);
@@ -100,16 +100,16 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
             rt.TopicID = topicID;
             TopicBLL.InsertRatingTopic(rt);
             topicRating.CurrentRating = TopicBLL.GetRatingPoint(topicID)[1];
-        }       
+        }
     }
 
     protected void LinkButton1_Click(object sender, EventArgs e)
     {
         Member memberLogin = (Member)Session["UserLoged"];
         if (memberLogin != null)
-        {           
-            TopicBLL.ThankTopic(memberLogin.MemberID,topicID);
-        }       
+        {
+            TopicBLL.ThankTopic(memberLogin.MemberID, topicID);
+        }
     }
 
     public Boolean isThanked()
@@ -141,4 +141,25 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
 
     }
     #endregion
+    protected void LinkButton2_Click(object sender, EventArgs e)
+    {
+        CheckLoginToNewReply();
+    }
+
+    private void CheckLoginToNewReply()
+    {
+        string TopicID = Request["topicID"];
+        if (Session["UserLoged"] != null)
+        {
+            Response.Redirect("NewReply.aspx?topicID=" + TopicID);
+        }
+        else
+        {
+            Response.Redirect("Login.aspx?ReturnURL=NewReply.aspx?topicID=" + TopicID);
+        }
+    }
+    protected void LinkButton3_Click(object sender, EventArgs e)
+    {
+        CheckLoginToNewReply();
+    }
 }

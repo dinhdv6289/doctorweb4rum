@@ -98,6 +98,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void Logoutlnk_Click(object sender, EventArgs e)
     {
         Session.Remove("UserLoged");
+        //Response.Redirect("Index.aspx");
     }
 }
 

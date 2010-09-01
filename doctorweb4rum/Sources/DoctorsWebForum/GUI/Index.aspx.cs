@@ -18,8 +18,8 @@ public partial class GUI_Index : System.Web.UI.Page
         if (!IsPostBack)
         {
             LoadData();
-            this.Title = "Doctors WebForum";
         }
+        this.Title = "Doctors WebForum";
     }
 
     private void LoadData()

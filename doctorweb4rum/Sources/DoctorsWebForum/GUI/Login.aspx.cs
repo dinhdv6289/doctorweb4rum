@@ -14,7 +14,7 @@ public partial class GUI_Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        this.Page.Title = "Login";
     }
 
     protected void btnReset_Click(object sender, EventArgs e)
@@ -37,7 +37,6 @@ public partial class GUI_Login : System.Web.UI.Page
                     string origin = Request.QueryString["ReturnURL"];
                     if (origin == null)
                     {
-                        
                         origin = "Index.aspx";
                     }
                     Session.Add("UserLoged", member);

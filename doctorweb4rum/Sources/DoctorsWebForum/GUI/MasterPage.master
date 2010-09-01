@@ -89,7 +89,7 @@ $(document).ready(function() {
                             <div class="blockrow">
                                 <label for="vb_login_password">
                                     Password:</label>
-                                <asp:TextBox ID="txtPassword" runat="server" CssClass="primary textbox">
+                                <asp:TextBox ID="txtPassword" runat="server" CssClass="primary textbox" TextMode="Password">
                                 </asp:TextBox>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
                                     ControlToValidate="txtPassword" Display="None" ErrorMessage="Password is not null."
                                     SetFocusOnError="True" ValidationGroup="loginValidate">*</asp:RequiredFieldValidator>
