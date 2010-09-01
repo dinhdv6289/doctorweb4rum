@@ -108,11 +108,6 @@
                              %>
                                 <asp:LinkButton ID="LinkButton1" runat="server" CssClass="post_thanks_button" OnClick="LinkButton1_Click">Thanks</asp:LinkButton> 
                                 <%} %>
-                                &nbsp;
-                                <a title="Report Post" rel="nofollow" href="#"
-                                                class="report">&nbsp;</a>
-                                    &nbsp; 
-                                    
                                     </span>
  </ContentTemplate>
  </asp:UpdatePanel>
@@ -189,26 +184,7 @@
                         </div>
                     </div>
                 </div>
-                <%--<div class="postfoot">
-                    <div class="textcontrols floatcontainer">
-                        <span class="postcontrols">
-                            <img style="display: none" id="Img2" src="Images/progress.gif"
-                                alt="" />
-                            <a id="qr_14688798" class='quickreply' href="NewReplyToPost.aspx?topicID=<%#Eval("TopicID")%>&postID=<%#Eval("PostID")%>"
-                                rel="nofollow">
-                                <img id="replyimg_14688798" src="clear.gif" alt="" />
-                                Reply</a> <span class="seperator">&nbsp;</span> <a rel="nofollow" href="NewReplyToPost.aspx?topicID=<%#Eval("TopicID")%>&postID=<%#Eval("PostID")%>&postWithQuote=1"
-                                    class="newreply" id="qrwq_14688639">Reply With Quote</a><span class="seperator">&nbsp;</span>
-                            <span class="postlinking"></span> </span><span class="postlinking">
-                                    <span title="14688639" class="reputationpopupmenu popupmenu popupcustom" id="yui-gen71">
-                                        <a id="reputation_14688639" rel="nofollow" title="Add to this user's reputation"
-                                            href="#" class="popupctrl reputation" pagenumbersseparator="None">
-                                            
-                                            &nbsp;</a></span> &nbsp;<a title="Report Post" rel="nofollow" href="#"
-                                                class="report">&nbsp;</a>
-                                    &nbsp; </span>
-                    </div>
-                </div>--%>
+                
                                 <div class="postfoot">
                     <div class="textcontrols floatcontainer">
         <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Always" ChildrenAsTriggers="True">
@@ -226,13 +202,7 @@
                    <span class="postlinking">
 
                <asp:LinkButton ID="btThank" Visible='<%#isPostThanked(Convert.ToInt32(Eval("PostID"))) %>' 
-               runat="server" CssClass="post_thanks_button" CommandName="ThankClick" CommandArgument='<%#Eval("PostID")%>'>Thanks</asp:LinkButton> 
-
-                                &nbsp;
-                                <a title="Report Post" rel="nofollow" href="#"
-                                                class="report">&nbsp;</a>
-                                    &nbsp; 
-                                    
+               runat="server" CssClass="post_thanks_button" CommandName="ThankClick" CommandArgument='<%#Eval("PostID")%>'>Thanks</asp:LinkButton>
                                     </span>
  </ContentTemplate>
  </asp:UpdatePanel>
