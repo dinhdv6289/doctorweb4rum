@@ -114,18 +114,5 @@ public partial class GUI_NewReplyWithQuote : System.Web.UI.Page
 
     }
 
-    public string GetErrorsMessage()
-    {
-        if (contents.Length < 100)
-        {
-            return "<h2 class=\"blockhead\">Errors Message</h2><div class=\"blockbody postpreview\">" +
-                "<blockquote class=\"blockrow postcontent restore preview postcontainer forumcontent\" id=\"Blockquote1\">" +
-                 "<div class=\"bbcode_container\">" + "Please enter content of Reply! Characters min 100." + "</div></blockquote></div>";
-        }
-        else
-        {
-            return "";
-        }
-    }
 
 }
