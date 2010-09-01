@@ -20,6 +20,7 @@ public partial class GUI_NewReply : System.Web.UI.Page
         String withQuote = Request.QueryString["withQuote"];
         if (!IsPostBack)
         {
+            this.Page.Title = "New Reply";
             if (topicID != null)
             {
                 int topicId = Convert.ToInt32(topicID);
@@ -27,24 +28,8 @@ public partial class GUI_NewReply : System.Web.UI.Page
                 List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
                 nodes.Add(new KeyValuePair<string, Uri>(topic.Title, Request.Url));
                 ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
-                this.Page.Title = topic.Title;
-                try
-                {
-                    if (withQuote == "1" || withQuote.Equals("1"))
-                    {
-                        //Editor1.Content = "<span style=\"font-style: italic;font-size: 8pt;\">" + topic.Content + "</span>";
-                        Editor1.Content = Quote(topic.Content, ((Member)Session["UserLoged"]).UserName);
-                        
-                    }
-                    else
-                    {
-                        Editor1.Content = "";
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                }
+                
+                lblErrors.Text = "";
             }
             else
             {
@@ -65,7 +50,7 @@ public partial class GUI_NewReply : System.Web.UI.Page
     protected void btnSubmitNewReply_Click(object sender, EventArgs e)
     {
         string contents = Editor1.Content;
-        if (contents.Length > 0 || contents != null)
+        if (contents.Length >= 100)
         {
             Post newPost = new Post();
             if (Request.QueryString["topicID"] != null || Request.QueryString["topicID"].Length > 0)
@@ -75,22 +60,12 @@ public partial class GUI_NewReply : System.Web.UI.Page
                 if (memberloged != null)
                 {
                     newPost.MemberID = memberloged.MemberID;
+                    newPost.IPAddress = MemberBLL.GetMemberProfileByMemberID(memberloged.MemberID).IPAddress;
                 }
-                Topic topic = TopicBLL.GetTopicByTopicID(Convert.ToInt32(Request.QueryString["topicID"]));
-                if (topic != null)
-                {
-//                    newPost.Quote = Quote(topic.Content, ((Member)Session["UserLoged"]).UserName);
-                    string quote2 = Quote(topic.Content, ((Member)Session["UserLoged"]).UserName);
-                    string newContents = contents.Replace(quote2+'"', null);
-                   
-                    
-                    newPost.Content = newContents;
-                }
-                //string newContents = contents.Replace(newPost.Quote, null);
-               // newPost.Content = newContents;
+                newPost.QuoteID = 0;
+                newPost.Content = contents;
                 newPost.DateEdited = DateTime.Now;
                 newPost.Signature = true;
-                newPost.IPAddress = "5564545455";
                 int result = PostBLL.InsertPost(newPost);
                 if (result > 0)
                 {
@@ -101,6 +76,9 @@ public partial class GUI_NewReply : System.Web.UI.Page
             {
                 Server.Transfer("TopicDetails.aspx?topicID=" + Request.QueryString["topicID"]);
             }
+        }else
+        {
+            lblErrors.Text = "Please enter content of Reply! Characters min 100.";
         }
     }
     protected void btnCancel_Click(object sender, EventArgs e)
