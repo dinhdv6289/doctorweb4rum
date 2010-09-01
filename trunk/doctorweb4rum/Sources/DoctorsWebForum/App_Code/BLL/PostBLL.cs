@@ -114,5 +114,61 @@ namespace BLL
             }
             return result;
         }
+
+        public static int[] GetRatingPoint(int postID)
+        {
+            int[] result = { 0, 0 };
+            try
+            {
+                result = DataHelper.GetPostDA().GetRatingPoint(postID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public static int InsertRatePost(RatingPost ratePost)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetPostDA().InsertRatePost(ratePost);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public static int ThankPost(int memberID, int postID)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetPostDA().ThankPost(memberID, postID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public static Boolean isThanked(int postID, int memberID)
+        {
+            Boolean result = false;
+            try
+            {
+                result = DataHelper.GetPostDA().isThanked(postID, memberID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

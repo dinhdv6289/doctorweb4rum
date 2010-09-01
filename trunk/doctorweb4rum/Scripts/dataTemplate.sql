@@ -242,17 +242,17 @@ values(1,2,4,getdate())
 insert into RatingTopic(FromMember,TopicID,RatePoint,RateDate)
 values(2,2,1,getdate())
 
-insert into Posts(TopicID,MemberID,Title,[Content],DateCreation,DateEdited,Signature,IPAddress)
-values(1,1,'Test title','test content ',getdate(),getdate(),'true','1111332323')
+insert into Posts(TopicID,MemberID,[Content],DateCreation,DateEdited,Signature,IPAddress)
+values(1,1,'test content ',getdate(),getdate(),'true','1111332323')
 
-insert into Posts(TopicID,MemberID,Title,[Content],DateCreation,DateEdited,Signature,IPAddress)
-values(2,1,'Test title','test content ',getdate(),getdate(),'true','1111332323')
+insert into Posts(TopicID,MemberID,[Content],DateCreation,DateEdited,Signature,IPAddress)
+values(2,1,'test content ',getdate(),getdate(),'true','1111332323')
 
-insert into Posts(TopicID,MemberID,Title,[Content],DateCreation,DateEdited,Signature,IPAddress)
-values(3,1,'Test title3','test content 3',getdate(),getdate(),'true','1111332323')
+insert into Posts(TopicID,MemberID,[Content],DateCreation,DateEdited,Signature,IPAddress)
+values(3,1,'test content 3',getdate(),getdate(),'true','1111332323')
 
-insert into Posts(TopicID,MemberID,Title,[Content],DateCreation,DateEdited,Signature,IPAddress)
-values(2,1,'Test titleabc','test content abc',getdate(),getdate(),'true','1111332323')
+insert into Posts(TopicID,MemberID,[Content],DateCreation,DateEdited,Signature,IPAddress)
+values(2,1,'test content abc',getdate(),getdate(),'true','1111332323')
 
 select * from dbo.Members
 

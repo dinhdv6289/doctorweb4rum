@@ -55,7 +55,7 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = String.Format("Select top(1) t.DateCreate from Topics t inner join SubForums s on t.SubForumID = s.SubForumID where t.SubForumID = {0} order by t.TopicID", SubForumID);
+                cmd.CommandText = String.Format("Select top(1) t.DateCreate from Topics t inner join SubForums s on t.SubForumID = s.SubForumID where t.SubForumID = {0} order by t.TopicID desc", SubForumID);
                 DataSet ds = ExecuteDataset(cmd);
                 if(ds.Tables[0].Rows.Count >0)
                 {
