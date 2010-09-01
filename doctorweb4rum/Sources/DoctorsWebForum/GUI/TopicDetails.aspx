@@ -128,7 +128,7 @@
         </div>--%>
     </div>
     <%--begin posts list of this topic--%>
-    <asp:Repeater ID="repeaterPosts" runat="server">
+    <asp:Repeater ID="repeaterPosts" runat="server" OnItemCommand="repeaterPosts_ItemCommand">
         <ItemTemplate>
         <div class="postlist restrain" id="postlist">
         <ol start="1" class="posts" id="posts">
@@ -189,7 +189,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="postfoot">
+                <%--<div class="postfoot">
                     <div class="textcontrols floatcontainer">
                         <span class="postcontrols">
                             <img style="display: none" id="Img2" src="Images/progress.gif"
@@ -207,6 +207,35 @@
                                             &nbsp;</a></span> &nbsp;<a title="Report Post" rel="nofollow" href="#"
                                                 class="report">&nbsp;</a>
                                     &nbsp; </span>
+                    </div>
+                </div>--%>
+                                <div class="postfoot">
+                    <div class="textcontrols floatcontainer">
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Always" ChildrenAsTriggers="True">
+            <ContentTemplate>                                
+<SPAN class="postcontrols"><IMG style="DISPLAY: none" id="Img1" alt="" src="Images/progress.gif" /> 
+<A id="A1" class="quickreply" href='NewReplyToPost.aspx?topicID=<%#Eval("TopicID")%>&postID=<%#Eval("PostID")%>' rel="nofollow">
+<IMG id="IMG3" alt="" src="clear.gif" /> Reply</A> 
+<SPAN class="seperator">&nbsp;</SPAN>
+<A id="A2" class="newreply" href='NewReplyToPost.aspx?topicID=<%#Eval("TopicID")%>&postID=<%#Eval("PostID")%>&postWithQuote=1'
+ rel="nofollow">Reply With Quote</A><SPAN class="seperator">&nbsp;</SPAN>
+ <ajaxToolkit:Rating id="postRating" runat="Server" CurrentRating='<%#Convert.ToInt32(Eval("RatingPoint"))%>' 
+ CssClass="ratingStar" Tag='<%#Eval("PostID")%>' EmptyStarCssClass="Empty" OnChanged="Rating_Changed" FilledStarCssClass="Filled"
+  WaitingStarCssClass="Saved" StarCssClass="ratingItem" AutoPostBack="true"></ajaxToolkit:Rating> </SPAN>
+
+                   <span class="postlinking">
+
+               <asp:LinkButton ID="LinkButton2" Visible='<%#isPostThanked(Convert.ToInt32(Eval("PostID"))) %>' 
+               runat="server" CssClass="post_thanks_button" CommandName="ThankClick" CommandArgument='<%#Eval("PostID")%>'>Thanks</asp:LinkButton> 
+
+                                &nbsp;
+                                <a title="Report Post" rel="nofollow" href="#"
+                                                class="report">&nbsp;</a>
+                                    &nbsp; 
+                                    
+                                    </span>
+ </ContentTemplate>
+ </asp:UpdatePanel>
                     </div>
                 </div>
                 <hr>

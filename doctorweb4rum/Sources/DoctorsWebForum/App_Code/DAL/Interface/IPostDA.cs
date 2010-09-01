@@ -17,5 +17,10 @@ namespace DAL
         Post GetLastPostOfTopicByTopicID(int topicID);
         int InsertPost(Post post);
         Post GetPostByPostID(int postID);
+        int[] GetRatingPoint(int postID);
+        int InsertRatePost(RatingPost ratePost);
+        int ThankPost(int memberID, int postID);
+        Boolean isThanked(int postID, int memberID);
+
     }
 }

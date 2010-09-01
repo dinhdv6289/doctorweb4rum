@@ -28,8 +28,13 @@ namespace DAL
         private const String Signature = "Signature";
         private const String IPAddress = "IPAddress";
         private const String Quote = "Quote";
+        private const String tableNameRating = "RatingPost";
+        private const String FromMember = "FromMember";
+        private const String RatePoint = "RatePoint";
+        private const String RateDate = "RateDate";
         private String[] columnNames = { PostID, TopicID, MemberID, Content, DateCreation, DateEdited, Signature, IPAddress, Quote };
         private String[] columnNamesForInsert = { TopicID, MemberID, Content, DateEdited, Signature, IPAddress, Quote };
+        private String[] columnNamesRatingForInsert = { FromMember, PostID, RatePoint, RateDate };
 
         public Post[] GetAllPostByTopicID(int topicID)
         {
@@ -173,6 +178,87 @@ namespace DAL
             {
                 return null;
             }
+        }
+
+        
+        public int[] GetRatingPoint(int postID)
+        {
+            DataSet ds = null;
+            int[] result = { 0, 0 };
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("select count(*) as TotalRate, avg(RatePoint) as RatingPoint from RatingPost where {0} = {1} group by PostID", PostID, postID);
+                ds = ExecuteDataset(cmd);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    result[0] = (int)ds.Tables[0].Rows[0]["TotalRate"];
+                    result[1] = (int)ds.Tables[0].Rows[0]["RatingPoint"];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public int InsertRatePost(RatingPost ratePost)
+        {
+            int result = 0;
+            try
+            {
+                object[] values = { ratePost.FromMember, ratePost.PostID, ratePost.RatePoint, ratePost.RateDate };
+                result = InsertTable(tableNameRating, columnNamesRatingForInsert, values);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public int ThankPost(int memberID, int postID)
+        {
+            int result = 0;
+            try
+            {
+                object[] values = { memberID, postID, DateTime.Now };
+                String[] columnNamesThanks = { "FromMember", "PostID", "ThankDate" };
+                result = InsertTable("ThankPost", columnNamesThanks, values);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public Boolean isThanked(int postID, int memberID)
+        {
+            Boolean result = false;
+            try
+            {
+                DataSet ds = new DataSet();
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = string.Format("select count(*) as IsThanked from ThankPost where FromMember = {0} and PostID = {1}", memberID, postID);
+                ds = ExecuteDataset(cmd);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    int a = (int)ds.Tables[0].Rows[0][0];
+                    if (a > 0)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
         }
     }
 }
