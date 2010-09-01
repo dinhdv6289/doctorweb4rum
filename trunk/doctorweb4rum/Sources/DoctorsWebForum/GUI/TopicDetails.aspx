@@ -95,8 +95,11 @@
                 <div class="postfoot">
                     <div class="textcontrols floatcontainer">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always" ChildrenAsTriggers="True">
-            <ContentTemplate>                                
-<SPAN class="postcontrols"><IMG style="DISPLAY: none" id="Img2" alt="" src="Images/progress.gif" /> <A id="qr_14688798" class="quickreply" href='NewReply.aspx?topicID=<%= Request.QueryString["topicID"] %>' rel="nofollow"><IMG id="replyimg_14688798" alt="" src="clear.gif" /> Reply</A> <SPAN class="seperator">&nbsp;</SPAN> <A id="qrwq_14688639" class="newreply" href='NewReply.aspx?topicID=<%= Request.QueryString["topicID"] %>&withQuote=1' rel="nofollow">Reply With Quote</A><SPAN class="seperator">&nbsp;</SPAN>
+            <ContentTemplate>  
+                                          
+<SPAN class="postcontrols"><IMG style="DISPLAY: none" id="Img2" alt="" src="Images/progress.gif" />
+<a name="vB::QuickEdit::14883481" href="EditTopic.aspx?topicID=<%= Request.QueryString["topicID"] %>" class="editpost"> Edit Topic</a><SPAN class="seperator">&nbsp;</SPAN>
+ <A id="qr_14688798" class="quickreply" href='NewReply.aspx?topicID=<%= Request.QueryString["topicID"] %>' rel="nofollow"><IMG id="replyimg_14688798" alt="" src="clear.gif" /> Reply</A> <SPAN class="seperator">&nbsp;</SPAN> <A id="qrwq_14688639" class="newreply" href='NewReply.aspx?topicID=<%= Request.QueryString["topicID"] %>&withQuote=1' rel="nofollow">Reply With Quote</A><SPAN class="seperator">&nbsp;</SPAN>
  <ajaxToolkit:Rating id="topicRating" runat="Server" CssClass="ratingStar" EmptyStarCssClass="Empty" FilledStarCssClass="Filled" WaitingStarCssClass="Saved" StarCssClass="ratingItem"  AutoPostBack="True" OnChanged="topicRating_Changed"></ajaxToolkit:Rating> </SPAN>
 
                             <span class="postlinking">
@@ -188,7 +191,7 @@
         <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Always" ChildrenAsTriggers="True">
             <ContentTemplate>                                
 <SPAN class="postcontrols"><IMG style="DISPLAY: none" id="Img1" alt="" src="Images/progress.gif" /> 
-<a name="vB::QuickEdit::14883481" href="EditPost.aspx?postID=<%#Eval("PostID")%>" class="editpost"> Edit Post</a>
+<a name="vB::QuickEdit::14883481" href="EditPost.aspx?postID=<%#Eval("PostID")%>" class="editpost"> Edit Post</a><SPAN class="seperator">&nbsp;</SPAN>
 <A id="A1" class="quickreply" href='NewReplyToPost.aspx?topicID=<%#Eval("TopicID")%>&postID=<%#Eval("PostID")%>' rel="nofollow">
 <IMG id="IMG3" alt="" src="clear.gif" /> Reply</A> 
 <SPAN class="seperator">&nbsp;</SPAN>
