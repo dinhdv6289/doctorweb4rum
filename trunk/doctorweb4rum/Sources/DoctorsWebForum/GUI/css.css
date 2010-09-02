@@ -4283,6 +4283,11 @@ background:url("Images/edit_40b.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
+.postbitlegacy .postfoot .textcontrols a.editpost:hover, .postbit .postfoot .textcontrols a.editpost:hover, .eventbit .eventfoot .textcontrols a.editevent:hover {
+background:url("Images/edit_40b-hover.png") no-repeat scroll left center transparent;
+border:0 none;
+padding:0 0 0 20px;
+}
 
 .postbitlegacy .postfoot .textcontrols a.quickreply:hover, .postbit .postfoot .textcontrols a.quickreply:hover, .postbitlegacy .postfoot .textcontrols a.forwardpost:hover, .postbit .postfoot .textcontrols a.forwardpost:hover {
 background:url("Images/reply_40b-hover.png") no-repeat scroll left center transparent;

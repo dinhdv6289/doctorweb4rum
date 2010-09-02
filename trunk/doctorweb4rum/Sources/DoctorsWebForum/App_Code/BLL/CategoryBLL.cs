@@ -30,5 +30,18 @@ namespace BLL
             return result;
 
         }
+        public static DataSet GetStatistics()
+        {
+            DataSet ds = null;
+            try
+            {
+                ds = DataHelper.GetCategoryDA().GetStatistics();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return ds;
+        }
     }
 }

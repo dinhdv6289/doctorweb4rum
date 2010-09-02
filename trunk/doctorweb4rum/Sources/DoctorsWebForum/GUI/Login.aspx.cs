@@ -31,6 +31,9 @@ public partial class GUI_Login : System.Web.UI.Page
             Member member = MemberBLL.GetMemberByUserNamePassword(userName, password);
             if (member != null)
             {
+                Session["id"] = member.MemberID;
+                member.IsOnline = true;
+                MemberBLL.UpdateMember(member);
                 MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
                 if (memberProfile != null)
                 {

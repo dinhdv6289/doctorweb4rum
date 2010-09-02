@@ -43,15 +43,15 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
         }
 
     }
-        
+
     public String GetQuote(int quoteID)
     {
         String quote = null;
-        if (quoteID!=0)
+        if (quoteID != 0)
         {
             Post p = PostBLL.GetPostByPostID(Convert.ToInt32(quoteID));
             Member mem = MemberBLL.GetMemberByMemberID(p.MemberID);
-           quote = Quote(p.Content, mem.UserName);
+            quote = Quote(p.Content, mem.UserName);
         }
         return quote;
     }
@@ -190,6 +190,42 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
                 loadData();
             }
         }
+        if (e.CommandName.Equals("ReplyWithQuote"))
+        {
+            string TopicID = Request["topicID"];
+            if (Session["UserLoged"] != null)
+            {
+                Response.Redirect("NewReplyWithQuote.aspx?topicID=" + TopicID + "&postID=" + e.CommandArgument);
+            }
+            else
+            {
+                Response.Redirect("Login.aspx?ReturnURL=NewReplyWithQuote.aspx?topicID=" + TopicID + "&postID=" + e.CommandArgument);
+            }
+        }
+        if (e.CommandName.Equals("QuickReply"))
+        {
+            string TopicID = Request["topicID"];
+            if (Session["UserLoged"] != null)
+            {
+                Response.Redirect("NewReplyToPost.aspx?topicID=" + TopicID + "&postID=" + e.CommandArgument);
+            }
+            else
+            {
+                Response.Redirect("Login.aspx?ReturnURL=NewReplyToPost.aspx?topicID=" + TopicID + "&postID=" + e.CommandArgument);
+            }
+        }
+        if (e.CommandName.Equals("EditPost"))
+        {
+            if (Session["UserLoged"] != null)
+            {
+                Response.Redirect("EditPost.aspx?postID=" + e.CommandArgument);
+            }
+            else
+            {
+                Response.Redirect("Login.aspx?ReturnURL=EditPost.aspx?postID=" + e.CommandArgument);
+            }
+        }
+
     }
 
     public Boolean isPostThanked(int postID)
@@ -221,12 +257,7 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
             loadData();
         }
     }
-    protected void LinkButton2_Click(object sender, EventArgs e)
-    {
-        CheckLoginToNewReply();
-    }
-
-    private void CheckLoginToNewReply()
+    protected void CheckLoginToNewReply(object sender, EventArgs e)
     {
         string TopicID = Request["topicID"];
         if (Session["UserLoged"] != null)
@@ -238,8 +269,43 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
             Response.Redirect("Login.aspx?ReturnURL=NewReply.aspx?topicID=" + TopicID);
         }
     }
-    protected void LinkButton3_Click(object sender, EventArgs e)
+
+    protected void CheckLoginToQuickEdit(object sender, EventArgs e)
     {
-        CheckLoginToNewReply();
+        string TopicID = Request["topicID"];
+        if (Session["UserLoged"] != null)
+        {
+            Response.Redirect("EditTopic.aspx?topicID=" + TopicID);
+        }
+    }
+
+    public Boolean IsMyTopic()
+    {
+        Boolean result = false;
+        string TopicID = Request["topicID"];
+        if (Session["UserLoged"] != null)
+        {
+            Member m = (Member)Session["UserLoged"];
+            Topic tp = TopicBLL.GetTopicByTopicID(Convert.ToInt32(TopicID));
+            if (tp.MemberID == m.MemberID)
+            {
+                result = true;
+            }
+        }
+        return result;
+    }
+    public Boolean IsMyPost(int postID)
+    {
+        Boolean result = false;
+        if (Session["UserLoged"] != null)
+        {
+            Member m = (Member)Session["UserLoged"];
+            Post p = PostBLL.GetPostByPostID(postID);
+            if (p.MemberID == m.MemberID)
+            {
+                result = true;
+            }
+        }
+        return result;
     }
 }

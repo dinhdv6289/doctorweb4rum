@@ -16,5 +16,6 @@ namespace DAL
     public interface ICategoryDA
     {
         Category[] GetAllCategory();
+        DataSet GetStatistics();
     }
 }

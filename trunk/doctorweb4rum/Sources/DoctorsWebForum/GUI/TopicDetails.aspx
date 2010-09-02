@@ -4,7 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <br />
-    <asp:LinkButton ID="LinkButton3" runat="server" CssClass="newcontent_textcontrol" OnClick="LinkButton3_Click" ><span>+ </span>Reply to Topic</asp:LinkButton>
+    <asp:LinkButton ID="LinkButton3" runat="server" CssClass="newcontent_textcontrol" OnClick="CheckLoginToNewReply" ><span>+ </span>Reply to Topic</asp:LinkButton>
     <br />
     <div>
     </div>
@@ -97,10 +97,16 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always" ChildrenAsTriggers="True">
             <ContentTemplate>  
                                           
-<SPAN class="postcontrols"><IMG style="DISPLAY: none" id="Img2" alt="" src="Images/progress.gif" />
-<a name="vB::QuickEdit::14883481" href="EditTopic.aspx?topicID=<%= Request.QueryString["topicID"] %>" class="editpost"> Edit Topic</a><SPAN class="seperator">&nbsp;</SPAN>
- <A id="qr_14688798" class="quickreply" href='NewReply.aspx?topicID=<%= Request.QueryString["topicID"] %>' rel="nofollow"><IMG id="replyimg_14688798" alt="" src="clear.gif" /> Reply</A> <SPAN class="seperator">&nbsp;</SPAN> <A id="qrwq_14688639" class="newreply" href='NewReply.aspx?topicID=<%= Request.QueryString["topicID"] %>&withQuote=1' rel="nofollow">Reply With Quote</A><SPAN class="seperator">&nbsp;</SPAN>
- <ajaxToolkit:Rating id="topicRating" runat="Server" CssClass="ratingStar" EmptyStarCssClass="Empty" FilledStarCssClass="Filled" WaitingStarCssClass="Saved" StarCssClass="ratingItem"  AutoPostBack="True" OnChanged="topicRating_Changed"></ajaxToolkit:Rating> </SPAN>
+<SPAN class="postcontrols">
+<% if (IsMyTopic()){ %>
+    <asp:LinkButton ID="QuickEditLinkButton" CssClass="editpost" runat="server" OnClick="CheckLoginToQuickEdit">Edit Topic</asp:LinkButton>
+    <SPAN class="seperator">&nbsp;</SPAN>
+    <% } %>
+<asp:LinkButton ID="quickReplyLinkButton" runat="server" CssClass="quickreply" OnClick="CheckLoginToNewReply" >Reply</asp:LinkButton>
+ <SPAN class="seperator">&nbsp;</SPAN>
+ <ajaxToolkit:Rating id="topicRating" runat="Server" CssClass="ratingStar" 
+ EmptyStarCssClass="Empty" FilledStarCssClass="Filled" WaitingStarCssClass="Saved" 
+ StarCssClass="ratingItem"  AutoPostBack="True" OnChanged="topicRating_Changed"></ajaxToolkit:Rating> </SPAN>
 
                             <span class="postlinking">
                             <% if (isThanked())
@@ -190,13 +196,14 @@
                     <div class="textcontrols floatcontainer">
         <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Always" ChildrenAsTriggers="True">
             <ContentTemplate>                                
-<SPAN class="postcontrols"><IMG style="DISPLAY: none" id="Img1" alt="" src="Images/progress.gif" /> 
-<a name="vB::QuickEdit::14883481" href="EditPost.aspx?postID=<%#Eval("PostID")%>" class="editpost"> Edit Post</a><SPAN class="seperator">&nbsp;</SPAN>
-<A id="A1" class="quickreply" href='NewReplyToPost.aspx?topicID=<%#Eval("TopicID")%>&postID=<%#Eval("PostID")%>' rel="nofollow">
-<IMG id="IMG3" alt="" src="clear.gif" /> Reply</A> 
+<SPAN class="postcontrols">
+    <asp:LinkButton ID="EditPostLinkButton" runat="server" Visible='<%#IsMyPost(Convert.ToInt32(Eval("PostID"))) %>' 
+    CssClass="editpost" CommandName="EditPost" CommandArgument='<%#Eval("PostID")%>'>Edit Post</asp:LinkButton>
+<SPAN class="seperator">&nbsp;</SPAN> 
+<asp:LinkButton ID="QuickReplyLinkButton" runat="server" CssClass="quickreply" CommandName="QuickReply" CommandArgument='<%#Eval("PostID")%>'>Reply</asp:LinkButton>
 <SPAN class="seperator">&nbsp;</SPAN>
-<A id="A2" class="newreply" href='NewReplyWithQuote.aspx?topicID=<%#Eval("TopicID")%>&postID=<%#Eval("PostID")%>'
- rel="nofollow">Reply With Quote</A><SPAN class="seperator">&nbsp;</SPAN>
+<asp:LinkButton ID="ReplyWithQuoteLinkButton" runat="server" CssClass="newreply" CommandName="ReplyWithQuote" CommandArgument='<%#Eval("PostID")%>'>Reply With Quote</asp:LinkButton>
+ <SPAN class="seperator">&nbsp;</SPAN>
  <ajaxToolkit:Rating id="postRating" runat="Server" CurrentRating='<%#Convert.ToInt32(Eval("RatingPoint"))%>' 
  CssClass="ratingStar" Tag='<%#Eval("PostID")%>' EmptyStarCssClass="Empty" OnChanged="Rating_Changed" FilledStarCssClass="Filled"
   WaitingStarCssClass="Saved" StarCssClass="ratingItem" AutoPostBack="true"></ajaxToolkit:Rating> </SPAN>
@@ -223,10 +230,9 @@
     </asp:Repeater>
      <%--and posts list of this topic--%>
      <div class="noinlinemod below_postlist" id="below_postlist">
-     <asp:LinkButton ID="replylink" runat="server" CssClass="newcontent_textcontrol" OnClick="LinkButton2_Click"><span>+ </span>Reply to Topic</asp:LinkButton>
+     <asp:LinkButton ID="replylink" runat="server" CssClass="newcontent_textcontrol" OnClick="CheckLoginToNewReply"><span>+ </span>Reply to Topic</asp:LinkButton>
                 <div class="pagination_bottom">
             <CC1:COLLECTIONPAGER id="CollectionPager1" runat="server" ResultsLocation="None" ShowFirstLast="True" BackNextLocation="Split" BackNextDisplay="HyperLinks" PageSize="2" ControlCssClass="pagination" ShowLabel="False" PageNumbersDisplay="Numbers" PageNumbersSeparator="&nbsp;" BackNextButtonStyle="" BackNextLinkSeparator="" BackNextStyle="" ShowPageNumbers="True" SliderSize="3" UseSlider="True" IgnoreQueryString="False" ResultsFormat="Results  {0} to {1} of {2}" ResultsStyle="float:left;"></CC1:COLLECTIONPAGER>
             </div>
-
             </div>
 </asp:Content>
