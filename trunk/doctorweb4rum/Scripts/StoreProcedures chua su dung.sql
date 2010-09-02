@@ -372,3 +372,16 @@ insert into dbo.Roles(RoleName,Description,TotalPosts,RankImage) values(@RoleNam
 end
 
 select * from Roles
+
+--CREATE PROC UPDATECATEGORY BY CATEGORYID:
+CREATE PROC CategoriesUpdate
+@CategoryID as int,
+@CategoryName as nvarchar(50),
+@Priority as int,
+@DateCreation as datetime
+AS 
+UPDATE Categories SET 
+	CategoryName= @CategoryName,
+	Priority= @Priority,
+	DateCreation= @DateCreation
+WHERE 	(@CategoryID = Categories.CategoryID)
