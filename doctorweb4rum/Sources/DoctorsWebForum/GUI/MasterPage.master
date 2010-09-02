@@ -178,11 +178,11 @@ $(document).ready(function() {
                                         <%= MembersOnline().ToString()%>
                                         members and <%= (Convert.ToInt32(Application["ActiveUsers"].ToString()) - MembersOnline())
                                                         %> guests</span></p>
-                            <p>
+<%--                            <p>
                                 Most users ever online was 22,414, Sep 15th 2009 at <span class="time">1:54 am</span>.</p>
                             <ol class="commalist" id="wgo_onlineusers_list">
                                 <li><a class="username" href="">Member for Test</a></li>
-                            </ol>
+                            </ol>--%>
                         </div>
                     </div>
                     <!-- end logged-in users -->
@@ -191,7 +191,8 @@ $(document).ready(function() {
                             <img src="Images/forum_stats.png" alt="Doctors Web Forums Statistics" />Doctors
                             Web Forums Statistics</h3>
                         <div>
-                            <dl>
+                        <%= GetStatistics() %>
+                           <%-- <dl>
                                 <dt>Threads</dt>
                                 <dd>
                                     1,782,231</dd>
@@ -220,7 +221,7 @@ $(document).ready(function() {
                             </dl>
                             <p>
                                 Latest Blog Entry, <a href="#">TOP SEOs is a SCAM !!</a> by <a href="#">WorldImpulse</a>
-                            </p>
+                            </p>--%>
                         </div>
                     </div>
                 </div>

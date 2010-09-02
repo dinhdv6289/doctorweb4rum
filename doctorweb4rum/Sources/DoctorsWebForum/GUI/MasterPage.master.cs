@@ -110,5 +110,15 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         return MemberBLL.MembersOnline();
     }
+
+    public String GetStatistics()
+    {
+        DataSet ds = CategoryBLL.GetStatistics();
+        return "<dl><dt>Topics</dt><dd> " + (int)ds.Tables[0].Rows[0]["TotalTopic"] +
+            "</dd><dt>Posts</dt><dd> " + (int)ds.Tables[0].Rows[0]["TotalPost"] +
+        "</dd><dt>Members</dt><dd> " + (int)ds.Tables[0].Rows[0]["TotalMember"] +
+        "</dd></dl><p>Welcome to our newest member, <a href=\"MemberProfile.aspx?memberID=" + (int)ds.Tables[0].Rows[0]["MemberID"] +
+        "\">" + (String)ds.Tables[0].Rows[0]["NewestMember"] + "</a></p>";
+    }
 }
 

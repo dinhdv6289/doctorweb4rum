@@ -41,6 +41,29 @@ namespace DAL
             return result;
         }
 
+        public DataSet GetStatistics()
+        {
+            DataSet ds = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "GetStatistics";
+                ds = ExecuteDataset(cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                return ds;
+            }
+            else
+            {
+                return null;
+            }
 
+        }
     }
 }
