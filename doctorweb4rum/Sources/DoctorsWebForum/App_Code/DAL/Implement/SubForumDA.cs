@@ -120,5 +120,21 @@ namespace DAL
             }
             return result;
         }
+
+        public int DeleteSubForum(String id)
+        {
+            int result = 0;
+            try
+            {
+                String[] keyColumns = { SubForumDA.SubForumID };
+                String[] keyValues = { id };
+                result = DeleteTable(tableName, keyColumns, keyValues);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }
