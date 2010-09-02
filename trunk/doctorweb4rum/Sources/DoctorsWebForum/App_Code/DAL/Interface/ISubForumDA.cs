@@ -21,6 +21,7 @@ namespace DAL
         SubForum GetSubForumBySubForumID(int subForumID);
         int InsertSubForum(SubForum sub, out int resultStatus);
         //int UpdateSubForum(SubForum sub);
+        int DeleteSubForum(String id);
     }
 
 }

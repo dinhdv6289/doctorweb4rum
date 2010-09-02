@@ -91,5 +91,19 @@ namespace BLL
             }
             return result;
         }
+
+        public static int DeleteSubForum(String id)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetSubForumDA().DeleteSubForum(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }
