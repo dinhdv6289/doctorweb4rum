@@ -102,5 +102,23 @@ namespace DAL
             }
             return result;
         }
+
+        public int UpdateSubForum(SubForum sub)
+        {
+            int result = 0;
+            try
+            {
+                String[] columnNames = { SubForumID, SubForumName, Description, DateCreation, Priority };
+                Object[] values = { sub.SubForumID, sub.SubForumName, sub.Description, sub.DateCreation, sub.Priority };
+                String[] keyColumnNames = { SubForumID };
+                Object[] keyColumnValues = { sub.SubForumID };
+                result = UpdateTable(tableName, columnNames, values, keyColumnNames, keyColumnValues);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

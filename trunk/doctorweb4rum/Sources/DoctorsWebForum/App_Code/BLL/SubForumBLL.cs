@@ -77,5 +77,19 @@ namespace BLL
             }
             return result;
         }
+
+        public static int UpdateSubForum(SubForum sub)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetSubForumDA().UpdateSubForum(sub);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }
