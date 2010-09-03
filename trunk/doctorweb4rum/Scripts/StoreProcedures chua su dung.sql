@@ -290,11 +290,24 @@ END
 GO
 ---PROCEDURE InsertCategories
 
-CREATE PROC InsertCategories
-	@CategoryName	NVARCHAR(50),
-	@Priority		INT
-AS BEGIN 
-	INSERT INTO Categories (CategoryName,Priority) VALUES (@CategoryName,@Priority)			 					
+CREATE PROC CategoriesInsert
+@CategoryName as nvarchar(50),
+@Priority as int,
+@DateCreation as datetime
+ as 
+INSERT INTO Categories
+(
+	CategoryName,
+	Priority,
+	DateCreation
+)
+VALUES
+(
+	@CategoryName,
+	@Priority,
+	@DateCreation
+)
+select SCOPE_IDENTITY()		 					
 END
 
 GO
@@ -384,4 +397,12 @@ UPDATE Categories SET
 	CategoryName= @CategoryName,
 	Priority= @Priority,
 	DateCreation= @DateCreation
+WHERE 	
+	(@CategoryID = Categories.CategoryID)
+
+--CREATE PROC DELETECATEGORY BY CATEGORY:
+CREATE PROC CategoriesDelete
+@CategoryID as int
+AS 
+DELETE Categories
 WHERE 	(@CategoryID = Categories.CategoryID)
