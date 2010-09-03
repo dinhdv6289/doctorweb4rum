@@ -6,7 +6,7 @@
     <br />
     <strong>New Reply</strong>
     <div class="vbform block">
-        <h2 class="blockhead">
+<%--        <h2 class="blockhead">
             Errors Message</h2>
         <div class="blockbody postpreview">
             <blockquote class="blockrow postcontent restore preview postcontainer forumcontent"
@@ -15,7 +15,7 @@
                     <asp:Label ID="lblErrors" runat="server" ForeColor="Red"></asp:Label>
                 </div>
             </blockquote>
-        </div>
+        </div>--%>
         <h2 class="blockhead">
             Your Message</h2>
         <div class="blockbody formcontrols">

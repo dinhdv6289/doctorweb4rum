@@ -1534,7 +1534,7 @@ padding:4em 0 6em;
 text-decoration:underline;
 }
 a.extlink {
-background:url("http://i.dpstatic.com/buttons/extlink.png") no-repeat scroll 0 0 transparent;
+background:url("") no-repeat scroll 0 0 transparent;
 height:10px;
 margin-left:2px;
 position:absolute;
@@ -1569,7 +1569,7 @@ float:right;
 }
 #inlinemod_formctrls .popupctrl {
 -moz-border-radius:3px 3px 3px 3px;
-background:url("http://i.dpstatic.com/buttons/newbtn_middle.png") repeat-x scroll left top #E9E9E9;
+background:url("Images/newbtn_middle.png") repeat-x scroll left top #E9E9E9;
 border:1px solid #435F5F;
 color:#424242;
 float:left;
@@ -1906,8 +1906,8 @@ top:1px;
 .above_body {
 -moz-border-radius-bottomleft:5px;
 -moz-border-radius-bottomright:5px;
-background:url("http://i.dpstatic.com/gradients/gradient-grey-down.png") repeat-x scroll 0 0 #426A57;
-margin:0 0 10px;
+background:url("Images/gradient-grey-down.png") repeat-x scroll 0 0 #426A57;
+margin:0 0 50px;
 padding:0;
 width:100%;
 }
@@ -1926,7 +1926,9 @@ display:none;
 .logo-image {
 clear:right;
 float:left;
-height:62px;
+height:120px;
+width:100%;
+padding:10px 0 0 20px;
 }
 .toplinks {
 color:#FFFFFF;
@@ -2146,7 +2148,7 @@ display:none;
 background:none repeat scroll 0 0 #436957;
 color:#FFFFFF;
 font:11px Arial,Calibri,Verdana,Geneva,sans-serif;
-height:53px;
+height:50px;
 margin:5px 0 0;
 position:relative;
 }
@@ -2157,7 +2159,7 @@ color:#FFFFFF;
 color:#FFFFFF;
 }
 .navtabs {
-background:url("http://i.dpstatic.com/gradients/gradient-white-down-sm.png") repeat-x scroll 0 0 #618872;
+background:url("Images/gradient-white-down-sm.png") repeat-x scroll 0 0 #618872;
 height:26px;
 padding:0 0 0 20px;
 }

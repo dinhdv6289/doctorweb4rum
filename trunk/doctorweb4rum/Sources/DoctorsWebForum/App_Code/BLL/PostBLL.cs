@@ -170,5 +170,19 @@ namespace BLL
             }
             return result;
         }
+
+        public static int EditPost(Post postEdit)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetPostDA().EditPost(postEdit);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

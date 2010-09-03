@@ -128,7 +128,7 @@ CREATE TABLE Topics
 	TotalMessages	INT,
 	DateCreate	    DATETIME DEFAULT GETDATE(),
 	MoveTo			INT,
-	DateEdited      DATETIME DEFAULT NULL
+	DateEdited      DATETIME DEFAULT GETDATE()
 )
 
 GO
@@ -142,7 +142,7 @@ CREATE TABLE Posts
 	MemberID		INT NOT NULL,
 	[Content]		NTEXT,
 	DateCreation	DATETIME DEFAULT GETDATE(),
-	DateEdited		DATETIME,
+	DateEdited		DATETIME DEFAULT GETDATE(),
 	Signature		BIT DEFAULT 1,
 	IPAddress		NVARCHAR(50),
 	QuoteID			INT DEFAULT 0		

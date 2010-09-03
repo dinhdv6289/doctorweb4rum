@@ -212,5 +212,19 @@ namespace BLL
              }
              return result;
          }
+
+        public static int EditTopic(Topic topicEdit)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetTopicDA().EditTopic(topicEdit);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

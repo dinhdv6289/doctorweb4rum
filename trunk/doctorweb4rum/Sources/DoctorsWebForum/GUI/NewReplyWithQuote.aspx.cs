@@ -25,10 +25,17 @@ public partial class GUI_NewReplyWithQuote : System.Web.UI.Page
                 int topicId = Convert.ToInt32(topicID);
                 int postId = Convert.ToInt32(postID);
                 Topic topic = TopicBLL.GetTopicByTopicID(topicId);
-                Post post = PostBLL.GetPostByPostID(postId);
-                List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
-                nodes.Add(new KeyValuePair<string, Uri>(topic.Title, Request.Url));
-                ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
+                if (topic != null)
+                {
+                    SubForum sf = SubForumBLL.GetSubForumBySubForumID(topic.SubForumID);
+                    if (sf != null)
+                    {
+                        List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
+                        nodes.Add(new KeyValuePair<string, Uri>(sf.SubForumName, new Uri(Request.Url, string.Format("ShowTopics.aspx?subForumID={0}", sf.SubForumID))));
+                        nodes.Add(new KeyValuePair<string, Uri>(topic.Title, Request.Url));
+                        ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
+                    }
+                }
                 this.Page.Title = topic.Title;
             }
             else
@@ -97,7 +104,7 @@ public partial class GUI_NewReplyWithQuote : System.Web.UI.Page
             }
         }else
         {
-            lblErrors.Text = "Please enter content of Reply! Characters min 100.";
+            //lblErrors.Text = "Please enter content of Reply! Characters min 100.";
         }
     }
 

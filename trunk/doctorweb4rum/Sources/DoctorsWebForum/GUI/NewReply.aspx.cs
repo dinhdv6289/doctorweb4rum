@@ -16,34 +16,37 @@ public partial class GUI_NewReply : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        String topicID = Request.QueryString["topicID"];
-        String withQuote = Request.QueryString["withQuote"];
         if (!IsPostBack)
         {
-            this.Page.Title = "New Reply";
+            String topicID = Request.QueryString["topicID"];
             if (topicID != null)
             {
                 int topicId = Convert.ToInt32(topicID);
                 Topic topic = TopicBLL.GetTopicByTopicID(topicId);
-                List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
-                nodes.Add(new KeyValuePair<string, Uri>(topic.Title, Request.Url));
-                ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
-                
-                lblErrors.Text = "";
+                if (topic != null)
+                {
+                    SubForum sf = SubForumBLL.GetSubForumBySubForumID(topic.SubForumID);
+                    if (sf != null)
+                    {
+                        List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
+                        nodes.Add(new KeyValuePair<string, Uri>(sf.SubForumName, new Uri(Request.Url, string.Format("ShowTopics.aspx?subForumID={0}", sf.SubForumID))));
+                        nodes.Add(new KeyValuePair<string, Uri>(topic.Title, Request.Url));
+                        ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
+                    }
+                }
             }
             else
             {
                 Response.Redirect("TopicDetails.aspx?topicID=" + Request.QueryString["topicID"]);
             }
-
         }
-
+        this.Page.Title = "New Reply";
     }
 
     private string Quote(string content, string userNamePosted)
     {
         return "<div class=\"bbcode_container\"><div class=\"bbcode_quote\"><div class=\"quote_container\"><div class=\"bbcode_quote_container\"></div><div class=\"bbcode_postedby\"><img alt=\"Quote\" src=\"Images/quote_icon.png\" title=\"Quote\">" +
-                                "Originally Posted by <strong> " + userNamePosted + "</strong>" + "</div><div class=\"message\">" + content + "</div></div></div></div>"; 
+                                "Originally Posted by <strong> " + userNamePosted + "</strong>" + "</div><div class=\"message\">" + content + "</div></div></div></div>";
     }
 
 
@@ -76,9 +79,10 @@ public partial class GUI_NewReply : System.Web.UI.Page
             {
                 Server.Transfer("TopicDetails.aspx?topicID=" + Request.QueryString["topicID"]);
             }
-        }else
+        }
+        else
         {
-            lblErrors.Text = "Please enter content of Reply! Characters min 100.";
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "Errors", "<script>alert('The contents you have entered is too short. Please lengthen your contents to at least 100 Characters.');</script>");
         }
     }
     protected void btnCancel_Click(object sender, EventArgs e)
@@ -91,6 +95,6 @@ public partial class GUI_NewReply : System.Web.UI.Page
         {
             Response.Redirect("Index.aspx");
         }
-        
+
     }
 }

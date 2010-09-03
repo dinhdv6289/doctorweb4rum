@@ -38,7 +38,7 @@ namespace DAL
         private String[] columnNamesRatingForInsert = { FromMember, TopicID, RatePoint, RateDate };
         private String[] columnNames = { TopicID, SubForumID, MemberID, Title, Content, IsLocked, TotalViews, TotalMessages, DateCreate, MoveTo, DateEdited };
         private String[] columnNamesForInsert = { SubForumID, MemberID, Title, Content, IsLocked, TotalViews, TotalMessages, MoveTo };
-
+        private String[] columnNamesForEditTopic ={ Title,Content, TopicID};
 
         public Topic[] SearchTopic(String KeySearch, String CategoryID, String SubForumID, String UserName, String FromDateCreate, String ToDateCreate)
         {
@@ -346,6 +346,21 @@ namespace DAL
                         result = true;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public int EditTopic(Topic topicEdit)
+        {
+            int result = 0;
+            try
+            {
+                Object[] values = {  topicEdit.Title, topicEdit.Content, topicEdit.TopicID};
+                result = ProcessTableTypeStore("EditTopic", columnNamesForEditTopic, values);
             }
             catch (Exception ex)
             {

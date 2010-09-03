@@ -21,6 +21,7 @@ namespace DAL
         int InsertRatePost(RatingPost ratePost);
         int ThankPost(int memberID, int postID);
         Boolean isThanked(int postID, int memberID);
+        int EditPost(Post postEdit);
 
     }
 }

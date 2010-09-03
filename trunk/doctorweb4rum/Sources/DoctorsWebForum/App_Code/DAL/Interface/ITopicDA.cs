@@ -25,6 +25,7 @@ namespace DAL
         int InsertRateTopic(RatingTopic rateTopic);
         int ThankTopic(int memberID, int topicID);
         Boolean isThanked(int topicID, int memberID);
+        int EditTopic(Topic topicEdit);
 
     }
 }
