@@ -382,3 +382,18 @@ go
 
 exec GetPostByPostID 1
 go
+
+--GetStatistics
+
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetStatistics' AND TYPE = 'P')
+DROP PROC GetStatistics
+go
+CREATE PROC GetStatistics
+AS BEGIN
+	SELECT     
+		(SELECT Count(*) FROM Topics) AS TotalTopic, 
+		(SELECT Count(*) FROM Posts) AS TotalPost ,
+		(SELECT count(*) FROM members) AS TotalMember ,
+		(SELECT username FROM members WHERE memberid = (SELECT MAX(MemberID) FROM members)) AS NewestMember,
+		(SELECT MAX(MemberID) FROM members) AS MemberID
+END
