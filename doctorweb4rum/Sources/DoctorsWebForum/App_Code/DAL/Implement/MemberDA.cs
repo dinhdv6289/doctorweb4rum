@@ -111,6 +111,7 @@ namespace DAL
             }
             return result;
         }
+
         public int InsertMember(Member member, out int autoID)
         {
             int result = 0;

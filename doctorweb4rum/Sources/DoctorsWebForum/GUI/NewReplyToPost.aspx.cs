@@ -18,7 +18,7 @@ public partial class GUI_NewReplyToPost : System.Web.UI.Page
     {
         String topicID = Request.QueryString["topicID"];
         String postID = Request.QueryString["postID"];
-        String postWithQuote = Request.QueryString["postWithQuote"];
+
         if (!IsPostBack)
         {
             if (topicID != null && postID != null)
@@ -26,46 +26,18 @@ public partial class GUI_NewReplyToPost : System.Web.UI.Page
                 int topicId = Convert.ToInt32(topicID);
                 int postId = Convert.ToInt32(postID);
                 Topic topic = TopicBLL.GetTopicByTopicID(topicId);
-                Post post = PostBLL.GetPostByPostID(postId);
+                this.Page.Title = topic.Title;
+                SubForum sf = SubForumBLL.GetSubForumBySubForumID(topic.SubForumID);
                 List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
+                nodes.Add(new KeyValuePair<string, Uri>(sf.SubForumName, new Uri(Request.Url, string.Format("ShowTopics.aspx?subForumID={0}", sf.SubForumID))));
                 nodes.Add(new KeyValuePair<string, Uri>(topic.Title, Request.Url));
                 ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
-                this.Page.Title = topic.Title;
-                try
-                {
-                    if (postWithQuote == "1" || postWithQuote.Equals("1"))
-                    {
-                        //Editor1.Content = "<span style=\"font-style: italic;font-size: 8pt;\">" + topic.Content + "</span>";
-                       // Editor1.Content = post.Quote;
-                        //Editor1.Content = "<div class=\"bbcode_container\">" +
-                        //    "<div class=\"bbcode_quote\">" +
-                        //        "<div class=\"quote_container\">" +
-                        //        "<div class=\"bbcode_quote_container\">" +
-                        //        "</div>" +
-                        //        "<div class=\"bbcode_postedby\">" +
-                        //        "<img alt=\"Quote\" src=\"Images/quote_icon.png\" title=\"Quote\">" +
-                        //        "Originally Posted by" +
-                        //        "<strong>" + "ten user" + "</strong>" + "</div>" +
-                        //        "<div class=\"message\">" + post.Content + "</div></div></div></div>";
-                        
-                    }
-                    else
-                    {
-                        Editor1.Content = "";
-                        
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                }
             }
             else
             {
                 Response.Redirect("TopicDetails.aspx?topicID=" + Request.QueryString["topicID"]);
             }
         }
-
     }
 
 
@@ -84,7 +56,7 @@ public partial class GUI_NewReplyToPost : System.Web.UI.Page
                     newPost.MemberID = memberloged.MemberID;
                 }
                 Post post = PostBLL.GetPostByPostID(Convert.ToInt32(Request.QueryString["postID"]));
-                if(post != null)
+                if (post != null)
                 {
                     newPost.Content = Editor1.PlainText;
                 }
@@ -123,6 +95,6 @@ public partial class GUI_NewReplyToPost : System.Web.UI.Page
         {
             Response.Redirect("Index.aspx");
         }
-        
+
     }
 }

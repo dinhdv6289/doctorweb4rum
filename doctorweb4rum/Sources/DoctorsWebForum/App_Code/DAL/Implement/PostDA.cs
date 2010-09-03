@@ -35,7 +35,7 @@ namespace DAL
         private String[] columnNames = { PostID, TopicID, MemberID, Content, DateCreation, DateEdited, Signature, IPAddress, QuoteID };
         private String[] columnNamesForInsert = { TopicID, MemberID, Content, DateEdited, Signature, IPAddress, QuoteID };
         private String[] columnNamesRatingForInsert = { FromMember, PostID, RatePoint, RateDate };
-
+        private String[] columnNamesForEditPost = { Content, PostID };
         public Post[] GetAllPostByTopicID(int topicID)
         {
             Post[] result;
@@ -180,7 +180,7 @@ namespace DAL
             }
         }
 
-        
+
         public int[] GetRatingPoint(int postID)
         {
             DataSet ds = null;
@@ -253,6 +253,21 @@ namespace DAL
                         result = true;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public int EditPost(Post postEdit)
+        {
+            int result = 0;
+            try
+            {
+                Object[] values = { postEdit.Content, postEdit.PostID };
+                result = ProcessTableTypeStore("EditPost", columnNamesForEditPost, values);
             }
             catch (Exception ex)
             {

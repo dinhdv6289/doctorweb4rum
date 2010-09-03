@@ -44,7 +44,8 @@ $(document).ready(function() {
                     <ul class="isuser">
                         <li>
                             <asp:LinkButton ID="Logoutlnk" runat="server" OnClick="Logoutlnk_Click">Logout</asp:LinkButton></li>
-                        <li class="welcomelink">Welcome, <a href="EditProfileMember.aspx?memberID=<%=memberloged.MemberID%>" alt="View profile">
+                        <li class="welcomelink">Welcome, <a href="EditProfileMember.aspx?memberID=<%=memberloged.MemberID%>"
+                            alt="View profile">
                             <%=memberloged.UserName%>
                         </a></li>
                     </ul>
@@ -54,12 +55,12 @@ $(document).ready(function() {
                     <ul class="nouser">
                         <li>
                             <asp:LinkButton ID="Registerlnk" runat="server" Width="47px" PostBackUrl="Register.aspx">Register</asp:LinkButton></li><li>
-                            <asp:LinkButton ID="Loginlnk" runat="server" Width="47px" CausesValidation="false">Login</asp:LinkButton></li><li>
-                        </li>
+                                <asp:LinkButton ID="Loginlnk" runat="server" Width="47px" CausesValidation="false">Login</asp:LinkButton></li><li>
+                                </li>
                     </ul>
                     <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtenderLogin" runat="server" TargetControlID="Loginlnk"
-                    PopupControlID="LoginPanel" BackgroundCssClass="modalBackground" DropShadow="false"
-                    CancelControlID="btnCancel" Drag="false" />
+                        PopupControlID="LoginPanel" BackgroundCssClass="modalBackground" DropShadow="false"
+                        CancelControlID="btnCancel" Drag="false" />
                     <%} %>
                 </div>
                 <asp:Panel ID="LoginPanel" runat="server" Style="display: none" Font-Names="@MS PGothic"
@@ -112,20 +113,13 @@ $(document).ready(function() {
                         </div>
                     </div>
                 </asp:Panel>
-                <div id="ad_global_header">
-                    <div class="ad_global_header_right">
-                    </div>
-                </div>
+
                 <hr />
             </div>
             <div class="navbar" id="navbar">
                 <ul class="navtabs floatcontainer" id="navtabs">
                     <li class="selected"><a href="Index.aspx" class="navtab popupctrl" id="yui-gen1">Forum</a>
                     </li>
-                    <li><a href="#" class="navtab">Articles</a> </li>
-                    <li><a href="#" class="navtab">Blogs</a></li>
-                    <li><a href="#" class="navtab">Marketplace</a></li>
-                    <li><a href="#" class="navtab">Tools</a></li>
                     <li><a href="Search.aspx" class="navtab">Search</a></li>
                     <li><a accesskey="2" href="#" class="navtab">What's New?</a></li>
                 </ul>
@@ -155,6 +149,7 @@ $(document).ready(function() {
                     <RootNodeStyle Font-Bold="True" ForeColor="#5D7B9D" />
                 </asp:SiteMapPath>
             </div>
+
             <!-- main -->
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
@@ -162,27 +157,24 @@ $(document).ready(function() {
             <!-- what's going on box -->
             <div id="wgo" class="collapse wgo_block">
                 <h2>
-                    <span><a href="spy.php">What's Going On?</a></span>
+                    <span><a href="#">What's Going On?</a></span>
                 </h2>
                 <div class="floatcontainer">
                     <!-- logged-in users -->
                     <div id="wgo_onlineusers" class="wgo_subblock">
                         <h3>
-                            <img src="Images/users_online.png" alt="Currently Active Users" />Currently
-                            Active Users</h3>
+                            <img src="Images/users_online.png" alt="Currently Active Users" />Currently Active
+                            Users</h3>
                         <div>
                             <p>
                                 There are currently <a href="#">
                                     <%= Application["ActiveUsers"].ToString()%>
                                     users online</a>. <span class="shade">
                                         <%= MembersOnline().ToString()%>
-                                        members and <%= (Convert.ToInt32(Application["ActiveUsers"].ToString()) - MembersOnline())
-                                                        %> guests</span></p>
-<%--                            <p>
-                                Most users ever online was 22,414, Sep 15th 2009 at <span class="time">1:54 am</span>.</p>
-                            <ol class="commalist" id="wgo_onlineusers_list">
-                                <li><a class="username" href="">Member for Test</a></li>
-                            </ol>--%>
+                                        members and
+                                        <%= (Convert.ToInt32(Application["ActiveUsers"].ToString()) - MembersOnline())
+                                        %>
+                                        guests</span></p>
                         </div>
                     </div>
                     <!-- end logged-in users -->
@@ -191,37 +183,7 @@ $(document).ready(function() {
                             <img src="Images/forum_stats.png" alt="Doctors Web Forums Statistics" />Doctors
                             Web Forums Statistics</h3>
                         <div>
-                        <%= GetStatistics() %>
-                           <%-- <dl>
-                                <dt>Threads</dt>
-                                <dd>
-                                    1,782,231</dd>
-                                <dt>Posts</dt>
-                                <dd>
-                                    13,812,350</dd>
-                                <dt>Members</dt>
-                                <dd>
-                                    378,759</dd>
-                                <dt>Active Members</dt>
-                                <dd>
-                                    59,420</dd>
-                            </dl>
-                            <p>
-                                Welcome to our newest member, <a href="#">Greg D</a></p>
-                            <dl>
-                                <dt>Blogs</dt>
-                                <dd>
-                                    <a href="#">51</a></dd>
-                                <dt>Entries</dt>
-                                <dd>
-                                    <a href="#">172</a></dd>
-                                <dt>Last 24 Hours</dt>
-                                <dd>
-                                    <a href="#">0</a></dd>
-                            </dl>
-                            <p>
-                                Latest Blog Entry, <a href="#">TOP SEOs is a SCAM !!</a> by <a href="#">WorldImpulse</a>
-                            </p>--%>
+                            <%= GetStatistics() %>
                         </div>
                     </div>
                 </div>
@@ -231,7 +193,7 @@ $(document).ready(function() {
             <div id="footer" class="floatcontainer footer">
                 <ul id="footer_links" class="footer_links">
                     <li class="advertising"><a href="#">Advertising</a></li>
-                    <li><a href="#" target="_blank" rel="nofollow" accesskey="9">Contact Us @Twitter</a></li>
+                    <li><a href="#" target="_blank" rel="nofollow" accesskey="9">Contact Us @FaceBook</a></li>
                     <li><a href="#">Doctors Web Solutions</a></li>
                     <li><a href="#top" onclick="document.location.hash='top'; return false;">Top</a></li>
                 </ul>
@@ -244,7 +206,6 @@ $(document).ready(function() {
                     <%=DateTime.Now.ToLocalTime()  %>
                 </span>.</div>
             <div id="footer_copyright" class="shade footer_copyright">
-                Get the <a href="#" target="_blank">5 anh em siêu nhân</a>
             </div>
             <div id="fb-root">
             </div>

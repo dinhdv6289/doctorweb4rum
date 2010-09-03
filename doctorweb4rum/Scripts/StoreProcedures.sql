@@ -306,7 +306,7 @@ AS	BEGIN
 			END		
 	END
 --End Insert Member
-
+go
 
 -- Informations for TopicDetailsByTopicID
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'TopicDetailsByTopicID' AND TYPE = 'P')
@@ -362,13 +362,13 @@ FROM         Categories INNER JOIN
 		AND (@KeySearch IS NULL OR Topics.Title LIKE @KeySearch OR Topics.Content LIKE @KeySearch)
 		ORDER BY Topics.DateCreate DESC
 END
-
+go
 EXEC SearchTopic '', 0, 0, '', null, null
-
+go
 select * from topics
 
 --GetPostByPostID
-
+go
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetPostByPostID' AND TYPE = 'P')
 DROP PROC GetPostByPostID
 go
@@ -382,6 +382,41 @@ go
 
 exec GetPostByPostID 1
 go
+
+
+--EditTopic
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'EditTopic' AND TYPE = 'P')
+DROP PROC EditTopic
+go
+CREATE PROC EditTopic
+	@Title nvarchar(100),
+	@Content ntext,
+	@TopicID int
+
+AS
+UPDATE Topics
+SET
+	Title = @Title,
+	[Content] = @Content
+WHERE
+	[TopicID] = @TopicID
+GO
+
+--EditPost
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'EditPost' AND TYPE = 'P')
+DROP PROC EditPost
+go
+CREATE PROC EditPost
+	@Content ntext,
+	@PostID int
+
+AS
+UPDATE Posts
+SET
+	[Content] = @Content
+WHERE
+	PostID = @PostID
+GO
 
 --GetStatistics
 
@@ -397,3 +432,5 @@ AS BEGIN
 		(SELECT username FROM members WHERE memberid = (SELECT MAX(MemberID) FROM members)) AS NewestMember,
 		(SELECT MAX(MemberID) FROM members) AS MemberID
 END
+
+go

@@ -24,8 +24,11 @@ public partial class GUI_Index : System.Web.UI.Page
 
     private void LoadData()
     {
-        repeaterCategories.DataSource = CategoryBLL.GetAllCategory();
-        repeaterCategories.DataBind();
+        if (CategoryBLL.GetAllCategory().Length > 0)
+        {
+            repeaterCategories.DataSource = CategoryBLL.GetAllCategory();
+            repeaterCategories.DataBind();
+        }
     }
 
     public SubForum[] GetAllSubForumsByCategoryID(int CategoryID)
@@ -49,10 +52,10 @@ public partial class GUI_Index : System.Web.UI.Page
         return TopicBLL.CountTopicsInSubForumBySubForumID(subForumID).ToString();
     }
 
-     public String GetCountPostBySubForumID(int subForumID)
-     {
-         return PostBLL.GetCountPostBySubForumID(subForumID).ToString();
-     }
+    public String GetCountPostBySubForumID(int subForumID)
+    {
+        return PostBLL.GetCountPostBySubForumID(subForumID).ToString();
+    }
 
     public String GetLastPostInformationBySubForumID(int subForumID)
     {
@@ -65,16 +68,31 @@ public partial class GUI_Index : System.Web.UI.Page
         String s4 = "\" class=\"username offline popupctrl\" id=\"yui-gen13\"><strong>";
         String s5 = "</strong></a></div></div><p class=\"lastpostdate\"><span class=\"time\">";
         Topic topic = TopicBLL.GetNewTopicBySubForumID(subForumID);
-        if(topic!= null)
+        if (topic != null)
         {
             Member member = MemberBLL.GetMemberByMemberID(topic.MemberID);
             result = s1 + topic.TopicID + "\">" + topic.Title + s2 + s3 + member.MemberID
-                + s4 + member.UserName + s5 +topic.DateCreate + "</span></p>";
-        }else
+                + s4 + member.UserName + s5 + topic.DateCreate + "</span></p>";
+        }
+        else
         {
             result = "<p>No Topics</p>";
         }
         return result;
     }
-   
+
+    public int MembersOnline()
+    {
+        return MemberBLL.MembersOnline();
+    }
+
+    public String GetStatistics()
+    {
+        DataSet ds = CategoryBLL.GetStatistics();
+        return "<dl><dt>Topics</dt><dd> " + (int)ds.Tables[0].Rows[0]["TotalTopic"] +
+            "</dd><dt>Posts</dt><dd> " + (int)ds.Tables[0].Rows[0]["TotalPost"] +
+        "</dd><dt>Members</dt><dd> " + (int)ds.Tables[0].Rows[0]["TotalMember"] +
+        "</dd></dl><p>Welcome to our newest member, <a href=\"MemberProfile.aspx?memberID=" + (int)ds.Tables[0].Rows[0]["MemberID"] +
+        "\">" + (String)ds.Tables[0].Rows[0]["NewestMember"] + "</a></p>";
+    }
 }

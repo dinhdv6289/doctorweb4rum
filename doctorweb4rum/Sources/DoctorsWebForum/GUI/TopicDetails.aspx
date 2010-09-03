@@ -65,8 +65,8 @@
                                     class="inlineimg onlinestatus" title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is offline">
                                     <%} %>
                                 <span class="usertitle"><%= GetMemberByMemberID(GetTopic().MemberID).FullName %> </span><span id="repdisplay_14688639_429236" class="postbit_reputation">
-                                    <img alt="maihannijat is on a distinguished road" src="Images/reputation_pos.png"
-                                        class="repimg" title="maihannijat is on a distinguished road">
+                                    <img alt="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is on a distinguished road" src="Images/reputation_pos.png"
+                                        class="repimg" title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is on a distinguished road">
                                 </span>
                                 <div class="imlinks">
                                 </div>
@@ -231,6 +231,8 @@
      <%--and posts list of this topic--%>
      <div class="noinlinemod below_postlist" id="below_postlist">
      <asp:LinkButton ID="replylink" runat="server" CssClass="newcontent_textcontrol" OnClick="CheckLoginToNewReply"><span>+ </span>Reply to Topic</asp:LinkButton>
+     <br />
+     <br />
                 <div class="pagination_bottom">
             <CC1:COLLECTIONPAGER id="CollectionPager1" runat="server" ResultsLocation="None" ShowFirstLast="True" BackNextLocation="Split" BackNextDisplay="HyperLinks" PageSize="2" ControlCssClass="pagination" ShowLabel="False" PageNumbersDisplay="Numbers" PageNumbersSeparator="&nbsp;" BackNextButtonStyle="" BackNextLinkSeparator="" BackNextStyle="" ShowPageNumbers="True" SliderSize="3" UseSlider="True" IgnoreQueryString="False" ResultsFormat="Results  {0} to {1} of {2}" ResultsStyle="float:left;"></CC1:COLLECTIONPAGER>
             </div>
