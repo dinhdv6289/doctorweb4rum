@@ -1,11 +1,19 @@
-<%@ Page Language="C#" MasterPageFile="~/GUI/Admin/MasterPageAdmin.master" AutoEventWireup="true" CodeFile="Admin.aspx.cs" Inherits="GUI_Admin_Admin" Title="Untitled Page" %>
+<%@ Page Language="C#" MasterPageFile="~/GUI/MasterPage.master" AutoEventWireup="true"
+    CodeFile="EditMemberProfile.aspx.cs" Inherits="GUI_EditMemberProfile" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div id="breadcrumb" class="breadcrumb">
-        
+        <ul class="floatcontainer">
+            <li class="navbithome"><a href="" accesskey="1">
+                <img src="http://m.dpstatic.com/misc/navbit-home.png" alt="Home" /></a></li>
+            <li class="navbit"><a href="usercp.php">Settings</a></li>
+            <li class="navbit lastnavbit"><span>Edit Profile</span></li>
+        </ul>
         <hr />
-  <div class="cp_content">
-            <form action="profile.php?do=updateprofile" method="post" id="Form1" class="block">
+    </div>
+    <div id="usercp_content">
+        <div class="cp_content">
+            <form action="profile.php?do=updateprofile" method="post" id="profileform" class="block">
                 <h2 class="blockhead">
                     Edit Profile letcomvn</h2>
                 <div class="blockbody formcontrols settings_form_border">
@@ -34,7 +42,7 @@
                         <label for="cfield_hash">
                             Hash</label>
                         <input type="text" class="primary textbox" name="userfield[field3]" readonly="true"
-                            id="Text1" value="567e8e7cff27744dfa026288d4f48d78" maxlength="100" />
+                            id="cfield_hash" value="567e8e7cff27744dfa026288d4f48d78" maxlength="100" />
                         <p class="description">
                             This can be used by external applications to authenticate your account. One example
                             is you can run a small application on your computer to log to your profile what
@@ -64,7 +72,7 @@ fetch_object('bd_year').value = '';
                                     <li>
                                         <label for="bd_month">
                                             Month</label>
-                                        <select name="month" id="Select1" tabindex="1">
+                                        <select name="month" id="bd_month" tabindex="1">
                                             <option value="-1" selected="selected"></option>
                                             <option value="01">January</option>
                                             <option value="02">February</option>
@@ -83,7 +91,7 @@ fetch_object('bd_year').value = '';
                                     <li>
                                         <label for="bd_day">
                                             Day</label>
-                                        <select name="day" id="Select2" tabindex="1">
+                                        <select name="day" id="bd_day" tabindex="1">
                                             <option value="-1" selected="selected"></option>
                                             <option value="01">1</option>
                                             <option value="02">2</option>
@@ -122,7 +130,7 @@ fetch_object('bd_year').value = '';
                                         <label for="bd_year">
                                             Year (Optional)</label>
                                         <input type="text" class="textbox numeric" name="year" value="" size="4" maxlength="4"
-                                            id="Text2" tabindex="1" />
+                                            id="bd_year" tabindex="1" />
                                     </li>
                                 </ul>
                                 <input type="hidden" name="oldbirthday" value="" />
@@ -133,7 +141,7 @@ fetch_object('bd_year').value = '';
                                 via the privacy option below.</p>
                             <label for="showbirthday">
                                 Privacy:</label>
-                            <select name="showbirthday" class="primary" id="Select3" tabindex="1">
+                            <select name="showbirthday" class="primary" id="showbirthday" tabindex="1">
                                 <option value="0" selected="selected">Hide Age and Date of Birth</option>
                                 <option value="1">Display Only Age</option>
                                 <option value="3">Display Only Day and Month of Birth</option>
@@ -143,7 +151,7 @@ fetch_object('bd_year').value = '';
                         <div class="blockrow">
                             <label for="tb_homepage">
                                 Home Page URL:</label>
-                            <input type="text" class="primary textbox" name="homepage" id="Text3" value=""
+                            <input type="text" class="primary textbox" name="homepage" id="tb_homepage" value=""
                                 maxlength="200" dir="ltr" tabindex="1" />
                             <p class="description">
                                 If you would like to let other visitors to this site know the URL of your own web
@@ -156,31 +164,31 @@ fetch_object('bd_year').value = '';
                                 <li>
                                     <label for="icq">
                                         ICQ Number:</label>
-                                    <input type="text" class="primary textbox" id="Text4" name="icq" value="" maxlength="30"
+                                    <input type="text" class="primary textbox" id="icq" name="icq" value="" maxlength="30"
                                         dir="ltr" tabindex="1" />
                                 </li>
                                 <li>
                                     <label for="aim">
                                         AIM Screen Name:</label>
-                                    <input type="text" class="primary textbox" id="Text5" name="aim" value="" maxlength="30"
+                                    <input type="text" class="primary textbox" id="aim" name="aim" value="" maxlength="30"
                                         dir="ltr" tabindex="1" />
                                 </li>
                                 <li>
                                     <label for="msn">
                                         MSN Messenger Handle:</label>
-                                    <input type="text" class="primary textbox" id="Text6" name="msn" value="" maxlength="50"
+                                    <input type="text" class="primary textbox" id="msn" name="msn" value="" maxlength="50"
                                         dir="ltr" tabindex="1" />
                                 </li>
                                 <li>
                                     <label for="yahoo">
                                         Yahoo! Messenger Handle:</label>
-                                    <input type="text" class="primary textbox" id="Text7" name="yahoo" value="" maxlength="30"
+                                    <input type="text" class="primary textbox" id="yahoo" name="yahoo" value="" maxlength="30"
                                         dir="ltr" tabindex="1" />
                                 </li>
                                 <li>
                                     <label for="skype">
                                         Skype Name:</label>
-                                    <input type="text" class="primary textbox" id="Text8" name="skype" value="" maxlength="32"
+                                    <input type="text" class="primary textbox" id="skype" name="skype" value="" maxlength="32"
                                         dir="ltr" tabindex="1" />
                                 </li>
                             </ul>
@@ -198,7 +206,7 @@ fetch_object('bd_year').value = '';
                             <label>
                                 Biography:</label>
                             <div class="rightcol">
-                                <input type="text" class="primary textbox" name="userfield[field1]" id="Text9"
+                                <input type="text" class="primary textbox" name="userfield[field1]" id="cfield_1"
                                     value="" maxlength="100" tabindex="1" />
                                 <p class="description">
                                     A few details about yourself</p>
@@ -209,7 +217,7 @@ fetch_object('bd_year').value = '';
                             <label>
                                 Location:</label>
                             <div class="rightcol">
-                                <input type="text" class="primary textbox" name="userfield[field2]" id="Text10"
+                                <input type="text" class="primary textbox" name="userfield[field2]" id="cfield_2"
                                     value="" maxlength="40" tabindex="1" />
                                 <p class="description">
                                     Where you live</p>
@@ -220,7 +228,7 @@ fetch_object('bd_year').value = '';
                             <label>
                                 Interests:</label>
                             <div class="rightcol">
-                                <input type="text" class="primary textbox" name="userfield[field3]" id="Text11"
+                                <input type="text" class="primary textbox" name="userfield[field3]" id="cfield_3"
                                     value="" maxlength="100" tabindex="1" />
                                 <p class="description">
                                     Your hobbies, etc</p>
@@ -231,7 +239,7 @@ fetch_object('bd_year').value = '';
                             <label>
                                 Occupation:</label>
                             <div class="rightcol">
-                                <input type="text" class="primary textbox" name="userfield[field4]" id="Text12"
+                                <input type="text" class="primary textbox" name="userfield[field4]" id="cfield_4"
                                     value="" maxlength="100" tabindex="1" />
                                 <p class="description">
                                     Your job</p>
@@ -251,7 +259,80 @@ fetch_object('bd_year').value = '';
                     </div>
                 </div>
             </form>
-        </div>        
+        </div>
+    </div>
+    <div id="usercp_nav">
+        <div class="block">
+            <h2 class="blockhead">
+                My Settings</h2>
+            <div class="blockbody">
+                <ul>
+                    <li>
+                        <h3 class="blocksubhead profile">
+                            <img class="usercpimage" src="http://i.dpstatic.com/site_icons/profile.png" alt="My Profile"
+                                border="0" />
+                            My Profile</h3>
+                        <ul class="blockrow">
+                            <li class="active"><a href="profile.php?do=editprofile">Edit Profile</a></li>
+                            <li class="inactive"><a href="profile.php?do=editprofilepic">Edit Profile Picture</a></li>
+                            <li class="inactive"><a href="profile.php?do=editavatar">Edit Avatar</a></li>
+                            <li class="inactive"><a href="faq.php?faq=signatures#faq_signature_broken">Edit Signature</a></li>
+                            <li class="inactive"><a href="profile.php?do=privacy">Profile Privacy</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3 class="blocksubhead">
+                            <img class="usercpimage" src="http://i.dpstatic.com/site_icons/account.png" alt="My Account"
+                                border="0" />
+                            My Account</h3>
+                        <ul class="blockrow">
+                            <li class="inactive"><a href="profile.php?do=editpassword">Edit Email &amp; Password</a></li>
+                            <li class="inactive"><a href="profile.php?do=editoptions">General Settings</a></li>
+                            <li class="inactive"><a href="profile.php?do=editconnections">Edit Connections</a></li>
+                            <li class="inactive"><a href="profile.php?do=ignorelist">Edit Ignore List</a></li>
+                            <li class="inactive"><a href="payments.php">Paid Subscriptions</a></li>
+                            <li class="inactive"><a href="badge.php">Profile Badge</a></li>
+                            <li class="inactive"><a href="profile.php?do=editdirectory">Directory Listing</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3 class="blocksubhead">
+                            <img class="usercpimage" src="http://i.dpstatic.com/site_icons/network.png" alt="Networking"
+                                border="0" />
+                            Networking</h3>
+                        <ul class="blockrow">
+                            <li class="inactive"><a href="profile.php?do=buddylist">Friends &amp; Contacts</a></li>
+                            <li class="inactive"><a href="calendar.php?do=viewreminder">Event Reminders</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3 class="blocksubhead">
+                            <img class="usercpimage" src="http://i.dpstatic.com/site_icons/cart.png" alt="Marketplace"
+                                border="0" />
+                            Marketplace</h3>
+                        <ul class="blockrow">
+                            <li class=""><a href="marketplace.php?do=settings">Settings</a></li>
+                            <li class=""><a href="marketplace.php?do=won">Items Won</a></li>
+                            <li class=""><a href="marketplace.php?do=payments">Payment History</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3 class="blocksubhead">
+                            <img class="usercpimage" src="http://i.dpstatic.com/site_icons/forum.png" alt="Forums"
+                                border="0" />
+                            Miscellaneous</h3>
+                        <ul class="blockrow">
+                            <li class="inactive"><a href="profile.php?do=editattachments">Attachments</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h4 class="blocksubhead">
+                            <img class="usercpimage" src="http://i.dpstatic.com/cms/widget-blog.png" alt="Blog"
+                                border="0" />
+                            <a href="http://blogs.digitalpoint.com/blog_usercp.php" class="usercp_blog">Blog</a></h4>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </asp:Content>
-

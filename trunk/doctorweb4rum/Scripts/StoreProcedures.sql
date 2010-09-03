@@ -8,7 +8,7 @@ GO
 CREATE PROC GetNewPostBySubForumID
 	@SubForumID	INT
 AS BEGIN
-	SELECT   Top(1)  Posts.PostID, Posts.TopicID, Posts.MemberID,  Posts.[Content], Posts.DateCreation, Posts.DateEdited, Posts.Signature, Posts.IPAddress,Posts.QuoteID
+	SELECT   Top(1)  Posts.PostID, Posts.TopicID, Posts.MemberID,  Posts.[Content], Posts.DateCreation, Posts.DateEdited, Posts.Signature, Posts.QuoteID
 	FROM       Posts INNER JOIN Topics ON Posts.TopicID = Topics.TopicID 
 			   INNER JOIN SubForums ON Topics.SubForumID = SubForums.SubForumID
 	WHERE	   SubForums.SubForumID = @SubForumID ORDER BY Posts.PostID DESC
@@ -91,7 +91,7 @@ GO
 CREATE PROC GetLastPostOfTopicByTopicID
 	@TopicID INT
 AS BEGIN
-SELECT   TOP(1)  Posts.PostID, Posts.TopicID, Posts.MemberID, Posts.[Content], Posts.DateCreation, Posts.DateEdited, Posts.Signature, Posts.IPAddress, Posts.QuoteID
+SELECT   TOP(1)  Posts.PostID, Posts.TopicID, Posts.MemberID, Posts.[Content], Posts.DateCreation, Posts.DateEdited, Posts.Signature,  Posts.QuoteID
 FROM         Posts INNER JOIN  Topics ON Posts.TopicID = Topics.TopicID
 WHERE Posts.TopicID = @TopicID
 ORDER BY Posts.PostID  DESC
@@ -224,11 +224,10 @@ CREATE PROC InsertPost
 	@Content ntext,
 	@DateEdited datetime,
 	@Signature bit,
-	@IPAddress nvarchar(50),
 	@QuoteID int
 AS BEGIN 
-	Insert into  dbo.Posts(TopicID,MemberID,[Content],DateEdited,Signature,IPAddress,QuoteID) 
-	values (@TopicID,@MemberID,@Content,@DateEdited,@Signature,@IPAddress,@QuoteID)
+	Insert into  dbo.Posts(TopicID,MemberID,[Content],DateEdited,Signature,QuoteID) 
+	values (@TopicID,@MemberID,@Content,@DateEdited,@Signature,@QuoteID)
 END
 
 go
@@ -318,9 +317,9 @@ AS BEGIN
 SELECT     Members.MemberID, Members.UserName, Members.Email, Members.FullName, Members.DateCreation, Members.AllowLogin, Members.IsPublic, Members.IsOnline, 
                       MemberProfiles.RoleID, MemberProfiles.Blast, MemberProfiles.Avatar, MemberProfiles.Country, MemberProfiles.Address, MemberProfiles.BirthDay, 
                       MemberProfiles.Gender, MemberProfiles.Yahoo, MemberProfiles.Phone, MemberProfiles.Hospital, MemberProfiles.Blog, MemberProfiles.TotalPosts, 
-                      MemberProfiles.TotalThanks, MemberProfiles.TotalThanked, MemberProfiles.CurrentExperience, MemberProfiles.MemberLevel, MemberProfiles.IPAddress, 
+                      MemberProfiles.TotalThanks, MemberProfiles.TotalThanked, MemberProfiles.CurrentExperience, MemberProfiles.MemberLevel,  
                       MemberProfiles.LastLogin, MemberProfiles.MyRss, MemberProfiles.Signature, MemberProfiles.AboutMe, Posts.PostID, Posts.TopicID, Posts.[Content], 
-                      Posts.DateCreation AS DateCreationOfPosts, Posts.DateEdited, Posts.Signature AS SignatureOfPosts, Posts.IPAddress AS IPAddressOfPost,Posts.QuoteID,
+                      Posts.DateCreation AS DateCreationOfPosts, Posts.DateEdited, Posts.Signature AS SignatureOfPosts, Posts.QuoteID,
 			"RatingPoint" = CASE WHEN (select avg(RatePoint) from RatingPost where RatingPost.PostID = Posts.PostID group by PostID) is null THEN 0 Else (select avg(RatePoint) from RatingPost where PostID = Posts.PostID group by PostID) END,
 			(select Posts.Content from Posts where Posts.PostID = Posts.QuoteID) as Quote
 FROM         Members INNER JOIN

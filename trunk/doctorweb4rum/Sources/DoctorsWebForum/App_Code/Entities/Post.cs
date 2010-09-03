@@ -22,7 +22,6 @@ public class Post
     private DateTime dateCreation;
     private DateTime dateEdited;
     private Boolean signature;
-    private string ipAddress;
     private int quoteID;
 
     public int QuoteID
@@ -75,9 +74,4 @@ public class Post
         set { signature = value; }
     }
 
-    public string IPAddress
-    {
-        get { return ipAddress; }
-        set { ipAddress = value; }
-    }
 }

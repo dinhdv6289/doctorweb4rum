@@ -73,7 +73,6 @@ CREATE TABLE MemberProfiles
 	TotalThanked	INT,
 	CurrentExperience		FLOAT,
 	MemberLevel		INT,
-	IPAddress		NVARCHAR(50),
 	LastLogin		DATETIME DEFAULT GETDATE(),	
 	MyRss			NVARCHAR(300),
 	Signature		NVARCHAR(1000),
@@ -144,7 +143,6 @@ CREATE TABLE Posts
 	DateCreation	DATETIME DEFAULT GETDATE(),
 	DateEdited		DATETIME DEFAULT GETDATE(),
 	Signature		BIT DEFAULT 1,
-	IPAddress		NVARCHAR(50),
 	QuoteID			INT DEFAULT 0		
 )
 

@@ -26,14 +26,13 @@ namespace DAL
         private const String DateCreation = "DateCreation";
         private const String DateEdited = "DateEdited";
         private const String Signature = "Signature";
-        private const String IPAddress = "IPAddress";
         private const String QuoteID = "QuoteID";
         private const String tableNameRating = "RatingPost";
         private const String FromMember = "FromMember";
         private const String RatePoint = "RatePoint";
         private const String RateDate = "RateDate";
-        private String[] columnNames = { PostID, TopicID, MemberID, Content, DateCreation, DateEdited, Signature, IPAddress, QuoteID };
-        private String[] columnNamesForInsert = { TopicID, MemberID, Content, DateEdited, Signature, IPAddress, QuoteID };
+        private String[] columnNames = { PostID, TopicID, MemberID, Content, DateCreation, DateEdited, Signature, QuoteID };
+        private String[] columnNamesForInsert = { TopicID, MemberID, Content, DateEdited, Signature, QuoteID };
         private String[] columnNamesRatingForInsert = { FromMember, PostID, RatePoint, RateDate };
         private String[] columnNamesForEditPost = { Content, PostID };
         public Post[] GetAllPostByTopicID(int topicID)
@@ -145,7 +144,7 @@ namespace DAL
             int result = 0;
             try
             {
-                Object[] values ={ post.TopicID, post.MemberID, post.Content, post.DateEdited, post.Signature, post.IPAddress, post.QuoteID };
+                Object[] values ={ post.TopicID, post.MemberID, post.Content, post.DateEdited, post.Signature, post.QuoteID };
                 result = ProcessTableTypeStore("InsertPost", columnNamesForInsert, values);
 
             }

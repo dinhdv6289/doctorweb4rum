@@ -1994,3 +1994,113 @@ a.level4{font-size: large;}
 a.level5{font-size: xx-large;}
 #tag_searchbox{text-align: center;padding: 6px;}
 #tag_search{margin-top:10px;}
+
+
+#usercp_nav .blocksubhead a{display: inline;}
+#usercp_nav .blocksubhead a.usercp_blog{padding-left: 0;}
+#usercp_content .formcontrols .blockrow .description{margin-left: 0;}
+ #usercp_content .textpad{padding-top: 10px;}
+ .usercpimage{display:inline;margin-top: -2px;}
+ #usercp_nav{float:left;width:200px;margin-right:10px;margin-top: 5px;}
+ #usercp_nav .block{background: transparent none;clear:both;font-size:12px;-moz-border-radius-topright: 5px;-moz-border-radius-topleft: 5px;-webkit-border-top-right-radius: 5px;-webkit-border-top-left-radius: 5px;padding-bottom:10px;}
+ #usercp_nav .blockhead{-moz-border-radius-topright: 5px;-moz-border-radius-topleft: 5px;-webkit-border-top-right-radius: 5px;-webkit-border-top-left-radius: 5px;}
+ #usercp_nav h2.blockhead{font-weight:600;}
+ #usercp_nav .blocksubhead{font: normal 12px;color:#3e3e3e;background: #85AB9C url(Images/subheading-gradient-alpha.png) repeat-x;padding:4px 10px 4px 10px;border-top:none;margin: 0 1px;}
+ #usercp_content .cp_content{margin-left:210px;}
+ #usercp_nav .blocksubhead img{vertical-align:middle;}
+ #usercp_nav .blockbody{border: 1px solid #355B4C;border-top: none;background: #EAF4E9 none;}
+ #usercp_nav .blockrow{background: #EAF4E9 none;padding: 1px 10px;}
+ #usercp_nav hr{width: 80%;background: #cecece;height: 1px;color: #cecece;}
+ #usercp_content{width: 100%;float: right;margin-left:-210px;margin-top: 5px;padding-bottom:2em;}
+ #usercp_content > div, #usercp_content > form{margin-left: 210px;}
+ #usercp_nav .block{clear:none;}#usercp_nav .block, #usercp_content .block{margin-bottom:1em;}
+ #usercp_content .block{width: 100%;display:block;float: left;}
+ #usercp_content form.block{float:none;}
+ #usercp_content #threadlist{margin-top:0;}
+ #usercp_content #threadlist .block{margin-bottom:10px;}
+ #usercp_content .threadbit .threadimod{margin-top: 0;}
+ #usercp_content #attachmentlist{margin-top: 25px;}
+ #usercp_content #attachmentlist #above_postlist{top: -30px;}
+ #usercp_content #attachmentlist #above_postlist #postlist_popups{top: 25px;}
+ #usercp_content #above_postlist{position:absolute;margin-top: 5px;}
+ #usercp_nav li{position: relative;}
+ #usercp_nav li a{display: block;padding-top: 0;padding-right: 10px;padding-bottom: 0;padding-left: 30px;}
+ #usercp_nav li a.usercp_folder-left{background: transparent url(Images/sections.png) no-repeat 10px 4px;}
+ #usercp_nav li a.usercp_folder-right{background: transparent url(Images/sections.png) no-repeat 175px 4px;}
+ #usercp_nav .blockrow{padding:0;}
+ #usercp_nav .blockrow * a{line-height:2em;text-decoration:none;}
+ #usercp_nav .blockrow * a:hover{background-color:#FFEB90;color:#499441;text-decoration:none;}
+ #usercp_nav .blockrow .active{background-color:#FFEB90;}
+ #usercp_nav .blocksubhead.popupctrl{padding:0 10px;}
+ #usercp_nav .blocksubhead.popupctrl a.popupctrl{padding: 5px 0;}
+ #usercp_nav a.popupctrl{overflow:hidden;}.controlbar{text-align:right;}
+ #user_notifications a.textcontrol.inline{float:right;}
+ #pending_friend_request_list{display: inline;}
+ #customtitle{width:212px;}
+ #resetcustomtitle{float:none;display:inline;padding-left:10px;}
+ #currentcustomtitle{font-weight:bold;font-size:11px;}
+ #display_options{clear:both;}
+ #postlist, #group-discussionlist, .pmlist{  width: 100%;}
+ #postlist.postlist_moderation{margin-top: 40px;margin-bottom:0;}
+ #group_discussionlist{position: relative;margin-top: 20px;}
+ #postlist #above_postlist, #group_discussionlist #above_postlist{width: 100%;position: absolute;right: 0;}
+ #postlist #above_postlist{top: -30px;width: 100%;clear:both;}
+ #group_discussionlist #above_postlist{top: -30px;}
+ #postlist #above_postlist .pagination, #group_discussionlist #above_postlist .pagination{position: absolute;right: 0;}
+ #group_discussionlist #above_postlist .pagination{top: -15px;}
+ #postlist #above_postlist .pagination{margin-top: -55px;position: relative;}
+ #postlist #above_postlist #postlist_popups{margin-top: 10px;}
+ #below_postlist #threadpagestats{float: left;margin-top: 5px}
+ #group_discussionlist + #below_postlist{margin-bottom: 0;}
+ #group_discussionlist + #below_postlist .pagination{float: right;}
+ #bitlist_info{margin-top:20pxpx;margin-bottom:20pxpx;}
+ #forum_icon_legend{border: 1px solid #c8c8c8;clear:both;}
+ #forum_icon_legend h5{border-top: 1px solid #ffffff;border-bottom: 1px solid #c8c8c8;background: #f0f0f0 none;text-transform: uppercase;font-weight:bold;font-size: 12px;padding: 5px 10px;}
+ #forum_icon_legend dl{padding: 5px 10px;}
+ #forum_icon_legend dt{float: left;clear: right;margin-right: 5px;}
+ #forum_icon_legend dd{margin-bottom: 5px;}
+ #usercp_content #forum_icon_legend{margin-top: 10px;}
+ #bitlist_info #subscription_navpopup{width:50%;float:right;}
+ #reputationlist .summaryinfo, #infractionslist .summaryinfo{padding-left:10px;}
+ #reputationlist .summaryinfo .iteminfo, #infractionslist .summaryinfo .iteminfo{margin-left:10px;} 
+ .summaryinfo{font-size:11px;}
+ .summaryinfo{border-bottom:solid 1px #658B7C;}
+ .summaryinfo.neg{background:transparent url(Images/reputation_neg.png) 0.4% center no-repeat;}
+ .summaryinfo.pos{background:transparent url(Images/reputation_pos.png) 0.4% center no-repeat;}
+ .summaryinfo.balance{background:transparent url(http://i.dpstatic.com/reputation/reputation_balance.png) 0.4% center no-repeat;}
+ .summaryinfo.redcard{background:transparent url(http://m.dpstatic.com/misc/redcard_small.png) 0.4% center no-repeat;}
+ .summaryinfo.yellowcard{background:transparent url(http://m.dpstatic.com/misc/yellowcard_small.png) 0.4% center no-repeat;}
+ .summaryinfo:last-child{border-bottom:none;}
+ .summaryinfo .userinfo{float:right;text-align:right;}
+ .summaryinfo .user{font-size:13;}
+ .summaryinfo .iteminfo .title{font-weight:bold;}
+ .visitormessage a.username{font-size:11px;padding-top:0.3em;display:block;}
+ .blockrow.pendingfriends ul.commalist{display:inline;}
+ .blockrow.pendingfriends ul.commalist li:last-child{margin-right:0;}
+ #usercp_content div.forumrow, #usercp_content .threadbit .discussionrow, #usercp_content .threadbit .nonsticky, #usercp_content .threadbit .sticky, #usercp_content .threadlisthead, #usercp_content .threadbit .deleted{} 
+ #usercp_content .postlist_moderation #above_postlist .pagination{position: absolute;top: 40px;}
+ #usercp_content #postlist_popups{margin-top: 5px;}
+ #usercp_content .forumbit_post, #usercp_content .threadbit, #usercp_content .threadlisthead, #usercp_content .forumrow{-moz-box-shadow:none;-webkit-box-shadow:none;}
+ .threadbit .discussionrow .author{padding-left: 20px;}
+ .threadlisthead .threadstats{text-align: center;}
+ .clear{clear: both;}
+ #pmform{padding-top:0px;}div.blockhead div span {float:left;clear:right;}div.blockhead div div.popupmenu {display:block;float:right;clear: left;}#below_buddylist_pagenav, #above_threadlist{padding-bottom:10px;}
+ .popupgroup{float:right;}
+ #usercp_content #below_postlist{padding-bottom:10px;float: left;width: 100%;}
+ #usercp_content #pagination_bottom .pagination{float:right;}
+ #new_subscribed_threads .threadbit:last-child .nonthread,  #new_subscribed_threads .threadbit:last-child .sticky, #new_subscribed_threads .threadbit:last-child .nonsticky, #new_subscribed_threads .threadbit:last-child .deleted, #new_subscribed_threads .threadbit:last-child .discussionrow, #new_subscribed_threads .threadbit:last-child .ignored, #new_subscribed_socialgroups .threadbit:last-child .nonthread, #new_subscribed_socialgroups .threadbit:last-child .sticky, #new_subscribed_socialgroups .threadbit:last-child .nonsticky, #new_subscribed_socialgroups .threadbit:last-child .deleted, #new_subscribed_socialgroups .threadbit:last-child .discussionrow, #new_subscribed_socialgroups .threadbit:last-child .ignored{border-bottom:1px solid #355B4C;}#new_subscribed_threads .threadbit,  #new_subscribed_socialgroups .threadbit{left:-1px;}
+ #new_subscribed_socialgroups .threadbit .discussionrow .threadinfo{ padding:12.38px 0 5px 0;}
+ #new_subscribed_socialgroups .threadbit .threadlastpost{ width:22%;padding:5px 0 1px 2%;}
+ #usercp_content .threadbit .threadlastpost{ width: 22%;}
+ #usercp_content .threadbit .threadforum{ width: 21%;padding-left:0;}
+ #usercp_content #jump-to-folder{margin:0;}
+ #usercp_content #jump-to-folder div:first-child{margin-left:5px;position:relative;top:-3px;} 
+ .permissions{float: left;width: 99.8%;padding: 0;}
+ .permissions dl{width: 47%;display: block;float: left;clear: right;margin-top: 0.25em;margin-left: 1%;margin-right: 2%;}
+ .permissions dl dd{display:block;float: none;margin-bottom: 0.25em;font-weight: bold;}
+ .permissions dl dt{display: block;float: left;clear: right;margin-bottom: 0.25em;margin-right: 1em;}  
+ #new_subscribed_forums .blockbody{display:block;float: none;}#new_subscribed_forums .forumbit_post, #new_subscribed_forums .forumbit_nopost .forumbit_nopost{float: none;}
+ #new_subscribed_forums .forumbit_nopost .forumbit_nopost .forumrow, #new_subscribed_forums .forumbit_post .forumrow{border:1px solid #355B4C; border-top:0; border-bottom:1px solid #658B7C; display: table; float: none;}
+ #new_subscribed_forums .forumbit_nopost .forumbit_nopost:last-child .forumrow, #new_subscribed_forums .forumbit_post:last-child .forumrow{ border-bottom:1px solid #355B4C;}  
+ .friendconfirm .formcontrols .blockrow label{width: auto;}  
+ #new_subscribed_forums .L1 .forumhead{display: none;} 
