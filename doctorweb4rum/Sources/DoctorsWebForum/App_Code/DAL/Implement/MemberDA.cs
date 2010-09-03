@@ -45,7 +45,6 @@ namespace DAL
         private const String TotalThanked = "TotalThanked";
         private const String CurrentExperience = "CurrentExperience";
         private const String MemberLevel = "MemberLevel";
-        private const String IPAddress = "IPAddress";
         private const String LastLogin = "LastLogin";
         private const String MyRss = "MyRss";
         private const String Signature = "Signature";
@@ -56,7 +55,7 @@ namespace DAL
         private String[] columnNamesInsert1 = { UserName, Password, Email, FullName, DateCreation, AllowLogin, IsPublic, IsOnline };
         private String[] memberProfileColumnNames ={ MemberID, RoleID, Blast, Avatar, Country, Address, BirthDay, Gender, Yahoo, 
                                                     Phone, Hospital, Blog, TotalPosts, TotalThanks, TotalThanked, CurrentExperience,
-                                                    MemberLevel, IPAddress, LastLogin, MyRss, Signature, AboutMe};
+                                                    MemberLevel, LastLogin, MyRss, Signature, AboutMe};
         public Member[] GetAllMember()
         {
             Member[] result = null;
@@ -136,7 +135,7 @@ namespace DAL
                 Object[] values ={memberProfile.MemberID,memberProfile.RoleID,memberProfile.Blast,memberProfile.Avatar,memberProfile.Country,
                 memberProfile.Address,memberProfile.BirthDay,memberProfile.Gender,memberProfile.Yahoo,memberProfile.Phone,memberProfile.Hospital,
                 memberProfile.Blog,memberProfile.TotalPosts,memberProfile.TotalThanks,memberProfile.TotalThanked,memberProfile.CurrentExperience,
-                memberProfile.MemberLevel,memberProfile.IPAddress,memberProfile.LastLogin,memberProfile.MyRss,memberProfile.Signature,memberProfile.AboutMe};
+                memberProfile.MemberLevel,memberProfile.LastLogin,memberProfile.MyRss,memberProfile.Signature,memberProfile.AboutMe};
                 result = InsertTable(tableNameMemberProfiles, memberProfileColumnNames, values);
             }
             catch (Exception ex)

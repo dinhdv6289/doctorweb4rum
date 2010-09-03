@@ -43,11 +43,10 @@ public partial class GUI_NewReplyToPost : System.Web.UI.Page
 
     protected void btnSubmitNewReply_Click(object sender, EventArgs e)
     {
-        string contents = Editor1.Content;
-        if (contents.Length > 0 || contents != null)
+        if (Editor1.Content.Length >= 100)
         {
             Post newPost = new Post();
-            if (Request.QueryString["topicID"] != null || Request.QueryString["topicID"].Length > 0)
+            if (Request.QueryString["topicID"] != null || Request.QueryString["topicID"].Length > 0 || Request.QueryString["postID"] != null || Request.QueryString["postID"].Length > 0)
             {
                 newPost.TopicID = Convert.ToInt32(Request.QueryString["topicID"]);
                 Member memberloged = (Member)Session["UserLoged"];
@@ -55,24 +54,10 @@ public partial class GUI_NewReplyToPost : System.Web.UI.Page
                 {
                     newPost.MemberID = memberloged.MemberID;
                 }
-                Post post = PostBLL.GetPostByPostID(Convert.ToInt32(Request.QueryString["postID"]));
-                if (post != null)
-                {
-                    newPost.Content = Editor1.PlainText;
-                }
+                newPost.QuoteID = 0;
+                newPost.Content = Editor1.Content;
                 newPost.DateEdited = DateTime.Now;
                 newPost.Signature = true;
-                newPost.IPAddress = "5564545455";
-                ////newPost.Quote = "<div class=\"bbcode_container\">" +
-                //            "<div class=\"bbcode_quote\">" +
-                //                "<div class=\"quote_container\">" +
-                //                "<div class=\"bbcode_quote_container\">" +
-                //                "</div>" +
-                //                "<div class=\"bbcode_postedby\">" +
-                //                "<img alt=\"Quote\" src=\"Images/quote_icon.png\" title=\"Quote\">" +
-                //                "Originally Posted by" +
-                //                "<strong>" + "ten user" + "</strong>" + "</div>" +
-                //                "<div class=\"message\">" + post.Content + "</div></div></div></div>";
                 int result = PostBLL.InsertPost(newPost);
                 if (result > 0)
                 {
@@ -84,7 +69,12 @@ public partial class GUI_NewReplyToPost : System.Web.UI.Page
                 Server.Transfer("TopicDetails.aspx?topicID=" + Request.QueryString["topicID"]);
             }
         }
+        else
+        {
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "Errors", "<script>alert('The contents you have entered is too short. Please lengthen your contents to at least 100 Characters.');</script>");
+        }
     }
+
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         if (Request.QueryString["topicID"] != null)

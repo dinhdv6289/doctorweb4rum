@@ -188,19 +188,19 @@ insert into dbo.Members(UserName,Password,Email,FullName,DateCreation,AllowLogin
 values('username2','password','test2@gmail.com','testtt',GetDate(),'true','true','false')
 
 insert into dbo.MemberProfiles(MemberID,RoleID,Blast,Avatar,Country,Address,BirthDay,Gender,Yahoo,
-Phone,Hospital,Blog,TotalPosts,TotalThanks,TotalThanked,CurrentExperience,MemberLevel,IPAddress,
+Phone,Hospital,Blog,TotalPosts,TotalThanks,TotalThanked,CurrentExperience,MemberLevel,
 LastLogin,MyRss,Signature,AboutMe) 
 values(
 1,1,'Blast Content','avarta.gif','Viet Nam','Ha noi','08/18/1987','true','yahoo.com',
-'0987123123','Viet Nam Cuba','blog.com',2,2,5,2,1,'102.12.434.23',getdate(),'','learn','not about'
+'0987123123','Viet Nam Cuba','blog.com',2,2,5,2,1,getdate(),'','learn','not about'
 )
 
 insert into dbo.MemberProfiles(MemberID,RoleID,Blast,Avatar,Country,Address,BirthDay,Gender,Yahoo,
-Phone,Hospital,Blog,TotalPosts,TotalThanks,TotalThanked,CurrentExperience,MemberLevel,IPAddress,
+Phone,Hospital,Blog,TotalPosts,TotalThanks,TotalThanked,CurrentExperience,MemberLevel,
 LastLogin,MyRss,Signature,AboutMe) 
 values(
 2,1,'Blast Content','avarta.gif','Viet Nam','Ha noi','08/18/1987','true','yahoo.com',
-'0987123123','Viet Nam Cuba','blog.com',2,2,5,2,1,'102.12.434.23',getdate(),'','learn','not about'
+'0987123123','Viet Nam Cuba','blog.com',2,2,5,2,1,getdate(),'','learn','not about'
 )
 select * from roles
 select * from members
@@ -242,17 +242,17 @@ values(1,2,4,getdate())
 insert into RatingTopic(FromMember,TopicID,RatePoint,RateDate)
 values(2,2,1,getdate())
 
-insert into Posts(TopicID,MemberID,[Content],DateCreation,DateEdited,Signature,IPAddress)
-values(1,1,'test content ',getdate(),getdate(),'true','1111332323')
+insert into Posts(TopicID,MemberID,[Content],DateCreation,DateEdited,Signature)
+values(1,1,'test content ',getdate(),getdate(),'true')
 
-insert into Posts(TopicID,MemberID,[Content],DateCreation,DateEdited,Signature,IPAddress)
-values(2,1,'test content ',getdate(),getdate(),'true','1111332323')
+insert into Posts(TopicID,MemberID,[Content],DateCreation,DateEdited,Signature)
+values(2,1,'test content ',getdate(),getdate(),'true')
 
-insert into Posts(TopicID,MemberID,[Content],DateCreation,DateEdited,Signature,IPAddress)
-values(3,1,'test content 3',getdate(),getdate(),'true','1111332323')
+insert into Posts(TopicID,MemberID,[Content],DateCreation,DateEdited,Signature)
+values(3,1,'test content 3',getdate(),getdate(),'true')
 
-insert into Posts(TopicID,MemberID,[Content],DateCreation,DateEdited,Signature,IPAddress)
-values(2,1,'test content abc',getdate(),getdate(),'true','1111332323')
+insert into Posts(TopicID,MemberID,[Content],DateCreation,DateEdited,Signature)
+values(2,1,'test content abc',getdate(),getdate(),'true')
 
 select * from dbo.Members
 

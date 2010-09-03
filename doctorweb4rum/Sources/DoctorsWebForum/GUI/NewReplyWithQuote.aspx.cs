@@ -35,8 +35,9 @@ public partial class GUI_NewReplyWithQuote : System.Web.UI.Page
                         nodes.Add(new KeyValuePair<string, Uri>(topic.Title, Request.Url));
                         ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
                     }
+                    this.Page.Title = topic.Title;
                 }
-                this.Page.Title = topic.Title;
+                
             }
             else
             {
@@ -75,8 +76,7 @@ public partial class GUI_NewReplyWithQuote : System.Web.UI.Page
 
     protected void btnSubmitNewReply_Click(object sender, EventArgs e)
     {
-        string contents = Editor1.Content;
-        if (contents.Length >= 100)
+        if (Editor1.Content.Length >= 100)
         {
             Post newPost = new Post();
             if (Request.QueryString["topicID"] != null || Request.QueryString["topicID"].Length > 0 || Request.QueryString["postID"] != null || Request.QueryString["postID"].Length > 0)
@@ -86,10 +86,9 @@ public partial class GUI_NewReplyWithQuote : System.Web.UI.Page
                 if (memberloged != null)
                 {
                     newPost.MemberID = memberloged.MemberID;
-                    newPost.IPAddress = MemberBLL.GetMemberProfileByMemberID(memberloged.MemberID).IPAddress;
                 }
                 newPost.QuoteID = Convert.ToInt32(Request.QueryString["postID"]);
-                newPost.Content = contents;
+                newPost.Content = Editor1.Content;
                 newPost.DateEdited = DateTime.Now;
                 newPost.Signature = true;
                 int result = PostBLL.InsertPost(newPost);
@@ -104,7 +103,8 @@ public partial class GUI_NewReplyWithQuote : System.Web.UI.Page
             }
         }else
         {
-            //lblErrors.Text = "Please enter content of Reply! Characters min 100.";
+            this.Title = "Topic";
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "Errors", "<script>alert('The contents you have entered is too short. Please lengthen your contents to at least 100 Characters.');</script>");
         }
     }
 

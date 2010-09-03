@@ -63,7 +63,6 @@ public partial class GUI_NewReply : System.Web.UI.Page
                 if (memberloged != null)
                 {
                     newPost.MemberID = memberloged.MemberID;
-                    newPost.IPAddress = MemberBLL.GetMemberProfileByMemberID(memberloged.MemberID).IPAddress;
                 }
                 newPost.QuoteID = 0;
                 newPost.Content = contents;
