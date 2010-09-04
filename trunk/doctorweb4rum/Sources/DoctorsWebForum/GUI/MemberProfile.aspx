@@ -6,7 +6,7 @@
         <ul class="floatcontainer">
             <li class="navbithome"><a href="" accesskey="1">
                 <img src="http://m.dpstatic.com/misc/navbit-home.png" alt="Home" /></a></li>
-            <li class="navbit lastnavbit"><span>letcomvn</span></li>
+            <li class="navbit lastnavbit"><span><%= GetMember().UserName %></span></li>
         </ul>
         <hr />
     </div>
@@ -14,38 +14,30 @@
         <div class="profile_widgets member_summary" id="profile_tabs">
             <div class="block mainblock">
                 <h1 class="blocksubhead">
-                    <span id="userinfo"><span class="user10">letcomvn</span>
+                    <span id="userinfo"><span class="user10"><%= GetMember().UserName %></span>
                         <img class="inlineimg onlinestatus" src="http://i.dpstatic.com/statusicon/user-online.png"
-                            alt="letcomvn is online now" border="0" />
+                            alt="<%= GetMember().UserName %> is online now" border="0" />
                         <br />
-                        <span class="usertitle">Peon</span> </span>
+                        <span class="usertitle"><%= GetMember().FullName%></span> </span>
                 </h1>
                 <div id="userinfoblock" class="floatcontainer">
-                    <a class="avatar" href="member.php?u=451746" title="letcomvn's Avatar"><span class="avatarcontainer">
+                <% if (GetMemberProfileByMemberID().Avatar != null)
+                   { %>
+                                    <a class="avatar" href="member.php?u=451746" title="<%= GetMember().UserName %>'s Avatar"><span class="avatarcontainer">
+                        <img src="<%= GetMemberProfileByMemberID().Avatar  %>" alt="" /></span> </a>
+                        <%}else{ %>
+                    <a class="avatar" href="member.php?u=451746" title="<%= GetMember().UserName %>'s Avatar"><span class="avatarcontainer">
                         <img src="http://m.dpstatic.com/misc/unknown.gif" alt="" /></span> </a>
+                        <%} %>
                     <ul id="usermenu" class="usermenu">
-                        <li><a href="private.php?do=newpm&amp;u=451746">
-                            <img src="http://i.dpstatic.com/site_icons/message.png" alt="Send Private Message"
-                                class="inlineimg" />
-                            Send Private Message</a></li>
-                        <li><a href="sendmessage.php?do=mailmember&amp;u=451746">
-                            <img src="http://i.dpstatic.com/site_icons/email.png" alt="Email" class="inlineimg" />
-                            Send Email</a> </li>
                         <li class="separator"></li>
-                        <li><a href="search.php?do=finduser&amp;userid=451746&amp;contenttype=vBForum_Post&amp;showposts=1">
+                        <li><a href="ViewAllTopics.aspx">
                             <img src="http://i.dpstatic.com/site_icons/forum.png" alt="Find all posts" class="inlineimg" />
                             Find all posts</a></li>
-                        <li><a href="search.php?do=finduser&amp;userid=451746&amp;starteronly=1&amp;contenttype=vBForum_Thread">
+                        <li><a href="ViewAllPosts.aspx">
                             <img src="http://i.dpstatic.com/site_icons/forum.png" alt="Find all started threads"
                                 class="inlineimg" />
                             Find all started threads</a></li>
-                        <li><a href="http://articles.digitalpoint.com/list.php?r=author/451746-letcomvn"
-                            rel='nofollow'>
-                            <img src="http://i.dpstatic.com/site_icons/article.png" class="inlineimg" alt="" />
-                            View Articles</a></li>
-                        <li><a href="http://blogs.digitalpoint.com/?u=451746" rel='nofollow'>
-                            <img src="http://i.dpstatic.com/site_icons/blog.png" class="inlineimg" alt="" />
-                            View Blog Entries</a></li>
                     </ul>
                 </div>
             </div>
@@ -61,23 +53,7 @@
                             <dl class="stats">
                                 <dt>Join Date</dt>
                                 <dd>
-                                    Aug 8th 2010</dd>
-                            </dl>
-                            <dl class="stats">
-                                <dt>Current Activity</dt>
-                                <dd>
-                                    Viewing User Profile
-                                </dd>
-                            </dl>
-                            <dl class="stats">
-                                <dt>Last Activity</dt>
-                                <dd>
-                                    Today <span class="time">12:44 pm</span></dd>
-                            </dl>
-                            <dl class="stats">
-                                <dt>Blog Entries</dt>
-                                <dd>
-                                    0</dd>
+                                    <%= GetMember().DateCreation%></dd>
                             </dl>
                         </div>
                     </div>
@@ -159,21 +135,6 @@
             <!-- / visitors -->
         </div>
         <div class="member_tabs">
-            <dl class="tabslight">
-                <dt>Tab Content</dt>
-                <dd>
-                    <a id="cat_itrader_stats-tab" href="member.php?u=451746#cat_itrader_stats" onclick="return tabViewPicker(this);">
-                        Feedback Score</a></dd>
-                <dd class="selected">
-                    <a id="aboutme-tab" href="member.php?u=451746#aboutme" onclick="return tabViewPicker(this);">
-                        About Me</a></dd>
-                <dd>
-                    <a id="friends-tab" href="member.php?u=451746#friends-content" onclick="return tabViewPicker(this);">
-                        Friends</a></dd>
-                <dd>
-                    <a id="postareas-tab" href="member.php?u=451746#postareas" onclick="return tabViewPicker(this);">
-                        Post Areas</a></dd>
-            </dl>
             <div class="profile_content">
                 <div id="view-visitor_messaging" class="view_section">
                 </div>
@@ -184,7 +145,7 @@
                     </h3>
                     <!-- basic information -->
                     <h4 class="subsectionhead-understate" id="about-me">
-                        Basic Information</h4>
+                        Information</h4>
                     <div class="subsection">
                         <h5 class="profilecategorytitle">
                             About letcomvn</h5>
