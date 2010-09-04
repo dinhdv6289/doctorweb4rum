@@ -1,0 +1,272 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage2.master.cs"
+    Inherits="GUI_Admin_MasterPage2" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Untitled Page</title>
+    <link href="../css.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" href="../JqueryStyle/themes/base/jquery.ui.all.css" rel="stylesheet" />
+    <script type="text/javascript" src="../js/jquery-1.4.2.js"></script>
+
+
+    <link href="../../GUI/css_002.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../js/jquery.cookie.js"></script>
+
+    <script type="text/javascript" src="../js/jquery.collapsible.js"></script>
+
+    <script type="text/javascript" src="../js/jquery.ui.core.js"></script>
+
+    <script type="text/javascript" src="../js/jquery.ui.widget.js"></script>
+
+    <script type="text/javascript" src="../js/jquery.ui.datepicker.js"></script>
+
+    <script type="text/javascript">
+$(document).ready(function() {
+	$.collapsible(".header", "group1");
+	$.collapsible(".header2", "group2");
+});
+    </script>
+
+    <link href="../css_001.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" />
+        <div class="above_body">
+            <div class="floatcontainer doc_header" id="header">
+                <div>
+                    <a class="logo-image" href="" name="top">
+                        <img src="Images/dps_logo.png" alt="" /></a></div>
+                <div class="toplinks" id="toplinks">
+                    <% if (Session["UserLoged"] != null)
+                       {
+                           Member memberloged = (Member)Session["UserLoged"];
+                    %>
+                    <ul class="isuser">
+                        <li>
+                            <asp:LinkButton ID="Logoutlnk" runat="server" OnClick="Logoutlnk_Click">Logout</asp:LinkButton></li>
+                        <li class="welcomelink">Welcome, <a href="EditProfileMember.aspx?memberID=<%=memberloged.MemberID%>"
+                            alt="View profile">
+                            <%=memberloged.UserName%>
+                        </a></li>
+                    </ul>
+                    <%}
+                      else
+                      {%>
+                    <ul class="nouser">
+                        <li>
+                            <asp:LinkButton ID="Registerlnk" runat="server" Width="47px" PostBackUrl="Register.aspx">Register</asp:LinkButton></li><li>
+                                <asp:LinkButton ID="Loginlnk" runat="server" Width="47px" CausesValidation="false">Login</asp:LinkButton></li><li>
+                                </li>
+                    </ul>
+                    <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtenderLogin" runat="server" TargetControlID="Loginlnk"
+                        PopupControlID="LoginPanel" BackgroundCssClass="modalBackground" DropShadow="false"
+                        CancelControlID="btnCancel" Drag="false" />
+                    <%} %>
+                </div>
+                <asp:Panel ID="LoginPanel" runat="server" Style="display: none" Font-Names="@MS PGothic"
+                    Width="300px">
+                    <div class="standard_error">
+                        <h2 class="blockhead">
+                            Login</h2>
+                        <div class="blockbody formcontrols">
+                            <div>
+                                <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="UserName or Password is wrong !"
+                                    OnServerValidate="CustomValidator1_ServerValidate" ValidationGroup="loginValidate"
+                                    CssClass="blockrow"></asp:CustomValidator>
+                                <label>
+                                    Please enter your UserName and Password</label>
+                            </div>
+                            <div class="blockrow">
+                                <label for="vb_login_username">
+                                    User Name:</label>
+                                <asp:TextBox ID="txtUserName" runat="server" CssClass="primary textbox">
+                                </asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="UserName is not null."
+                                    ControlToValidate="txtUserName" Display="None" SetFocusOnError="true" ValidationGroup="loginValidate">*</asp:RequiredFieldValidator>
+                            </div>
+                            <ajaxToolkit:ValidatorCalloutExtender ID="RequiredFieldValidator1_ValidatorCalloutExtender"
+                                runat="server" TargetControlID="RequiredFieldValidator1" Enabled="True">
+                            </ajaxToolkit:ValidatorCalloutExtender>
+                            <div class="blockrow">
+                                <label for="vb_login_password">
+                                    Password:</label>
+                                <asp:TextBox ID="txtPassword" runat="server" CssClass="primary textbox" TextMode="Password">
+                                </asp:TextBox>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                                    ControlToValidate="txtPassword" Display="None" ErrorMessage="Password is not null."
+                                    SetFocusOnError="True" ValidationGroup="loginValidate">*</asp:RequiredFieldValidator>
+                                <ajaxToolkit:ValidatorCalloutExtender ID="RequiredFieldValidator2_ValidatorCalloutExtender"
+                                    runat="server" TargetControlID="RequiredFieldValidator2" Enabled="True">
+                                </ajaxToolkit:ValidatorCalloutExtender>
+                            </div>
+                            <div class="blockrow singlecheck">
+                                <label for="cb_cookieuser" style="width: 245px">
+                                    <asp:CheckBox ID="checkBoxRememberMe" runat="server" value="1" />
+                                    Remember Me?</label>
+                            </div>
+                            <div class="blockfoot actionbuttons">
+                                <div class="group">
+                                    <asp:Button ID="btnLogin" runat="server" Text="Log in" CssClass="button" OnClick="btnLogin_Click"
+                                        ValidationGroup="loginValidate" UseSubmitBehavior="False" />
+                                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="button" OnClick="btnCancel_Click" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </asp:Panel>
+                <hr />
+            </div>
+            <div class="navbar" id="navbar">
+                <ul class="navtabs floatcontainer" id="navtabs">
+                    <li class="selected"><a href="Index.aspx" class="navtab popupctrl" id="yui-gen1">Forum</a>
+                    </li>
+                    <li><a href="Search.aspx" class="navtab">Search</a></li>
+                    <li><a accesskey="2" href="#" class="navtab">What's New?</a></li>
+                </ul>
+                <div class="globalsearch" id="globalsearch">
+                    <div class="navbar_search">
+                        <span class="textboxcontainer"><span>
+                            <asp:TextBox ID="txtSearch" runat="server" CssClass="textbox"></asp:TextBox>
+                        </span></span><span class="buttoncontainer"><span>
+                            <asp:ImageButton ID="btnSearch" runat="server" CssClass="searchbutton" ImageUrl="Images/search.png"
+                                OnClick="btnSearch_Click" />
+                        </span></span>
+                    </div>
+                    <ul class="navbar_advanced_search">
+                        <li>
+                            <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="Search.aspx">Advance Search</asp:LinkButton></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="body_wrapper">
+            <div>
+                <asp:SiteMapPath ID="SiteMapPath1" runat="server" Font-Names="Verdana" Font-Size="0.8em"
+                    PathSeparator=" &gt; ">
+                    <PathSeparatorStyle Font-Bold="True" ForeColor="#5D7B9D" />
+                    <CurrentNodeStyle ForeColor="#333333" />
+                    <NodeStyle Font-Bold="True" ForeColor="#7C6F57" />
+                    <RootNodeStyle Font-Bold="True" ForeColor="#5D7B9D" />
+                </asp:SiteMapPath>
+            </div>
+            <!-- main -->
+            <div id="breadcrumb" class="breadcrumb">
+                <ul class="floatcontainer">
+                    <li class="navbithome"><a href="" accesskey="1">
+                        <img src="http://m.dpstatic.com/misc/navbit-home.png" alt="Home" /></a></li>
+                    <li class="navbit"><a href="usercp.php">Settings</a></li>
+                    <li class="navbit lastnavbit"><span>Edit Profile</span></li>
+                </ul>
+                <hr />
+            </div>
+            <div id="usercp_content">
+                <div class="cp_content">
+                    <div class="block">
+                        <h2 class="blocksubhead" align="center">Forum Manager</h2>
+                        <div class="blockbody formcontrols settings_form_border">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="usercp_nav">
+                <div class="block">
+                    <h2 class="blockhead">
+                        My Settings</h2>
+                    <div class="blockbody">
+                        <ul>
+                            <li>
+                                <h3 class="blocksubhead profile">
+                                    <img class="usercpimage" src="http://i.dpstatic.com/site_icons/profile.png" alt="My Profile"
+                                        border="0" />
+                                    My Profile</h3>
+                                <ul class="blockrow">
+                                    <li class="active"><a href="profile.php?do=editprofile">Edit Profile</a></li>
+                                    <li class="inactive"><a href="profile.php?do=editprofilepic">Edit Profile Picture</a></li>
+                                    <li class="inactive"><a href="profile.php?do=editavatar">Edit Avatar</a></li>
+                                    <li class="inactive"><a href="faq.php?faq=signatures#faq_signature_broken">Edit Signature</a></li>
+                                    <li class="inactive"><a href="profile.php?do=privacy">Profile Privacy</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h3 class="blocksubhead">
+                                    <img class="usercpimage" src="http://i.dpstatic.com/site_icons/account.png" alt="My Account"
+                                        border="0" />
+                                    My Account</h3>
+                                <ul class="blockrow">
+                                    <li class="inactive"><a href="profile.php?do=editpassword">Edit Email &amp; Password</a></li>
+                                    <li class="inactive"><a href="profile.php?do=editoptions">General Settings</a></li>
+                                    <li class="inactive"><a href="profile.php?do=editconnections">Edit Connections</a></li>
+                                    <li class="inactive"><a href="profile.php?do=ignorelist">Edit Ignore List</a></li>
+                                    <li class="inactive"><a href="payments.php">Paid Subscriptions</a></li>
+                                    <li class="inactive"><a href="badge.php">Profile Badge</a></li>
+                                    <li class="inactive"><a href="profile.php?do=editdirectory">Directory Listing</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h3 class="blocksubhead">
+                                    <img class="usercpimage" src="http://i.dpstatic.com/site_icons/network.png" alt="Networking"
+                                        border="0" />
+                                    Networking</h3>
+                                <ul class="blockrow">
+                                    <li class="inactive"><a href="profile.php?do=buddylist">Friends &amp; Contacts</a></li>
+                                    <li class="inactive"><a href="calendar.php?do=viewreminder">Event Reminders</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h3 class="blocksubhead">
+                                    <img class="usercpimage" src="http://i.dpstatic.com/site_icons/cart.png" alt="Marketplace"
+                                        border="0" />
+                                    Marketplace</h3>
+                                <ul class="blockrow">
+                                    <li class=""><a href="marketplace.php?do=settings">Settings</a></li>
+                                    <li class=""><a href="marketplace.php?do=won">Items Won</a></li>
+                                    <li class=""><a href="marketplace.php?do=payments">Payment History</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h3 class="blocksubhead">
+                                    <img class="usercpimage" src="http://i.dpstatic.com/site_icons/forum.png" alt="Forums"
+                                        border="0" />
+                                    Miscellaneous</h3>
+                                <ul class="blockrow">
+                                    <li class="inactive"><a href="profile.php?do=editattachments">Attachments</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h4 class="blocksubhead">
+                                    <img class="usercpimage" src="http://i.dpstatic.com/cms/widget-blog.png" alt="Blog"
+                                        border="0" />
+                                    <a href="http://blogs.digitalpoint.com/blog_usercp.php" class="usercp_blog">Blog</a></h4>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <%--end main--%>
+            <br />
+            <%--Footer--%>
+            <div id="footer" class="floatcontainer footer">
+                <ul id="footer_links" class="footer_links">
+                    <li class="advertising"><a href="#">Advertising</a></li>
+                    <li><a href="#" target="_blank" rel="nofollow" accesskey="9">Contact Us @FaceBook</a></li>
+                    <li><a href="#">Doctors Web Solutions</a></li>
+                    <li><a href="#top" onclick="document.location.hash='top'; return false;">Top</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- closing div for body_wrapper -->
+        <div class="below_body">
+            <div id="footer_time" class="shade footer_time">
+                All times are GMT +7. The time now is <span class="time">
+                    <%=DateTime.Now.ToLocalTime()%>
+                </span>.</div>
+            <div id="footer_copyright" class="shade footer_copyright">
+            </div>
+            <div id="fb-root">
+            </div>
+        </div>
+    </form>
+</body>
+</html>

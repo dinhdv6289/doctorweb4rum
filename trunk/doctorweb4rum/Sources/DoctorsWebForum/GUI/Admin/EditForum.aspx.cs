@@ -15,9 +15,4 @@ public partial class GUI_Admin_EditForum : System.Web.UI.Page
     {
 
     }
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-        SubForum sub = new SubForum();
-        
-    }
 }
