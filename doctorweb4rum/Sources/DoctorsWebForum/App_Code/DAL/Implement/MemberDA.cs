@@ -296,5 +296,39 @@ namespace DAL
             }
             return result;
         }
+
+        //public int UpdateMemberAdmin(Member member)
+        //{
+        //    int result = 0;
+        //    try
+        //    {
+        //        String[] columnNames = {UserName, Password, Email, FullName, Country, Address, BirthDay, Gender, Yahoo, 
+        //                                            Phone, Hospital, AboutMe, IsPublic};
+        //        Object[] values = {member.UserName, member.Password, member.Email, member.FullName, memProfile.Country, memProfile.Address, 
+        //        memProfile.BirthDay, memProfile.Gender, memProfile.Yahoo, memProfile.Phone, memProfile.Hospital, memProfile.AboutMe, member.IsPublic};
+        //        result = ProcessTableTypeStore("Udp_MemberProfiles", columnNames, values);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    return result;
+        //}
+
+        //public int DeleteMember(String id)
+        //{
+        //    int result = 0;
+        //    try
+        //    {
+        //        String[] keyColumns = (MemberDA.MemberID);
+        //        String[] keyValues = { id };
+        //        result = ProcessTableTypeStore("MembersDelete", keyColumns, keyValues);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    return result;
+        //}
     }
 }

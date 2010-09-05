@@ -110,9 +110,7 @@ namespace DAL
             {
                 String[] columnNames = { SubForumID, SubForumName, Description, DateCreation, Priority };
                 Object[] values = { sub.SubForumID, sub.SubForumName, sub.Description, sub.DateCreation, sub.Priority };
-                String[] keyColumnNames = { SubForumID };
-                Object[] keyColumnValues = { sub.SubForumID };
-                result = UpdateTable(tableName, columnNames, values, keyColumnNames, keyColumnValues);
+                result = ProcessTableTypeStore("CategoriesUpdate", columnNames, values);
             }
             catch (Exception ex)
             {

@@ -406,3 +406,10 @@ CREATE PROC CategoriesDelete
 AS 
 DELETE Categories
 WHERE 	(@CategoryID = Categories.CategoryID)
+
+--CREATE PROC DELETEMEMBERS BY MEMBERID:
+CREATE PROC MembersDelete
+@MemberID as int
+AS 
+DELETE Members
+WHERE 	(@MemberID = Members.MemberID)

@@ -17,5 +17,8 @@ namespace DAL
     {
         Category[] GetAllCategory();
         DataSet GetStatistics();
+        int InsertCategory(Category cat, out int resultStatus);
+        int DeleteCategory(String id);
+        int UpdateCategory(Category cat);
     }
 }
