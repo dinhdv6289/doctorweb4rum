@@ -24,6 +24,7 @@ namespace DAL
         int EmailIsExist(String email);
         int UpdateMember(Member member);
         int MembersOnline();
-        
+        //int UpdateMemberAdmin(Member member);
+        //int DeleteMember(String id);
     }
 }

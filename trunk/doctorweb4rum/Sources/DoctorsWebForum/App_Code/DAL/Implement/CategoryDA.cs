@@ -62,8 +62,57 @@ namespace DAL
             else
             {
                 return null;
-            }
+            }            
+        }
 
+        public int InsertCategory(Category cat, out int resultStatus)
+        {
+            int result = 0;
+            resultStatus = 0;
+            try
+            {
+                Object[] values = { cat.CategoryName, cat.Priority, cat.DateCreation };
+                result = InsertIntoTableTypeStoreReturnID("CategoriesInsert", columnNames, values, out resultStatus);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public int UpdateCategory(Category cat)
+        {
+            int result = 0;
+            try
+            {
+                String[] columnNames = { CategoryID, CategoryName, Priority, DateCreation };
+                Object[] values = { cat.CategoryID, cat.CategoryName, cat.Priority, cat.DateCreation };
+                result = ProcessTableTypeStore("CategoriesUpdate", columnNames, values);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public int DeleteCategory(String id)
+        {
+            int result = 0;
+            try
+            {
+                String[] keyColumns = { CategoryDA.CategoryID };
+                String[] keyValues = { id };
+                //result = DeleteTable(tableName, keyColumns, keyValues);
+                result = ProcessTableTypeStore("CategoriesDelete", keyColumns, keyValues);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
         }
     }
 }
