@@ -30,6 +30,19 @@ namespace BLL
             return result;
 
         }
+        public static Category[] GetCategoryByID(int categoryID)
+        {
+            Category[] result = null;
+            try
+            {
+                result = DataHelper.GetCategoryDA().GetCategoryByID(categoryID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
         public static DataSet GetStatistics()
         {
             DataSet ds = null;

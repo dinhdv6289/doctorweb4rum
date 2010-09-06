@@ -162,7 +162,7 @@ $(document).ready(function() {
             <div id="usercp_content">
                 <div class="cp_content">
                     <div class="block">
-                        <h2 class="blocksubhead" align="center">Forum Manager</h2>
+                        <h2 class="blocksubhead" align="center" id="ForumManager">Forum Manager</h2>
                         <div class="blockbody formcontrols settings_form_border">
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                             </asp:ContentPlaceHolder>

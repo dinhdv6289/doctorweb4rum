@@ -141,7 +141,7 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
         {
             string TopicID = Request["topicID"];
             TopicBLL.ThankTopic(memberLogin.MemberID, Convert.ToInt32(TopicID));
-            loadData();
+            LinkButton1.Visible = false;
         }
     }
 
@@ -187,7 +187,11 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
             if (memberLogin != null)
             {
                 PostBLL.ThankPost(memberLogin.MemberID, postID);
-                loadData();
+                LinkButton lbt = (LinkButton)repeaterPosts.Items[e.Item.ItemIndex].FindControl("btThank");
+                if (lbt != null)
+                {
+                    lbt.Visible = false;
+                }
             }
         }
         if (e.CommandName.Equals("ReplyWithQuote"))
