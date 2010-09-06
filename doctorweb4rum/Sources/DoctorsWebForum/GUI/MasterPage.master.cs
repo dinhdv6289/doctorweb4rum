@@ -14,7 +14,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+
     }
 
     protected void btnLogin_Click(object sender, EventArgs e)
@@ -40,27 +40,27 @@ public partial class MasterPage : System.Web.UI.MasterPage
                     MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
                     if (memberProfile != null)
                     {
-
                         Session.Add("UserLoged", member);
                         Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
                         if (role != null)
                         {
-                            if (role.RoleName.Equals("Member"))
-                            {
-                                //Response.Redirect(origin);
-                            }
-                            if (role.RoleName.Equals("Moderator"))
-                            {
-
-                            }
-                            if (role.RoleName.Equals("Super Moderator"))
-                            {
-
-                            }
-                            if (role.RoleName.Equals("Admin"))
-                            {
-
-                            }
+                            Response.Redirect("Index.aspx");
+                            //if (role.RoleName.Equals("Member"))
+                            //{
+                            //    Response.Redirect(origin);
+                            //}
+                            //if (role.RoleName.Equals("Moderator"))
+                            //{
+                            //    Response.Redirect(origin);
+                            //}
+                            //if (role.RoleName.Equals("Super Moderator"))
+                            //{
+                            //    Response.Redirect(origin);
+                            //}
+                            //if (role.RoleName.Equals("Admin"))
+                            //{
+                            //    Response.Redirect(origin);
+                            //}
                         }
                     }
                 }
@@ -93,7 +93,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void btnSearch_Click(object sender, ImageClickEventArgs e)
     {
-        Response.Redirect("Search.aspx?searchString="+txtSearch.Text);
+        Response.Redirect("Search.aspx?searchString=" + txtSearch.Text);
     }
     protected void Logoutlnk_Click(object sender, EventArgs e)
     {
@@ -103,6 +103,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             Member member = BLL.MemberBLL.GetMemberByMemberID(Convert.ToInt32(Session["id"].ToString()));
             member.IsOnline = false;
             BLL.MemberBLL.UpdateMember(member);
+            Response.Redirect("ForumMessage.aspx");
         };
     }
 
@@ -119,6 +120,41 @@ public partial class MasterPage : System.Web.UI.MasterPage
         "</dd><dt>Members</dt><dd> " + (int)ds.Tables[0].Rows[0]["TotalMember"] +
         "</dd></dl><p>Welcome to our newest member, <a href=\"MemberProfile.aspx?memberID=" + (int)ds.Tables[0].Rows[0]["MemberID"] +
         "\">" + (String)ds.Tables[0].Rows[0]["NewestMember"] + "</a></p>";
+    }
+
+    public String FunctionByRoles()
+    {
+        String function = "";
+        if(Session["UserLoged"] != null)
+        {
+            Member member = (Member)Session["UserLoged"];
+            MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
+            if(memberProfile != null)
+            {
+                Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
+                if (role != null)
+                {
+                    if (role.RoleName.Equals("Member"))
+                    {
+                       function= "<li><a href=\"#\" target=\"_blank\" rel=\"nofollow\" accesskey=\"9\"></a></li>";
+                    }
+                    if (role.RoleName.Equals("Moderator"))
+                    {
+                        function= "<li><a href=\"#\" target=\"_blank\" rel=\"nofollow\" accesskey=\"9\"></a></li>";
+                    }
+                    if (role.RoleName.Equals("Super Moderator"))
+                    {
+                        function= "<li><a href=\"modcp/Index.aspx\" target=\"_blank\" rel=\"nofollow\" accesskey=\"9\">Mod</a></li>";
+                    }
+                    if (role.RoleName.Equals("Admin"))
+                    {
+                        function = "<li><a href=\"Admin/Login.aspx\" target=\"_blank\" rel=\"nofollow\" accesskey=\"9\">Admin</a></li><li><a href=\"modcp/Index.aspx\" target=\"_blank\" rel=\"nofollow\" accesskey=\"9\">Mod</a></li>";
+                    }
+                }
+            }
+
+        }
+        return function;
     }
 }
 

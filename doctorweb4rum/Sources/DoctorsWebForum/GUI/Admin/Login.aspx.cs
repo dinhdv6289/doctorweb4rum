@@ -9,18 +9,11 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using BLL;
-
-public partial class GUI_Login : System.Web.UI.Page
+public partial class GUI_Admin_Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        this.Page.Title = "Login";
-    }
 
-    protected void btnReset_Click(object sender, EventArgs e)
-    {
-        txtUserName.Text = "";
-        txtPassword.Text = "";
     }
     protected void btnLogin_Click(object sender, EventArgs e)
     {
@@ -37,30 +30,22 @@ public partial class GUI_Login : System.Web.UI.Page
                 MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
                 if (memberProfile != null)
                 {
-                    string origin = Request.QueryString["ReturnURL"];
-                    if (origin == null)
-                    {
-                        origin = "Index.aspx";
-                    }
+                    //string origin = Request.QueryString["ReturnURL"];
+                    //if (origin == null)
+                    //{
+                    //    origin = "Default.aspx";
+                    //}
                     Session.Add("UserLoged", member);
                     Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
                     if (role != null)
                     {
-                        if (role.RoleName.Equals("Member"))
-                        {
-                            Response.Redirect(origin);
-                        }
-                        if (role.RoleName.Equals("Moderator"))
-                        {
-                            Response.Redirect(origin);
-                        }
                         if (role.RoleName.Equals("Super Moderator"))
                         {
-                            Response.Redirect(origin);
+                            Response.Redirect("modcp/Index.aspx");
                         }
                         if (role.RoleName.Equals("Admin"))
                         {
-                            Response.Redirect(origin);
+                            Response.Redirect("Default.aspx");
                         }
                     }
                 }
@@ -69,7 +54,8 @@ public partial class GUI_Login : System.Web.UI.Page
             {
                 Response.Redirect("Login.aspx");
             }
-        }else
+        }
+        else
         {
             Response.Redirect("Login.aspx");
         }
