@@ -49,12 +49,21 @@
                     </div>
                     <div class="userinfo_noavatar">
                         <div class="contact">
+                        <a title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %>  is online now" href="MemberProfile.aspx?memberID=<%= GetTopic().MemberID%>" class="postuseravatarlink">
+                            <img alt="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %>'s Avatar" src="<%= GetMemberProfileByMemberID(GetTopic().MemberID).Avatar%>" title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %>'s Avatar"></a>
                             <div class="username_container">
                                 <div class="popupmenu memberaction" id="yui-gen16">
-                                    <a title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is offline" href="MemberProfile.aspx?memberID=<%= GetTopic().MemberID%>" class="username offline popupctrl"
+                                <% if(GetMemberByMemberID(GetTopic().MemberID).IsOnline){ %>
+                                    <a title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is online " href="MemberProfile.aspx?memberID=<%= GetTopic().MemberID%>" class="username online popupctrl"
                                         id="yui-gen18"><strong><span class="user25">
                                             <%= GetMemberByMemberID(GetTopic().MemberID).UserName %>
                                         </span></strong></a>
+                                        <%}else{ %>
+                                        <a title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is offline" href="MemberProfile.aspx?memberID=<%= GetTopic().MemberID%>" class="username offline popupctrl"
+                                        id="A1"><strong><span class="user25">
+                                            <%= GetMemberByMemberID(GetTopic().MemberID).UserName %>
+                                        </span></strong></a>
+                                        <%} %>
                                 </div>
                                
                                 <% if(GetMemberByMemberID(GetTopic().MemberID).IsOnline){ %>
@@ -146,15 +155,17 @@
                     </div>
                     <div class="userinfo_noavatar">
                         <div class="contact">
+                        <a title="<%#Eval("UserName")%>  is online now" href="MemberProfile.aspx?memberID=<%= GetTopic().MemberID%>" class="postuseravatarlink">
+                            <img alt="<%#Eval("UserName")%>'s Avatar" src="<%#Eval("Avatar")%>" title="<%#Eval("UserName")%>'s Avatar"></a>
                             <div class="username_container">
                                 <div class="popupmenu memberaction" id="yui-gen16">
-                                    <a title=" <%#Eval("UserName")%> is offline" href="MemberProfile.aspx?memberID=<%#Eval("MemberID")%>" class="username offline popupctrl"
+                                    <a title="<%#ShowStatusOnlineOrOffline(Convert.ToInt32(Eval("PostID"))) %>" href="MemberProfile.aspx?memberID=<%#Eval("MemberID")%>" class="username offline popupctrl"
                                         id="yui-gen18"><strong><span class="user25">
                                             <%#Eval("UserName")%>
                                         </span></strong></a>
                                 </div>
-                                <img border="0" alt=" <%#Eval("UserName")%> is offline" src="Images/user-offline.png"
-                                    class="inlineimg onlinestatus" title=" <%#Eval("UserName")%> is offline">
+                                <img border="0" alt=" <%#ShowStatusOnlineOrOffline(Convert.ToInt32(Eval("PostID"))) %>" src="<%#ShowImageStatusOnlineOrOffline(Convert.ToInt32(Eval("PostID"))) %>"
+                                    class="inlineimg onlinestatus" title=" <%#ShowStatusOnlineOrOffline(Convert.ToInt32(Eval("PostID"))) %>">
                                 <span class="usertitle"><%#Eval("FullName")%> </span><span id="repdisplay_14688639_429236" class="postbit_reputation">
                                     <img alt=" <%#Eval("UserName")%> is on a distinguished road" src="Images/reputation_pos.png"
                                         class="repimg" title=" <%#Eval("UserName")%> is on a distinguished road">

@@ -308,4 +308,67 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
         }
         return result;
     }
+
+    public String ShowStatusOnlineOrOffline(int postID)
+    {
+        String result = "";
+        if (Session["UserLoged"] != null)
+        {
+            Member m = (Member)Session["UserLoged"];
+            Post p = PostBLL.GetPostByPostID(postID);
+            if (p.MemberID == m.MemberID)
+            {
+                result = m.UserName + " is online";
+            }else
+            {
+                Member member = MemberBLL.GetMemberByMemberID(p.MemberID);
+                if (member != null)
+                {
+                    result = member.UserName + " is offline";
+                }
+            }
+            
+        }
+        else
+        {
+            Post p = PostBLL.GetPostByPostID(postID);
+            if (p != null)
+            {
+                Member member = MemberBLL.GetMemberByMemberID(p.MemberID);
+                if (member != null)
+                {
+                    result = member.UserName + " is offline";
+                }
+            }
+        }
+        return result;
+    }
+
+    public String ShowImageStatusOnlineOrOffline(int postID)
+    {
+        String result = "";
+        if (Session["UserLoged"] != null)
+        {
+            Member m = (Member)Session["UserLoged"];
+            Post p = PostBLL.GetPostByPostID(postID);
+            if (p.MemberID == m.MemberID)
+            {
+                result = "Images/user-online.png";
+            }
+            result = "Images/user-offline.png";
+        }
+        else
+        {
+            Post p = PostBLL.GetPostByPostID(postID);
+            if (p != null)
+            {
+                Member member = MemberBLL.GetMemberByMemberID(p.MemberID);
+                if (member != null)
+                {
+                    result = "Images/user-offline.png";
+                }
+            }
+        }
+        return result;
+    }
 }
