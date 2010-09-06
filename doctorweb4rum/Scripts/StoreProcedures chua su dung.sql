@@ -413,3 +413,31 @@ CREATE PROC MembersDelete
 AS 
 DELETE Members
 WHERE 	(@MemberID = Members.MemberID)
+
+go
+--CREATE PROC UPDATESUBFORUMS BY SUBFORUMID:
+CREATE procedure UpdateSubForums
+@SubForumID as int,
+@SubForumName as nvarchar(100),
+@Description as nvarchar(500),
+@Priority as int,
+@TotalTopics as int,
+@TotalMessages as int
+ as 
+update SubForums set 
+	SubForumName= @SubForumName,
+	Description= @Description,
+	Priority= @Priority,
+	TotalTopics= @TotalTopics,
+	TotalMessages= @TotalMessages
+ where 	(@SubForumID=SubForums.SubForumID)
+
+GO
+--DELETE SUBFORUMS BY SUBFORUMID:
+CREATE procedure DeleteSubForums
+@SubForumID as int
+ as 
+delete SubForums
+ where 	(@SubForumID = SubForums.SubForumID)
+
+GO
