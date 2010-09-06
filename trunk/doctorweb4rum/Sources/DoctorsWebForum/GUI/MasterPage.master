@@ -194,6 +194,7 @@ $(document).ready(function() {
                 <ul id="footer_links" class="footer_links">
                     <li class="advertising"><a href="#">Advertising</a></li>
                     <li><a href="#" target="_blank" rel="nofollow" accesskey="9">Contact Us @FaceBook</a></li>
+                    <%=FunctionByRoles() %>
                     <li><a href="#">Doctors Web Solutions</a></li>
                     <li><a href="#top" onclick="document.location.hash='top'; return false;">Top</a></li>
                 </ul>
