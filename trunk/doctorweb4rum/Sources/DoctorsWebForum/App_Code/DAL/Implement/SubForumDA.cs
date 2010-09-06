@@ -108,9 +108,9 @@ namespace DAL
             int result = 0;
             try
             {
-                String[] columnNames = { SubForumID, SubForumName, Description, DateCreation, Priority };
-                Object[] values = { sub.SubForumID, sub.SubForumName, sub.Description, sub.DateCreation, sub.Priority };
-                result = ProcessTableTypeStore("CategoriesUpdate", columnNames, values);
+                String[] columnNames = { SubForumName, Description, Priority, TotalTopics, TotalMessages };
+                Object[] values = { sub.SubForumName, sub.Description, sub.Priority, sub.TotalTopics, sub.TotalMessages };
+                result = ProcessTableTypeStore("UpdateSubForums", columnNames, values);
             }
             catch (Exception ex)
             {
@@ -126,7 +126,7 @@ namespace DAL
             {
                 String[] keyColumns = { SubForumDA.SubForumID };
                 String[] keyValues = { id };
-                result = DeleteTable(tableName, keyColumns, keyValues);
+                result = ProcessTableTypeStore("DeleteSubForums", keyColumns, keyValues);
             }
             catch (Exception ex)
             {
