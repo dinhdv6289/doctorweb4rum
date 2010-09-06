@@ -103,31 +103,15 @@
                 </div>
                 <div class="postfoot">
                     <div class="textcontrols floatcontainer">
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always" ChildrenAsTriggers="True">
-            <ContentTemplate>  
-                                          
-<SPAN class="postcontrols">
-<% if (IsMyTopic()){ %>
-    <asp:LinkButton ID="QuickEditLinkButton" CssClass="editpost" runat="server" OnClick="CheckLoginToQuickEdit">Edit Topic</asp:LinkButton>
-    <SPAN class="seperator">&nbsp;</SPAN>
-    <% } %>
-<asp:LinkButton ID="quickReplyLinkButton" runat="server" CssClass="quickreply" OnClick="CheckLoginToNewReply" >Reply</asp:LinkButton>
- <SPAN class="seperator">&nbsp;</SPAN>
- <ajaxToolkit:Rating id="topicRating" runat="Server" CssClass="ratingStar" 
- EmptyStarCssClass="Empty" FilledStarCssClass="Filled" WaitingStarCssClass="Saved" 
- StarCssClass="ratingItem"  AutoPostBack="True" OnChanged="topicRating_Changed"></ajaxToolkit:Rating> </SPAN>
-
-                            <span class="postlinking">
-                            <% if (isThanked())
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="True">
+            <ContentTemplate>
+<SPAN class="postcontrols"><% if (IsMyTopic()){ %><asp:LinkButton id="QuickEditLinkButton" onclick="CheckLoginToQuickEdit" runat="server" CssClass="editpost" __designer:wfdid="w1">Edit Topic</asp:LinkButton> <SPAN class="seperator">&nbsp;</SPAN> <% } %><asp:LinkButton id="quickReplyLinkButton" onclick="CheckLoginToNewReply" runat="server" CssClass="quickreply" __designer:wfdid="w2">Reply</asp:LinkButton> <SPAN class="seperator">&nbsp;</SPAN> <ajaxToolkit:Rating id="topicRating" runat="Server" CssClass="ratingStar" OnChanged="topicRating_Changed" AutoPostBack="True" StarCssClass="ratingItem" WaitingStarCssClass="Saved" FilledStarCssClass="Filled" EmptyStarCssClass="Empty" __designer:wfdid="w3"></ajaxToolkit:Rating> </SPAN><SPAN class="postlinking"><% if (isThanked())
                             {
                             }
                                else
                                {
-                             %>
-                                <asp:LinkButton ID="LinkButton1" runat="server" CssClass="post_thanks_button" OnClick="LinkButton1_Click">Thanks</asp:LinkButton> 
-                                <%} %>
-                                    </span>
- </ContentTemplate>
+                             %><asp:LinkButton id="LinkButton1" onclick="LinkButton1_Click" runat="server" CssClass="post_thanks_button" __designer:wfdid="w4">Thanks</asp:LinkButton> <%} %></SPAN>
+</ContentTemplate>
  </asp:UpdatePanel>
                     </div>
                 </div>
@@ -205,7 +189,7 @@
                 
                                 <div class="postfoot">
                     <div class="textcontrols floatcontainer">
-        <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Always" ChildrenAsTriggers="True">
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="True">
             <ContentTemplate>                                
 <SPAN class="postcontrols">
     <asp:LinkButton ID="EditPostLinkButton" runat="server" Visible='<%#IsMyPost(Convert.ToInt32(Eval("PostID"))) %>' 

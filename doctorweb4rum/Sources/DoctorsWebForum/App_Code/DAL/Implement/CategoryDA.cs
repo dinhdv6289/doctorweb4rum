@@ -41,6 +41,22 @@ namespace DAL
             return result;
         }
 
+        public Category[] GetCategoryByID(int categoryID)
+        {
+            Category[] result;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("Select * from {0} where {1} = {2}", tableName,CategoryID,categoryID);
+                result = SelectCollection<Category>(columnNames, columnNames, cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
         public DataSet GetStatistics()
         {
             DataSet ds = null;

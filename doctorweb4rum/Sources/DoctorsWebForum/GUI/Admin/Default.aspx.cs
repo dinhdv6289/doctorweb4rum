@@ -20,6 +20,8 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
             {
                 repeaterForums.DataSource = categories;
                 repeaterForums.DataBind();
+                HiddenAllPanel();
+                repeaterForumsPanel.Visible = true;
             }
         }
     }
@@ -102,7 +104,11 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
                 int functionForumID = Convert.ToInt32(ddlFunctionsForum.SelectedItem.Value);
                 if (functionForumID == 1)
                 {
-                    Response.Redirect("EditForum.aspx?functionForumID=" + functionForumID.ToString());
+                    HiddenAllPanel();
+                    Category[] categories = CategoryBLL.GetCategoryByID(Convert.ToInt32(e.CommandArgument));
+                    repeaterEditForum.DataSource = categories;
+                    repeaterEditForum.DataBind();
+                    editForumPanel.Visible = true;
                 }
                 if (functionForumID == 2)
                 {
@@ -120,6 +126,12 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
         }
     }
 
+    protected void HiddenAllPanel()
+    {
+        editForumPanel.Visible = false;
+        repeaterForumsPanel.Visible = false;
+        editSubForumPanel.Visible = false;
+    }
 
     protected void repeaterSubForums_ItemCommand(object source, System.Web.UI.WebControls.RepeaterCommandEventArgs e)
     {
@@ -131,7 +143,13 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
                 int functionID = Convert.ToInt32(ddlFunctionSubForum.SelectedItem.Value);
                 if (functionID == 1)
                 {
-                    Response.Redirect("EditSubForum.aspx?functionID=" + functionID.ToString());
+                    HiddenAllPanel();
+                    SubForum subForum = SubForumBLL.GetSubForumBySubForumID(Convert.ToInt32(e.CommandArgument));
+                    SubForum[] subForums = { subForum };
+                    repeaterEditSubForum.DataSource = subForums;
+                    repeaterEditSubForum.DataBind();
+                    editSubForumPanel.Visible = true;
+                    Page.SetFocus("ForumManager");
                 }
                 if (functionID == 2)
                 {
@@ -145,4 +163,41 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
         }
     }
 
+    protected void repeaterEditForum_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if(e.CommandName == "SaveEdit")
+        {
+            Category[] categories = CategoryBLL.GetCategoryByID(Convert.ToInt32(e.CommandArgument));
+            Category cate = categories[0];
+            TextBox txtForumName = (TextBox)repeaterEditForum.Items[e.Item.ItemIndex].FindControl("txtForumName");
+            cate.CategoryName = txtForumName.Text;
+            CategoryBLL.UpdateCategory(cate);
+        }
+        if (e.CommandName == "ResetEdit")
+        {
+            Category[] categories = CategoryBLL.GetCategoryByID(Convert.ToInt32(e.CommandArgument));
+            repeaterEditForum.DataSource = categories;
+            repeaterEditForum.DataBind();
+        }
+    }
+
+    protected void repeaterEditSubForum_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "SaveEdit")
+        {
+            SubForum subForum = SubForumBLL.GetSubForumBySubForumID(Convert.ToInt32(e.CommandArgument));
+            TextBox txtSubForumName = (TextBox)repeaterEditSubForum.Items[e.Item.ItemIndex].FindControl("txtSubForumName");
+            TextBox txtDescription = (TextBox)repeaterEditSubForum.Items[e.Item.ItemIndex].FindControl("txtDescription");
+            subForum.SubForumName = txtSubForumName.Text;
+            subForum.Description = txtDescription.Text;
+            SubForumBLL.UpdateSubForum(subForum);
+        }
+        if (e.CommandName == "ResetEdit")
+        {
+            SubForum subForum = SubForumBLL.GetSubForumBySubForumID(Convert.ToInt32(e.CommandArgument));
+            SubForum[] subForums = { subForum };
+            repeaterEditSubForum.DataSource = subForums;
+            repeaterEditSubForum.DataBind();
+        }
+    }
 }

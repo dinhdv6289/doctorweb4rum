@@ -20,5 +20,6 @@ namespace DAL
         int InsertCategory(Category cat, out int resultStatus);
         int DeleteCategory(String id);
         int UpdateCategory(Category cat);
+        Category[] GetCategoryByID(int categoryID);
     }
 }

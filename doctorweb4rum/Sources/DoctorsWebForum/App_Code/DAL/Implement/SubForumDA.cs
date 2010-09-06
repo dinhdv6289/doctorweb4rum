@@ -27,7 +27,7 @@ namespace DAL
         private const String Priority = "Priority";
         private const String TotalTopics = "TotalTopics";
         private const String TotalMessages = "TotalMessages";
-        private String[] columnNames = { SubForumID, CategoryID, SubForumName, Description, Priority, TotalTopics, TotalMessages };
+        private String[] columnNames = { SubForumID, CategoryID, SubForumName, Description, DateCreation, Priority, TotalTopics, TotalMessages };
         private String[] columnNamesForInsert = { SubForumName, Description, DateCreation };
         
         public SubForum[] GetAllSubForumsByCategoryID(int CategoryID)
@@ -108,8 +108,8 @@ namespace DAL
             int result = 0;
             try
             {
-                String[] columnNames1 = { SubForumName, Description, Priority, TotalTopics, TotalMessages };
-                Object[] values = { sub.SubForumName, sub.Description, sub.Priority, sub.TotalTopics, sub.TotalMessages };
+                String[] columnNames1 = {SubForumID, SubForumName, Description, Priority, TotalTopics, TotalMessages };
+                Object[] values = {sub.SubForumID, sub.SubForumName, sub.Description, sub.Priority, sub.TotalTopics, sub.TotalMessages };
                 result = ProcessTableTypeStore("UpdateSubForums", columnNames1, values);
             }
             catch (Exception ex)
