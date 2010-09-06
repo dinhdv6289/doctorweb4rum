@@ -73,7 +73,6 @@ namespace DAL
             {
                 Object[] values = { cat.CategoryName, cat.Priority, cat.DateCreation };
                 result = InsertIntoTableTypeStoreReturnID("CategoriesInsert", columnNames, values, out resultStatus);
-
             }
             catch (Exception ex)
             {
