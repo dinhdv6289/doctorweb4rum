@@ -108,9 +108,9 @@ namespace DAL
             int result = 0;
             try
             {
-                String[] columnNames = { SubForumName, Description, Priority, TotalTopics, TotalMessages };
+                String[] columnNames1 = { SubForumName, Description, Priority, TotalTopics, TotalMessages };
                 Object[] values = { sub.SubForumName, sub.Description, sub.Priority, sub.TotalTopics, sub.TotalMessages };
-                result = ProcessTableTypeStore("UpdateSubForums", columnNames, values);
+                result = ProcessTableTypeStore("UpdateSubForums", columnNames1, values);
             }
             catch (Exception ex)
             {
