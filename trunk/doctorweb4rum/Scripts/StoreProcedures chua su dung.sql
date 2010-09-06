@@ -373,7 +373,7 @@ AS BEGIN
 	FROM       Posts INNER JOIN Topics ON Posts.TopicID = Topics.TopicID AND Posts.PostID = Topics.LastPostId
 	WHERE	   Topics.TopicID = @TopicID	
 END
-
+go
 
 create proc InsertTest
 @RoleName nvarchar(20),
@@ -385,6 +385,7 @@ insert into dbo.Roles(RoleName,Description,TotalPosts,RankImage) values(@RoleNam
 end
 
 select * from Roles
+go
 
 --CREATE PROC UPDATECATEGORY BY CATEGORYID:
 CREATE PROC CategoriesUpdate
@@ -399,6 +400,7 @@ UPDATE Categories SET
 	DateCreation= @DateCreation
 WHERE 	
 	(@CategoryID = Categories.CategoryID)
+go
 
 --CREATE PROC DELETECATEGORY BY CATEGORY:
 CREATE PROC CategoriesDelete
@@ -406,6 +408,7 @@ CREATE PROC CategoriesDelete
 AS 
 DELETE Categories
 WHERE 	(@CategoryID = Categories.CategoryID)
+go
 
 --CREATE PROC DELETEMEMBERS BY MEMBERID:
 CREATE PROC MembersDelete
@@ -439,5 +442,4 @@ CREATE procedure DeleteSubForums
  as 
 delete SubForums
  where 	(@SubForumID = SubForums.SubForumID)
-
 GO
