@@ -274,5 +274,22 @@ namespace DAL
             }
             return result;
         }
+
+        #region IPostDA Members
+
+
+        public int UpdatePost(Post post)
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        public int DeletePost(string id)
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        #endregion
+
+       
     }
 }

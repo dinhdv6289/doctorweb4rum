@@ -104,8 +104,7 @@ namespace DAL
             try
             {
                 String[] keyColumns = { CategoryDA.CategoryID };
-                String[] keyValues = { id };
-                //result = DeleteTable(tableName, keyColumns, keyValues);
+                String[] keyValues = { id };                
                 result = ProcessTableTypeStore("CategoriesDelete", keyColumns, keyValues);
             }
             catch (Exception ex)
