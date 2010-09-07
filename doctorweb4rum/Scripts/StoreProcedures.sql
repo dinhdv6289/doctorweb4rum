@@ -433,3 +433,181 @@ AS BEGIN
 END
 
 go
+
+--GetStatistics
+
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetStatistics' AND TYPE = 'P')
+DROP PROC GetStatistics
+go
+CREATE PROC GetStatistics
+AS BEGIN
+	SELECT     
+		(SELECT Count(*) FROM Topics) AS TotalTopic, 
+		(SELECT Count(*) FROM Posts) AS TotalPost ,
+		(SELECT count(*) FROM members) AS TotalMember ,
+		(SELECT username FROM members WHERE memberid = (SELECT MAX(MemberID) FROM members)) AS NewestMember,
+		(SELECT MAX(MemberID) FROM members) AS MemberID
+END
+
+go
+
+--UpdateMemberProfilesByAdmin
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'UpdateMemberInfoByAdmin' AND TYPE = 'P')
+DROP PROC UpdateMemberInfoByAdmin
+GO
+CREATE PROCEDURE UpdateMemberInfoByAdmin
+@MemberID		INT,
+@Email			NVARCHAR(100) ,
+@FullName		NVARCHAR(50) ,
+@RoleID			INT,
+@Blast			NVARCHAR(100),
+@Avatar			NVARCHAR(150),	
+@Country		NVARCHAR(50),
+@Address		NVARCHAR(255),
+@BirthDay		DATETIME,
+@Yahoo			NVARCHAR(100),		
+@Phone			NVARCHAR(15),
+@Blog			NVARCHAR(100),
+@Hospital		NVARCHAR(100),
+@Signature      NVARCHAR(1000),
+@AboutMe		NTEXT
+
+AS
+	BEGIN
+		UPDATE Members	SET
+			Email = @Email,
+			FullName = @FullName
+		WHERE MemberID=@MemberID
+		UPDATE MemberProfiles SET
+			RoleID = @RoleID,
+			Blast = @Blast,
+			Avatar = @Avatar,
+			Country = @Country,
+			[Address] = @Address,
+			BirthDay = @BirthDay,
+			Yahoo = @Yahoo,
+			Phone = @Phone,
+			Hospital = @Hospital,
+			Blog = @Blog,
+			AboutMe = @AboutMe,
+			Signature = @Signature
+		WHERE MemberID=@MemberID
+	END	
+
+GO
+--UpdateMemberProfiles
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'UpdateMemberInfo' AND TYPE = 'P')
+DROP PROC UpdateMemberInfo
+GO
+CREATE PROCEDURE UpdateMemberInfo
+@MemberID		INT,
+@Password       NVARCHAR(50) ,
+@Email			NVARCHAR(100) ,
+@FullName		NVARCHAR(50) ,
+@Blast			NVARCHAR(100),
+@Avatar			NVARCHAR(150),	
+@Country		NVARCHAR(50),
+@Address		NVARCHAR(255),
+@BirthDay		DATETIME,
+@Yahoo			NVARCHAR(100),		
+@Phone			NVARCHAR(15),
+@Blog			NVARCHAR(100),
+@Hospital		NVARCHAR(100),
+@Signature      NVARCHAR(1000),
+@AboutMe		NTEXT
+
+AS
+	BEGIN
+		UPDATE Members	SET
+			Password = @Password,
+			Email = @Email,
+			FullName = @FullName
+		WHERE MemberID=@MemberID
+		UPDATE MemberProfiles SET
+			Blast = @Blast,
+			Avatar = @Avatar,
+			Country = @Country,
+			[Address] = @Address,
+			BirthDay = @BirthDay,
+			Yahoo = @Yahoo,
+			Phone = @Phone,
+			Hospital = @Hospital,
+			Blog = @Blog,
+			AboutMe = @AboutMe,
+			Signature = @Signature
+		WHERE MemberID=@MemberID
+	END	
+
+GO
+
+-- GetAllInfoOfMemberByMemberID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetAllInfoOfMemberByMemberID' AND TYPE = 'P')
+DROP PROC GetAllInfoOfMemberByMemberID
+GO
+CREATE PROCEDURE GetAllInfoOfMemberByMemberID
+@MemberID		INT
+AS
+	BEGIN
+SELECT     Members.*, MemberProfiles.*
+FROM         Members INNER JOIN
+                      MemberProfiles ON Members.MemberID = MemberProfiles.MemberID
+WHERE Members.MemberID = @MemberID
+END
+
+go
+EXEC GetAllInfoOfMemberByMemberID 1
+
+go
+--BanOrUnBanUser
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'BanOrUnBanUser' AND TYPE = 'P')
+DROP PROC BanOrUnBanUser
+GO
+CREATE PROCEDURE BanOrUnBanUser
+@MemberID		INT,
+@AllowLogin		BIT
+AS
+	BEGIN
+Update dbo.Members set AllowLogin = @AllowLogin where MemberID = @MemberID
+END
+
+go
+--GetMemberByUserName
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetMemberByUserName' AND TYPE = 'P')
+DROP PROC GetMemberByUserName
+GO
+CREATE PROCEDURE GetMemberByUserName
+@UserName	nvarchar(30)
+AS
+	BEGIN
+select * from dbo.Members where UserName = @UserName
+end
+go
+
+go
+--GetBannedUsers
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetBannedUsers' AND TYPE = 'P')
+DROP PROC GetBannedUsers
+GO
+CREATE PROCEDURE GetBannedUsers
+AS
+	BEGIN
+select * from dbo.Members where AllowLogin = 0;
+end
+go
+
+exec GetBannedUsers
+go
+
+--GetBannedUser
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetBannedUser' AND TYPE = 'P')
+DROP PROC GetBannedUser
+GO
+CREATE PROCEDURE GetBannedUser
+	@MemberID int
+AS
+	BEGIN
+select * from dbo.Members where MemberID = @MemberID;
+end
+go
+
+

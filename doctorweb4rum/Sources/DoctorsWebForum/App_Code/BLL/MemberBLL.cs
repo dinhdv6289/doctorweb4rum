@@ -148,7 +148,7 @@ namespace BLL
         public static Member GetMemberByUserNamePassword(string userName, string password)
         {
             Member result = null;
-            if (userName.Length >0 || userName != null)
+            if (userName.Length > 0 || userName != null)
             {
                 try
                 {
@@ -182,7 +182,7 @@ namespace BLL
             try
             {
                 int a = DataHelper.GetMemberDA().UserNameIsExist(userName);
-                if (a>0)
+                if (a > 0)
                 {
                     result = true;
                 }
@@ -211,5 +211,108 @@ namespace BLL
             }
             return result;
         }
+
+        public static int UpdateMemberInfoByAdmin(Member member, MemberProfile memberProfile)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetMemberDA().UpdateMemberInfoByAdmin(member, memberProfile);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public int UpdateMemberInfo(Member member, MemberProfile memberProfile)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetMemberDA().UpdateMemberInfo(member, memberProfile);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public static DataSet GetAllInfoOfMemberByMemberID(int memberID)
+        {
+            DataSet dataSetAllMember = null;
+            try
+            {
+                dataSetAllMember = DataHelper.GetMemberDA().GetAllInfoOfMemberByMemberID(memberID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dataSetAllMember;
+        }
+
+        public static int BanOrUnBanUser(int memberID, Boolean allowLogin)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetMemberDA().BanOrUnBanUser(memberID, allowLogin);
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public static Member GetMemberByUserName(String userName)
+        {
+            Member result = null;
+            if (userName.Length > 0 || userName != null)
+            {
+                try
+                {
+                    result = DataHelper.GetMemberDA().GetMemberByUserName(userName);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            return result;
+        }
+
+         public static Member[] GetBannedUsers()
+         {
+             Member[] result;
+             try
+             {
+                 result = DataHelper.GetMemberDA().GetBannedUsers();
+             }
+             catch (Exception ex)
+             {
+                 throw ex;
+             }
+             return result;
+         }
+
+        public static Member GetBannedUser(int memberID)
+        {
+            Member result;
+            try
+            {
+                result = DataHelper.GetMemberDA().GetBannedUser(memberID);
+            }
+            catch (System.Exception ex)
+            {
+            	throw ex;
+            }
+            return result;
+
+        }
+
     }
 }

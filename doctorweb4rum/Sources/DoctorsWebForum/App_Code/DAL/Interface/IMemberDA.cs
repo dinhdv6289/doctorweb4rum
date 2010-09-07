@@ -16,7 +16,8 @@ namespace DAL
         Member GetMemberOfTopicByTopicID(int memberID);
         Member GetLastMemberPostByTopicID(int topicID);
         Member GetMemberByUserNamePassword(string userName, string password);
-        //Member GetMemberByUserNamePassword(string userName, string password);
+        int UpdateMemberInfoByAdmin(Member member, MemberProfile memberProfile);
+        int UpdateMemberInfo(Member member, MemberProfile memberProfile);
         int InsertMember(Member member, out int autoID);
         int InsertMemberProfile(MemberProfile memberProfile);
         int InsertMemberInfo(Member member, MemberProfile memProfile,out int resultStatus);
@@ -24,6 +25,12 @@ namespace DAL
         int EmailIsExist(String email);
         int UpdateMember(Member member);
         int MembersOnline();
+        DataSet GetAllInfoOfMemberByMemberID(int memberID);
+        int BanOrUnBanUser(int memberID,Boolean allowLogin);
+        Member GetMemberByUserName(String userName);
+        Member[] GetBannedUsers();
+        Member GetBannedUser(int memberID);
+
         //int UpdateMemberAdmin(Member member);
         //int DeleteMember(String id);
     }

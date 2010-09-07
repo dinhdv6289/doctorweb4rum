@@ -4,12 +4,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>Untitled Page</title>
-    <link href="../css.css" rel="stylesheet" type="text/css" />
+    <link href="../../GUI/Admin/datas/css.css" rel="stylesheet" type="text/css" />
+    
     <link type="text/css" href="../JqueryStyle/themes/base/jquery.ui.all.css" rel="stylesheet" />
+
     <script type="text/javascript" src="../js/jquery-1.4.2.js"></script>
 
-
     <link href="../../GUI/css_002.css" rel="stylesheet" type="text/css" />
+
     <script type="text/javascript" src="../js/jquery.cookie.js"></script>
 
     <script type="text/javascript" src="../js/jquery.collapsible.js"></script>
@@ -54,8 +56,8 @@ $(document).ready(function() {
                       else
                       {%>
                     <ul class="nouser">
-                        <li>
-                            <asp:LinkButton ID="Registerlnk" runat="server" Width="47px" PostBackUrl="Register.aspx">Register</asp:LinkButton></li><li>
+<%--                        <li>
+                            <asp:LinkButton ID="Registerlnk" runat="server" Width="47px" PostBackUrl="Register.aspx">Register</asp:LinkButton></li>--%><li>
                                 <asp:LinkButton ID="Loginlnk" runat="server" Width="47px" CausesValidation="false">Login</asp:LinkButton></li><li>
                                 </li>
                     </ul>
@@ -118,25 +120,9 @@ $(document).ready(function() {
             </div>
             <div class="navbar" id="navbar">
                 <ul class="navtabs floatcontainer" id="navtabs">
-                    <li class="selected"><a href="Index.aspx" class="navtab popupctrl" id="yui-gen1">Forum</a>
+                    <li class="selected"><a href="../Index.aspx" class="navtab popupctrl" id="yui-gen1">Forum</a>
                     </li>
-                    <li><a href="Search.aspx" class="navtab">Search</a></li>
-                    <li><a accesskey="2" href="#" class="navtab">What's New?</a></li>
                 </ul>
-                <div class="globalsearch" id="globalsearch">
-                    <div class="navbar_search">
-                        <span class="textboxcontainer"><span>
-                            <asp:TextBox ID="txtSearch" runat="server" CssClass="textbox"></asp:TextBox>
-                        </span></span><span class="buttoncontainer"><span>
-                            <asp:ImageButton ID="btnSearch" runat="server" CssClass="searchbutton" ImageUrl="Images/search.png"
-                                OnClick="btnSearch_Click" />
-                        </span></span>
-                    </div>
-                    <ul class="navbar_advanced_search">
-                        <li>
-                            <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="Search.aspx">Advance Search</asp:LinkButton></li>
-                    </ul>
-                </div>
             </div>
         </div>
         <div class="body_wrapper">
@@ -151,18 +137,18 @@ $(document).ready(function() {
             </div>
             <!-- main -->
             <div id="breadcrumb" class="breadcrumb">
-                <ul class="floatcontainer">
+<%--                <ul class="floatcontainer">
                     <li class="navbithome"><a href="" accesskey="1">
-                        <img src="http://m.dpstatic.com/misc/navbit-home.png" alt="Home" /></a></li>
-                    <li class="navbit"><a href="usercp.php">Settings</a></li>
+                        <img src="../Images/navbit-home.png" alt="Home" /></a></li>
+                   <li class="navbit"><a href="">Settings</a></li>
                     <li class="navbit lastnavbit"><span>Edit Profile</span></li>
-                </ul>
+                </ul>--%>
                 <hr />
             </div>
             <div id="usercp_content">
                 <div class="cp_content">
                     <div class="block">
-                        <h2 class="blocksubhead" align="center" id="ForumManager">Forum Manager</h2>
+                        
                         <div class="blockbody formcontrols settings_form_border">
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                             </asp:ContentPlaceHolder>
@@ -173,72 +159,44 @@ $(document).ready(function() {
             <div id="usercp_nav">
                 <div class="block">
                     <h2 class="blockhead">
-                        My Settings</h2>
+                        Settings</h2>
                     <div class="blockbody">
                         <ul>
                             <li>
                                 <h3 class="blocksubhead profile">
-                                    <img class="usercpimage" src="http://i.dpstatic.com/site_icons/profile.png" alt="My Profile"
-                                        border="0" />
-                                    My Profile</h3>
+                                    <img class="usercpimage" src="../Images/profile.png" alt="Forums && SubForums" border="0" />
+                                    Forums & SubForums</h3>
                                 <ul class="blockrow">
-                                    <li class="active"><a href="profile.php?do=editprofile">Edit Profile</a></li>
-                                    <li class="inactive"><a href="profile.php?do=editprofilepic">Edit Profile Picture</a></li>
-                                    <li class="inactive"><a href="profile.php?do=editavatar">Edit Avatar</a></li>
-                                    <li class="inactive"><a href="faq.php?faq=signatures#faq_signature_broken">Edit Signature</a></li>
-                                    <li class="inactive"><a href="profile.php?do=privacy">Profile Privacy</a></li>
+                                    <li class="active"><a href="Default.aspx">Forum Manager</a></li>
+                                    <li class="inactive"><a href="AddNewForum.aspx">Add New Forum</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <h3 class="blocksubhead">
-                                    <img class="usercpimage" src="http://i.dpstatic.com/site_icons/account.png" alt="My Account"
-                                        border="0" />
-                                    My Account</h3>
+                                    <img class="usercpimage" src="../Images/users.png" alt="Users Manager" border="0" />
+                                    Users Manager</h3>
                                 <ul class="blockrow">
-                                    <li class="inactive"><a href="profile.php?do=editpassword">Edit Email &amp; Password</a></li>
-                                    <li class="inactive"><a href="profile.php?do=editoptions">General Settings</a></li>
-                                    <li class="inactive"><a href="profile.php?do=editconnections">Edit Connections</a></li>
-                                    <li class="inactive"><a href="profile.php?do=ignorelist">Edit Ignore List</a></li>
-                                    <li class="inactive"><a href="payments.php">Paid Subscriptions</a></li>
-                                    <li class="inactive"><a href="badge.php">Profile Badge</a></li>
-                                    <li class="inactive"><a href="profile.php?do=editdirectory">Directory Listing</a></li>
+                                    <li class="inactive"><a href="AddNewUser.aspx">Add New User</a></li>
+                                    <li class="inactive"><a href="SearchForUsers.aspx">Search for Users</a></li>
+                                    <li class="inactive"><a href="BanUser.aspx">Ban User</a></li>
+                                    <li class="inactive"><a href="BannedUsers.aspx">View Banned Users</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <h3 class="blocksubhead">
-                                    <img class="usercpimage" src="http://i.dpstatic.com/site_icons/network.png" alt="Networking"
-                                        border="0" />
-                                    Networking</h3>
+                                    <img class="usercpimage" src="" alt="Roles" border="0" />
+                                    Roles Manager</h3>
                                 <ul class="blockrow">
-                                    <li class="inactive"><a href="profile.php?do=buddylist">Friends &amp; Contacts</a></li>
-                                    <li class="inactive"><a href="calendar.php?do=viewreminder">Event Reminders</a></li>
+                                    <li class="inactive"><a href="SearchForUsers.aspx">Role Manager</a></li>
+                                    <li class="inactive"><a href="AddNewUser.aspx">Add New Role</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <h3 class="blocksubhead">
-                                    <img class="usercpimage" src="http://i.dpstatic.com/site_icons/cart.png" alt="Marketplace"
-                                        border="0" />
-                                    Marketplace</h3>
+                                    <img class="usercpimage" src="" alt="" border="0" />
+                                </h3>
                                 <ul class="blockrow">
-                                    <li class=""><a href="marketplace.php?do=settings">Settings</a></li>
-                                    <li class=""><a href="marketplace.php?do=won">Items Won</a></li>
-                                    <li class=""><a href="marketplace.php?do=payments">Payment History</a></li>
                                 </ul>
-                            </li>
-                            <li>
-                                <h3 class="blocksubhead">
-                                    <img class="usercpimage" src="http://i.dpstatic.com/site_icons/forum.png" alt="Forums"
-                                        border="0" />
-                                    Miscellaneous</h3>
-                                <ul class="blockrow">
-                                    <li class="inactive"><a href="profile.php?do=editattachments">Attachments</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <h4 class="blocksubhead">
-                                    <img class="usercpimage" src="http://i.dpstatic.com/cms/widget-blog.png" alt="Blog"
-                                        border="0" />
-                                    <a href="http://blogs.digitalpoint.com/blog_usercp.php" class="usercp_blog">Blog</a></h4>
                             </li>
                         </ul>
                     </div>

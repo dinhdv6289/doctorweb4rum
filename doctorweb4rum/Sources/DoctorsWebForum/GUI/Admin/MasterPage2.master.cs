@@ -91,10 +91,7 @@ public partial class GUI_Admin_MasterPage2 : System.Web.UI.MasterPage
         }
     }
 
-    protected void btnSearch_Click(object sender, ImageClickEventArgs e)
-    {
-        Response.Redirect("Search.aspx?searchString=" + txtSearch.Text);
-    }
+    
     protected void Logoutlnk_Click(object sender, EventArgs e)
     {
         Session.Remove("UserLoged");
