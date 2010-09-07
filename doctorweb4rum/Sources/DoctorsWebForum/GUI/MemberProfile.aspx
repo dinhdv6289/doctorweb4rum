@@ -21,7 +21,7 @@
                         <span class="usertitle"><%= GetMember().FullName%></span> </span>
                 </h1>
                 <div id="userinfoblock" class="floatcontainer">
-                <% if (GetMemberProfileByMemberID().Avatar != null)
+                <% if (GetMemberProfileByMemberID().MemberID != null)
                    { %>
                                     <a class="avatar" href="member.php?u=451746" title="<%= GetMember().UserName %>'s Avatar"><span class="avatarcontainer">
                         <img src="<%= GetMemberProfileByMemberID().Avatar  %>" alt="" /></span> </a>
@@ -51,10 +51,7 @@
                             Mini Statistics</h5>
                         <div class="blockrow">
                             <dl class="stats">
-                                <dt>Join Date</dt>
-                                <dd>
-                                    <%= GetMember().DateCreation%></dd>
-                            </dl>
+                                <dt>Join Date</dt><dd><%= GetMember().DateCreation%></dd></dl>
                         </div>
                     </div>
                     <!-- blockbody -->
@@ -143,17 +140,15 @@
                         <a class="textcontrol" href="member.php?u=451746&amp;tab=aboutme&amp;simple=1">View
                             your "About Me" as seen by everyone else</a> <span class="subsectiontitle">About letcomvn</span>
                     </h3>
+                    
                     <!-- basic information -->
-                    <h4 class="subsectionhead-understate" id="about-me">
-                        Information</h4>
+                    
                     <div class="subsection">
                         <h5 class="profilecategorytitle">
-                            About letcomvn</h5>
+                            About <%= GetMember().FullName %></h5>
                         <div>
                             <dl class="stats">
-                                <dt id="profilefield_title_1">Biography</dt>
-                                <dd id="profilefield_value_1">
-                                    N/A
+                                <dt id="profilefield_title_1">Full Name</dt><dd id="profilefield_value_1"><%= GetMember().FullName %>
 
                                     <script type="text/javascript">
 <!--
@@ -164,9 +159,7 @@ vBulletin.register_control("vB_ProfilefieldEditor", "1");
                                 </dd>
                             </dl>
                             <dl class="stats">
-                                <dt id="profilefield_title_2">Location</dt>
-                                <dd id="profilefield_value_2">
-                                    N/A
+                                <dt id="profilefield_title_2">Email</dt><dd id="profilefield_value_2"><%= GetMember().Email %>
 
                                     <script type="text/javascript">
 <!--
@@ -177,9 +170,7 @@ vBulletin.register_control("vB_ProfilefieldEditor", "2");
                                 </dd>
                             </dl>
                             <dl class="stats">
-                                <dt id="profilefield_title_3">Interests</dt>
-                                <dd id="profilefield_value_3">
-                                    N/A
+                                <dt id="profilefield_title_3">Date Creation</dt><dd id="profilefield_value_3"><%= GetMember().DateCreation %>
 
                                     <script type="text/javascript">
 <!--
@@ -191,9 +182,206 @@ vBulletin.register_control("vB_ProfilefieldEditor", "3");
                                 </dd>
                             </dl>
                             <dl class="stats">
-                                <dt id="profilefield_title_4">Occupation</dt>
-                                <dd id="profilefield_value_4">
-                                    N/A
+                                <dt id="profilefield_title_4">Blast</dt><dd id="profilefield_value_4"><%= GetMemberProfileByMemberID().Blast %>
+
+                                    <script type="text/javascript">
+<!--
+vBulletin.register_control("vB_ProfilefieldEditor", "4");
+//-->
+                                    </script>
+
+                                </dd>
+                            </dl>
+                            <dl class="stats">
+                                <dt id="Dt1">Avatar</dt><dd id="Dd1"><img src="<%= GetMemberProfileByMemberID().Avatar %>" />
+
+                                    <script type="text/javascript">
+<!--
+vBulletin.register_control("vB_ProfilefieldEditor", "4");
+//-->
+                                    </script>
+
+                                </dd>
+                            </dl>
+                            <dl class="stats">
+                                <dt id="Dt2">Country</dt><dd id="Dd2"><%= GetMemberProfileByMemberID().Country %>
+
+                                    <script type="text/javascript">
+<!--
+vBulletin.register_control("vB_ProfilefieldEditor", "4");
+//-->
+                                    </script>
+
+                                </dd>
+                            </dl>
+                            <dl class="stats">
+                                <dt id="Dt3">Address</dt><dd id="Dd3"><%= GetMemberProfileByMemberID().Address %>
+
+                                    <script type="text/javascript">
+<!--
+vBulletin.register_control("vB_ProfilefieldEditor", "4");
+//-->
+                                    </script>
+
+                                </dd>
+                            </dl>
+                            <dl class="stats">
+                                <dt id="Dt4">BirthDay</dt><dd id="Dd4"><%= GetMemberProfileByMemberID().BirthDay %>
+
+                                    <script type="text/javascript">
+<!--
+vBulletin.register_control("vB_ProfilefieldEditor", "4");
+//-->
+                                    </script>
+
+                                </dd>
+                            </dl>
+                            <dl class="stats">
+                                <dt id="Dt5">Gender</dt><dd id="Dd5"><% if(GetMemberProfileByMemberID().Gender==true){ %>
+                                            Male
+                                            <% }else{ %> Female <% } %>
+                                    <script type="text/javascript">
+<!--
+vBulletin.register_control("vB_ProfilefieldEditor", "4");
+//-->
+                                    </script>
+
+                                </dd>
+                            </dl>
+                            <dl class="stats">
+                                <dt id="Dt6">Yahoo</dt><dd id="Dd6"><%= GetMemberProfileByMemberID().Yahoo %>
+
+                                    <script type="text/javascript">
+<!--
+vBulletin.register_control("vB_ProfilefieldEditor", "4");
+//-->
+                                    </script>
+
+                                </dd>
+                            </dl>
+                            <dl class="stats">
+                                <dt id="Dt7">Phone</dt><dd id="Dd7"><%= GetMemberProfileByMemberID().Phone %>
+
+                                    <script type="text/javascript">
+<!--
+vBulletin.register_control("vB_ProfilefieldEditor", "4");
+//-->
+                                    </script>
+
+                                </dd>
+                            </dl>
+                            <dl class="stats">
+                                <dt id="Dt8">Hospital</dt><dd id="Dd8"><%= GetMemberProfileByMemberID().Hospital %>
+
+                                    <script type="text/javascript">
+<!--
+vBulletin.register_control("vB_ProfilefieldEditor", "4");
+//-->
+                                    </script>
+
+                                </dd>
+                            </dl>
+                            <dl class="stats">
+                                <dt id="Dt9">Blog</dt><dd id="Dd9"><%= GetMemberProfileByMemberID().Blog %>
+
+                                    <script type="text/javascript">
+<!--
+vBulletin.register_control("vB_ProfilefieldEditor", "4");
+//-->
+                                    </script>
+
+                                </dd>
+                            </dl>
+                            <dl class="stats">
+                                <dt id="Dt10">Total Posts</dt><dd id="Dd10"><%= GetMemberProfileByMemberID().TotalPosts %>
+
+                                    <script type="text/javascript">
+<!--
+vBulletin.register_control("vB_ProfilefieldEditor", "4");
+//-->
+                                    </script>
+
+                                </dd>
+                            </dl>
+                            <dl class="stats">
+                                <dt id="Dt11">Total Thanks</dt><dd id="Dd11"><%= GetMemberProfileByMemberID().TotalThanks %>
+
+                                    <script type="text/javascript">
+<!--
+vBulletin.register_control("vB_ProfilefieldEditor", "4");
+//-->
+                                    </script>
+
+                                </dd>
+                            </dl>
+                            <dl class="stats">
+                                <dt id="Dt12">Total Thanked</dt><dd id="Dd12"><%= GetMemberProfileByMemberID().TotalThanked %>
+
+                                    <script type="text/javascript">
+<!--
+vBulletin.register_control("vB_ProfilefieldEditor", "4");
+//-->
+                                    </script>
+
+                                </dd>
+                            </dl>
+                            <dl class="stats">
+                                <dt id="Dt13">Current Experience</dt><dd id="Dd13"><%= GetMemberProfileByMemberID().CurrentExperience %>
+
+                                    <script type="text/javascript">
+<!--
+vBulletin.register_control("vB_ProfilefieldEditor", "4");
+//-->
+                                    </script>
+
+                                </dd>
+                            </dl>
+                            <dl class="stats">
+                                <dt id="Dt14">Member Level</dt><dd id="Dd14"><%= GetMemberProfileByMemberID().MemberLevel %>
+
+                                    <script type="text/javascript">
+<!--
+vBulletin.register_control("vB_ProfilefieldEditor", "4");
+//-->
+                                    </script>
+
+                                </dd>
+                            </dl>
+                            <dl class="stats">
+                                <dt id="Dt15">Last Login</dt><dd id="Dd15"><%= GetMemberProfileByMemberID().LastLogin %>
+
+                                    <script type="text/javascript">
+<!--
+vBulletin.register_control("vB_ProfilefieldEditor", "4");
+//-->
+                                    </script>
+
+                                </dd>
+                            </dl>
+                            <dl class="stats">
+                                <dt id="Dt16">My Rss</dt><dd id="Dd16"><%= GetMemberProfileByMemberID().MyRss %>
+
+                                    <script type="text/javascript">
+<!--
+vBulletin.register_control("vB_ProfilefieldEditor", "4");
+//-->
+                                    </script>
+
+                                </dd>
+                            </dl>
+                            <dl class="stats">
+                                <dt id="Dt17">Signature</dt><dd id="Dd17"><%= GetMemberProfileByMemberID().Signature %>
+
+                                    <script type="text/javascript">
+<!--
+vBulletin.register_control("vB_ProfilefieldEditor", "4");
+//-->
+                                    </script>
+
+                                </dd>
+                            </dl>
+                            <dl class="stats">
+                                <dt id="Dt18">About Me</dt><dd id="Dd18"><%= GetMemberProfileByMemberID().AboutMe %>
 
                                     <script type="text/javascript">
 <!--
@@ -205,64 +393,7 @@ vBulletin.register_control("vB_ProfilefieldEditor", "4");
                             </dl>
                         </div>
                     </div>
-                    <!-- contactinfo -->
-                    <div id="view-contactinfo" class="block">
-                        <!-- contact information -->
-                        <h4 class="subsectionhead-understate" id="contact-info">
-                            Contact</h4>
-                        <div class="subsection">
-                            <dl class="stats">
-                                <dt>This Page</dt>
-                                <dd>
-                                    <a href="http://forums.digitalpoint.com/member.php?u=451746">http://forums.digitalpoint.com/member.php?u=451746</a></dd>
-                            </dl>
-                        </div>
-                    </div>
-                    <div class="underblock">
-                    </div>
-                    <!-- / contactinfo -->
-                    <!-- stats -->
-                    <div id="view-stats" class="block">
-                        <!-- Statistics -->
-                        <h4 id="view-statistics" class="subsectionhead-understate">
-                            Statistics</h4>
-                        <div class="subsection">
-                            <h5 class="subsubsectionhead">
-                                Total Posts</h5>
-                            <dl class="stats">
-                                <dt>Total Posts</dt>
-                                <dd>
-                                    0</dd>
-                            </dl>
-                            <dl class="stats">
-                                <dt>Posts Per Day</dt>
-                                <dd>
-                                    0</dd>
-                            </dl>
-                            <h5 class="subsubsectionhead">
-                                General Information</h5>
-                            <dl class="stats">
-                                <dt>Last Activity</dt>
-                                <dd>
-                                    Today <span class="time">12:44 pm</span></dd>
-                            </dl>
-                            <dl class="stats">
-                                <dt>Current Activity</dt>
-                                <dd>
-                                    Viewing User Profile
-                                </dd>
-                            </dl>
-                            <dl class="stats">
-                                <dt>Join Date</dt>
-                                <dd>
-                                    Aug 8th 2010</dd>
-                            </dl>
-                            <dl class="stats">
-                                <dt>Referrals</dt>
-                                <dd>
-                                    0</dd>
-                            </dl>
-                        </div>
+                    
                         <!-- view-statistics -->
                     </div>
                     <div class="underblock">
