@@ -245,6 +245,19 @@ ALTER TABLE ThankPost ADD CONSTRAINT FK_ThankPost_FromMember FOREIGN KEY (FromMe
 ALTER TABLE ThankPost ADD CONSTRAINT FK_ThankPost_PostID FOREIGN KEY (PostID) REFERENCES Posts(PostID)
 
 	
+go
+
+--IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'UserBan' AND TYPE = 'U')
+--DROP TABLE UserBan
+--GO
+--CREATE TABLE UserBan
+--(
+--	UserBanID int IDENTITY(1,1) PRIMARY KEY,
+--	BanBy  int not null,
+--	UserBanned int not null,
+--	BanAt DATETIME DEFAULT GETDATE(),
+--	Reason nvarchar(100) null
+--)
 
 
 

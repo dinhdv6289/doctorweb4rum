@@ -330,5 +330,147 @@ namespace DAL
         //    }
         //    return result;
         //}
+
+        public int UpdateMemberInfoByAdmin(Member member, MemberProfile memberProfile)
+        {
+            int result = 0;
+            try
+            {
+                String[] columnNamesInfo = {MemberID,Email, FullName, RoleID, Blast, Avatar, Country, Address, 
+                                                    BirthDay, Yahoo, Phone, Blog,Hospital,Signature,AboutMe};
+                Object[] values = {member.MemberID , member.Email, member.FullName ,memberProfile.RoleID, memberProfile.Blast, memberProfile.Avatar, memberProfile.Country, memberProfile.Address,
+                memberProfile.BirthDay, memberProfile.Yahoo, memberProfile.Phone,  memberProfile.Blog, memberProfile.Hospital, memberProfile.Signature, memberProfile.AboutMe};
+                result = ProcessTableTypeStore("UpdateMemberInfoByAdmin", columnNamesInfo, values);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public int UpdateMemberInfo(Member member, MemberProfile memberProfile)
+        {
+            int result = 0;
+            try
+            {
+                String[] columnNamesInfo = {MemberID,Password,Email, FullName,  Blast, Avatar, Country, Address, 
+                                                    BirthDay, Yahoo, Phone, Blog,Hospital,Signature,AboutMe};
+                Object[] values = {member.MemberID ,member.Password, member.Email,member.FullName, memberProfile.Blast, memberProfile.Avatar, memberProfile.Country, memberProfile.Address,
+                memberProfile.BirthDay, memberProfile.Yahoo, memberProfile.Phone,  memberProfile.Blog, memberProfile.Hospital, memberProfile.Signature, memberProfile.AboutMe};
+                result = ProcessTableTypeStore("UpdateMemberInfo", columnNamesInfo, values);
+ 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public DataSet GetAllInfoOfMemberByMemberID(int memberID)
+        {
+            DataSet allMemberInfo = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("GetAllInfoOfMemberByMemberID {0}", memberID);
+                allMemberInfo = ExecuteDataset(cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            if (allMemberInfo.Tables[0].Rows.Count > 0)
+            {
+                return allMemberInfo;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public int BanOrUnBanUser(int memberID,Boolean allowLogin)
+        {
+            int result = 0;
+            try
+            {
+                String[] columnNamesInfo = {MemberID,AllowLogin};
+                Object[] values = {memberID,allowLogin};
+                result = ProcessTableTypeStore("BanOrUnBanUser", columnNamesInfo, values);
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public Member GetMemberByUserName(String userName)
+        {
+            Member[] result = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("GetMemberByUserName {0}", userName);
+                result = SelectCollection<Member>(columnNames, columnNames, cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            if (result.Length > 0)
+            {
+                return result[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public Member[] GetBannedUsers()
+        {
+            Member[] result = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("GetBannedUsers");
+                result = SelectCollection<Member>(columnNames, columnNames, cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public Member GetBannedUser(int memberID)
+        {
+            Member[] result = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("GetBannedUser {0}", memberID);
+                result = SelectCollection<Member>(columnNames, columnNames, cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            if (result.Length > 0)
+            {
+                return result[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

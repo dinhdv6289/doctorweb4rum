@@ -1,11 +1,14 @@
 <%@ Page Language="C#" MasterPageFile="~/GUI/Admin/MasterPage2.master" AutoEventWireup="true"
-    CodeFile="Default.aspx.cs" Inherits="GUI_Admin_Default" Title="Untitled Page" %>
+    CodeFile="Default.aspx.cs" Inherits="GUI_Admin_Default" Title="Forum Manager" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <h2 class="blocksubhead" align="center" id="ForumManager">
+        Forum Manager</h2>
     <div class="threadlist" id="threadlist">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="True">
             <contenttemplate>
-<asp:Panel id="repeaterForumsPanel" runat="server"><asp:Repeater id="repeaterForums" runat="server" OnItemCreated="repeaterForums_ItemCreated" OnItemCommand="repeaterForums_ItemCommand" OnItemDataBound="repeaterForums_ItemDataBound">
+<asp:Panel id="repeaterForumsPanel" runat="server">
+<asp:Repeater id="repeaterForums" runat="server" OnItemCreated="repeaterForums_ItemCreated" OnItemCommand="repeaterForums_ItemCommand" OnItemDataBound="repeaterForums_ItemDataBound">
                 <ItemTemplate>
                     <div class="threadlisthead table">
                         <div>

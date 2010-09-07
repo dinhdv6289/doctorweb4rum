@@ -7,7 +7,7 @@ font-size:11px;
 margin-bottom:2px;
 }
 .bbcode_container div.bbcode_code, .bbcode_container pre.bbcode_code {
-background:url("Images/content3image-alpha.png") repeat-x scroll 0 0 #F0FAF2;
+background:url("../Images/content3image-alpha.png") repeat-x scroll 0 0 #F0FAF2;
 border:1px inset;
 direction:ltr;
 font-size:12px;
@@ -35,7 +35,7 @@ position:relative;
 top:0;
 }
 .bbcode_container .bbcode_quote_container {
-background:url("Images/quote-left.png") no-repeat scroll left center transparent;
+background:url("../Images/quote-left.png") no-repeat scroll left center transparent;
 display:block;
 height:13px;
 left:-9px;
@@ -108,7 +108,7 @@ margin-right:5px;
 .editor_controls ul.right {
 }
 .editor_controls > ul > li {
-background:url("Images/separator.gif") no-repeat scroll left center transparent;
+background:url("../Images/separator.gif") no-repeat scroll left center transparent;
 float:left;
 padding-left:6px;
 position:relative;
@@ -315,7 +315,7 @@ line-height:17px;
 }
 .editor_controls .popupmenu div.popupctrl {
 background-color:#FFFFFF;
-background-image:url("Images/popupctrl.png");
+background-image:url("../Images/popupctrl.png");
 background-position:right center;
 background-repeat:no-repeat;
 border:1px solid #E1E2E1;
@@ -610,7 +610,7 @@ border-style:none solid solid;
 border-width:0 1px 1px;
 }
 .popupbody {
-background:url("Images/top-highlight.png") repeat-x scroll 0 0 #AACCBB;
+background:url("../Images/top-highlight.png") repeat-x scroll 0 0 #AACCBB;
 border:1px solid #355B4C;
 display:none;
 left:0;
@@ -846,14 +846,14 @@ font-family:Tahoma,Calibri,Verdana,Geneva,sans-serif;
 }
 .button {
 -moz-border-radius:3px 3px 3px 3px;
-background:url("Images/newbtn_middle.png") repeat-x scroll left top #E9E9E9;
+background:url("../Images/newbtn_middle.png") repeat-x scroll left top #E9E9E9;
 border:1px solid #435F5F;
 color:#424242;
 font:bold 11px Tahoma,Calibri,Verdana,Geneva,sans-serif;
 padding:2.5px 5px;
 }
 .button:hover {
-background:url("Images/generic_button.png") repeat-x scroll 0 0 #EFEFEF;
+background:url("../Images/generic_button.png") repeat-x scroll 0 0 #EFEFEF;
 color:#424242;
 }
 body, legend {
@@ -884,7 +884,7 @@ padding:0;
 .blockhead {
 -moz-border-radius-topleft:5px;
 -moz-border-radius-topright:5px;
-background:url("Images/gradient-white-down.png") repeat-x scroll 0 0 #527A67;
+background:url("../Images/gradient-white-down.png") repeat-x scroll 0 0 #527A67;
 border:1px solid #355B4C;
 color:#FFFFFF;
 font:12px Tahoma,Calibri,Verdana,Geneva,sans-serif;
@@ -903,7 +903,7 @@ color:#419473;
 margin-bottom:-4px;
 }
 .blocksubhead {
-background:url("Images/subheading-gradient-alpha.png") repeat-x scroll 0 0 #85AB9C;
+background:url("../Images/subheading-gradient-alpha.png") repeat-x scroll 0 0 #85AB9C;
 color:#3E3E3E;
 padding:4px 10px;
 }
@@ -963,7 +963,7 @@ text-align:right;
 margin-bottom:10px;
 }
 .wysiwyg_block .blockrow:first-child {
-background:url("images/gradients/gradient-greytowhite.png") repeat-x scroll left top transparent;
+background:url("../Images/gradients/gradient-greytowhite.png") repeat-x scroll left top transparent;
 }
 .wysiwyg_block iframe.textbox {
 background:none repeat scroll 0 0 #F3F9F7;
@@ -993,7 +993,7 @@ display:table-cell;
 position:relative;
 }
 .popupmenu a.popupctrl {
-background-image:url("Images/black_downward_arrow.png");
+background-image:url("../Images/black_downward_arrow.png");
 background-position:right center;
 background-repeat:no-repeat;
 padding-right:15px;
@@ -1064,7 +1064,7 @@ display:none;
 display:none;
 }
 .pagination span.selected a {
-background:url("Images/newbtn_middle.png") repeat scroll 0 0 #AACCBB;
+background:url("../Images/newbtn_middle.png") repeat scroll 0 0 #AACCBB;
 border:1px solid #355B4C;
 color:#FFFFFF;
 font-weight:bold;
@@ -1073,7 +1073,7 @@ margin-left:1px;
 padding:2px 4px;
 }
 .pagination span b {
-background:url("Images/newbtn_middle.png") repeat scroll 0 0 #AACCBB;
+background:url("../Images/newbtn_middle.png") repeat scroll 0 0 #AACCBB;
 border:1px solid #355B4C;
 color:#FFFFFF;
 font-weight:bold;
@@ -1094,7 +1094,7 @@ border:0 none;
 text-align:center;
 }
 .pagination span a.popupctrl {
-background:url("Images/black_downward_arrow.png") no-repeat scroll left center #E2ECE1;
+background:url("../Images/black_downward_arrow.png") no-repeat scroll left center #E2ECE1;
 height:15.99px;
 padding-left:18px;
 padding-right:4px;
@@ -1105,7 +1105,7 @@ color:#3E3E3E;
 }
 .textcontrols a, a.textcontrol {
 -moz-border-radius:3px 3px 3px 3px;
-background:url("Images/newbtn_middle.png") repeat-x scroll left top #E9E9E9;
+background:url("../Images/newbtn_middle.png") repeat-x scroll left top #E9E9E9;
 border:1px solid #435F5F;
 color:#424242;
 font:bold 11px/1.23 Tahoma,Calibri,Verdana,Geneva,sans-serif;
@@ -1124,7 +1124,7 @@ left:-2px;
 position:absolute;
 }
 .textcontrols a:hover, a.textcontrol:hover {
-background:url("Images/generic_button.png") repeat-x scroll 0 0 #EFEFEF;
+background:url("../Images/generic_button.png") repeat-x scroll 0 0 #EFEFEF;
 color:#419473;
 text-decoration:none;
 }
@@ -1161,18 +1161,18 @@ font:bold 11px Tahoma,Calibri,Verdana,Geneva,sans-serif;
 padding:3.33333px 6.66667px;
 }
 .navpopupmenu.popupmenu.nohovermenu a.textcontrol, .navpopupmenu.popupmenu.nohovermenu a.popupctrl {
-background:url("Images/newbtn_middle.png") repeat-x scroll left top #E9E9E9;
+background:url("../Images/newbtn_middle.png") repeat-x scroll left top #E9E9E9;
 border:1px solid #435F5F;
 color:#424242;
 font:bold 11px Tahoma,Calibri,Verdana,Geneva,sans-serif;
 padding:3.33333px 6.66667px;
 }
 .navpopupmenu.popupmenu.nohovermenu a.textcontrol:hover, .navpopupmenu.popupmenu.nohovermenu a.popupctrl:hover {
-background:url("Images/generic_button.png") repeat-x scroll 0 0 #EFEFEF;
+background:url("../Images/generic_button.png") repeat-x scroll 0 0 #EFEFEF;
 color:#419473;
 }
 .navpopupmenu .popupctrl .ctrlcontainer {
-background:url("Images/black_downward_arrow.png") no-repeat scroll left center transparent;
+background:url("../Images/black_downward_arrow.png") no-repeat scroll left center transparent;
 padding-left:15px;
 white-space:nowrap;
 }
@@ -1370,16 +1370,16 @@ text-align:center;
 text-decoration:none;
 }
 html > body dl.tabslight dd.selected a, html > body dl.tabslight dd.selected a:hover {
-background:url("Images/subheading-gradient-alpha.png") repeat-x scroll 0 0 #EEEEEE;
+background:url("../Images/subheading-gradient-alpha.png") repeat-x scroll 0 0 #EEEEEE;
 border-bottom:1px solid transparent;
 position:relative;
 }
 * dl.tabslight dd.selected a, * dl.tabslight dd.selected a:hover {
-background:url("Images/subheading-gradient-alpha.png") repeat-x scroll 0 0 #EEEEEE;
+background:url("../Images/subheading-gradient-alpha.png") repeat-x scroll 0 0 #EEEEEE;
 border-bottom:1px solid transparent;
 }
 dl.tabslight dd a:hover {
-background:url("Images/selected-tab-gradient-with-top-alpha.png") repeat-x scroll 0 -4px #9DBAA8;
+background:url("../Images/selected-tab-gradient-with-top-alpha.png") repeat-x scroll 0 -4px #9DBAA8;
 color:#499441;
 }
 .columnsort a, .columnsort span {
@@ -1409,7 +1409,7 @@ top:20px;
 top:10px;
 }
 #forumrules {
-background:url("Images/gradient-greytowhite.png") repeat-x scroll 0 0 #EAF4E9;
+background:url("../Images/gradient-greytowhite.png") repeat-x scroll 0 0 #EAF4E9;
 border-color:#EAF4E9 #355B4C #355B4C;
 border-style:solid;
 border-width:0 1px 1px;
@@ -1449,7 +1449,7 @@ blockquote.preview.forumcontent {
 font:13px Verdana,Tahoma,Arial,Calibri,Geneva,sans-serif;
 }
 blockquote.preview .bbcode_container div.bbcode_code, blockquote.preview .bbcode_container pre.bbcode_code {
-background:url("Images/content3image-alpha.png") repeat-x scroll 0 0 #F0FAF2;
+background:url("../Images/content3image-alpha.png") repeat-x scroll 0 0 #F0FAF2;
 border:1px inset;
 direction:ltr;
 font-size:12px;
@@ -1482,7 +1482,7 @@ position:relative;
 top:0;
 }
 blockquote.preview .bbcode_container .bbcode_quote_container {
-background:url("Images/quote-left.png") no-repeat scroll left center transparent;
+background:url("../Images/quote-left.png") no-repeat scroll left center transparent;
 display:block;
 height:13px;
 left:-9px;
@@ -1569,7 +1569,7 @@ float:right;
 }
 #inlinemod_formctrls .popupctrl {
 -moz-border-radius:3px 3px 3px 3px;
-background:url("Images/newbtn_middle.png") repeat-x scroll left top #E9E9E9;
+background:url("../Images/newbtn_middle.png") repeat-x scroll left top #E9E9E9;
 border:1px solid #435F5F;
 color:#424242;
 float:left;
@@ -1578,11 +1578,11 @@ padding-right:0;
 text-decoration:none;
 }
 #inlinemod_formctrls a.popupctrl:hover {
-background:url("Images/generic_button.png") repeat-x scroll 0 0 #EFEFEF;
+background:url("../Images/generic_button.png") repeat-x scroll 0 0 #EFEFEF;
 color:#419473;
 }
 #inlinemod_formctrls a.popupctrl span.ctrlcontainer {
-background:url("Images/black_downward_arrow.png") no-repeat scroll left center transparent;
+background:url("../Images/black_downward_arrow.png") no-repeat scroll left center transparent;
 display:inline-block;
 float:left;
 font-size:11px;
@@ -1830,7 +1830,7 @@ width:153px;
 #premium_dialog {
 -moz-border-radius:10px 10px 10px 10px;
 -moz-box-shadow:-5px 5px 10px #999999;
-background:url("Images/premium.png") no-repeat scroll 95% 7% #000000;
+background:url("../Images/premium.png") no-repeat scroll 95% 7% #000000;
 border:0 none;
 color:#DDDDDD;
 left:20%;
@@ -1906,8 +1906,8 @@ top:1px;
 .above_body {
 -moz-border-radius-bottomleft:5px;
 -moz-border-radius-bottomright:5px;
-background:url("Images/gradient-grey-down.png") repeat-x scroll 0 0 #426A57;
-margin:0 0 30px;
+background:url("../Images/gradient-grey-down.png") repeat-x scroll 0 0 #426A57;
+margin:0 0 10px;
 padding:0;
 width:100%;
 }
@@ -1926,7 +1926,7 @@ display:none;
 .logo-image {
 clear:right;
 float:left;
-height:120px;
+height:30px;
 width:100%;
 padding:10px 0 0 20px;
 }
@@ -2148,7 +2148,7 @@ display:none;
 background:none repeat scroll 0 0 #436957;
 color:#FFFFFF;
 font:11px Arial,Calibri,Verdana,Geneva,sans-serif;
-height:50px;
+height:30px;
 margin:5px 0 0;
 position:relative;
 }
@@ -2159,7 +2159,7 @@ color:#FFFFFF;
 color:#FFFFFF;
 }
 .navtabs {
-background:url("Images/gradient-white-down-sm.png") repeat-x scroll 0 0 #618872;
+background:url("../Images/gradient-white-down-sm.png") repeat-x scroll 0 0 #618872;
 height:26px;
 padding:0 0 0 20px;
 }
@@ -2195,7 +2195,7 @@ line-height:26px;
 padding:0 10px;
 }
 .navtabs li a.navtab {
-background:url("Images/gradient-white-down-sm.png") repeat-x scroll 0 0 #618872;
+background:url("../Images/gradient-white-down-sm.png") repeat-x scroll 0 0 #618872;
 border-left:1px solid #AFD5C5;
 border-top:1px solid #AFD5C5;
 color:#FFFFFF;
@@ -2207,7 +2207,7 @@ text-decoration:none;
 width:auto !important;
 }
 .navtabs li a.navtab:hover {
-background:url("Images/selected-tab-gradient-with-top-alpha.png") repeat-x scroll 0 -4px #9DBAA8;
+background:url("../Images/selected-tab-gradient-with-top-alpha.png") repeat-x scroll 0 -4px #9DBAA8;
 color:#111111;
 }
 .navtabs li.selected {
@@ -2215,7 +2215,7 @@ color:#111111;
 height:26px;
 }
 .navtabs li.selected a.navtab {
-background:url("Images/selected-tab-gradient-with-top-alpha.png") repeat-x scroll 0 0 #9DBAA8;
+background:url("../Images/selected-tab-gradient-with-top-alpha.png") repeat-x scroll 0 0 #9DBAA8;
 color:#111111;
 padding-top:4px;
 position:relative;
@@ -2253,7 +2253,7 @@ text-indent:0;
 }
 .navtabs li.selected li a.popupctrl {
 -moz-border-radius:3px 3px 3px 3px;
-background:url("Images/arrow.png") no-repeat scroll right center transparent;
+background:url("../Images/arrow.png") no-repeat scroll right center transparent;
 border:1px solid transparent;
 color:#FFFFFF;
 padding-right:15px;
@@ -2261,15 +2261,15 @@ padding-right:15px;
 .toplinks .notifications a.popupctrl {
 -moz-border-radius-bottomleft:5px;
 -moz-border-radius-bottomright:5px;
-background:url("Images/arrow.png") no-repeat scroll right center #71A892;
+background:url("../Images/arrow.png") no-repeat scroll right center #71A892;
 padding:3px 15px 3px 4px;
 }
 .toplinks .nonotifications a.popupctrl {
-background:url("Images/arrow.png") no-repeat scroll right center transparent;
+background:url("../Images/arrow.png") no-repeat scroll right center transparent;
 padding:3px 15px 3px 4px;
 }
 .toplinks .notifications a.popupctrl.active, .toplinks .notifications a.popupctrl:hover, .toplinks .nonotifications a.popupctrl:hover, .toplinks .nonotifications a.popupctrl.active {
-background:url("Images/arrow.png") no-repeat scroll right center #618872;
+background:url("../Images/arrow.png") no-repeat scroll right center #618872;
 padding:3px 15px 3px 4px;
 }
 .toplinks .notifications a.popupctrl.active {
@@ -2409,11 +2409,11 @@ padding:0;
 width:22px;
 }
 .breadcrumb > ul {
-background:url("Images/navbit-home.png") no-repeat scroll left top transparent;
+background:url("../Images/navbit-home.png") no-repeat scroll left top transparent;
 border:medium none;
 }
 .breadcrumb .navbit {
-background-image:url("Images/navbit-arrow-right.png");
+background-image:url("../Images/navbit-arrow-right.png");
 background-position:right center;
 background-repeat:no-repeat;
 float:left;
@@ -2449,7 +2449,7 @@ text-decoration:none;
 }
 .breadcrumb .navbit a.popupctrl {
 -moz-border-radius:3px 3px 3px 3px;
-background-image:url("Images/navbit-arrow-right.png");
+background-image:url("../Images/navbit-arrow-right.png");
 background-position:center center;
 padding:2px 6px;
 }
@@ -2481,7 +2481,7 @@ font-size:11px;
 .newcontent_textcontrol {
 -moz-border-radius:10px 10px 10px 10px;
 -moz-box-shadow:0 3px 8px #E1E1E1;
-background:url("Images/newbtn_middle.png") repeat-x scroll left top #527A67;
+background:url("../Images/newbtn_middle.png") repeat-x scroll left top #527A67;
 border:0 none #224A37;
 clear:right;
 color:#FFFFFF;
@@ -2496,7 +2496,7 @@ font-size:15px;
 font-weight:bold;
 }
 .newcontent_textcontrol:hover {
-background:url("Images/newbtn_middle.png") repeat-x scroll left top #436957;
+background:url("../Images/newbtn_middle.png") repeat-x scroll left top #436957;
 color:#FFFFFF;
 text-decoration:none;
 }
@@ -2615,7 +2615,7 @@ color:#992222;
 color:#FF847C;
 }
 #ad_global_header {
-background:url("Images/gradient-grey-down-angle-left.png") no-repeat scroll 0 0 #426A57;
+background:url("../Images/gradient-grey-down-angle-left.png") no-repeat scroll 0 0 #426A57;
 border:0 none;
 clear:both;
 left:26%;
@@ -2625,7 +2625,7 @@ top:0;
 width:298px;
 }
 .ad_global_header_right {
-background:url("Images/gradient-grey-down-angle-right.png") no-repeat scroll 0 0 #426A57;
+background:url("../Images/gradient-grey-down-angle-right.png") no-repeat scroll 0 0 #426A57;
 height:32px;
 left:266px;
 position:absolute;
@@ -2756,7 +2756,7 @@ padding-bottom:10px;
 -moz-border-radius-topleft:5px;
 -moz-border-radius-topright:5px;
 -moz-box-shadow:-2px 2px 2px transparent;
-background:url("Images/gradient-white-down.png") repeat-x scroll 0 0 #527A67;
+background:url("../Images/gradient-white-down.png") repeat-x scroll 0 0 #527A67;
 border:1px solid #355B4C;
 color:#FFFFFF;
 display:block;
@@ -2774,7 +2774,7 @@ float:none;
 margin-left:3px;
 margin-right:3px;
 }
-.computershead span.notes, .computershead span.mac, .computershead span.date, .computershead span.history, .computershead span.images {
+.computershead span.notes, .computershead span.mac, .computershead span.date, .computershead span.history, .computershead span.../Images {
 clear:right;
 display:block;
 float:left;
@@ -2792,10 +2792,10 @@ width:18%;
 .computershead span.history, .computersbit div.history {
 width:18%;
 }
-.computershead span.images, .computersbit div.images {
+.computershead span.../Images, .computersbit div.../Images {
 width:15%;
 }
-.computersbit div.images span {
+.computersbit div.../Images span {
 font-size:11px;
 }
 .computershead span.notes, .computersbit div.notes {
@@ -2803,7 +2803,7 @@ font-weight:bold;
 padding-left:10px;
 }
 .computersbit {
-background:url("Images/grey-up.png") repeat-x scroll left bottom #EAF4E9;
+background:url("../Images/grey-up.png") repeat-x scroll left bottom #EAF4E9;
 }
 td.blockhead {
 -moz-border-radius-topleft:0 !important;
@@ -3116,7 +3116,7 @@ padding-left:10px;
 padding-right:10px;
 }
 .actionbuttons .group .button {
-background:url("Images/newbtn_middle.png") repeat-x scroll left top #E9E9E9;
+background:url("../Images/newbtn_middle.png") repeat-x scroll left top #E9E9E9;
 border:1px solid #435F5F;
 color:#424242;
 cursor:pointer;
@@ -3124,7 +3124,7 @@ font:bold 11px Tahoma,Calibri,Verdana,Geneva,sans-serif;
 padding:2.5px 5px;
 }
 .actionbuttons .group .button:hover {
-background:url("Images/generic_button.png") repeat-x scroll 0 0 #EFEFEF;
+background:url("../Images/generic_button.png") repeat-x scroll 0 0 #EFEFEF;
 color:#419473;
 }
 .formcontrols .blockrow #posticon_preview {
@@ -3139,7 +3139,7 @@ width:496px;
 padding:2px;
 }
 .formcontrols .blockrow select.rating option {
-background-image:url("Images/rating-15_3.png");
+background-image:url("../Images/rating-15_3.png");
 background-position:left center;
 background-repeat:no-repeat;
 padding-left:85px;
@@ -3471,14 +3471,14 @@ padding:3px 0 0;
 }
 .navpopupmenu a.textcontrol, .navpopupmenu a.popupctrl {
 -moz-border-radius:3px 3px 3px 3px;
-background:url("Images/newbtn_middle.png") repeat-x scroll left top #E9E9E9;
+background:url("../Images/newbtn_middle.png") repeat-x scroll left top #E9E9E9;
 border:1px solid #435F5F;
 color:#424242;
 font:bold 11px Tahoma,Calibri,Verdana,Geneva,sans-serif;
 padding:3.33333px 6.66667px;
 }
 .navpopupmenu a.textcontrol:hover, .navpopupmenu a.popupctrl:hover {
-background:url("Images/generic_button.png") repeat-x scroll 0 0 #EFEFEF;
+background:url("../Images/generic_button.png") repeat-x scroll 0 0 #EFEFEF;
 color:#419473;
 }
 .pagetitle {
@@ -3488,7 +3488,7 @@ width:100%;
 }
 .thread_controls {
 -moz-border-radius:2px 2px 2px 2px;
-background:url("Images/newbtn_middle.png") repeat-x scroll 0 0 #92BAA7;
+background:url("../Images/newbtn_middle.png") repeat-x scroll 0 0 #92BAA7;
 border:1px solid #527A67;
 display:block;
 float:left;
@@ -3504,24 +3504,24 @@ padding:5px 0;
 width:100%;
 }
 .popupbody .rating {
-background:url("Images/rating-15_0.png") no-repeat scroll left center transparent;
+background:url("../Images/rating-15_0.png") no-repeat scroll left center transparent;
 display:block;
 padding:0 0 0 75px;
 }
 .popupbody .rating.r5 {
-background-image:url("Images/rating-15_5.png");
+background-image:url("../Images/rating-15_5.png");
 }
 .popupbody .rating.r4 {
-background-image:url("Images/rating-15_4.png");
+background-image:url("../Images/rating-15_4.png");
 }
 .popupbody .rating.r3 {
-background-image:url("Images/rating-15_3.png");
+background-image:url("../Images/rating-15_3.png");
 }
 .popupbody .rating.r2 {
-background-image:url("Images/rating-15_2.png");
+background-image:url("../Images/rating-15_2.png");
 }
 .popupbody .rating.r1 {
-background-image:url("Images/rating-15_1.png");
+background-image:url("../Images/rating-15_1.png");
 }
 .searchthread.popupmenu .popupbody {
 width:236px;
@@ -3559,7 +3559,7 @@ font-weight:bold;
 -moz-border-radius-topleft:5px;
 -moz-border-radius-topright:5px;
 -moz-box-shadow:-2px 2px 2px transparent;
-background:url("Images/newbtn_middle.png") repeat-x scroll 0 0 #527A67;
+background:url("../Images/newbtn_middle.png") repeat-x scroll 0 0 #527A67;
 border:1px solid #355B4C;
 color:#FFFFFF;
 font:bold 12px Tahoma,Calibri,Verdana,Geneva,sans-serif;
@@ -3576,7 +3576,7 @@ padding:4px 0 4px 10px;
 }
 .thread_info_block {
 -moz-box-shadow:-2px 2px 2px transparent;
-background:url("Images/gradient-greytowhite.png") repeat-x scroll 0 0 #EAF4E9;
+background:url("../Images/gradient-greytowhite.png") repeat-x scroll 0 0 #EAF4E9;
 border-bottom:1px solid #355B4C;
 border-left:1px solid #355B4C;
 border-right:1px solid #355B4C;
@@ -3678,7 +3678,7 @@ float:right;
 text-align:right;
 }
 a.firstunread {
-background:url("Images/firstnew.png") no-repeat scroll right center transparent;
+background:url("../Images/firstnew.png") no-repeat scroll right center transparent;
 border:1px solid transparent;
 display:inline-block;
 font-size:11px;
@@ -3722,7 +3722,7 @@ background:none repeat scroll 0 0 #F3F9F7;
 #posttreee .postoff {
 }
 #threaded_view h4 {
-background:url("Images/newbtn_middle.png") repeat-x scroll 0 0 #6F9777;
+background:url("../Images/newbtn_middle.png") repeat-x scroll 0 0 #6F9777;
 border:1px solid #355B4C;
 color:#FFFFFF;
 font:12px Tahoma,Calibri,Verdana,Geneva,sans-serif;
@@ -3781,7 +3781,7 @@ font-weight:bold;
 text-align:right;
 }
 #marketplace_bids .self {
-background:url("Images/gradient-white-down.png") repeat-x scroll left top #6D8966;
+background:url("../Images/gradient-white-down.png") repeat-x scroll left top #6D8966;
 }
 #marketplace_bids .cancel {
 text-decoration:line-through;
@@ -3854,7 +3854,7 @@ float:left;
 width:100%;
 }
 .postbit .posthead, .postbitlegacy .posthead, .eventbit .eventhead {
-background:url("Images/newbtn_middle.png") repeat-x scroll 0 0 #6F9777;
+background:url("../Images/newbtn_middle.png") repeat-x scroll 0 0 #6F9777;
 border-color:#355B4C -moz-use-text-color;
 border-style:solid none;
 border-width:1px 0;
@@ -3877,10 +3877,10 @@ padding-left:15px;
 width:49%;
 }
 .postbit .posthead .postdate.old, .postbitlegacy .posthead .postdate.old {
-background:url("Images/post_old.png") no-repeat scroll left center transparent;
+background:url("../Images/post_old.png") no-repeat scroll left center transparent;
 }
 .postbit .posthead .postdate.new, .postbitlegacy .posthead .postdate.new {
-background:url("Images/post_new.png") no-repeat scroll left center transparent;
+background:url("../Images/post_new.png") no-repeat scroll left center transparent;
 }
 .postbit .postdate .time {
 color:#FFFFFF;
@@ -3950,7 +3950,7 @@ display:inline;
 font-weight:normal;
 }
 .postbit.premium .userinfo, .postbit.premium .userinfo_noavatar {
-background-image:url("Images/premium.png");
+background-image:url("../Images/premium.png");
 background-position:70% center;
 background-repeat:no-repeat;
 }
@@ -4047,7 +4047,7 @@ height:auto;
 padding-bottom:5px;
 }
 .birthdays .posthead {
-background:url("Images/newbtn_middle.png") repeat-x scroll 0 0 #6F9777;
+background:url("../Images/newbtn_middle.png") repeat-x scroll 0 0 #6F9777;
 border:1px solid #355B4C;
 color:#FFFFFF;
 font:12px Tahoma,Calibri,Verdana,Geneva,sans-serif;
@@ -4241,7 +4241,7 @@ text-align:right;
 width:50%;
 }
 .postbitlegacy .postfoot .textcontrols a.post_thanks_button, .postbit .postfoot .textcontrols a.post_thanks_button {
-background:url("Images/post_thanks.png") no-repeat scroll left center transparent;
+background:url("../Images/post_thanks.png") no-repeat scroll left center transparent;
 padding-left:20px;
 }
 .postbitlegacy .postfoot .postlinking, .postbit .postfoot .postlinking {
@@ -4281,118 +4281,118 @@ padding-top:2px;
 padding-top:2px;
 }
 .postbitlegacy .postfoot .textcontrols a.editpost, .postbit .postfoot .textcontrols a.editpost, .eventbit .eventfoot .textcontrols a.editevent {
-background:url("Images/edit_40b.png") no-repeat scroll left center transparent;
+background:url("../Images/edit_40b.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.editpost:hover, .postbit .postfoot .textcontrols a.editpost:hover, .eventbit .eventfoot .textcontrols a.editevent:hover {
-background:url("Images/edit_40b-hover.png") no-repeat scroll left center transparent;
+background:url("../Images/edit_40b-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 
 .postbitlegacy .postfoot .textcontrols a.quickreply:hover, .postbit .postfoot .textcontrols a.quickreply:hover, .postbitlegacy .postfoot .textcontrols a.forwardpost:hover, .postbit .postfoot .textcontrols a.forwardpost:hover {
-background:url("Images/reply_40b-hover.png") no-repeat scroll left center transparent;
+background:url("../Images/reply_40b-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.editpost:hover, .postbit .postfoot .textcontrols a.post_thanks_button:hover, .eventbit .eventfoot .textcontrols a.editevent:hover {
-background:url("Images/post_thanks_button_hover.png") no-repeat scroll left center transparent;
+background:url("../Images/post_thanks_button_hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:10 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.quickreply, .postbit .postfoot .textcontrols a.quickreply, .postbitlegacy .postfoot .textcontrols a.forwardpost, .postbit .postfoot .textcontrols a.forwardpost {
-background:url("Images/reply_40b.png") no-repeat scroll left center transparent;
+background:url("../Images/reply_40b.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.quickreply:hover, .postbit .postfoot .textcontrols a.quickreply:hover, .postbitlegacy .postfoot .textcontrols a.forwardpost:hover, .postbit .postfoot .textcontrols a.forwardpost:hover {
-background:url("Images/reply_40b-hover.png") no-repeat scroll left center transparent;
+background:url("../Images/reply_40b-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.newreply, .postbit .postfoot .textcontrols a.newreply {
-background:url("Images/quote_40b.png") no-repeat scroll left center transparent;
+background:url("../Images/quote_40b.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.newreply:hover, .postbit .postfoot .textcontrols a.newreply:hover {
-background:url("Images/quote_40b-hover.png") no-repeat scroll left center transparent;
+background:url("../Images/quote_40b-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.multiquote, .postbit .postfoot .textcontrols a.multiquote {
-background:url("Images/multiquote-back_40b.png") no-repeat scroll left center transparent;
+background:url("../Images/multiquote-back_40b.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.multiquote:hover, .postbit .postfoot .textcontrols a.multiquote:hover {
-background:url("Images/multiquote_40b-hover.png") no-repeat scroll left center transparent;
+background:url("../Images/multiquote_40b-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.promotecms, .postbit .postfoot .textcontrols a.promotecms {
-background:url("Images/promote_small.png") no-repeat scroll left center transparent;
+background:url("../Images/promote_small.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.promotecms:hover, .postbit .postfoot .textcontrols a.promotecms:hover {
-background:url("Images/promote_small-hover.png") no-repeat scroll left center transparent;
+background:url("../Images/promote_small-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.infraction, .postbit .postfoot .textcontrols a.infraction {
-background:url("Images/add-infraction_sm.png") no-repeat scroll left center transparent;
+background:url("../Images/add-infraction_sm.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.infraction:hover, .postbit .postfoot .textcontrols a.infraction:hover {
-background:url("Images/add-infraction_sm-hover.png") no-repeat scroll left center transparent;
+background:url("../Images/add-infraction_sm-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.report, .postbit .postfoot .textcontrols a.report {
-background:url("Images/report-40b.png") no-repeat scroll left center transparent;
+background:url("../Images/report-40b.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.report:hover, .postbit .postfoot .textcontrols a.report:hover {
-background:url("Images/report-40b-hover.png") no-repeat scroll left center transparent;
+background:url("../Images/report-40b-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.blog, .postbit .postfoot .textcontrols a.blog {
-background:url("Images/blogpost_40b.png") no-repeat scroll left center transparent;
+background:url("../Images/blogpost_40b.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.blog:hover, .postbit .postfoot .textcontrols a.blog:hover {
-background:url("Images/blogpost_40b-hover.png") no-repeat scroll left center transparent;
+background:url("../Images/blogpost_40b-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.reputation, .postbit .postfoot .textcontrols a.reputation {
-background:url("Images/reputation-40b.png") no-repeat scroll left center transparent;
+background:url("../Images/reputation-40b.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.reputation:hover, .postbit .postfoot .textcontrols a.reputation:hover {
-background:url("Images/reputation-40b-hover.png") no-repeat scroll left center transparent;
+background:url("../Images/reputation-40b-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.ip, .postbit .postfoot .textcontrols a.ip {
-background:url("Images/ip-40b.png") no-repeat scroll left center transparent;
+background:url("../Images/ip-40b.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.ip:hover, .postbit .postfoot .textcontrols a.ip:hover {
-background:url("Images/ip-40b-hover.png") no-repeat scroll left center transparent;
+background:url("../Images/ip-40b-hover.png") no-repeat scroll left center transparent;
 border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.redcard, .postbit .postfoot .textcontrols a.redcard {
-background:url("Images/red-card_sm.png") no-repeat scroll left center transparent;
+background:url("../Images/red-card_sm.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
@@ -4402,7 +4402,7 @@ border:0 none;
 padding:0 0 0 20px;
 }
 .postbitlegacy .postfoot .textcontrols a.yellowcard, .postbit .postfoot .textcontrols a.yellowcard {
-background:url("Images/yellow-card_sm.png") no-repeat scroll left center transparent;
+background:url("../Images/yellow-card_sm.png") no-repeat scroll left center transparent;
 border:0 solid #A8A8A8;
 padding:0 0 0 20px;
 }
@@ -4450,7 +4450,7 @@ width:100%;
 display:none;
 }
 .postbitdeleted .posthead, .postbitignored .posthead {
-background:url("Images/newbtn_middle.png") repeat-x scroll 0 0 #6F9777;
+background:url("../Images/newbtn_middle.png") repeat-x scroll 0 0 #6F9777;
 border:1px solid #355B4C;
 color:#FFFFFF;
 display:table;
@@ -4461,7 +4461,7 @@ padding:4px 0;
 width:100%;
 }
 .postbitdeleted .posthead .date, .postbitignored .posthead .date {
-background:url("Images/post_old.png") no-repeat scroll left center transparent;
+background:url("../Images/post_old.png") no-repeat scroll left center transparent;
 color:#FFFFFF;
 display:inline-block;
 font:12px Tahoma,Calibri,Verdana,Geneva,sans-serif;
@@ -4610,21 +4610,21 @@ color:#777777;
 margin-left:50px;
 }
 .marketplace_bit .verified {
-background:url("Images/site-verified-large.png") no-repeat scroll 99% 90% transparent;
+background:url("../Images/site-verified-large.png") no-repeat scroll 99% 90% transparent;
 }
 .marketplace_bit .premium {
-background:url("Images/premium.png") no-repeat scroll 99% 90% transparent;
+background:url("../Images/premium.png") no-repeat scroll 99% 90% transparent;
 }
 .marketplace_bit .nonsticky {
-background:url("Images/grey-up.png") repeat-x scroll left bottom #EAF4E9;
+background:url("../Images/grey-up.png") repeat-x scroll left bottom #EAF4E9;
 min-height:146px;
 }
 .postbitlegacy .postfoot .textcontrols a.bump, .postbit .postfoot .textcontrols a.bump {
-background:url("Images/bump.png") no-repeat scroll left center transparent;
+background:url("../Images/bump.png") no-repeat scroll left center transparent;
 padding-left:20px;
 }
 .postbitlegacy .postfoot .textcontrols a.bump:hover, .postbit .postfoot .textcontrols a.bump:hover {
-background:url("Images/bump-hover.png") no-repeat scroll left center transparent;
+background:url("../Images/bump-hover.png") no-repeat scroll left center transparent;
 padding-left:20px;
 }
 blockquote.align_left {
@@ -4715,7 +4715,7 @@ padding-bottom:0;
 padding-right:10px;
 }
 .polloptionsblock {
-background:url("Images/poll_question_mark.png") no-repeat scroll 30px 10px #F3F3F3;
+background:url("../Images/poll_question_mark.png") no-repeat scroll 30px 10px #F3F3F3;
 padding-left:120px;
 }
 .pollresultsblock {
@@ -4907,7 +4907,7 @@ right:20px;
 	{
 		-moz-border-radius-topleft:5px;
 		-moz-border-radius-topright:5px;
-		background:url("Images/newbtn_middle.png") repeat-x scroll 0 0 #527A67;
+		background:url("../Images/newbtn_middle.png") repeat-x scroll 0 0 #527A67;
 		border:1px solid #355B4C;
 		clear:both;
 		color:#FFFFFF;
@@ -4938,7 +4938,7 @@ right:20px;
 	{
 		float:right;
 		display:inline;
-		background-image:url('Images/toggle-sprite.png');
+		background-image:url('../Images/toggle-sprite.png');
 		background-position: 0px -16px;
 		width:16px;
 		height:16px;
@@ -4948,7 +4948,7 @@ right:20px;
 	{
 		float:right;
 		display:inline;
-		background-image:url('Images/toggle-sprite.png');
+		background-image:url('../Images/toggle-sprite.png');
 		background-position: 0px 0px;
 		width:16px;
 		height:16px;
@@ -4973,12 +4973,12 @@ right:20px;
 	cursor:pointer;
 }
 .ratingStar .Filled {
-    background-image: url(Images/rating/ratingStarFilled.png);
+    background-image: url(../Images/rating/ratingStarFilled.png);
 }
 .ratingStar .Empty {
-    background-image: url(Images/rating/ratingStarEmpty.png);
+    background-image: url(../Images/rating/ratingStarEmpty.png);
 }
 .ratingStar .Saved {
-    background-image: url(Images/rating/ratingStarSaved.png);
+    background-image: url(../Images/rating/ratingStarSaved.png);
 }
 

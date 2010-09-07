@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/GUI/Admin/MasterPageAdmin.master" AutoEventWireup="true" CodeFile="AddNewForum.aspx.cs" Inherits="GUI_Admin_AddNewForum" Title="Untitled Page" %>
+<%@ Page Language="C#" MasterPageFile="~/GUI/Admin/MasterPage2.master" AutoEventWireup="true" CodeFile="AddNewForum.aspx.cs" Inherits="GUI_Admin_AddNewForum" Title="Untitled Page" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 fghg
     <br />
