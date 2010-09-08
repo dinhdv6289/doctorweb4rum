@@ -172,6 +172,9 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
             TextBox txtForumName = (TextBox)repeaterEditForum.Items[e.Item.ItemIndex].FindControl("txtForumName");
             cate.CategoryName = txtForumName.Text;
             CategoryBLL.UpdateCategory(cate);
+            Category[] categories1 = CategoryBLL.GetCategoryByID(Convert.ToInt32(e.CommandArgument));
+            repeaterEditForum.DataSource = categories1;
+            repeaterEditForum.DataBind();
         }
         if (e.CommandName == "ResetEdit")
         {
@@ -191,6 +194,10 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
             subForum.SubForumName = txtSubForumName.Text;
             subForum.Description = txtDescription.Text;
             SubForumBLL.UpdateSubForum(subForum);
+            SubForum subForum1 = SubForumBLL.GetSubForumBySubForumID(Convert.ToInt32(e.CommandArgument));
+            SubForum[] subForums = { subForum1 };
+            repeaterEditSubForum.DataSource = subForums;
+            repeaterEditSubForum.DataBind();
         }
         if (e.CommandName == "ResetEdit")
         {
@@ -198,6 +205,28 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
             SubForum[] subForums = { subForum };
             repeaterEditSubForum.DataSource = subForums;
             repeaterEditSubForum.DataBind();
+        }
+    }
+    protected void btnSaveOder_Click(object sender, EventArgs e)
+    {
+        Category[] categories = CategoryBLL.GetAllCategory();
+        for (int i = 0; i < categories.Length; i++ )
+        {
+            TextBox txtPriorityCategory = (TextBox)repeaterForums.Items[i].FindControl("txtPriorityCategory");
+            int priority = Convert.ToInt32(txtPriorityCategory.Text);
+            Category c = categories[i];
+            c.Priority = priority;
+            CategoryBLL.UpdateCategory(c);
+            Repeater rep = (Repeater)repeaterForums.Items[i].FindControl("repeaterSubForums");
+            SubForum[] subForums = GetAllSubForumsByCategoryID(c.CategoryID);
+            for (int j = 0; j < subForums.Length; j++ )
+            {
+                TextBox txtPrioritySubForum = (TextBox)repeaterSubForums.Items[i].FindControl("txtPrioritySubForum");
+                int prioritySubForum = Convert.ToInt32(txtPrioritySubForum.Text);
+                SubForum s = subForums[j];
+                s.Priority = prioritySubForum;
+                SubForumBLL.UpdateSubForum(s);
+            }
         }
     }
 }
