@@ -68,7 +68,10 @@
                         </li>
                     </ol>
                 </ItemTemplate>
-            </asp:Repeater> <%--end repeater 1--%><DIV class="blockfoot actionbuttons settings_form_border"><DIV class="group"><asp:Button id="btnAddNewForum" class="button" runat="server" Text="Add New Forum"></asp:Button> </DIV></DIV></asp:Panel>
+            </asp:Repeater> <%--end repeater 1--%>
+            <DIV class="blockfoot actionbuttons settings_form_border"><DIV class="group">
+            <asp:Button id="btnSaveOder" class="button" runat="server" Text="Save Display Oder" OnClick="btnSaveOder_Click"></asp:Button>
+            <asp:Button id="btnAddNewForum" class="button" runat="server" Text="Add New Forum"></asp:Button> </DIV></DIV></asp:Panel>
              <asp:Panel id="editForumPanel" runat="server"><asp:Repeater id="repeaterEditForum" runat="server" OnItemCommand="repeaterEditForum_ItemCommand">
                 <ItemTemplate>
             <div class="threadlist">
