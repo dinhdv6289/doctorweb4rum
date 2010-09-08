@@ -31,7 +31,7 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = String.Format("Select * from {0}", tableName);
+                cmd.CommandText = String.Format("Select * from {0} order by {1}", tableName,Priority);
                 result = SelectCollection<Category>(columnNames, columnNames, cmd);
             }
             catch (Exception ex)
@@ -123,6 +123,22 @@ namespace DAL
                 result = ProcessTableTypeStore("CategoriesDelete", keyColumns, keyValues);
             }
             catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public int InsertCategoryNotOutputReturn(Category category)
+        {
+            int result = 0;
+            try
+            {
+                String[] columnNamesToInsert = { CategoryName,Priority};
+                Object[] values = { category.CategoryName,category.Priority};
+                result = ProcessTableTypeStore("InsertCategory", columnNamesToInsert, values);
+            }
+            catch (System.Exception ex)
             {
                 throw ex;
             }

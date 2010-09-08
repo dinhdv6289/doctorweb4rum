@@ -15,11 +15,28 @@ public partial class GUI_Admin_AllMembers : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            Member[] members = MemberBLL.GetAllMember();
-            if (members.Length > 0)
+            if (Session["UserLoged"] != null)
             {
-                repeaterMembers.DataSource = members;
-                repeaterMembers.DataBind();
+                Member memberloged = (Member)Session["UserLoged"];
+                MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(memberloged.MemberID);
+                Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
+                if (role.RoleName.Equals("Admin"))
+                {
+                    Member[] members = MemberBLL.GetAllMember();
+                    if (members.Length > 0)
+                    {
+                        repeaterMembers.DataSource = members;
+                        repeaterMembers.DataBind();
+                    }
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
             }
         }
     }

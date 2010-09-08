@@ -15,4 +15,18 @@ public partial class GUI_ForumMessage : System.Web.UI.Page
     {
         this.Title = "Doctors WebForum";
     }
+
+    public String ContentsMessage()
+    {
+        String contents = "";
+        String typeMessage = Request.QueryString["typeMessage"];
+        if (typeMessage != null || typeMessage.Length > 0)
+        {
+            contents = typeMessage +
+                      "<ul>" +
+                        "<li><a href=\"Index.aspx\">Go to forums index</a></li>" +
+                      "</ul>";
+        }
+        return contents;
+    }
 }

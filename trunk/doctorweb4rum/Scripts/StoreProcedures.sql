@@ -611,3 +611,48 @@ end
 go
 
 
+--CREATE PROC UPDATECATEGORY BY CATEGORYID:
+CREATE PROC CategoriesUpdate
+@CategoryID as int,
+@CategoryName as nvarchar(50),
+@Priority as int,
+@DateCreation as datetime
+AS 
+UPDATE Categories SET 
+	CategoryName= @CategoryName,
+	Priority= @Priority,
+	DateCreation= @DateCreation
+WHERE 	
+	(@CategoryID = Categories.CategoryID)
+go
+
+--CREATE PROC DELETECATEGORY BY CATEGORY:
+CREATE PROC CategoriesDelete
+@CategoryID as int
+AS 
+DELETE Categories
+WHERE 	(@CategoryID = Categories.CategoryID)
+go
+
+--GetAllRoles
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetAllRoles' AND TYPE = 'P')
+DROP PROC GetAllRoles
+GO
+CREATE PROCEDURE GetAllRoles
+AS
+	BEGIN
+select * from dbo.Roles
+end
+go
+
+
+--InsertCategory
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'InsertCategory' AND TYPE = 'P')
+DROP PROC InsertCategory
+GO
+CREATE PROCEDURE InsertCategory
+@CategoryName nvarchar(50),
+@Priority  int
+ AS
+INSERT INTO Categories(	CategoryName,Priority) VALUES(@CategoryName,@Priority)
+go

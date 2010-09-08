@@ -4,14 +4,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="standard_error">
         <h2 class="blockhead">
-            Forum Message</h2>
+            Message Forum
+        </h2>
         <div class="blockbody formcontrols">
             <div class="blockrow restore">
-                All cookies cleared!
-                <ul>
-                    <%--<li><a href="#">Go to forums index</a></li>--%>
-                    <li><a href="Index.aspx">Go to forums index</a></li>
-                </ul>
+                <%=ContentsMessage() %>
+
             </div>
         </div>
     </div>
