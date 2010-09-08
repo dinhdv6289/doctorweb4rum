@@ -3,6 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Untitled Page</title>
+    <link href="Images/favicon.ico" rel="shortcut icon" />
+    <link href="Images/favicon.gif" type="image/gif" rel="icon" />
     <link href="css.css" rel="stylesheet" type="text/css" />
     <link href="css_002.css" rel="stylesheet" type="text/css" />
     <link type="text/css" href="JqueryStyle/themes/base/jquery.ui.all.css" rel="stylesheet" />
@@ -113,7 +115,6 @@ $(document).ready(function() {
                         </div>
                     </div>
                 </asp:Panel>
-
                 <hr />
             </div>
             <div class="navbar" id="navbar">
@@ -149,7 +150,6 @@ $(document).ready(function() {
                     <RootNodeStyle Font-Bold="True" ForeColor="#5D7B9D" />
                 </asp:SiteMapPath>
             </div>
-
             <!-- main -->
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>

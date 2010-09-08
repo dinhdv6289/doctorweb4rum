@@ -34,42 +34,52 @@ public partial class GUI_Login : System.Web.UI.Page
                 Session["id"] = member.MemberID;
                 member.IsOnline = true;
                 MemberBLL.UpdateMember(member);
-                MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
-                if (memberProfile != null)
+                if (member.AllowLogin)
                 {
-                    string origin = Request.QueryString["ReturnURL"];
-                    if (origin == null)
+                    MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
+                    if (memberProfile != null)
                     {
-                        origin = "Index.aspx";
+                        string origin = Request.QueryString["ReturnURL"];
+                        if (origin == null)
+                        {
+                            origin = "Index.aspx";
+                        }
+                        Session.Add("UserLoged", member);
+
+                        Response.Redirect(origin);
+                        //Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
+                        //if (role != null)
+                        //{
+                        //    if (role.RoleName.Equals("Member"))
+                        //    {
+                        //        Response.Redirect(origin);
+                        //    }
+                        //    if (role.RoleName.Equals("Moderator"))
+                        //    {
+                        //        Response.Redirect(origin);
+                        //    }
+                        //    if (role.RoleName.Equals("Super Moderator"))
+                        //    {
+                        //        Response.Redirect(origin);
+                        //    }
+                        //    if (role.RoleName.Equals("Admin"))
+                        //    {
+                        //        Response.Redirect(origin);
+                        //    }
+                        //}
                     }
-                    Session.Add("UserLoged", member);
-                    Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
-                    if (role != null)
-                    {
-                        if (role.RoleName.Equals("Member"))
-                        {
-                            Response.Redirect(origin);
-                        }
-                        if (role.RoleName.Equals("Moderator"))
-                        {
-                            Response.Redirect(origin);
-                        }
-                        if (role.RoleName.Equals("Super Moderator"))
-                        {
-                            Response.Redirect(origin);
-                        }
-                        if (role.RoleName.Equals("Admin"))
-                        {
-                            Response.Redirect(origin);
-                        }
-                    }
+                }else
+                {
+                    String contentMessage = "You have been banned forever!";
+                    Response.Redirect("ForumMessage.aspx?typeMessage=" + contentMessage);
                 }
             }
             else
             {
                 Response.Redirect("Login.aspx");
             }
-        }else
+        }
+        else
         {
             Response.Redirect("Login.aspx");
         }

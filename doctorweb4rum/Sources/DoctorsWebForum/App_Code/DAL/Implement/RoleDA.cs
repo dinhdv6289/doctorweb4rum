@@ -71,6 +71,22 @@ namespace DAL
 
         }
 
+        public Role[] GetAllRoles()
+        {
+            Role[] result;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("GetAllRoles");
+                result = SelectCollection<Role>(columnNames, columnNames, cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
 
     }
 }

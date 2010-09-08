@@ -13,7 +13,15 @@ public partial class GUI_Admin_Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if(!IsPostBack)
+        {
+            if(Session["UserLoged"] != null)
+            {
+                Member member = (Member)Session["UserLoged"];
+                txtUserName.Text = member.UserName;
+                txtPassword.Text = member.Password;
+            }
+        }
     }
     protected void btnLogin_Click(object sender, EventArgs e)
     {
@@ -52,12 +60,12 @@ public partial class GUI_Admin_Login : System.Web.UI.Page
             }
             else
             {
-                Response.Redirect("Login.aspx");
+                Response.Redirect("MessagesForum.aspx");
             }
         }
         else
         {
-            Response.Redirect("Login.aspx");
+            Response.Redirect("MessagesForum.aspx");
         }
     }
 }

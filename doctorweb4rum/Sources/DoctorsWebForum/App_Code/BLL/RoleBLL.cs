@@ -45,5 +45,19 @@ namespace BLL
             }
             return result;
         }
+
+        public static Role[] GetAllRoles()
+        {
+            Role[] result;
+            try
+            {
+                result = DataHelper.GetRoleDA().GetAllRoles();
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

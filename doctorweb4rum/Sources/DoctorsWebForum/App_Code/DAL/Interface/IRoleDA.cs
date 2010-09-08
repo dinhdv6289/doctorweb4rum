@@ -12,5 +12,7 @@ namespace DAL
     {
         Role GetRoleByRoleID(int roleID);
         int InsertTest();
+        Role[] GetAllRoles();
+
     }
 }

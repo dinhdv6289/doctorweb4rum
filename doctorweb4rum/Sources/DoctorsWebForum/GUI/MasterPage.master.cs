@@ -37,36 +37,43 @@ public partial class MasterPage : System.Web.UI.MasterPage
                     Session["id"] = member.MemberID;
                     member.IsOnline = true;
                     MemberBLL.UpdateMember(member);
-                    MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
-                    if (memberProfile != null)
+                    if (member.AllowLogin)
                     {
-                        Session.Add("UserLoged", member);
-                        Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
-                        if (role != null)
+                        MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
+                        if (memberProfile != null)
                         {
-                            Response.Redirect("Index.aspx");
-                            //if (role.RoleName.Equals("Member"))
-                            //{
-                            //    Response.Redirect(origin);
-                            //}
-                            //if (role.RoleName.Equals("Moderator"))
-                            //{
-                            //    Response.Redirect(origin);
-                            //}
-                            //if (role.RoleName.Equals("Super Moderator"))
-                            //{
-                            //    Response.Redirect(origin);
-                            //}
-                            //if (role.RoleName.Equals("Admin"))
-                            //{
-                            //    Response.Redirect(origin);
-                            //}
+                            Session.Add("UserLoged", member);
+                            Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
+                            if (role != null)
+                            {
+                                Response.Redirect("Index.aspx");
+                                //if (role.RoleName.Equals("Member"))
+                                //{
+                                //    Response.Redirect(origin);
+                                //}
+                                //if (role.RoleName.Equals("Moderator"))
+                                //{
+                                //    Response.Redirect(origin);
+                                //}
+                                //if (role.RoleName.Equals("Super Moderator"))
+                                //{
+                                //    Response.Redirect(origin);
+                                //}
+                                //if (role.RoleName.Equals("Admin"))
+                                //{
+                                //    Response.Redirect(origin);
+                                //}
+                            }
                         }
+                    }else
+                    {
+                        String contentMessage = "You have been banned forever!";
+                        Response.Redirect("ForumMessage.aspx?typeMessage=" + contentMessage);
                     }
                 }
                 else
                 {
-                    //Response.Redirect("Login.aspx");
+                    Response.Redirect("Login.aspx");
                 }
             }
             else
@@ -103,7 +110,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
             Member member = BLL.MemberBLL.GetMemberByMemberID(Convert.ToInt32(Session["id"].ToString()));
             member.IsOnline = false;
             BLL.MemberBLL.UpdateMember(member);
-            Response.Redirect("ForumMessage.aspx");
+            String contentMessage = "All cookies cleared!";
+            Response.Redirect("ForumMessage.aspx?typeMessage=" + contentMessage);
         };
     }
 
@@ -125,26 +133,26 @@ public partial class MasterPage : System.Web.UI.MasterPage
     public String FunctionByRoles()
     {
         String function = "";
-        if(Session["UserLoged"] != null)
+        if (Session["UserLoged"] != null)
         {
             Member member = (Member)Session["UserLoged"];
             MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
-            if(memberProfile != null)
+            if (memberProfile != null)
             {
                 Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
                 if (role != null)
                 {
                     if (role.RoleName.Equals("Member"))
                     {
-                       function= "<li><a href=\"#\" target=\"_blank\" rel=\"nofollow\" accesskey=\"9\"></a></li>";
+                        function = "<li><a href=\"#\" target=\"_blank\" rel=\"nofollow\" accesskey=\"9\"></a></li>";
                     }
                     if (role.RoleName.Equals("Moderator"))
                     {
-                        function= "<li><a href=\"#\" target=\"_blank\" rel=\"nofollow\" accesskey=\"9\"></a></li>";
+                        function = "<li><a href=\"#\" target=\"_blank\" rel=\"nofollow\" accesskey=\"9\"></a></li>";
                     }
                     if (role.RoleName.Equals("Super Moderator"))
                     {
-                        function= "<li><a href=\"modcp/Index.aspx\" target=\"_blank\" rel=\"nofollow\" accesskey=\"9\">Mod</a></li>";
+                        function = "<li><a href=\"modcp/Index.aspx\" target=\"_blank\" rel=\"nofollow\" accesskey=\"9\">Mod</a></li>";
                     }
                     if (role.RoleName.Equals("Admin"))
                     {

@@ -37,7 +37,7 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = String.Format("Select * from {0} where CategoryID = {1}", tableName, CategoryID);
+                cmd.CommandText = String.Format("Select * from {0} where CategoryID = {1} order by {2}", tableName, CategoryID,Priority);
                 result = SelectCollection<SubForum>(columnNames, columnNames, cmd);
 
             }

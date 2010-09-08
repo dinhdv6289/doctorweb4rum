@@ -15,14 +15,43 @@ public partial class GUI_Admin_BannedUsers : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            Member[] members = MemberBLL.GetBannedUsers();
-            if (members.Length > 0)
+            if (Session["UserLoged"] != null)
             {
-                repeaterBannedUser.DataSource = members;
-                repeaterBannedUser.DataBind();
-                panelBanedUsers.Visible = true;
-                panelMessage.Visible = false;
+                Member memberloged = (Member)Session["UserLoged"];
+                MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(memberloged.MemberID);
+                Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
+                if (role.RoleName.Equals("Admin"))
+                {
+                    LoadDatas();
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
+                }
             }
+            else
+            {
+                Response.Redirect("Login.aspx");
+            }
+        }
+    }
+
+    private void LoadDatas()
+    {
+        Member[] members = MemberBLL.GetBannedUsers();
+        if (members.Length > 0)
+        {
+            repeaterBannedUser.DataSource = members;
+            repeaterBannedUser.DataBind();
+            panelBanedUsers.Visible = true;
+            panelMessage.Visible = false;
+            panelNotHaveBannedUser.Visible = false;
+        }
+        else
+        {
+            panelBanedUsers.Visible = false;
+            panelNotHaveBannedUser.Visible = true;
+            panelMessage.Visible = false;
         }
     }
     protected void repeaterBannedUser_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -46,7 +75,7 @@ public partial class GUI_Admin_BannedUsers : System.Web.UI.Page
     }
     protected void btnOk_Click(object sender, EventArgs e)
     {
-        if(lblUserName.Text.Length>0 || lblUserName.Text != null)
+        if (lblUserName.Text.Length > 0 || lblUserName.Text != null)
         {
             Member member = MemberBLL.GetMemberByUserName(lblUserName.Text);
             if (member != null)
@@ -54,7 +83,7 @@ public partial class GUI_Admin_BannedUsers : System.Web.UI.Page
                 int result = MemberBLL.BanOrUnBanUser(member.MemberID, true);
                 if (result > 0)
                 {
-                    Response.Redirect("BannedUsers.aspx");
+                    LoadDatas();
                 }
             }
         }

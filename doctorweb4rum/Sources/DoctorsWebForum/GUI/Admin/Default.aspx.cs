@@ -15,13 +15,30 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            Category[] categories = CategoryBLL.GetAllCategory();
-            if (categories.Length > 0)
+            if (Session["UserLoged"] != null)
             {
-                repeaterForums.DataSource = categories;
-                repeaterForums.DataBind();
-                HiddenAllPanel();
-                repeaterForumsPanel.Visible = true;
+                Member memberloged = (Member)Session["UserLoged"];
+                MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(memberloged.MemberID);
+                Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
+                if (role.RoleName.Equals("Admin"))
+                {
+                    Category[] categories = CategoryBLL.GetAllCategory();
+                    if (categories.Length > 0)
+                    {
+                        repeaterForums.DataSource = categories;
+                        repeaterForums.DataBind();
+                        HiddenAllPanel();
+                        repeaterForumsPanel.Visible = true;
+                    }
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect("Login.aspx");
             }
         }
     }
@@ -131,6 +148,7 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
         editForumPanel.Visible = false;
         repeaterForumsPanel.Visible = false;
         editSubForumPanel.Visible = false;
+        panelMessage.Visible = false;
     }
 
     protected void repeaterSubForums_ItemCommand(object source, System.Web.UI.WebControls.RepeaterCommandEventArgs e)
@@ -165,7 +183,7 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
 
     protected void repeaterEditForum_ItemCommand(object source, RepeaterCommandEventArgs e)
     {
-        if(e.CommandName == "SaveEdit")
+        if (e.CommandName == "SaveEdit")
         {
             Category[] categories = CategoryBLL.GetCategoryByID(Convert.ToInt32(e.CommandArgument));
             Category cate = categories[0];
@@ -207,10 +225,16 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
             repeaterEditSubForum.DataBind();
         }
     }
+
+    protected void btnAddNewForum_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("AddNewForum.aspx");
+    }
+
     protected void btnSaveOder_Click(object sender, EventArgs e)
     {
         Category[] categories = CategoryBLL.GetAllCategory();
-        for (int i = 0; i < categories.Length; i++ )
+        for (int i = 0; i < categories.Length; i++)
         {
             TextBox txtPriorityCategory = (TextBox)repeaterForums.Items[i].FindControl("txtPriorityCategory");
             int priority = Convert.ToInt32(txtPriorityCategory.Text);
@@ -219,14 +243,28 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
             CategoryBLL.UpdateCategory(c);
             Repeater rep = (Repeater)repeaterForums.Items[i].FindControl("repeaterSubForums");
             SubForum[] subForums = GetAllSubForumsByCategoryID(c.CategoryID);
-            for (int j = 0; j < subForums.Length; j++ )
+            for (int j = 0; j < subForums.Length; j++)
             {
-                TextBox txtPrioritySubForum = (TextBox)repeaterSubForums.Items[i].FindControl("txtPrioritySubForum");
+                TextBox txtPrioritySubForum = (TextBox)rep.Items[j].FindControl("txtPrioritySubForum");
                 int prioritySubForum = Convert.ToInt32(txtPrioritySubForum.Text);
                 SubForum s = subForums[j];
                 s.Priority = prioritySubForum;
                 SubForumBLL.UpdateSubForum(s);
             }
+        }
+        HiddenAllPanel();
+        panelMessage.Visible = true;
+    }
+
+    protected void Timer1_Tick(object sender, EventArgs e)
+    {
+        Category[] categories1 = CategoryBLL.GetAllCategory();
+        if (categories1.Length > 0)
+        {
+            repeaterForums.DataSource = categories1;
+            repeaterForums.DataBind();
+            HiddenAllPanel();
+            repeaterForumsPanel.Visible = true;
         }
     }
 }

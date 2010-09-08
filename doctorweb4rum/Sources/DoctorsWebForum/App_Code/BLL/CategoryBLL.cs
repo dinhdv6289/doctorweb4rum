@@ -72,6 +72,20 @@ namespace BLL
             return result;
         }
 
+        public static int InsertCategoryNotOutputReturn(Category category)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetCategoryDA().InsertCategoryNotOutputReturn(category);
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
         public static int DeleteCategory(String id)
         {
             int result = 0;

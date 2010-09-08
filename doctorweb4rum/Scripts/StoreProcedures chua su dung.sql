@@ -387,28 +387,6 @@ end
 select * from Roles
 go
 
---CREATE PROC UPDATECATEGORY BY CATEGORYID:
-CREATE PROC CategoriesUpdate
-@CategoryID as int,
-@CategoryName as nvarchar(50),
-@Priority as int,
-@DateCreation as datetime
-AS 
-UPDATE Categories SET 
-	CategoryName= @CategoryName,
-	Priority= @Priority,
-	DateCreation= @DateCreation
-WHERE 	
-	(@CategoryID = Categories.CategoryID)
-go
-
---CREATE PROC DELETECATEGORY BY CATEGORY:
-CREATE PROC CategoriesDelete
-@CategoryID as int
-AS 
-DELETE Categories
-WHERE 	(@CategoryID = Categories.CategoryID)
-go
 
 --CREATE PROC DELETEMEMBERS BY MEMBERID:
 CREATE PROC MembersDelete
@@ -443,3 +421,6 @@ CREATE procedure DeleteSubForums
 delete SubForums
  where 	(@SubForumID = SubForums.SubForumID)
 GO
+
+
+--

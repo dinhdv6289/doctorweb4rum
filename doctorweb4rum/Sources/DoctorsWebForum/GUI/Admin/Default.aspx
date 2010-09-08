@@ -7,7 +7,9 @@
     <div class="threadlist" id="threadlist">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="True">
             <contenttemplate>
+
 <asp:Panel id="repeaterForumsPanel" runat="server">
+
 <asp:Repeater id="repeaterForums" runat="server" OnItemCreated="repeaterForums_ItemCreated" OnItemCommand="repeaterForums_ItemCommand" OnItemDataBound="repeaterForums_ItemDataBound">
                 <ItemTemplate>
                     <div class="threadlisthead table">
@@ -70,8 +72,8 @@
                 </ItemTemplate>
             </asp:Repeater> <%--end repeater 1--%>
             <DIV class="blockfoot actionbuttons settings_form_border"><DIV class="group">
-            <asp:Button id="btnSaveOder" class="button" runat="server" Text="Save Display Oder" OnClick="btnSaveOder_Click"></asp:Button>
-            <asp:Button id="btnAddNewForum" class="button" runat="server" Text="Add New Forum"></asp:Button> </DIV></DIV></asp:Panel>
+            <asp:Button id="btnSaveOder" class="button" runat="server" Text="Save Display Order" OnClick="btnSaveOder_Click"></asp:Button>
+            <asp:Button id="btnAddNewForum" class="button" runat="server" Text="Add New Forum" OnClick="btnAddNewForum_Click"></asp:Button> </DIV></DIV></asp:Panel>
              <asp:Panel id="editForumPanel" runat="server"><asp:Repeater id="repeaterEditForum" runat="server" OnItemCommand="repeaterEditForum_ItemCommand">
                 <ItemTemplate>
             <div class="threadlist">
@@ -92,8 +94,8 @@
                     </div>
                      <div class="blockfoot actionbuttons settings_form_border">
         <div class="group">
-            <asp:Button ID="btnSaveEditForum" runat="server" Text="Save" class="button" CommandName="SaveEdit" CommandArgument='<%#Eval("CategoryID") %>'/>
-            <asp:Button ID="btnResetEditForum" runat="server" Text="Reset" class="button" CommandName="ResetEdit" CommandArgument='<%#Eval("CategoryID") %>'/>
+            <asp:Button ID="btnSaveEditForum" runat="server" Text="Save" CssClass="button" CommandName="SaveEdit" CommandArgument='<%#Eval("CategoryID") %>'/>
+            <asp:Button ID="btnResetEditForum" runat="server" Text="Reset" CssClass="button" CommandName="ResetEdit" CommandArgument='<%#Eval("CategoryID") %>'/>
         </div>
         
     </div>
@@ -128,13 +130,27 @@
                     </div>
                      <div class="blockfoot actionbuttons settings_form_border">
         <div class="group">
-            <asp:Button ID="btnSaveEditSubForum" runat="server" Text="Save" class="button" CommandName="SaveEdit" CommandArgument='<%#Eval("SubForumID") %>'/>
-            <asp:Button ID="btnResetEditSubForum" runat="server" Text="Reset" class="button" CommandName="ResetEdit" CommandArgument='<%#Eval("SubForumID") %>'/>
+            <asp:Button ID="btnSaveEditSubForum" runat="server" Text="Save" CssClass="button" CommandName="SaveEdit" CommandArgument='<%#Eval("SubForumID") %>'/>
+            <asp:Button ID="btnResetEditSubForum" runat="server" Text="Reset" CssClass="button" CommandName="ResetEdit" CommandArgument='<%#Eval("SubForumID") %>'/>
         </div>
         
     </div>
                    </ItemTemplate>
             </asp:Repeater> </asp:Panel>  
+            
+            <asp:Panel id="panelMessage" runat="server">
+<%--                <h2 id="H2_2" class="blocksubhead" align="center">
+                    Message Forum</h2>--%>
+                    <asp:Timer id="Timer1" runat="server" Interval="1500" OnTick="Timer1_Tick"></asp:Timer>
+                <div class="section">
+                    <div class="blockrow">
+                        Saved Display Order Successfully
+                    </div>
+                    <fieldset class="blockrow">
+                       
+                    </fieldset>
+                </div>
+            </asp:Panel>
 </contenttemplate>
         </asp:UpdatePanel>
     </div>
