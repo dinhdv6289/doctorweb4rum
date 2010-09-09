@@ -48,6 +48,11 @@ public partial class GUI_Admin_SearchForUsers : System.Web.UI.Page
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
+        if(txtUserNameSearch.Text=="" || txtUserNameSearch.Text == null || txtUserNameSearch.Text.Length ==0)
+        {
+            panelQuickSearch.Visible = false;
+            panelMessage.Visible = true;
+        }
         DataTable tableInfo = MemberBLL.SearchForUserByUserName(txtUserNameSearch.Text);
         if (tableInfo != null)
         {
@@ -75,18 +80,20 @@ public partial class GUI_Admin_SearchForUsers : System.Web.UI.Page
         }
         else
         {
-            lblUserNameNotFound.Text = "<strong>" + txtUserNameSearch.Text + "</strong>";
+            lblUserNameNotFound.Text = "<b>" + txtUserNameSearch.Text + "</b>";
             panelQuickSearch.Visible = false;
             panelMessage.Visible = true;
         }
 
     }
+
     protected void btnGoBack_Click(object sender, EventArgs e)
     {
         txtUserNameSearch.Text = "";
         panelMessage.Visible = false;
         panelQuickSearch.Visible = true;
     }
+
     protected void btnSave_Click(object sender, EventArgs e)
     {
         DataTable tableInfo = MemberBLL.SearchForUserByUserName(txtUserName.Text);

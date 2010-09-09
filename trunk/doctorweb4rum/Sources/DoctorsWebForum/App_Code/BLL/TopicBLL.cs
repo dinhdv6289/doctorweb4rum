@@ -226,5 +226,20 @@ namespace BLL
             }
             return result;
         }
+
+         public static int CountSubForumInTopicsBySubForumIDToDelete(int subForumID)
+         {
+             int result = 0;
+             try
+             {
+                 result = DataHelper.GetTopicDA().CountSubForumInTopicsBySubForumIDToDelete(subForumID);
+             }
+             catch (System.Exception ex)
+             {
+                 throw ex;
+             }
+             return result;
+
+         }
     }
 }

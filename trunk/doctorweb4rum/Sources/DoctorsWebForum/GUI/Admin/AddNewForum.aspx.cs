@@ -26,6 +26,7 @@ public partial class GUI_Admin_AddNewForum : System.Web.UI.Page
                     panelAddNewForum.Visible = true;
                     panelMessage.Visible = false;
                     panelError.Visible = false;
+
                 }
                 else
                 {

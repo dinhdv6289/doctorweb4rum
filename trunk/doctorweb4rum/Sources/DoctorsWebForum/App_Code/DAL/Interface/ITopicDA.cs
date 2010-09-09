@@ -26,6 +26,7 @@ namespace DAL
         int ThankTopic(int memberID, int topicID);
         Boolean isThanked(int topicID, int memberID);
         int EditTopic(Topic topicEdit);
+        int CountSubForumInTopicsBySubForumIDToDelete(int subForumID);
 
     }
 }

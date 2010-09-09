@@ -63,13 +63,27 @@ namespace BLL
             return result;
         }
 
-        public static int InsertSubForum(SubForum subforum, out int resultStatus)
+        //public static int InsertSubForum(SubForum subforum, out int resultStatus)
+        //{
+        //    int result = 0;
+        //    resultStatus = 0;
+        //    try
+        //    {
+        //        result = DataHelper.GetSubForumDA().InsertSubForum(subforum, out resultStatus);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    return result;
+        //}
+
+        public static int InsertSubForum(SubForum subForum)
         {
             int result = 0;
-            resultStatus = 0;
             try
             {
-                result = DataHelper.GetSubForumDA().InsertSubForum(subforum, out resultStatus);
+                result = DataHelper.GetSubForumDA().InsertSubForum(subForum);
             }
             catch (Exception ex)
             {
@@ -100,6 +114,20 @@ namespace BLL
                 result = DataHelper.GetSubForumDA().DeleteSubForum(id);
             }
             catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public static SubForum[] SelectCategoryIDsInSubForumsByCategoryIDToDelete(int categoryID)
+        {
+            SubForum[] result;
+            try
+            {
+                result = DataHelper.GetSubForumDA().SelectCategoryIDsInSubForumsByCategoryIDToDelete(categoryID);
+            }
+            catch (System.Exception ex)
             {
                 throw ex;
             }

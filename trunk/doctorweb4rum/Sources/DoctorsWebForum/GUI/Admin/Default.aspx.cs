@@ -64,11 +64,11 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
         row2["FunctionName"] = "DeleteForum";
         table.Rows.Add(row2);
         row3["FunctionID"] = 3;
-        row3["FunctionName"] = "ViewForum";
+        row3["FunctionName"] = "AddSubFoum";
         table.Rows.Add(row3);
-        row4["FunctionID"] = 4;
-        row4["FunctionName"] = "AddSubFoum";
-        table.Rows.Add(row4);
+        //row4["FunctionID"] = 4;
+        //row4["FunctionName"] = "AddSubFoum";
+        //table.Rows.Add(row4);
         return table;
     }
 
@@ -87,9 +87,9 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
         row2["FunctionID"] = 2;
         row2["FunctionName"] = "DeleteSubForum";
         table.Rows.Add(row2);
-        row3["FunctionID"] = 3;
-        row3["FunctionName"] = "ViewSubForum";
-        table.Rows.Add(row3);
+        //row3["FunctionID"] = 3;
+        //row3["FunctionName"] = "ViewSubForum";
+        //table.Rows.Add(row3);
         return table;
     }
 
@@ -129,15 +129,17 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
                 }
                 if (functionForumID == 2)
                 {
-                    Response.Redirect("DeleteForum.aspx?functionForumID=" + functionForumID.ToString());
+                    HiddenAllPanel();
+                    Category[] categories = CategoryBLL.GetCategoryByID(Convert.ToInt32(e.CommandArgument));
+                    lblMessageConfirm.Text = categories[0].CategoryName;
+                    categoryIDForDelete.Value = e.CommandArgument.ToString();
+                    panelConfirm.Visible = true;
+
                 }
                 if (functionForumID == 3)
                 {
-                    Response.Redirect("ViewForum.aspx?functionForumID=" + functionForumID.ToString()); ;
-                }
-                if (functionForumID == 4)
-                {
-                    Response.Redirect("AddSubFoum.aspx?functionForumID=" + functionForumID.ToString());
+                    HiddenAllPanel();
+                    Response.Redirect("AddNewSubForum.aspx?categoryID=" + e.CommandArgument.ToString());
                 }
             }
         }
@@ -149,6 +151,9 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
         repeaterForumsPanel.Visible = false;
         editSubForumPanel.Visible = false;
         panelMessage.Visible = false;
+        panelConfirm.Visible = false;
+        panelMessageDeleteForum.Visible = false;
+        panelConfirmSubForum.Visible = false;
     }
 
     protected void repeaterSubForums_ItemCommand(object source, System.Web.UI.WebControls.RepeaterCommandEventArgs e)
@@ -171,11 +176,15 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
                 }
                 if (functionID == 2)
                 {
-                    Response.Redirect("DeleteSubForum.aspx?functionID=" + functionID.ToString());
-                }
-                if (functionID == 3)
-                {
-                    Response.Redirect("ViewSubForum.aspx?functionID=" + functionID.ToString());
+                    HiddenAllPanel();
+                    SubForum subForum = SubForumBLL.GetSubForumBySubForumID(Convert.ToInt32(e.CommandArgument));
+                    lblMessageSubConfirm.Text = subForum.SubForumName;
+                    subForumIDForDelete.Value = e.CommandArgument.ToString();
+                    panelConfirmSubForum.Visible = true;
+
+
+                    //Response.Redirect("DeleteSubForum.aspx?functionID=" + functionID.ToString());
+                    // xoa subforum
                 }
             }
         }
@@ -199,6 +208,11 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
             Category[] categories = CategoryBLL.GetCategoryByID(Convert.ToInt32(e.CommandArgument));
             repeaterEditForum.DataSource = categories;
             repeaterEditForum.DataBind();
+        }
+        if (e.CommandName == "btnCancel")
+        {
+            editSubForumPanel.Visible = false;
+            repeaterForumsPanel.Visible = true;
         }
     }
 
@@ -253,6 +267,7 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
             }
         }
         HiddenAllPanel();
+        lableMessageStatus.Text = "Saved Display Order Successfully ";
         panelMessage.Visible = true;
     }
 
@@ -267,4 +282,104 @@ public partial class GUI_Admin_Default : System.Web.UI.Page
             repeaterForumsPanel.Visible = true;
         }
     }
+    protected void btnOk_Click(object sender, EventArgs e)
+    {
+        SubForum[] result = SubForumBLL.SelectCategoryIDsInSubForumsByCategoryIDToDelete(Convert.ToInt32(categoryIDForDelete.Value));
+        if (result.Length > 0)
+        {
+            Boolean flag = false;
+            for (int i = 0; i < result.Length; i++)
+            {
+                int countTopic = TopicBLL.CountSubForumInTopicsBySubForumIDToDelete(result[i].SubForumID);
+                if (countTopic > 0)
+                {
+                    flag = true;
+                }
+            }
+            if (flag)
+            {
+                panelConfirm.Visible = false;
+                panelMessageDeleteForum.Visible = true;
+            }
+            else
+            {
+                int status = CategoryBLL.DeleteCategory(categoryIDForDelete.Value);
+                if (status > 0)
+                {
+                    HiddenAllPanel();
+                    lableMessageStatus.Text = "Delete Category successfully!";
+                    panelMessage.Visible = true;
+                }
+                else
+                {
+                    HiddenAllPanel();
+                    lableMessageStatus.Text = "Delete Category failure!";
+                    panelMessage.Visible = true;
+                }
+
+            }
+        }
+        else
+        {
+            int k = CategoryBLL.DeleteCategory(categoryIDForDelete.Value);
+            if (k > 0)
+            {
+                HiddenAllPanel();
+                lableMessageStatus.Text = "Delete Category successfully!";
+                panelMessage.Visible = true;
+            }
+            else
+            {
+                HiddenAllPanel();
+                lableMessageStatus.Text = "Delete Category failure!";
+                panelMessage.Visible = true;
+            }
+        }
+    }
+
+    //
+    protected void btnCanccel_Click(object sender, EventArgs e)
+    {
+        HiddenAllPanel();
+        repeaterForumsPanel.Visible = true;
+    }
+    protected void btnGoBack2_Click(object sender, EventArgs e)
+    {
+        HiddenAllPanel();
+        repeaterForumsPanel.Visible = true;
+    }
+
+    protected void btnYesSubForumDelete_Click(object sender, EventArgs e)
+    {
+        int countTopic = TopicBLL.CountSubForumInTopicsBySubForumIDToDelete(Convert.ToInt32(subForumIDForDelete.Value));
+        if (countTopic > 0)
+        {
+            panelConfirmSubForum.Visible = false;
+            panelMessageDeleteForum.Visible = true;
+        }
+        else
+        {
+            int result = SubForumBLL.DeleteSubForum(subForumIDForDelete.Value);
+            if (result > 0)
+            {
+                HiddenAllPanel();
+                lableMessageStatus.Text = "Delete SubForum successfully!";
+                panelMessage.Visible = true;
+            }
+            else
+            {
+                HiddenAllPanel();
+                lableMessageStatus.Text = "Delete SubForum failure!";
+                panelMessage.Visible = true;
+            }
+        }
+    }
+
+    protected void btnCancelDeleteSubForum_Click(object sender, EventArgs e)
+    {
+        HiddenAllPanel();
+        repeaterForumsPanel.Visible = true;
+    }
+
+
 }
