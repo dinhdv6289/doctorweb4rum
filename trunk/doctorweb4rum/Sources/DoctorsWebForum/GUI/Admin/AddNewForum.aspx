@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="True">
         <contenttemplate>
-<asp:Panel id="panelAddNewUser" runat="server"><H2 id="H2_1" class="blocksubhead" align=center>Add New Category</H2>
+<asp:Panel id="panelAddNewForum" runat="server"><H2 id="H2_1" class="blocksubhead" align=center>Add New Category</H2>
 <DIV class="section">
 <DIV class="blockrow">
 Category Name: <asp:TextBox id="txtCategoryName" runat="server" CssClass="primary textbox"></asp:TextBox>

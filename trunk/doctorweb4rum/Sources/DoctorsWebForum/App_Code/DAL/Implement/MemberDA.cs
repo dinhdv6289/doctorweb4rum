@@ -43,19 +43,16 @@ namespace DAL
         private const String TotalPosts = "TotalPosts";
         private const String TotalThanks = "TotalThanks";
         private const String TotalThanked = "TotalThanked";
-        private const String CurrentExperience = "CurrentExperience";
-        private const String MemberLevel = "MemberLevel";
         private const String LastLogin = "LastLogin";
-        private const String MyRss = "MyRss";
         private const String Signature = "Signature";
         private const String AboutMe = "AboutMe";
-
+        private const String Professional = "Professional";
+        private const String Experience = "Experience";
 
         private String[] columnNames = { MemberID, UserName, Password, Email, FullName, DateCreation, AllowLogin, IsPublic, IsOnline };
         private String[] columnNamesInsert1 = { UserName, Password, Email, FullName, DateCreation, AllowLogin, IsPublic, IsOnline };
         private String[] memberProfileColumnNames ={ MemberID, RoleID, Blast, Avatar, Country, Address, BirthDay, Gender, Yahoo, 
-                                                    Phone, Hospital, Blog, TotalPosts, TotalThanks, TotalThanked, CurrentExperience,
-                                                    MemberLevel, LastLogin, MyRss, Signature, AboutMe};
+                                                    Phone, Hospital, Blog, TotalPosts, TotalThanks, TotalThanked, LastLogin, Signature, AboutMe,Professional,Experience};
         public Member[] GetAllMember()
         {
             Member[] result = null;
@@ -79,7 +76,7 @@ namespace DAL
             try
             {
                 string[] a = { "MemberID" };
-                object[] b = { member.MemberID};
+                object[] b = { member.MemberID };
                 object[] values = { member.UserName, member.Password, member.Email, member.FullName, member.DateCreation, member.AllowLogin, member.IsPublic, member.IsOnline };
                 result = UpdateTable(tableName, columnNamesInsert1, values, a, b);
             }
@@ -116,7 +113,7 @@ namespace DAL
             int result = 0;
             try
             {
-                Object[] values = { member.UserName, member.Password, member.Email, member.FullName, member.DateCreation, member.AllowLogin,member.IsPublic, member.IsOnline };
+                Object[] values = { member.UserName, member.Password, member.Email, member.FullName, member.DateCreation, member.AllowLogin, member.IsPublic, member.IsOnline };
                 result = InsertTableWithReturnID(tableName, columnNamesInsert1, values, out autoID);
             }
             catch (Exception ex)
@@ -134,8 +131,8 @@ namespace DAL
             {
                 Object[] values ={memberProfile.MemberID,memberProfile.RoleID,memberProfile.Blast,memberProfile.Avatar,memberProfile.Country,
                 memberProfile.Address,memberProfile.BirthDay,memberProfile.Gender,memberProfile.Yahoo,memberProfile.Phone,memberProfile.Hospital,
-                memberProfile.Blog,memberProfile.TotalPosts,memberProfile.TotalThanks,memberProfile.TotalThanked,memberProfile.CurrentExperience,
-                memberProfile.MemberLevel,memberProfile.LastLogin,memberProfile.MyRss,memberProfile.Signature,memberProfile.AboutMe};
+                memberProfile.Blog,memberProfile.TotalPosts,memberProfile.TotalThanks,memberProfile.TotalThanked,memberProfile.LastLogin,
+                memberProfile.Signature,memberProfile.AboutMe,memberProfile.Professional,memberProfile.Experience};
                 result = InsertTable(tableNameMemberProfiles, memberProfileColumnNames, values);
             }
             catch (Exception ex)
@@ -257,12 +254,13 @@ namespace DAL
             resultStatus = 0;
             int result = 0;
             String[] columnNamesInfo = {UserName, Password, Email, FullName, Country, Address, BirthDay, Gender, Yahoo, 
-                                                    Phone, Hospital, AboutMe, IsPublic};
+                                                    Phone, Hospital, AboutMe, IsPublic, Professional,Experience};
             Object[] values = {member.UserName, member.Password, member.Email, member.FullName, memProfile.Country, memProfile.Address, 
-                memProfile.BirthDay, memProfile.Gender, memProfile.Yahoo,  memProfile.Phone, memProfile.Hospital, memProfile.AboutMe, member.IsPublic};
+                memProfile.BirthDay, memProfile.Gender, memProfile.Yahoo,  memProfile.Phone, memProfile.Hospital, memProfile.AboutMe,
+                member.IsPublic,memProfile.Professional,memProfile.Experience};
             try
             {
-              result =  InsertIntoTableTypeStoreReturnID("InsertMemberInfo", columnNamesInfo, values, out resultStatus);
+                result = InsertIntoTableTypeStoreReturnID("InsertMemberInfo", columnNamesInfo, values, out resultStatus);
             }
             catch (Exception ex)
             {
@@ -275,7 +273,7 @@ namespace DAL
             int result = 0;
             try
             {
-              result =  RecordExisted(tableName, UserName, userName);
+                result = RecordExisted(tableName, UserName, userName);
             }
             catch (Exception ex)
             {
@@ -337,9 +335,10 @@ namespace DAL
             try
             {
                 String[] columnNamesInfo = {MemberID,Email, FullName, RoleID, Blast, Avatar, Country, Address, 
-                                                    BirthDay, Yahoo, Phone, Blog,Hospital,Signature,AboutMe};
+                                                    BirthDay, Yahoo, Phone, Blog,Hospital,Signature,AboutMe,Professional,Experience};
                 Object[] values = {member.MemberID , member.Email, member.FullName ,memberProfile.RoleID, memberProfile.Blast, memberProfile.Avatar, memberProfile.Country, memberProfile.Address,
-                memberProfile.BirthDay, memberProfile.Yahoo, memberProfile.Phone,  memberProfile.Blog, memberProfile.Hospital, memberProfile.Signature, memberProfile.AboutMe};
+                memberProfile.BirthDay, memberProfile.Yahoo, memberProfile.Phone,  memberProfile.Blog, memberProfile.Hospital,
+                memberProfile.Signature, memberProfile.AboutMe, memberProfile.Professional,memberProfile.Experience};
                 result = ProcessTableTypeStore("UpdateMemberInfoByAdmin", columnNamesInfo, values);
             }
             catch (Exception ex)
@@ -355,11 +354,12 @@ namespace DAL
             try
             {
                 String[] columnNamesInfo = {MemberID,Password,Email, FullName,  Blast, Avatar, Country, Address, 
-                                                    BirthDay, Yahoo, Phone, Blog,Hospital,Signature,AboutMe};
+                                                    BirthDay, Yahoo, Phone, Blog,Hospital,Signature,AboutMe,Professional,Experience};
                 Object[] values = {member.MemberID ,member.Password, member.Email,member.FullName, memberProfile.Blast, memberProfile.Avatar, memberProfile.Country, memberProfile.Address,
-                memberProfile.BirthDay, memberProfile.Yahoo, memberProfile.Phone,  memberProfile.Blog, memberProfile.Hospital, memberProfile.Signature, memberProfile.AboutMe};
+                memberProfile.BirthDay, memberProfile.Yahoo, memberProfile.Phone,  memberProfile.Blog, memberProfile.Hospital,
+                memberProfile.Signature, memberProfile.AboutMe,memberProfile.Professional,memberProfile.Experience};
                 result = ProcessTableTypeStore("UpdateMemberInfo", columnNamesInfo, values);
- 
+
             }
             catch (Exception ex)
             {
@@ -392,13 +392,13 @@ namespace DAL
             }
         }
 
-        public int BanOrUnBanUser(int memberID,Boolean allowLogin)
+        public int BanOrUnBanUser(int memberID, Boolean allowLogin)
         {
             int result = 0;
             try
             {
-                String[] columnNamesInfo = {MemberID,AllowLogin};
-                Object[] values = {memberID,allowLogin};
+                String[] columnNamesInfo = { MemberID, AllowLogin };
+                Object[] values = { memberID, allowLogin };
                 result = ProcessTableTypeStore("BanOrUnBanUser", columnNamesInfo, values);
             }
             catch (System.Exception ex)
@@ -466,6 +466,30 @@ namespace DAL
             if (result.Length > 0)
             {
                 return result[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public DataTable SearchForUserByUserName(String userName)
+        {
+            DataTable allMemberInfo = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("SearchForUserByUserName {0}", userName);
+                allMemberInfo = ExecuteDataset(cmd).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            if (allMemberInfo.Rows.Count > 0)
+            {
+                return allMemberInfo;
             }
             else
             {

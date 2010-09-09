@@ -82,15 +82,13 @@ public partial class GUI_Register : System.Web.UI.Page
             memProfile.Avatar = null;
             memProfile.Blast = null;
             memProfile.Blog = null;
-            memProfile.CurrentExperience = 0;
-            memProfile.IPAddress = null;
-            memProfile.MemberLevel = 0;
-            memProfile.MyRss = null;
             memProfile.RoleID = 1;
             memProfile.Signature = null;
             memProfile.TotalPosts = 0;
             memProfile.TotalThanked = 0;
             memProfile.TotalThanks = 0;
+            memProfile.Experience = "";
+            memProfile.Professional = "";
             if (Page.IsValid)
             {
                 int resultStatus = 0;

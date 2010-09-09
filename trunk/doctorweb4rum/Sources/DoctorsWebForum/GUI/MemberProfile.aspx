@@ -326,7 +326,7 @@ vBulletin.register_control("vB_ProfilefieldEditor", "4");
                                 </dd>
                             </dl>
                             <dl class="stats">
-                                <dt id="Dt13">Current Experience</dt><dd id="Dd13"><%= GetMemberProfileByMemberID().CurrentExperience %>
+                                <dt id="Dt13">Experience</dt><dd id="Dd13"><%= GetMemberProfileByMemberID().Experience %>
 
                                     <script type="text/javascript">
 <!--
@@ -337,7 +337,7 @@ vBulletin.register_control("vB_ProfilefieldEditor", "4");
                                 </dd>
                             </dl>
                             <dl class="stats">
-                                <dt id="Dt14">Member Level</dt><dd id="Dd14"><%= GetMemberProfileByMemberID().MemberLevel %>
+                                <dt id="Dt14">Professional</dt><dd id="Dd14"><%= GetMemberProfileByMemberID().Professional %>
 
                                     <script type="text/javascript">
 <!--
@@ -359,7 +359,7 @@ vBulletin.register_control("vB_ProfilefieldEditor", "4");
                                 </dd>
                             </dl>
                             <dl class="stats">
-                                <dt id="Dt16">My Rss</dt><dd id="Dd16"><%= GetMemberProfileByMemberID().MyRss %>
+                                <dt id="Dt16">My Rss</dt><dd id="Dd16">
 
                                     <script type="text/javascript">
 <!--

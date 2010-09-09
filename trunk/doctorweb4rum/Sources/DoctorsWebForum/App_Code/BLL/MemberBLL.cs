@@ -314,5 +314,18 @@ namespace BLL
 
         }
 
+        public static DataTable SearchForUserByUserName(String userName)
+        {
+            DataTable inforMember = null;
+            try
+            {
+                inforMember = DataHelper.GetMemberDA().SearchForUserByUserName(userName);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return inforMember;
+        }
     }
 }

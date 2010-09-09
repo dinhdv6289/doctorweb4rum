@@ -71,12 +71,12 @@ CREATE TABLE MemberProfiles
 	TotalPosts		INT,
 	TotalThanks		INT,
 	TotalThanked	INT,
-	CurrentExperience		FLOAT,
-	MemberLevel		INT,
 	LastLogin		DATETIME DEFAULT GETDATE(),	
-	MyRss			NVARCHAR(300),
 	Signature		NVARCHAR(1000),
-	AboutMe			NTEXT
+	AboutMe			NTEXT,
+	Professional    nvarchar(255),
+	Experience		nvarchar(255)	
+	
 )
 ALTER TABLE MemberProfiles ADD CONSTRAINT FK_MemberProfiles_RoleID FOREIGN KEY (RoleID) REFERENCES Roles(RoleID)
 ALTER TABLE MemberProfiles ADD CONSTRAINT FK_MemberProfiles_MemberID FOREIGN KEY (MemberID) REFERENCES Members(MemberID)

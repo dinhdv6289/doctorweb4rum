@@ -35,14 +35,24 @@ public class MemberProfile
     private int totalPosts;
     private int totalThanks;
     private int totalThanked;
-    private Double currentExperience;
-    private int memberLevel;
-    private string ipAddress;
     private DateTime lastLogin;
-    private string myRss;
     private string signature;
     private string aboutMe;
+    private string professional;
+    private string experience;
 
+    public string Experience
+    {
+        get { return experience; }
+        set { experience = value; }
+    }
+
+    public string Professional
+    {
+        get { return professional; }
+        set { professional = value; }
+    }
+    
     public int MemberID
     {
         get { return memberID; }
@@ -133,34 +143,11 @@ public class MemberProfile
         set { totalThanked = value; }
     }
 
-    public Double CurrentExperience
-    {
-        get { return currentExperience; }
-        set { currentExperience = value; }
-    }
-
-    public int MemberLevel
-    {
-        get { return memberLevel; }
-        set { memberLevel = value; }
-    }
-
-    public string IPAddress
-    {
-        get { return ipAddress; }
-        set { ipAddress = value; }
-    }
 
     public DateTime LastLogin
     {
         get { return lastLogin; }
         set { lastLogin = value; }
-    }
-
-    public string MyRss
-    {
-        get { return myRss; }
-        set { myRss = value; }
     }
 
     public string Signature
