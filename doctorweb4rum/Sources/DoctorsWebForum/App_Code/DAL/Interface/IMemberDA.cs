@@ -30,7 +30,7 @@ namespace DAL
         Member GetMemberByUserName(String userName);
         Member[] GetBannedUsers();
         Member GetBannedUser(int memberID);
-
+        DataTable SearchForUserByUserName(String userName);
         //int UpdateMemberAdmin(Member member);
         //int DeleteMember(String id);
     }

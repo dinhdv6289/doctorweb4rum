@@ -279,19 +279,21 @@ CREATE PROCEDURE InsertMemberInfo
 @Hospital		NVARCHAR(100),
 @AboutMe		NVARCHAR(15),
 @IsPublic		BIT,
+@Professional   NVARCHAR(255), 
+@Experience		NVARCHAR(255),
 @Result			SMALLINT OUTPUT
 AS	BEGIN
 		IF(NOT EXISTS(SELECT UserName FROM Members WHERE UserName=@UserName))
 			BEGIN
 				IF(NOT EXISTS(SELECT Email FROM Members WHERE Email=@Email))
 					BEGIN
-						INSERT INTO Members(UserName,[Password],Email,FullName,DateCreation,AllowLogin,IsPublic,IsOnline)
-						VALUES	(@UserName,@Password,@Email,@FullName,GETDATE(),@IsPublic,1,1)
+						INSERT INTO Members(UserName,[Password],Email,FullName,DateCreation,IsPublic)
+						VALUES	(@UserName,@Password,@Email,@FullName,GETDATE(),@IsPublic)
 						
 						DECLARE @MemberID	INT
 						EXEC SelectLatestMemberID @MemberID OUTPUT
-						INSERT INTO MemberProfiles(MemberID,RoleID,Country,[Address],BirthDay,Gender,Yahoo,Phone,Hospital,AboutMe)
-						VALUES	(@MemberID,1,@Country,@Address,@BirthDay,@Gender,@Yahoo,@Phone,@Hospital,@AboutMe)
+						INSERT INTO MemberProfiles(MemberID,RoleID,Country,[Address],BirthDay,Gender,Yahoo,Phone,Hospital,AboutMe,Professional,Experience)
+						VALUES	(@MemberID,1,@Country,@Address,@BirthDay,@Gender,@Yahoo,@Phone,@Hospital,@AboutMe,@Professional,@Experience)
 						SET @Result = 1;
 					END
 				ELSE
@@ -317,8 +319,7 @@ AS BEGIN
 SELECT     Members.MemberID, Members.UserName, Members.Email, Members.FullName, Members.DateCreation, Members.AllowLogin, Members.IsPublic, Members.IsOnline, 
                       MemberProfiles.RoleID, MemberProfiles.Blast, MemberProfiles.Avatar, MemberProfiles.Country, MemberProfiles.Address, MemberProfiles.BirthDay, 
                       MemberProfiles.Gender, MemberProfiles.Yahoo, MemberProfiles.Phone, MemberProfiles.Hospital, MemberProfiles.Blog, MemberProfiles.TotalPosts, 
-                      MemberProfiles.TotalThanks, MemberProfiles.TotalThanked, MemberProfiles.CurrentExperience, MemberProfiles.MemberLevel,  
-                      MemberProfiles.LastLogin, MemberProfiles.MyRss, MemberProfiles.Signature, MemberProfiles.AboutMe, Posts.PostID, Posts.TopicID, Posts.[Content], 
+                      MemberProfiles.TotalThanks, MemberProfiles.TotalThanked, MemberProfiles.LastLogin, MemberProfiles.Signature, MemberProfiles.AboutMe,MemberProfiles.Professional,MemberProfiles.Experience, Posts.PostID, Posts.TopicID, Posts.[Content], 
                       Posts.DateCreation AS DateCreationOfPosts, Posts.DateEdited, Posts.Signature AS SignatureOfPosts, Posts.QuoteID,
 			"RatingPoint" = CASE WHEN (select avg(RatePoint) from RatingPost where RatingPost.PostID = Posts.PostID group by PostID) is null THEN 0 Else (select avg(RatePoint) from RatingPost where PostID = Posts.PostID group by PostID) END,
 			(select Posts.Content from Posts where Posts.PostID = Posts.QuoteID) as Quote
@@ -334,35 +335,41 @@ GO
 EXEC TopicDetailsByTopicID 2
 GO
 
-IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'SearchTopic' AND TYPE = 'P')
-DROP PROC SearchTopic
-GO
-CREATE PROCEDURE SearchTopic
-@KeySearch			NVARCHAR(500),
-@CategoryID			INT,	
-@SubForumID			INT,
-@UserName			NVARCHAR(50),
-@FromDateCreate		DATETIME,
-@ToDateCreate		DATETIME
-AS
-BEGIN
-SET @UserName = '%' + @UserName + '%';
-SET @KeySearch = '%' + @KeySearch + '%';
-SELECT    Topics.*
-FROM         Categories INNER JOIN
-                      SubForums ON Categories.CategoryID = SubForums.CategoryID INNER JOIN
-                      Topics ON SubForums.SubForumID = Topics.SubForumID INNER JOIN
-                      Members ON Topics.MemberID = Members.MemberID
-		AND (@CategoryID = 0 OR Categories.CategoryID = @CategoryID)
-		AND (@SubForumID = 0 OR SubForums.SubForumID = @SubForumID)
-		AND (@UserName IS NULL  OR Members.UserName LIKE @UserName)
-		AND (@FromDateCreate IS NULL OR Topics.DateCreate >= @FromDateCreate)
-		AND (@ToDateCreate IS NULL OR Topics.DateCreate <= @ToDateCreate)
-		AND (@KeySearch IS NULL OR Topics.Title LIKE @KeySearch OR Topics.Content LIKE @KeySearch)
-		ORDER BY Topics.DateCreate DESC
-END
-go
-EXEC SearchTopic '', 0, 0, '', null, null
+--IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'SearchTopic' AND TYPE = 'P')
+--DROP PROC SearchTopic
+--GO
+--CREATE PROCEDURE SearchTopic
+--@KeySearch			NVARCHAR(500),
+--@CategoryID			INT,	
+--@SubForumID			INT,
+--@UserName			NVARCHAR(50),
+--@FromDateCreate		DATETIME,
+--@ToDateCreate		DATETIME,
+--@Address			NVARCHAR(255),
+--@Professional		NVARCHAR(255),
+--@Experience         NVARCHAR(255)
+--AS
+--BEGIN
+--SET @UserName = '%' + @UserName + '%';
+--SET @KeySearch = '%' + @KeySearch + '%';
+--SET @Address = '%' + @Address + '%';
+--SET @Professional = '%' + @Professional + '%';
+--SET @Experience = '%' + @Experience + '%';
+--SELECT    Topics.*
+--FROM         Categories INNER JOIN
+--                      SubForums ON Categories.CategoryID = SubForums.CategoryID INNER JOIN
+--                      Topics ON SubForums.SubForumID = Topics.SubForumID INNER JOIN
+--                      Members ON Topics.MemberID = Members.MemberID
+--		AND (@CategoryID = 0 OR Categories.CategoryID = @CategoryID)
+--		AND (@SubForumID = 0 OR SubForums.SubForumID = @SubForumID)
+--		AND (@UserName IS NULL  OR Members.UserName LIKE @UserName)
+--		AND (@FromDateCreate IS NULL OR Topics.DateCreate >= @FromDateCreate)
+--		AND (@ToDateCreate IS NULL OR Topics.DateCreate <= @ToDateCreate)
+--		AND (@KeySearch IS NULL OR Topics.Title LIKE @KeySearch OR Topics.Content LIKE @KeySearch)
+--		ORDER BY Topics.DateCreate DESC
+--END
+--go
+--EXEC SearchTopic '', 0, 0, '', null, null
 go
 select * from topics
 
@@ -470,8 +477,9 @@ CREATE PROCEDURE UpdateMemberInfoByAdmin
 @Blog			NVARCHAR(100),
 @Hospital		NVARCHAR(100),
 @Signature      NVARCHAR(1000),
-@AboutMe		NTEXT
-
+@AboutMe		NTEXT,
+@Professional   NVARCHAR(255),
+@Experience     NVARCHAR(255)
 AS
 	BEGIN
 		UPDATE Members	SET
@@ -490,7 +498,9 @@ AS
 			Hospital = @Hospital,
 			Blog = @Blog,
 			AboutMe = @AboutMe,
-			Signature = @Signature
+			Signature = @Signature,
+			Professional = @Professional,
+			Experience = @Experience
 		WHERE MemberID=@MemberID
 	END	
 
@@ -514,8 +524,9 @@ CREATE PROCEDURE UpdateMemberInfo
 @Blog			NVARCHAR(100),
 @Hospital		NVARCHAR(100),
 @Signature      NVARCHAR(1000),
-@AboutMe		NTEXT
-
+@AboutMe		NTEXT,
+@Professional   NVARCHAR(255),
+@Experience     NVARCHAR(255)
 AS
 	BEGIN
 		UPDATE Members	SET
@@ -534,7 +545,9 @@ AS
 			Hospital = @Hospital,
 			Blog = @Blog,
 			AboutMe = @AboutMe,
-			Signature = @Signature
+			Signature = @Signature,
+			Professional = @Professional,
+			Experience = @Experience
 		WHERE MemberID=@MemberID
 	END	
 
@@ -612,6 +625,9 @@ go
 
 
 --CREATE PROC UPDATECATEGORY BY CATEGORYID:
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'CategoriesUpdate' AND TYPE = 'P')
+DROP PROC CategoriesUpdate
+GO
 CREATE PROC CategoriesUpdate
 @CategoryID as int,
 @CategoryName as nvarchar(50),
@@ -627,6 +643,9 @@ WHERE
 go
 
 --CREATE PROC DELETECATEGORY BY CATEGORY:
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'CategoriesDelete' AND TYPE = 'P')
+DROP PROC CategoriesDelete
+GO
 CREATE PROC CategoriesDelete
 @CategoryID as int
 AS 
@@ -656,3 +675,63 @@ CREATE PROCEDURE InsertCategory
  AS
 INSERT INTO Categories(	CategoryName,Priority) VALUES(@CategoryName,@Priority)
 go
+
+--CREATE PROC MembersDelete BY MEMBERID:
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'MembersDelete' AND TYPE = 'P')
+DROP PROC MembersDelete
+GO
+CREATE PROC MembersDelete
+@MemberID as int
+AS 
+DELETE Members
+WHERE 	(@MemberID = Members.MemberID)
+
+go
+--CREATE PROC UpdateSubForums BY SUBFORUMID:
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'UpdateSubForums' AND TYPE = 'P')
+DROP PROC UpdateSubForums
+GO
+CREATE procedure UpdateSubForums
+@SubForumID as int,
+@SubForumName as nvarchar(100),
+@Description as nvarchar(500),
+@Priority as int,
+@TotalTopics as int,
+@TotalMessages as int
+ as 
+update SubForums set 
+	SubForumName= @SubForumName,
+	Description= @Description,
+	Priority= @Priority,
+	TotalTopics= @TotalTopics,
+	TotalMessages= @TotalMessages
+ where 	(@SubForumID=SubForums.SubForumID)
+
+GO
+--DELETE DeleteSubForums BY SUBFORUMID:
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'DeleteSubForums' AND TYPE = 'P')
+DROP PROC DeleteSubForums
+GO
+CREATE procedure DeleteSubForums
+@SubForumID as int
+ as 
+delete SubForums
+ where 	(@SubForumID = SubForums.SubForumID)
+GO
+
+--SearchForUserByUserName
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'SearchForUserByUserName' AND TYPE = 'P')
+DROP PROC SearchForUserByUserName
+GO
+CREATE procedure SearchForUserByUserName
+@UserName nvarchar(30)
+as
+SELECT     Members.*, MemberProfiles.*, Roles.*
+FROM         Members INNER JOIN
+                      MemberProfiles ON Members.MemberID = MemberProfiles.MemberID INNER JOIN
+                      Roles ON MemberProfiles.RoleID = Roles.RoleID
+where Members.UserName = @UserName
+
+go 
+
+exec SearchForUserByUserName 'username1'

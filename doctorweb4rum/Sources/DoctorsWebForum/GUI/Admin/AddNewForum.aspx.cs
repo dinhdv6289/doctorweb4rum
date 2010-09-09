@@ -23,7 +23,7 @@ public partial class GUI_Admin_AddNewForum : System.Web.UI.Page
                 Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
                 if (role.RoleName.Equals("Admin"))
                 {
-                    panelAddNewUser.Visible = true;
+                    panelAddNewForum.Visible = true;
                     panelMessage.Visible = false;
                     panelError.Visible = false;
                 }
@@ -55,11 +55,11 @@ public partial class GUI_Admin_AddNewForum : System.Web.UI.Page
         int result = CategoryBLL.InsertCategoryNotOutputReturn(category);
         if (result > 0)
         {
-            panelAddNewUser.Visible = false;
+            panelAddNewForum.Visible = false;
             panelMessage.Visible = true;
         }else
         {
-            panelAddNewUser.Visible = false;
+            panelAddNewForum.Visible = false;
             panelMessage.Visible = false;
             panelError.Visible = true;
         }
@@ -72,7 +72,7 @@ public partial class GUI_Admin_AddNewForum : System.Web.UI.Page
     protected void btnBack_Click(object sender, EventArgs e)
     {
         panelError.Visible = false;
-        panelAddNewUser.Visible = true;
+        panelAddNewForum.Visible = true;
         panelMessage.Visible = false;
     }
 }

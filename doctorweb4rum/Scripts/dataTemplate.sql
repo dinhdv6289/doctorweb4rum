@@ -2,8 +2,6 @@ use doctorWeb4rum
 GO
 /**************************** INSERT TABLE ********************************/
 INSERT INTO Roles VALUES('Member','Users',0,'member.gif')
-INSERT INTO Roles VALUES('Moderator','Management Posts',100,'mod.gif')
-INSERT INTO Roles VALUES('Super Moderator','Management SubForum',300,'supmod.gif')
 INSERT INTO Roles VALUES('Admin','Management Forum',500,'admin.gif')
 go
 
@@ -188,19 +186,17 @@ insert into dbo.Members(UserName,Password,Email,FullName,DateCreation,AllowLogin
 values('username2','password','test2@gmail.com','testtt',GetDate(),'true','true','false')
 
 insert into dbo.MemberProfiles(MemberID,RoleID,Blast,Avatar,Country,Address,BirthDay,Gender,Yahoo,
-Phone,Hospital,Blog,TotalPosts,TotalThanks,TotalThanked,CurrentExperience,MemberLevel,
-LastLogin,MyRss,Signature,AboutMe) 
+Phone,Hospital,Blog,TotalPosts,TotalThanks,TotalThanked,LastLogin,Signature,AboutMe,Professional,Experience) 
 values(
 1,1,'Blast Content','avarta.gif','Viet Nam','Ha noi','08/18/1987','true','yahoo.com',
-'0987123123','Viet Nam Cuba','blog.com',2,2,5,2,1,getdate(),'','learn','not about'
+'0987123123','Viet Nam Cuba','blog.com',2,2,5,getdate(),'learn','not about','Professional','10 year'
 )
 
 insert into dbo.MemberProfiles(MemberID,RoleID,Blast,Avatar,Country,Address,BirthDay,Gender,Yahoo,
-Phone,Hospital,Blog,TotalPosts,TotalThanks,TotalThanked,CurrentExperience,MemberLevel,
-LastLogin,MyRss,Signature,AboutMe) 
+Phone,Hospital,Blog,TotalPosts,TotalThanks,TotalThanked,LastLogin,Signature,AboutMe,Professional,Experience) 
 values(
-2,1,'Blast Content','avarta.gif','Viet Nam','Ha noi','08/18/1987','true','yahoo.com',
-'0987123123','Viet Nam Cuba','blog.com',2,2,5,2,1,getdate(),'','learn','not about'
+2,2,'Blast Content','avarta.gif','Viet Nam','Ha noi','08/18/1987','true','yahoo.com',
+'0987123123','Viet Nam Cuba','blog.com',2,2,5,getdate(),'learn','not about','Professional','4 year'
 )
 select * from roles
 select * from members
