@@ -28,7 +28,7 @@ namespace DAL
         private const String TotalTopics = "TotalTopics";
         private const String TotalMessages = "TotalMessages";
         private String[] columnNames = { SubForumID, CategoryID, SubForumName, Description, DateCreation, Priority, TotalTopics, TotalMessages };
-        private String[] columnNamesForInsert = { SubForumName, Description, DateCreation };
+        private String[] columnNamesForInsert = { CategoryID, SubForumName, Description, Priority,TotalTopics, TotalMessages };
         
         public SubForum[] GetAllSubForumsByCategoryID(int CategoryID)
         {
@@ -87,14 +87,29 @@ namespace DAL
             return result[0];
         }
 
-        public int InsertSubForum(SubForum subforum, out int resultStatus)
+        //public int InsertSubForum(SubForum subforum)
+        //{
+        //    int result = 0;
+        //    resultStatus = 0;
+        //    try
+        //    {                
+        //        Object[] values = { subforum.SubForumName, subforum.Description, subforum.DateCreation };                
+        //        result = InsertIntoTableTypeStoreReturnID("InsertSubForum", columnNamesForInsert, values, out resultStatus);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    return result;
+        //}
+
+        public int InsertSubForum(SubForum subForum)
         {
             int result = 0;
-            resultStatus = 0;
             try
-            {                
-                Object[] values = { subforum.SubForumName, subforum.Description, subforum.DateCreation };                
-                result = InsertIntoTableTypeStoreReturnID("InsertSubForum", columnNamesForInsert, values, out resultStatus);
+            {
+                Object[] values = { subForum.CategoryID, subForum.SubForumName, subForum.Description, subForum.Priority, subForum.TotalTopics, subForum.TotalMessages };
+                result = ProcessTableTypeStore("InsertSubForum", columnNamesForInsert, values);
             }
             catch (Exception ex)
             {
@@ -129,6 +144,23 @@ namespace DAL
                 result = ProcessTableTypeStore("DeleteSubForums", keyColumns, keyValues);
             }
             catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public  SubForum[]  SelectCategoryIDsInSubForumsByCategoryIDToDelete(int categoryID)
+        {
+            SubForum[] result;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("SelectCategoryIDsInSubForumsByCategoryIDToDelete {0}", categoryID);
+                result = SelectCollection<SubForum>(columnNames, columnNames, cmd);
+            }
+            catch (System.Exception ex)
             {
                 throw ex;
             }

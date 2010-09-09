@@ -561,9 +561,10 @@ CREATE PROCEDURE GetAllInfoOfMemberByMemberID
 @MemberID		INT
 AS
 	BEGIN
-SELECT     Members.*, MemberProfiles.*
+SELECT     Members.*, MemberProfiles.*, Roles.*
 FROM         Members INNER JOIN
-                      MemberProfiles ON Members.MemberID = MemberProfiles.MemberID
+                      MemberProfiles ON Members.MemberID = MemberProfiles.MemberID INNER JOIN
+                      Roles ON MemberProfiles.RoleID = Roles.RoleID
 WHERE Members.MemberID = @MemberID
 END
 
@@ -735,3 +736,52 @@ where Members.UserName = @UserName
 go 
 
 exec SearchForUserByUserName 'username1'
+
+
+--CountSubForumInTopicsBySubForumIDToDelete
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'CountSubForumInTopicsBySubForumIDToDelete' AND TYPE = 'P')
+DROP PROC CountSubForumInTopicsBySubForumIDToDelete
+GO
+CREATE procedure CountSubForumInTopicsBySubForumIDToDelete
+@SubForumID int
+as
+select count(*) as CountSubForumInTopic from dbo.Topics
+where SubForumID = @SubForumID
+go 
+exec  CountSubForumInTopicsBySubForumIDToDelete 1
+
+go
+
+--SelectCategoryIDsInSubForumsByCategoryIDToDelete
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'SelectCategoryIDsInSubForumsByCategoryIDToDelete' AND TYPE = 'P')
+DROP PROC SelectCategoryIDsInSubForumsByCategoryIDToDelete
+GO
+CREATE procedure SelectCategoryIDsInSubForumsByCategoryIDToDelete
+@CategoryID int
+as
+select *  from dbo.SubForums
+where CategoryID = @CategoryID
+go 
+exec  SelectCategoryIDsInSubForumsByCategoryIDToDelete 12
+
+select * from Categories
+go
+
+---InsertSubForum
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'InsertSubForum' AND TYPE = 'P')
+DROP PROC InsertSubForum
+GO
+
+CREATE PROC InsertSubForum
+	@CategoryID		INT,
+	@SubForumName	NVARCHAR(100),
+	@Description	NVARCHAR(500),
+	@Priority		INT,
+	@TotalTopics	INT,
+	@TotalMessages	INT
+AS BEGIN 
+	INSERT INTO SubForums (CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages) 
+	VALUES (@CategoryID,@SubForumName,@Description,@Priority,@TotalTopics,@TotalMessages)	
+END
+
+GO

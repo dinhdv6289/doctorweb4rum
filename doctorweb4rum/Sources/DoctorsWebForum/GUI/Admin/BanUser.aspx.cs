@@ -42,7 +42,9 @@ public partial class GUI_Admin_BanUser : System.Web.UI.Page
         panelMessage.Visible = false;
         panelInvalidUserSpecified.Visible = false;
         panelError.Visible = false;
+        panelHasBeenBanned.Visible = false;
         
+
     }
 
     protected void btnBan_Click(object sender, EventArgs e)
@@ -52,21 +54,41 @@ public partial class GUI_Admin_BanUser : System.Web.UI.Page
             Member member = MemberBLL.GetMemberByUserName(txtUserName.Text);
             if (member != null)
             {
-                int result = MemberBLL.BanOrUnBanUser(member.MemberID, false);
-                if(result >0)
+                Member memberloged = (Member)Session["UserLoged"];
+                if (!memberloged.UserName.Equals(member.UserName))
                 {
-                    lblUserBan.Text = member.UserName;
-                    panelBanUser.Visible = false;
-                    panelMessage.Visible = true;
-                    panelInvalidUserSpecified.Visible = false;
-                    
+                    if (!member.AllowLogin)
+                    {
+                        lblUserBanHasBeenBanned.Text = "<b>" + txtUserName.Text + "</b>";
+                        panelBanUser.Visible = false;
+                        panelHasBeenBanned.Visible = true;
+                    }
+                    else
+                    {
+                        int result = MemberBLL.BanOrUnBanUser(member.MemberID, false);
+                        if (result > 0)
+                        {
+                            lblUserBan.Text = member.UserName;
+                            panelBanUser.Visible = false;
+                            panelMessage.Visible = true;
+                            panelInvalidUserSpecified.Visible = false;
+
+                        }
+                        else
+                        {
+                            panelBanUser.Visible = false;
+                            panelError.Visible = true;
+                        }
+                    }
                 }else
                 {
                     panelBanUser.Visible = false;
-                    panelError.Visible = true;
+                    panelInvalidUserSpecified.Visible = true;
                 }
-            }else
+            }
+            else
             {
+                panelMessage.Visible = false;
                 panelBanUser.Visible = false;
                 panelInvalidUserSpecified.Visible = true;
             }
@@ -85,11 +107,18 @@ public partial class GUI_Admin_BanUser : System.Web.UI.Page
         Response.Redirect("BannedUsers.aspx");
     }
 
+    protected void Timer3_Tick(object sender, EventArgs e)
+    {
+        PanelsVisiableFalse();
+        Response.Redirect("BannedUsers.aspx");
+    }
+
     protected void btnBack_Click(object sender, EventArgs e)
     {
+        txtUserName.Text = "";
         panelBanUser.Visible = true;
         PanelsVisiableFalse();
-        
+
     }
     protected void btnErrorGoBack_Click(object sender, EventArgs e)
     {

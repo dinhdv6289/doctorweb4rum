@@ -4,7 +4,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="True">
         <contenttemplate>
-<asp:Panel id="panelQuickSearch" runat="server"><DIV><H2 id="ForumManager" class="blocksubhead" align=center>Quick Search</H2><DIV class="section"><DIV class="blockrow"><LABEL for="bd_month"><A href="AllMembers.aspx">All Members</A></LABEL> <LABEL for="bd_month">All Authors</LABEL> </DIV></DIV></DIV><BR /><H2 id="H2_1" class="blocksubhead" align=center>Search Details</H2><DIV class="section"><DIV class="blockrow"><LABEL for="showbirthday">UserName:</LABEL> <asp:TextBox id="txtUserNameSearch" runat="server" CssClass="primary textbox"></asp:TextBox> <asp:RequiredFieldValidator id="RequiredFieldValidator1" runat="server" ControlToValidate="txtUserNameSearch" ErrorMessage="UserName is required."></asp:RequiredFieldValidator> </DIV><%--        <div class="blockrow">
+<asp:Panel id="panelQuickSearch" runat="server"><DIV><H2 id="ForumManager" class="blocksubhead" align=center>Quick Search</H2><DIV class="section"><DIV class="blockrow"><LABEL for="bd_month"><A href="AllMembers.aspx">All Members</A></LABEL>  </DIV></DIV></DIV><BR /><H2 id="H2_1" class="blocksubhead" align=center>Search Details</H2><DIV class="section"><DIV class="blockrow"><LABEL for="showbirthday">UserName:</LABEL> 
+<asp:TextBox id="txtUserNameSearch" runat="server" CssClass="primary textbox"></asp:TextBox>
+ <asp:RequiredFieldValidator id="RequiredFieldValidator1" runat="server" ControlToValidate="txtUserNameSearch" ErrorMessage="UserName is required."></asp:RequiredFieldValidator> 
+ </DIV><%--        <div class="blockrow">
             <label for="tb_homepage">
                 Role:</label>
             <asp:DropDownList ID="dropdownlistRoles" runat="server">
@@ -30,7 +33,9 @@
             </ul>
         </fieldset>--%></DIV><DIV></DIV></asp:Panel>
          <asp:Panel id="panelSearchResult" runat="server">
-        <!-- start if customfields --><H3 class="blocksubhead">Role</H3><DIV class="section"><DIV class="blockrow"><LABEL>User Group forum:</LABEL> <DIV class="rightcol"><asp:Label id="lblRoleGroup" runat="server"></asp:Label> </DIV><LABEL>Change Role:</LABEL> <DIV class="rightcol"><asp:DropDownList id="dropDownListRole" runat="server">
+        <!-- start if customfields --><H3 class="blocksubhead">Role</H3><DIV class="section"><DIV class="blockrow"><LABEL>User Group forum:</LABEL> <DIV class="rightcol"><asp:Label id="lblRoleGroup" runat="server"></asp:Label> </DIV>
+        <br />
+        <LABEL>Change Role:</LABEL> <DIV class="rightcol"><asp:DropDownList id="dropDownListRole" runat="server">
                 </asp:DropDownList> </DIV></DIV></DIV>
                 <H3 class="blocksubhead">Profile</H3>
                 <DIV class="section">

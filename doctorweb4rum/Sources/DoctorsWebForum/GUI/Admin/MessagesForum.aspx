@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/GUI/Admin/MasterPage2.master" AutoEventWireup="true" CodeFile="MessagesForum.aspx.cs" Inherits="GUI_Admin_MessagesForum" Title="Message Forum" %>
+<%@ Page Language="C#" MasterPageFile="~/GUI/MasterPage.master" AutoEventWireup="true" CodeFile="MessagesForum.aspx.cs" Inherits="GUI_Admin_MessagesForum" Title="Message Forum" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <div class="standard_error">
         <h2 class="blockhead">

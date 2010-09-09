@@ -47,10 +47,6 @@ public partial class GUI_Admin_Login : System.Web.UI.Page
                     Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
                     if (role != null)
                     {
-                        if (role.RoleName.Equals("Super Moderator"))
-                        {
-                            Response.Redirect("modcp/Index.aspx");
-                        }
                         if (role.RoleName.Equals("Admin"))
                         {
                             Response.Redirect("Default.aspx");
@@ -60,12 +56,16 @@ public partial class GUI_Admin_Login : System.Web.UI.Page
             }
             else
             {
-                Response.Redirect("MessagesForum.aspx");
+                String contentMessage = "You have entered an invalid username or password."+
+                "Please press the back button, enter the correct details and try again. Don't forget that the password is case sensitive. ";
+                Response.Redirect("~/GUI/ForumMessage.aspx?typeMessage=" + contentMessage);
             }
         }
         else
         {
-            Response.Redirect("MessagesForum.aspx");
+            String contentMessage = "You have entered an invalid username or password." +
+                "Please press the back button, enter the correct details and try again. Don't forget that the password is case sensitive. ";
+            Response.Redirect("~/GUI/ForumMessage.aspx?typeMessage=" + contentMessage);
         }
     }
 }
