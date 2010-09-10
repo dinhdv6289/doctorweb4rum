@@ -46,7 +46,7 @@ $(document).ready(function() {
                     <ul class="isuser">
                         <li>
                             <asp:LinkButton ID="Logoutlnk" runat="server" OnClick="Logoutlnk_Click">Logout</asp:LinkButton></li>
-                        <li class="welcomelink">Welcome, <a href="EditProfileMember.aspx?memberID=<%=memberloged.MemberID%>"
+                        <li class="welcomelink">Welcome, <a href="MemberProfile.aspx"
                             alt="View profile">
                             <%=memberloged.UserName%>
                         </a></li>
@@ -121,8 +121,7 @@ $(document).ready(function() {
                 <ul class="navtabs floatcontainer" id="navtabs">
                     <li class="selected"><a href="Index.aspx" class="navtab popupctrl" id="yui-gen1">Forum</a>
                     </li>
-                    <li><a href="Search.aspx" class="navtab">Search</a></li>
-                    <li><a accesskey="2" href="#" class="navtab">What's New?</a></li>
+                    <li><a accesskey="2" href="WhatNew.aspx" class="navtab">What's New?</a></li>
                 </ul>
                 <div class="globalsearch" id="globalsearch">
                     <div class="navbar_search">
@@ -176,6 +175,23 @@ $(document).ready(function() {
                                         %>
                                         guests</span></p>
                         </div>
+                        <%--begin repeater memberOnline--%>
+                        <asp:Repeater ID="repeaterMembersIsOnline" runat="server">
+                            <HeaderTemplate>
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                <div class="header">
+                                    <a class="postuseravatarlink" href="MemberProfile.aspx?memberID=<%# DataBinder.Eval(Container.DataItem, "MemberID")%>">
+                                        <%# DataBinder.Eval(Container.DataItem, "UserName")%>
+                                    </a>
+                                </div>
+                            </ItemTemplate>
+                            <SeparatorTemplate>
+                                ,</SeparatorTemplate>
+                            <FooterTemplate>
+                            </FooterTemplate>
+                        </asp:Repeater>
+                        <%--end repeater memberOnline--%>
                     </div>
                     <!-- end logged-in users -->
                     <div id="wgo_stats" class="wgo_subblock">

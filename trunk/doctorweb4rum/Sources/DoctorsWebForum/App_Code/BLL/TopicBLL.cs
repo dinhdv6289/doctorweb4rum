@@ -241,5 +241,33 @@ namespace BLL
              return result;
 
          }
+
+        public static Topic[] WhatNew(String KeySearch, String CategoryID, String SubForumID, String UserName, String FromDateCreate, String ToDateCreate)
+        {
+            Topic[] result = null;
+            try
+            {
+                result = DataHelper.GetTopicDA().WhatNew(KeySearch, CategoryID, SubForumID, UserName, FromDateCreate, ToDateCreate);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public static DataSet GetAllThanksOfTopicByTopicID(int topicID)
+        {
+            DataSet dataTableAllThanks = null;
+            try
+            {
+                dataTableAllThanks = DataHelper.GetTopicDA().GetAllThanksOfTopicByTopicID(topicID);
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            return dataTableAllThanks;
+        }
     }
 }

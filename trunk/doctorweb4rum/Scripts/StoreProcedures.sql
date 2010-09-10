@@ -785,3 +785,79 @@ AS BEGIN
 END
 
 GO
+-- WhatNew
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'WhatNew' AND TYPE = 'P')
+DROP PROC WhatNew
+GO
+CREATE PROCEDURE WhatNew
+@KeySearch			NVARCHAR(500),
+@CategoryID			INT,	
+@SubForumID			INT,
+@UserName			NVARCHAR(50),
+@FromDateCreate		nvarchar(30),
+@ToDateCreate		nvarchar(30)
+AS
+BEGIN
+SET @UserName = '%' + @UserName + '%';
+SET @KeySearch = '%' + @KeySearch + '%';
+SET @FromDateCreate = '%' + @FromDateCreate;
+SET @ToDateCreate = '%' + @ToDateCreate;
+SELECT    Topics.*
+FROM         Categories INNER JOIN
+                      SubForums ON Categories.CategoryID = SubForums.CategoryID INNER JOIN
+                      Topics ON SubForums.SubForumID = Topics.SubForumID INNER JOIN
+                      Members ON Topics.MemberID = Members.MemberID
+		AND (@CategoryID = 0 OR Categories.CategoryID = @CategoryID)
+		AND (@SubForumID = 0 OR SubForums.SubForumID = @SubForumID)
+		AND (@UserName IS NULL  OR Members.UserName LIKE @UserName)
+		AND (@FromDateCreate IS NULL OR Topics.DateCreate LIKE @FromDateCreate)
+		AND (@ToDateCreate IS NULL OR Topics.DateCreate LIKE @ToDateCreate)
+		AND (@KeySearch IS NULL OR Topics.Title LIKE @KeySearch OR Topics.Content LIKE @KeySearch)
+		ORDER BY Topics.DateCreate DESC
+END
+go
+
+EXEC WhatNew '', 0, 0, '', '2010-09-10 ', '2010-09-10 '
+select * from topics
+
+
+-- GetAllThanksOfTopicByTopicID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetAllThanksOfTopicByTopicID' AND TYPE = 'P')
+DROP PROC GetAllThanksOfTopicByTopicID
+GO
+CREATE PROCEDURE GetAllThanksOfTopicByTopicID
+@TopicID int
+as
+SELECT     ThankTopic.*, Members.*
+FROM         ThankTopic INNER JOIN
+                      Members ON ThankTopic.FromMember = Members.MemberID
+where ThankTopic.ThankTopicID = @TopicID
+go
+exec GetAllThanksOfTopicByTopicID 1
+
+go
+
+-- GetAllThanksOfPostByPostID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetAllThanksOfPostByPostID' AND TYPE = 'P')
+DROP PROC GetAllThanksOfPostByPostID
+GO
+CREATE PROCEDURE GetAllThanksOfPostByPostID
+@PostID int
+as
+SELECT     ThankPost.*, Members.*
+FROM         ThankPost INNER JOIN
+                      Members ON ThankPost.FromMember = Members.MemberID
+where ThankPost.ThankPostID = @PostID
+go
+exec GetAllThanksOfPostByPostID 1
+
+-- GetMembersIsOnline
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetMembersIsOnline' AND TYPE = 'P')
+DROP PROC GetMembersIsOnline
+GO
+CREATE PROCEDURE GetMembersIsOnline
+as
+select * from dbo.Members where IsOnline = 'true'
+go
+exec GetMembersIsOnline 
+

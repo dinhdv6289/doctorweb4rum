@@ -5,7 +5,7 @@
     <div id="breadcrumb" class="breadcrumb">
         <ul class="floatcontainer">
             <li class="navbithome"><a href="" accesskey="1">
-                <img src="http://m.dpstatic.com/misc/navbit-home.png" alt="Home" /></a></li>
+                <img src="Images/navbit-home.png" alt="Home" /></a></li>
             <li class="navbit lastnavbit"><span><%= GetMember().UserName %></span></li>
         </ul>
         <hr />
@@ -15,7 +15,7 @@
             <div class="block mainblock">
                 <h1 class="blocksubhead">
                     <span id="userinfo"><span class="user10"><%= GetMember().UserName %></span>
-                        <img class="inlineimg onlinestatus" src="http://i.dpstatic.com/statusicon/user-online.png"
+                        <img class="inlineimg onlinestatus" src="Images/user-online.png"
                             alt="<%= GetMember().UserName %> is online now" border="0" />
                         <br />
                         <span class="usertitle"><%= GetMember().FullName%></span> </span>
@@ -27,15 +27,15 @@
                         <img src="<%= GetMemberProfileByMemberID().Avatar  %>" alt="" /></span> </a>
                         <%}else{ %>
                     <a class="avatar" href="member.php?u=451746" title="<%= GetMember().UserName %>'s Avatar"><span class="avatarcontainer">
-                        <img src="http://m.dpstatic.com/misc/unknown.gif" alt="" /></span> </a>
+                        <img src="Images/unknown.gif" alt="" /></span> </a>
                         <%} %>
                     <ul id="usermenu" class="usermenu">
                         <li class="separator"></li>
                         <li><a href="ViewAllTopics.aspx">
-                            <img src="http://i.dpstatic.com/site_icons/forum.png" alt="Find all posts" class="inlineimg" />
+                            <img src="Images/forum.png" alt="Find all posts" class="inlineimg" />
                             Find all posts</a></li>
                         <li><a href="ViewAllPosts.aspx">
-                            <img src="http://i.dpstatic.com/site_icons/forum.png" alt="Find all started threads"
+                            <img src="Images/forum.png" alt="Find all started threads"
                                 class="inlineimg" />
                             Find all started threads</a></li>
                     </ul>
@@ -64,7 +64,7 @@
             <div class="friends_mini friends block">
                 <h5 class="blocksubhead smaller">
                     <a class="textcontrol imagecontrol" href="profile.php?do=buddylist">
-                        <img src="http://b.dpstatic.com/buttons/edit_40b.png" alt="Edit" /></a> <span class="friends_total">
+                        <img src="Images/edit_40b.png" alt="Edit" /></a> <span class="friends_total">
                             0</span> Friends
                 </h5>
                 <div class="blockbody">
@@ -456,9 +456,9 @@ vBulletin.register_control("vB_ProfilefieldEditor", "4");
                                         </tr>
                                         <tr>
                                             <td colspan="2" align="center">
-                                                <a href="http://forums.digitalpoint.com/itrader_feedback.php?u=451746"><b>Submit Feedback
+                                                <a href=""><b>Submit Feedback
                                                     For letcomvn</b></a><br />
-                                                <a href="http://forums.digitalpoint.com/itrader.php?u=451746"><strong>View Complete
+                                                <a href=""><strong>View Complete
                                                     Feedbacks for letcomvn</strong></a></td>
                                         </tr>
                                     </table>
@@ -484,7 +484,7 @@ vBulletin.register_control("vB_ProfilefieldEditor", "4");
                                         </tr>
                                         <tr style="color: #008000;">
                                             <td align="left">
-                                                <img src="http://i.dpstatic.com/itrader/icon_positive.png" class="inlineimg" alt="" />&nbsp;</td>
+                                                <img src="Images/icon_positive.png" class="inlineimg" alt="" />&nbsp;</td>
                                             <td align="center">
                                                 0</td>
                                             <td align="center">
@@ -498,7 +498,7 @@ vBulletin.register_control("vB_ProfilefieldEditor", "4");
                                         </tr>
                                         <tr>
                                             <td align="left">
-                                                <img src="http://i.dpstatic.com/itrader/icon_neutral.png" class="inlineimg" alt="" />&nbsp;</td>
+                                                <img src="Images/icon_neutral.png" class="inlineimg" alt="" />&nbsp;</td>
                                             <td align="center">
                                                 0</td>
                                             <td align="center">
@@ -512,7 +512,7 @@ vBulletin.register_control("vB_ProfilefieldEditor", "4");
                                         </tr>
                                         <tr style="color: #FF0000;">
                                             <td align="left">
-                                                <img src="http://i.dpstatic.com/itrader/icon_negative.png" class="inlineimg" alt="" />&nbsp;</td>
+                                                <img src="Images/icon_negative.png" class="inlineimg" alt="" />&nbsp;</td>
                                             <td align="center">
                                                 0</td>
                                             <td align="center">

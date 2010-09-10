@@ -21,12 +21,14 @@ namespace DAL
         int InsertTopic(Topic topic, out int resultStatus);
         DataSet TopicDetailsByTopicID(int topicID);
         Topic[] SearchTopic(String KeySearch, String CategoryID, String SubForumID, String UserName, String FromDateCreate, String ToDateCreate);
+        Topic[] WhatNew(String KeySearch, String CategoryID, String SubForumID, String UserName, String FromDateCreate, String ToDateCreate);
         int[] GetRatingPoint(int topicID);
         int InsertRateTopic(RatingTopic rateTopic);
         int ThankTopic(int memberID, int topicID);
         Boolean isThanked(int topicID, int memberID);
         int EditTopic(Topic topicEdit);
         int CountSubForumInTopicsBySubForumIDToDelete(int subForumID);
+        DataSet GetAllThanksOfTopicByTopicID(int topicID);
 
     }
 }

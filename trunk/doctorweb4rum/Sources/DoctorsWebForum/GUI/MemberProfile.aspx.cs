@@ -14,14 +14,14 @@ public partial class GUI_MemberProfile : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if (!IsPostBack)
-        //{
-        //    Member member = (Member)Session("UserLoged");
-        //    if (member != null)
-        //    {
+        if (!IsPostBack)
+        {
+            Member member = (Member)Session("UserLoged");
+            if (member != null)
+            {
 
-        //    }
-        //}
+            }
+        }
     }
 
     public Member GetMember()

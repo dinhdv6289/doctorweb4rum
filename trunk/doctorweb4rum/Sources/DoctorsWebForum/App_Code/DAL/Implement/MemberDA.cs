@@ -496,5 +496,22 @@ namespace DAL
                 return null;
             }
         }
+
+        public Member[] GetMembersIsOnline()
+        {
+            Member[] result = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("GetMembersIsOnline");
+                result = SelectCollection<Member>(columnNames, columnNames, cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

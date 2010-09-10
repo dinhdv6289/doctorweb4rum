@@ -24,5 +24,6 @@ namespace DAL
         //int UpdatePost(Post post);
         //int DeletePost(String id);
         int EditPost(Post postEdit);
+        DataTable GetAllThanksOfPostByPostID(int postID);
     }
 }

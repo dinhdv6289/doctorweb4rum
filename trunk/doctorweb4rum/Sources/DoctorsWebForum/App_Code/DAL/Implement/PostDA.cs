@@ -290,6 +290,21 @@ namespace DAL
 
         #endregion
 
-       
+        public DataTable GetAllThanksOfPostByPostID(int postID)
+        {
+            DataTable dataTableAllThanks = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("GetAllThanksOfPostByPostID {0}", postID);
+                dataTableAllThanks = ExecuteDataset(cmd).Tables[0];
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            return dataTableAllThanks;
+        }
     }
 }

@@ -14,7 +14,15 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!IsPostBack)
+        {
+            Member[] membersOnline = MemberBLL.GetMembersIsOnline();
+            if (membersOnline.Length > 0)
+            {
+                repeaterMembersIsOnline.DataSource = membersOnline;
+                repeaterMembersIsOnline.DataBind();
+            }
+        }
     }
 
     protected void btnLogin_Click(object sender, EventArgs e)
@@ -65,7 +73,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
                                 //}
                             }
                         }
-                    }else
+                    }
+                    else
                     {
                         String contentMessage = "You have been banned forever!";
                         Response.Redirect("ForumMessage.aspx?typeMessage=" + contentMessage);

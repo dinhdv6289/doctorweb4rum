@@ -184,5 +184,19 @@ namespace BLL
             }
             return result;
         }
+
+        public static DataTable GetAllThanksOfPostByPostID(int postID)
+        {
+            DataTable dataTableAllThanks = null;
+            try
+            {
+                dataTableAllThanks = DataHelper.GetPostDA().GetAllThanksOfPostByPostID(postID);
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            return dataTableAllThanks;
+        }
     }
 }

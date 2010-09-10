@@ -31,6 +31,7 @@ namespace DAL
         Member[] GetBannedUsers();
         Member GetBannedUser(int memberID);
         DataTable SearchForUserByUserName(String userName);
+        Member[] GetMembersIsOnline();
         //int UpdateMemberAdmin(Member member);
         //int DeleteMember(String id);
     }
