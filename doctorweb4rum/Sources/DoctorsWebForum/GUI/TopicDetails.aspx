@@ -117,13 +117,54 @@
                 </div>
                 <hr/>
             </li>
-            <li class="postbit" id="adsense_inline"></li>
         </ol>
         <%--        <div class="separator">
         </div>
         <div class="postlistfoot">
         </div>--%>
     </div>
+    
+    <%--begin thanks--%>
+            <ol class="floatcontainer" id="forums">
+                <li class="forumbit_nopost L1">
+                    <div class="module">
+                        <div class="header" id="module_group10" style="cursor: pointer;">
+                            <h2>
+                                <span class="forumtitle"><a style="color: rgb(255, 255, 255);" href="">The Following
+                                    User Says Thank You to <%= GetMemberByMemberID(GetTopic().MemberID).UserName %> For This Useful Post: </a></span>
+                            </h2>
+                        </div>
+                        <asp:Repeater ID="repeaterThanksOfTopic" runat="server">
+                            <ItemTemplate>
+                                <ol id="c_cat4" class="childforum">
+                                    <li id="forum5" class="forumbit_post L2">
+                                        <div class="forumrow table">
+                                           <%-- <div class="foruminfo td">--%>
+                                               <%-- <div class="forumdata">--%>
+                                                   <%-- <div class="datacontainer">--%>
+                                                        <div class="titleline">
+                                                            <h2 class="forumtitle">
+                                                                <a href="MemberProfile.aspx?memberID=<%#Eval("FromMember")%>"><%#Eval("UserName")%> (<%#Eval("ThankDate")%>) </a>
+                                                            </h2>
+                                                        </div>
+                                                   <%-- </div>--%>
+                                               <%-- </div>--%>
+                                           <%-- </div>--%>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </ItemTemplate>
+                            <SeparatorTemplate>
+                                ,</SeparatorTemplate>
+                        </asp:Repeater>
+                    </div>
+                </li>
+            </ol>    
+    
+    
+    <%--end thanks--%>
+    
+    
     <%--begin posts list of this topic--%>
     <asp:Repeater ID="repeaterPosts" runat="server" OnItemCommand="repeaterPosts_ItemCommand">
         <ItemTemplate>

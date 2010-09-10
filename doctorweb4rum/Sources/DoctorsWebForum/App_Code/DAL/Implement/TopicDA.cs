@@ -382,5 +382,55 @@ namespace DAL
             }
             return result;
         }
+
+        public Topic[] WhatNew(String KeySearch, String CategoryID, String SubForumID, String UserName, String FromDateCreate, String ToDateCreate)
+        {
+            Topic[] result;
+            if (FromDateCreate.Length == 0 || FromDateCreate.Equals(""))
+            {
+                FromDateCreate = "null";
+            }
+            else
+            {
+                FromDateCreate = "'" + FromDateCreate + "'";
+            }
+            if (ToDateCreate.Length == 0 || ToDateCreate.Equals(""))
+            {
+                ToDateCreate = "null";
+            }
+            else
+            {
+                ToDateCreate = "'" + ToDateCreate + "'";
+            }
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("WhatNew '{0}', {1}, {2}, '{3}', {4}, {5}", KeySearch, CategoryID, SubForumID, UserName, FromDateCreate, ToDateCreate);
+                result = SelectCollection<Topic>(columnNames, columnNames, cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public DataSet GetAllThanksOfTopicByTopicID(int topicID)
+        {
+            DataSet dataTableAllThanks = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("GetAllThanksOfTopicByTopicID {0}", topicID);
+                dataTableAllThanks = ExecuteDataset(cmd);
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            return dataTableAllThanks;
+        }
     }
 }

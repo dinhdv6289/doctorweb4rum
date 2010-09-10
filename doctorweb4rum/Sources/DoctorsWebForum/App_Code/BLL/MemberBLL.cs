@@ -327,5 +327,19 @@ namespace BLL
             }
             return inforMember;
         }
+
+        public static Member[] GetMembersIsOnline()
+        {
+            Member[] result;
+            try
+            {
+                result = DataHelper.GetMemberDA().GetMembersIsOnline();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

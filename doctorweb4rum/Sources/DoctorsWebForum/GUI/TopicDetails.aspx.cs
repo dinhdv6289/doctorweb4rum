@@ -36,6 +36,12 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
                     CollectionPager1.BindToControl = repeaterPosts;
                     repeaterPosts.DataSource = CollectionPager1.DataSourcePaged;
                 }
+                DataSet dataThanksOfTopic = TopicBLL.GetAllThanksOfTopicByTopicID(topicID);
+                if(dataThanksOfTopic != null)
+                {
+                    repeaterThanksOfTopic.DataSource = dataThanksOfTopic.Tables[0];
+                    repeaterThanksOfTopic.DataBind();
+                }
                 this.Page.Title = tp.Title;
                 int[] result = TopicBLL.GetRatingPoint(topicID);
                 topicRating.CurrentRating = result[1];
