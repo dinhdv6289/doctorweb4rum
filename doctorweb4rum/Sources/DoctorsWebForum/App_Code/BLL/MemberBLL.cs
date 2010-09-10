@@ -226,7 +226,7 @@ namespace BLL
             return result;
         }
 
-        public int UpdateMemberInfo(Member member, MemberProfile memberProfile)
+        public static int UpdateMemberInfo(Member member, MemberProfile memberProfile)
         {
             int result = 0;
             try
