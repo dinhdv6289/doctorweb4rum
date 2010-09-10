@@ -14,22 +14,24 @@ public partial class GUI_MemberProfile : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
-        {
-            Member member = (Member)Session["UserLoged"];
-            if (member != null)
-            {
 
-            }
-        }
     }
 
     public Member GetMember()
     {
-        Member member = (Member)Session["UserLoged"];
-        if (member == null)
+        Member member = null;
+        if (Session["UserLoged"] != null)
         {
-            member = new Member();
+            String memberID = Request.QueryString["memberID"];
+
+            if (memberID != null)
+            {
+                member = MemberBLL.GetMemberByMemberID(Convert.ToInt32(memberID));
+                if (member == null)
+                {
+                    member = new Member();
+                }
+            }
         }
         return member;
     }
@@ -38,14 +40,24 @@ public partial class GUI_MemberProfile : System.Web.UI.Page
 
     public MemberProfile GetMemberProfileByMemberID()
     {
-        Member member = (Member)Session["UserLoged"];
+        Member member;
         MemberProfile memberProfile = null;
-        if (member != null)
+        if (Session["UserLoged"] != null)
         {
-            memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
-            if (memberProfile == null)
+            String memberID = Request.QueryString["memberID"];
+
+            if (memberID != null)
             {
-                memberProfile = new MemberProfile();
+                member = MemberBLL.GetMemberByMemberID(Convert.ToInt32(memberID));
+
+                if (member != null)
+                {
+                    memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
+                    if (memberProfile == null)
+                    {
+                        memberProfile = new MemberProfile();
+                    }
+                }
             }
         }
         return memberProfile;

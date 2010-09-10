@@ -155,17 +155,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
                     {
                         function = "<li><a href=\"#\" target=\"_blank\" rel=\"nofollow\" accesskey=\"9\"></a></li>";
                     }
-                    if (role.RoleName.Equals("Moderator"))
-                    {
-                        function = "<li><a href=\"#\" target=\"_blank\" rel=\"nofollow\" accesskey=\"9\"></a></li>";
-                    }
-                    if (role.RoleName.Equals("Super Moderator"))
-                    {
-                        function = "<li><a href=\"modcp/Index.aspx\" target=\"_blank\" rel=\"nofollow\" accesskey=\"9\">Mod</a></li>";
-                    }
                     if (role.RoleName.Equals("Admin"))
                     {
-                        function = "<li><a href=\"Admin/Login.aspx\" target=\"_blank\" rel=\"nofollow\" accesskey=\"9\">Admin</a></li><li><a href=\"modcp/Index.aspx\" target=\"_blank\" rel=\"nofollow\" accesskey=\"9\">Mod</a></li>";
+                        function = "<li><a href=\"Admin/Login.aspx\" target=\"_blank\" rel=\"nofollow\" accesskey=\"9\">Admin</a></li>";
                     }
                 }
             }
