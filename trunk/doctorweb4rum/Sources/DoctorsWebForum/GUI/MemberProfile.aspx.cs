@@ -16,7 +16,7 @@ public partial class GUI_MemberProfile : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            Member member = (Member)Session("UserLoged");
+            Member member = (Member)Session["UserLoged"];
             if (member != null)
             {
 
