@@ -1,11 +1,54 @@
 <%@ Page Language="C#" MasterPageFile="~/GUI/MasterPage.master" AutoEventWireup="true"
-    CodeFile="EditMemberProfile.aspx.cs" Inherits="GUI_EditMemberProfile" Title="Untitled Page" %>
+    CodeFile="EditMemberProfile.aspx.cs" Inherits="GUI_EditMemberProfile" Title="Edit Member Profile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="True">
-        <ContentTemplate>
+<div id="usercp_nav">
+            <div class="block">
+                <h2 class="blockhead">
+                    My Settings</h2>
+                <div class="blockbody">
+                    <ul>
+                        <li>
+                            <h3 class="blocksubhead profile">
+                                <img border="0" alt="My Profile" src="Images/profile.png" class="usercpimage" title="My Profile">
+                                My Profile</h3>
+                            <ul class="blockrow">
+                                <li class="inactive">
+                                    <asp:LinkButton ID="linkButtonEditProfile" runat="server">Edit Profile</asp:LinkButton></li>
+                                <li class="inactive">
+                                    <asp:LinkButton ID="linkButtonEditAvatar" runat="server">Edit Avatar</asp:LinkButton></li>
+                                <li class="inactive">
+                                    <asp:LinkButton ID="linkButtonEditSignature" runat="server">Edit Signature</asp:LinkButton></li>
+                                <li class="inactive">
+                                    <asp:LinkButton ID="linkButtonProfilePrivacy" runat="server">Profile Privacy</asp:LinkButton></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h3 class="blocksubhead">
+                                <img border="0" alt="My Account" src="Images/account.png" class="usercpimage" title="My Account">
+                                My Account</h3>
+                            <ul class="blockrow">
+                                <li class="inactive">
+                                    <asp:LinkButton ID="linkButtonEditEmailPassword" runat="server">Edit Email &amp; Password</asp:LinkButton></li>
+                                <li class="inactive">
+                                    <asp:LinkButton ID="linkButtonGeneralSetting" runat="server">General Settings</asp:LinkButton></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h4 class="blocksubhead">
+                            </h4>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    <div id="usercp_content">
+        <div class="cp_content">
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="True">
+                <contenttemplate>
             <asp:Panel ID="panelViewAndEditMember" runat="server">
-                <asp:HiddenField ID="memberIDHiddend" runat="server" />
+                <h2 class="blockhead">Edit Profile</h2>
+<div class="blockbody formcontrols settings_form_border">                
                 <!-- start if customfields -->
                 <h3 class="blocksubhead">
                     Role</h3>
@@ -144,6 +187,7 @@
                     <asp:Button ID="btnCancel" runat="server" CssClass="button" Text="Cancel" OnClick="btnCancel_Click">
                     </asp:Button>
                 </div>
+                </div>
             </asp:Panel>
             <asp:Panel ID="panelUpdateFailure" runat="server">
                 <h2 id="H2_3" class="blocksubhead" align="center">
@@ -172,7 +216,10 @@
                     <fieldset class="blockrow">
                     </fieldset>
                 </div>
+                
             </asp:Panel>
-        </ContentTemplate>
-    </asp:UpdatePanel>
+        </contenttemplate>
+            </asp:UpdatePanel>
+        </div>
+    </div>
 </asp:Content>

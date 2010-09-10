@@ -46,9 +46,13 @@ $(document).ready(function() {
                     <ul class="isuser">
                         <li>
                             <asp:LinkButton ID="Logoutlnk" runat="server" OnClick="Logoutlnk_Click">Logout</asp:LinkButton></li>
-                        <li class="welcomelink">Welcome, <a href="MemberProfile.aspx"
+                        <li class="welcomelink">Welcome, <a href="MemberProfile.aspx?memberID=<%=memberloged.MemberID%>"
                             alt="View profile">
                             <%=memberloged.UserName%>
+                        </a></li>
+                        <li class="welcomelink"> <a href="EditMemberProfile.aspx?memberID=<%=memberloged.MemberID%>"
+                            alt="View profile">
+                           ChangeProfile
                         </a></li>
                     </ul>
                     <%}
@@ -60,9 +64,9 @@ $(document).ready(function() {
                                 <asp:LinkButton ID="Loginlnk" runat="server" Width="47px" CausesValidation="false">Login</asp:LinkButton></li><li>
                                 </li>
                     </ul>
-                    <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtenderLogin" runat="server" TargetControlID="Loginlnk"
-                        PopupControlID="LoginPanel" BackgroundCssClass="modalBackground" DropShadow="false"
-                        CancelControlID="btnCancel" Drag="false" />
+                    <ajaxtoolkit:modalpopupextender id="ModalPopupExtenderLogin" runat="server" targetcontrolid="Loginlnk"
+                        popupcontrolid="LoginPanel" backgroundcssclass="modalBackground" dropshadow="false"
+                        cancelcontrolid="btnCancel" drag="false" />
                     <%} %>
                 </div>
                 <asp:Panel ID="LoginPanel" runat="server" Style="display: none" Font-Names="@MS PGothic"
@@ -86,9 +90,9 @@ $(document).ready(function() {
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="UserName is not null."
                                     ControlToValidate="txtUserName" Display="None" SetFocusOnError="true" ValidationGroup="loginValidate">*</asp:RequiredFieldValidator>
                             </div>
-                            <ajaxToolkit:ValidatorCalloutExtender ID="RequiredFieldValidator1_ValidatorCalloutExtender"
-                                runat="server" TargetControlID="RequiredFieldValidator1" Enabled="True">
-                            </ajaxToolkit:ValidatorCalloutExtender>
+                            <ajaxtoolkit:validatorcalloutextender id="RequiredFieldValidator1_ValidatorCalloutExtender"
+                                runat="server" targetcontrolid="RequiredFieldValidator1" enabled="True">
+                            </ajaxtoolkit:validatorcalloutextender>
                             <div class="blockrow">
                                 <label for="vb_login_password">
                                     Password:</label>
@@ -96,9 +100,9 @@ $(document).ready(function() {
                                 </asp:TextBox>&nbsp;<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
                                     ControlToValidate="txtPassword" Display="None" ErrorMessage="Password is not null."
                                     SetFocusOnError="True" ValidationGroup="loginValidate">*</asp:RequiredFieldValidator>
-                                <ajaxToolkit:ValidatorCalloutExtender ID="RequiredFieldValidator2_ValidatorCalloutExtender"
-                                    runat="server" TargetControlID="RequiredFieldValidator2" Enabled="True">
-                                </ajaxToolkit:ValidatorCalloutExtender>
+                                <ajaxtoolkit:validatorcalloutextender id="RequiredFieldValidator2_ValidatorCalloutExtender"
+                                    runat="server" targetcontrolid="RequiredFieldValidator2" enabled="True">
+                                </ajaxtoolkit:validatorcalloutextender>
                             </div>
                             <div class="blockrow singlecheck">
                                 <label for="cb_cookieuser" style="width: 245px">
