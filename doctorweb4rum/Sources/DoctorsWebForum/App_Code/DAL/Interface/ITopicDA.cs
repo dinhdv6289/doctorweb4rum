@@ -29,6 +29,7 @@ namespace DAL
         int EditTopic(Topic topicEdit);
         int CountSubForumInTopicsBySubForumIDToDelete(int subForumID);
         DataSet GetAllThanksOfTopicByTopicID(int topicID);
+        Topic[] ViewAllTopicsByMemberID(int memberID);
 
     }
 }

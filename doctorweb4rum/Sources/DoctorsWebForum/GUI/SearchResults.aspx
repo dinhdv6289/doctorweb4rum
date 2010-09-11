@@ -64,7 +64,7 @@
                                     <%#GetLastPostOfTopicByTopicID(Convert.ToInt32(Eval("TopicID"))).DateCreation%>
                                     <em class="time"></em><a href="TopicDetails.aspx?topicIDLastPost=<%#Eval("TopicID") %>"
                                         class="lastpostdate understate" title="Go to last post">
-                                        <img title="Go to last post" src="http://b.dpstatic.com/buttons/lastpost-right.png"
+                                        <img title="Go to last post" src="Images/lastpost-right.png"
                                             alt="Go to last post"></a>
                                 </dd>
                             </dl>

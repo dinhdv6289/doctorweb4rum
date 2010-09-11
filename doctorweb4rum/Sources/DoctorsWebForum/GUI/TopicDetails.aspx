@@ -5,8 +5,6 @@
     <asp:LinkButton ID="LinkButton3" runat="server" CssClass="newcontent_textcontrol" OnClick="CheckLoginToNewReply" >
     <span>+ </span>Reply to Topic</asp:LinkButton>
     <br />
-    <div>
-    </div>
     <div class="pagetitle" id="pagetitle">
         <h1>
             Thread: <span class="threadtitle"><a title="Reload this Page" href="TopicDetails.aspx?topicID=<%= GetTopic().TopicID %>">
@@ -102,13 +100,12 @@
                 <hr/>
             </li>
         </ol>
-        <%--        <div class="separator">
-        </div>
-        <div class="postlistfoot">
-        </div>--%>
     </div>
     
     <%--begin thanks--%>
+            <asp:UpdatePanel ID="UpdatePanelRepeaterThanksOfTopic" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="True">
+            <ContentTemplate>
+            <asp:Panel id="panelThanksOfTopic" runat="server">
             <ol class="floatcontainer" id="forums">
                 <li class="forumbit_nopost L1">
                     <div class="module">
@@ -143,9 +140,10 @@
                         </asp:Repeater>
                     </div>
                 </li>
-            </ol>    
-    
-    
+            </ol>   
+            </asp:Panel>
+    </ContentTemplate>
+    </asp:UpdatePanel>
     <%--end thanks--%>
     
     
@@ -241,6 +239,46 @@
                 </div>
                 <hr>
             </li>
+       
+            <%--begin thanks of post--%>
+            <ol class="floatcontainer" id="forums">
+                <li class="forumbit_nopost L1">
+                    <div class="module">
+                        <div class="header" id="module_group10" style="cursor: pointer;">
+                            <h2>
+                                <span class="forumtitle"><a style="color: rgb(255, 255, 255);" href="">The Following
+                                    User Says Thank You to <%#Eval("UserName")%> For This Useful Post: </a></span>
+                            </h2>
+                        </div>
+                        <asp:Repeater ID="repeaterThanksOfPost" runat="server" DataSource='<%#GetAllThanksOfPostByPostID(Convert.ToInt32(Eval("PostID"))) %>'>
+                            <ItemTemplate>
+                                <ol id="c_cat4" class="childforum">
+                                    <li id="forum5" class="forumbit_post L2">
+                                        <div class="forumrow table">
+                                           <%-- <div class="foruminfo td">--%>
+                                               <%-- <div class="forumdata">--%>
+                                                   <%-- <div class="datacontainer">--%>
+                                                        <div class="titleline">
+                                                            <h2 class="forumtitle">
+                                                                <a href="MemberProfile.aspx?memberID=<%#Eval("FromMember")%>"><%#Eval("UserName")%> (<%#Eval("ThankDate")%>) </a>
+                                                            </h2>
+                                                        </div>
+                                                   <%-- </div>--%>
+                                               <%-- </div>--%>
+                                           <%-- </div>--%>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </ItemTemplate>
+                            <SeparatorTemplate>
+                                ,</SeparatorTemplate>
+                        </asp:Repeater>
+                    </div>
+                </li>
+            </ol>   
+    </ol>
+    <%--end thanks of post--%>
+        
     </div>
         </ItemTemplate>
     </asp:Repeater>

@@ -37,7 +37,7 @@ public partial class GUI_NewReplyWithQuote : System.Web.UI.Page
                     }
                     this.Page.Title = topic.Title;
                 }
-                
+
             }
             else
             {
@@ -83,9 +83,11 @@ public partial class GUI_NewReplyWithQuote : System.Web.UI.Page
             {
                 newPost.TopicID = Convert.ToInt32(Request.QueryString["topicID"]);
                 Member memberloged = (Member)Session["UserLoged"];
+                MemberProfile memberProfile = null;
                 if (memberloged != null)
                 {
                     newPost.MemberID = memberloged.MemberID;
+                    memberProfile = MemberBLL.GetMemberProfileByMemberID(memberloged.MemberID);
                 }
                 newPost.QuoteID = Convert.ToInt32(Request.QueryString["postID"]);
                 newPost.Content = Editor1.Content;
@@ -94,6 +96,8 @@ public partial class GUI_NewReplyWithQuote : System.Web.UI.Page
                 int result = PostBLL.InsertPost(newPost);
                 if (result > 0)
                 {
+                    memberProfile.TotalPosts = memberProfile.TotalPosts + 1;
+                    MemberBLL.UpdateTotalPostOfMemberByMemberID(memberProfile);
                     Response.Redirect("TopicDetails.aspx?topicID=" + Request.QueryString["topicID"]);
                 }
             }
@@ -101,7 +105,8 @@ public partial class GUI_NewReplyWithQuote : System.Web.UI.Page
             {
                 Server.Transfer("TopicDetails.aspx?topicID=" + Request.QueryString["topicID"]);
             }
-        }else
+        }
+        else
         {
             this.Title = "Topic";
             this.Page.ClientScript.RegisterStartupScript(this.GetType(), "Errors", "<script>alert('The contents you have entered is too short. Please lengthen your contents to at least 100 Characters.');</script>");

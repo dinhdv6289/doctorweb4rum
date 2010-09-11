@@ -96,7 +96,8 @@ public partial class GUI_Register : System.Web.UI.Page
                 result = MemberBLL.InsertMemberInfo(mem, memProfile, out resultStatus);
                 if (resultStatus == 1)
                 {
-                    //OK
+                    String contents = "Thank you for registering," + userName + ". Now you  have permission to post.";
+                    Response.Redirect("ForumMessage.aspx?typeMessage="+contents);
                 }
                 else if (resultStatus == -1)
                 {

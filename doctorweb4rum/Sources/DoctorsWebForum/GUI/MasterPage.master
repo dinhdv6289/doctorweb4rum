@@ -184,11 +184,9 @@ $(document).ready(function() {
                             <HeaderTemplate>
                             </HeaderTemplate>
                             <ItemTemplate>
-                                <div class="header">
-                                    <a class="postuseravatarlink" href="MemberProfile.aspx?memberID=<%# DataBinder.Eval(Container.DataItem, "MemberID")%>">
+                                    &nbsp;&nbsp;<a class="postuseravatarlink" href="MemberProfile.aspx?memberID=<%# DataBinder.Eval(Container.DataItem, "MemberID")%>">
                                         <%# DataBinder.Eval(Container.DataItem, "UserName")%>
                                     </a>
-                                </div>
                             </ItemTemplate>
                             <SeparatorTemplate>
                                 ,</SeparatorTemplate>

@@ -49,7 +49,6 @@
                                 <li>Views:
                                     <%#GetTotalViewsByTopicID(Convert.ToInt32(Eval("TopicID")))%>
                                 </li>
-                                <li class="hidden">Rating0 / 5</li>
                             </ul>
                             <!-- lastpost -->
                             <dl class="threadlastpost td">

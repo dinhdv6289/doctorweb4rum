@@ -23,21 +23,21 @@
                 <div id="userinfoblock" class="floatcontainer">
                 <% if (GetMemberProfileByMemberID().MemberID.ToString() != null)
                    { %>
-                                    <a class="avatar" href="member.php?u=451746" title="<%= GetMember().UserName %>'s Avatar"><span class="avatarcontainer">
+                                    <a class="avatar" href="" title="<%= GetMember().UserName %>'s Avatar"><span class="avatarcontainer">
                         <img src="<%= GetMemberProfileByMemberID().Avatar  %>" alt="" /></span> </a>
                         <%}else{ %>
-                    <a class="avatar" href="member.php?u=451746" title="<%= GetMember().UserName %>'s Avatar"><span class="avatarcontainer">
+                    <a class="avatar" href="" title="<%= GetMember().UserName %>'s Avatar"><span class="avatarcontainer">
                         <img src="Images/unknown.gif" alt="" /></span> </a>
                         <%} %>
                     <ul id="usermenu" class="usermenu">
                         <li class="separator"></li>
-                        <li><a href="ViewAllTopics.aspx">
+                        <li><a href="ViewAllTopics.aspx?memberID=<%= GetMember().MemberID %>">
                             <img src="Images/forum.png" alt="Find all Topics" class="inlineimg" />
                             Find all Topics</a></li>
-                        <li><a href="ViewAllPosts.aspx">
+                        <%--<li><a href="ViewAllPosts.aspx">
                             <img src="Images/forum.png" alt="Find all posts"
                                 class="inlineimg" />
-                            Find all posts</a></li>
+                            Find all posts</a></li>--%>
                     </ul>
                 </div>
             </div>

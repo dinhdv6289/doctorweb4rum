@@ -804,7 +804,7 @@ go
 exec WhatNew
 select * from topics
 
-
+go
 -- GetAllThanksOfTopicByTopicID
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetAllThanksOfTopicByTopicID' AND TYPE = 'P')
 DROP PROC GetAllThanksOfTopicByTopicID
@@ -831,10 +831,11 @@ as
 SELECT     ThankPost.*, Members.*
 FROM         ThankPost INNER JOIN
                       Members ON ThankPost.FromMember = Members.MemberID
-where ThankPost.ThankPostID = @PostID
+where ThankPost.PostID = @PostID
 go
-exec GetAllThanksOfPostByPostID 1
+exec GetAllThanksOfPostByPostID 4
 
+go
 -- GetMembersIsOnline
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetMembersIsOnline' AND TYPE = 'P')
 DROP PROC GetMembersIsOnline
@@ -844,4 +845,70 @@ as
 select * from dbo.Members where IsOnline = 'true'
 go
 exec GetMembersIsOnline 
+go
 
+-- ViewAllTopicsByMemberID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'ViewAllTopicsByMemberID' AND TYPE = 'P')
+DROP PROC ViewAllTopicsByMemberID
+GO
+CREATE PROCEDURE ViewAllTopicsByMemberID
+	@MemberID int
+AS
+BEGIN
+SELECT    *
+FROM         Topics 
+where MemberID = @MemberID
+END
+go
+exec ViewAllTopicsByMemberID 2
+go
+
+-- ViewAllPostsByMemberID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'ViewAllPostsByMemberID' AND TYPE = 'P')
+DROP PROC ViewAllPostsByMemberID
+GO
+CREATE PROCEDURE ViewAllPostsByMemberID
+	@MemberID int
+AS
+BEGIN
+SELECT     Topics.*, Posts.*
+FROM         Posts INNER JOIN
+                      Topics ON Posts.TopicID = Topics.TopicID
+
+where Posts.MemberID = @MemberID
+END
+go
+exec ViewAllTopicsByMemberID 2
+
+go
+
+select * from Posts
+select * from dbo.ThankPost
+
+
+-- UpdateViewOfTopicTopicID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'UpdateViewOfTopicTopicID' AND TYPE = 'P')
+DROP PROC UpdateViewOfTopicTopicID
+GO
+CREATE PROCEDURE UpdateViewOfTopicTopicID
+	@TopicID int,
+	@TotalViews int
+AS
+BEGIN
+Update Topics set TotalViews = @TotalViews where TopicID = @TopicID
+
+END
+
+go
+-- UpdateTotalPostOfMemberByMemberID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'UpdateTotalPostOfMemberByMemberID' AND TYPE = 'P')
+DROP PROC UpdateTotalPostOfMemberByMemberID
+GO
+CREATE PROCEDURE UpdateTotalPostOfMemberByMemberID
+	@MemberID int,
+	@TotalPost int
+AS
+BEGIN
+Update MemberProfiles set TotalPosts = @TotalPost where MemberID = @MemberID
+
+END

@@ -269,5 +269,19 @@ namespace BLL
             }
             return dataTableAllThanks;
         }
+
+        public static Topic[] ViewAllTopicsByMemberID(int memberID)
+        {
+            Topic[] result = null;
+            try
+            {
+                result = DataHelper.GetTopicDA().ViewAllTopicsByMemberID(memberID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

@@ -37,7 +37,7 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
                     repeaterPosts.DataSource = CollectionPager1.DataSourcePaged;
                 }
                 DataSet dataThanksOfTopic = TopicBLL.GetAllThanksOfTopicByTopicID(topicID);
-                if(dataThanksOfTopic != null)
+                if (dataThanksOfTopic != null)
                 {
                     repeaterThanksOfTopic.DataSource = dataThanksOfTopic.Tables[0];
                     repeaterThanksOfTopic.DataBind();
@@ -114,6 +114,18 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
         return memberProfile;
     }
 
+    public DataTable GetAllThanksOfPostByPostID(int postID)
+    {
+        DataTable allThanks = PostBLL.GetAllThanksOfPostByPostID(postID);
+        if (allThanks == null)
+        {
+            allThanks = new DataTable();
+        }
+        return allThanks;
+        //
+    }
+    //
+
     //public Member GetMemberByMemberID(int memberID)
     //{
     //    Member mem = MemberBLL.GetMemberByMemberID(memberID);
@@ -146,8 +158,18 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
         if (memberLogin != null)
         {
             string TopicID = Request["topicID"];
-            TopicBLL.ThankTopic(memberLogin.MemberID, Convert.ToInt32(TopicID));
-            LinkButton1.Visible = false;
+            int result = TopicBLL.ThankTopic(memberLogin.MemberID, Convert.ToInt32(TopicID));
+            if (result > 0)
+            {
+                LinkButton1.Visible = false;
+                DataSet dataThanksOfTopic = TopicBLL.GetAllThanksOfTopicByTopicID(topicID);
+                if (dataThanksOfTopic != null)
+                {
+                    repeaterThanksOfTopic.DataSource = dataThanksOfTopic.Tables[0];
+                    repeaterThanksOfTopic.DataBind();
+                }
+                panelThanksOfTopic.Visible = true;
+            }
         }
     }
 
@@ -331,7 +353,8 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
             if (p.MemberID == m.MemberID)
             {
                 result = m.UserName + " is online";
-            }else
+            }
+            else
             {
                 Member member = MemberBLL.GetMemberByMemberID(p.MemberID);
                 if (member != null)
@@ -339,7 +362,7 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
                     result = member.UserName + " is offline";
                 }
             }
-            
+
         }
         else
         {

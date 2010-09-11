@@ -9,6 +9,8 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using BLL;
+using System.Collections.Generic;
+using TuyenPV;
 public partial class GUI_EditMemberProfile : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -57,6 +59,9 @@ public partial class GUI_EditMemberProfile : System.Web.UI.Page
             {
                 Response.Redirect("Index.aspx");
             }
+            List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
+            nodes.Add(new KeyValuePair<string, Uri>("Edit Profile", Request.Url));
+            ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
         }
     }
 
