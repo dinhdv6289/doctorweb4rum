@@ -32,12 +32,12 @@
                     <ul id="usermenu" class="usermenu">
                         <li class="separator"></li>
                         <li><a href="ViewAllTopics.aspx">
-                            <img src="Images/forum.png" alt="Find all posts" class="inlineimg" />
-                            Find all posts</a></li>
+                            <img src="Images/forum.png" alt="Find all Topics" class="inlineimg" />
+                            Find all Topics</a></li>
                         <li><a href="ViewAllPosts.aspx">
-                            <img src="Images/forum.png" alt="Find all started threads"
+                            <img src="Images/forum.png" alt="Find all posts"
                                 class="inlineimg" />
-                            Find all started threads</a></li>
+                            Find all posts</a></li>
                     </ul>
                 </div>
             </div>
@@ -67,11 +67,7 @@
                 <div id="view-visitor_messaging" class="view_section">
                 </div>
                 <div id="view-aboutme" class="selected_view_section">
-                    <h3 class="subsectionhead">
-                        <a class="textcontrol" href="member.php?u=451746&amp;tab=aboutme&amp;simple=1">View
-                            your "About Me" as seen by everyone else</a> <span class="subsectiontitle">About letcomvn</span>
-                    </h3>
-                    
+                   
                     <!-- basic information -->
                     
                     <div class="subsection">
@@ -167,10 +163,6 @@
                                 </dd>
                             </dl>
                             <dl class="stats">
-                                <dt id="Dt16">My Rss</dt><dd id="Dd16">
-                                </dd>
-                            </dl>
-                            <dl class="stats">
                                 <dt id="Dt17">Signature</dt><dd id="Dd17"><%= GetMemberProfileByMemberID().Signature %>
 
                                 </dd>
@@ -189,136 +181,7 @@
                     </div>
                     <!-- / stats -->
                 </div>
-                <div id="view-friends-content" class="view_section">
-                    <h3 class="subsectionhead" id="friends">
-                        <a class="textcontrol" href="profile.php?do=buddylist">Edit Your Friends List</a>
-                        <span class="subsectiontitle">Friends</span>
-                    </h3>
-                    <div>
-                        <div>
-                            Your friends list is empty
-                        </div>
-                    </div>
-                    <!-- view-friends -->
-                </div>
-                <div id="view-infractions-content" class="view_section">
-                </div>
-                <div id="view-postareas" class="view_section">
-                    <h4 class="subsectionhead-understate">
-                        Top Areas Of Posting</h4>
-                    <div class="subsection">
-                    </div>
-                </div>
-                <div id="view-cat_itrader_stats" class="view_section">
-                    <div class="subsection">
-                        <table class="tborder" border="0" width="100%" align="center">
-                            <tr>
-                                <td class="blocksubhead" align="center">
-                                    iTrader Profile</td>
-                                <td class="blocksubhead" align="center">
-                                    Recent Ratings</td>
-                            </tr>
-                            <tr>
-                                <td class="blockbody" valign="top" align="left" style="padding: 5px;">
-                                    <table border="0" width="100%" align="center">
-                                        <tr>
-                                            <td>
-                                                <strong>Feedback Score:</strong><br />
-                                                <strong>Positive Feedback:</strong></td>
-                                            <td>
-                                                <strong>0<br />
-                                                    0%</strong></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Members who left positive:<br />
-                                                Members who left negative:</td>
-                                            <td>
-                                                0<br />
-                                                0</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Total positive feedback:</td>
-                                            <td>
-                                                0</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2" align="center">
-                                                <a href=""><b>Submit Feedback
-                                                    For letcomvn</b></a><br />
-                                                <a href=""><strong>View Complete
-                                                    Feedbacks for letcomvn</strong></a></td>
-                                        </tr>
-                                    </table>
-                                </td>
-                                <td class="blockbody" align="center" valign="top" style="padding: 5px;">
-                                    <table border="0" width="100%" align="center">
-                                        <tr>
-                                            <td>
-                                                &nbsp;</td>
-                                            <td align="center">
-                                                Past<br />
-                                                Month</td>
-                                            <td align="center">
-                                                Past<br />
-                                                6 Months</td>
-                                            <td align="center">
-                                                Past<br />
-                                                12 Months</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="4" class="alt2" style="padding: 1px">
-                                            </td>
-                                        </tr>
-                                        <tr style="color: #008000;">
-                                            <td align="left">
-                                                <img src="Images/icon_positive.png" class="inlineimg" alt="" />&nbsp;</td>
-                                            <td align="center">
-                                                0</td>
-                                            <td align="center">
-                                                0</td>
-                                            <td align="center">
-                                                0</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="4" class="alt2" style="padding: 1px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td align="left">
-                                                <img src="Images/icon_neutral.png" class="inlineimg" alt="" />&nbsp;</td>
-                                            <td align="center">
-                                                0</td>
-                                            <td align="center">
-                                                0</td>
-                                            <td align="center">
-                                                0</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="4" class="alt2" style="padding: 1px">
-                                            </td>
-                                        </tr>
-                                        <tr style="color: #FF0000;">
-                                            <td align="left">
-                                                <img src="Images/icon_negative.png" class="inlineimg" alt="" />&nbsp;</td>
-                                            <td align="center">
-                                                0</td>
-                                            <td align="center">
-                                                0</td>
-                                            <td align="center">
-                                                0</td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="underblock">
-                </div>
                 <!-- / cat_itrader_stats -->
             </div>
         </div>
-    </div>
 </asp:Content>
