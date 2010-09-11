@@ -242,12 +242,12 @@ namespace BLL
 
          }
 
-        public static Topic[] WhatNew(String KeySearch, String CategoryID, String SubForumID, String UserName, String FromDateCreate, String ToDateCreate)
+        public static Topic[] WhatNew()
         {
             Topic[] result = null;
             try
             {
-                result = DataHelper.GetTopicDA().WhatNew(KeySearch, CategoryID, SubForumID, UserName, FromDateCreate, ToDateCreate);
+                result = DataHelper.GetTopicDA().WhatNew();
             }
             catch (Exception ex)
             {

@@ -17,7 +17,7 @@ public partial class GUI_WhatNew : System.Web.UI.Page
     {
         if(!IsPostBack)
         {
-            Topic[] topics = TopicBLL.WhatNew("", "0", "0", "", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortDateString());
+            Topic[] topics = TopicBLL.WhatNew();
             if (topics.Length > 0)
             {
                 repeaterTopics.DataSource = topics;

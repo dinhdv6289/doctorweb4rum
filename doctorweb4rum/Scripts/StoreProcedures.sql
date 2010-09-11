@@ -373,7 +373,7 @@ FROM         Categories INNER JOIN
 		ORDER BY Topics.DateCreate DESC
 END
 go
-EXEC SearchTopic '', 0, 0, '', null, null
+EXEC SearchTopic '', 0, 0, '', null, null,'','',''
 go
 select * from topics
 
@@ -797,11 +797,11 @@ CREATE PROCEDURE WhatNew
 AS
 BEGIN
 SELECT    *
-FROM         Topics WHERE Topics.DateCreate = (DATEADD(d, 0, DATEDIFF(d, 0, getdate())))
+FROM         Topics WHERE (DATEADD(d, 0, DATEDIFF(d, 0, Topics.DateCreate)))  = (DATEADD(d, 0, DATEDIFF(d, 0, getdate())))
 END
 go
 
-EXEC WhatNew '', 0, 0, '', '2010-09-10 ', '2010-09-10 '
+exec WhatNew
 select * from topics
 
 
