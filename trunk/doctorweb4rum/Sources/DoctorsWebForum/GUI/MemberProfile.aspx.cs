@@ -20,17 +20,14 @@ public partial class GUI_MemberProfile : System.Web.UI.Page
     public Member GetMember()
     {
         Member member = null;
-        if (Session["UserLoged"] != null)
-        {
-            String memberID = Request.QueryString["memberID"];
+        String memberID = Request.QueryString["memberID"];
 
-            if (memberID != null)
+        if (memberID != null)
+        {
+            member = MemberBLL.GetMemberByMemberID(Convert.ToInt32(memberID));
+            if (member == null)
             {
-                member = MemberBLL.GetMemberByMemberID(Convert.ToInt32(memberID));
-                if (member == null)
-                {
-                    member = new Member();
-                }
+                member = new Member();
             }
         }
         return member;
@@ -42,21 +39,18 @@ public partial class GUI_MemberProfile : System.Web.UI.Page
     {
         Member member;
         MemberProfile memberProfile = null;
-        if (Session["UserLoged"] != null)
+        String memberID = Request.QueryString["memberID"];
+
+        if (memberID != null)
         {
-            String memberID = Request.QueryString["memberID"];
+            member = MemberBLL.GetMemberByMemberID(Convert.ToInt32(memberID));
 
-            if (memberID != null)
+            if (member != null)
             {
-                member = MemberBLL.GetMemberByMemberID(Convert.ToInt32(memberID));
-
-                if (member != null)
+                memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
+                if (memberProfile == null)
                 {
-                    memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
-                    if (memberProfile == null)
-                    {
-                        memberProfile = new MemberProfile();
-                    }
+                    memberProfile = new MemberProfile();
                 }
             }
         }

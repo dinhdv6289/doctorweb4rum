@@ -244,6 +244,7 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
         Member memberLogin = (Member)Session["UserLoged"];
         if (memberLogin != null)
         {
+            result = !IsMyPost(postID);
             result = !PostBLL.isThanked(postID, memberLogin.MemberID);
         }
         else
@@ -252,6 +253,7 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
         }
         return result;
     }
+
     protected void Rating_Changed(object sender, AjaxControlToolkit.RatingEventArgs e)
     {
         Member memberLogin = (Member)Session["UserLoged"];
