@@ -513,5 +513,21 @@ namespace DAL
             }
             return result;
         }
+
+        public int UpdateTotalPostOfMemberByMemberID(MemberProfile memberProfile)
+        {
+            int result = 0;
+            try
+            {
+                String[] columnNamesInfo = { MemberID, TotalPosts };
+                Object[] values = { memberProfile.MemberID, memberProfile.TotalPosts };
+                result = ProcessTableTypeStore("UpdateTotalPostOfMemberByMemberID", columnNamesInfo, values);
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

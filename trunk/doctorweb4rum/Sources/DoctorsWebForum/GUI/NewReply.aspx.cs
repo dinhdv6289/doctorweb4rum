@@ -60,9 +60,12 @@ public partial class GUI_NewReply : System.Web.UI.Page
             {
                 newPost.TopicID = Convert.ToInt32(Request.QueryString["topicID"]);
                 Member memberloged = (Member)Session["UserLoged"];
+                MemberProfile memberProfile = null;
                 if (memberloged != null)
                 {
                     newPost.MemberID = memberloged.MemberID;
+                    memberProfile = MemberBLL.GetMemberProfileByMemberID(memberloged.MemberID);
+
                 }
                 newPost.QuoteID = 0;
                 newPost.Content = contents;
@@ -71,6 +74,8 @@ public partial class GUI_NewReply : System.Web.UI.Page
                 int result = PostBLL.InsertPost(newPost);
                 if (result > 0)
                 {
+                    memberProfile.TotalPosts = memberProfile.TotalPosts + 1;
+                    MemberBLL.UpdateTotalPostOfMemberByMemberID(memberProfile);
                     Response.Redirect("TopicDetails.aspx?topicID=" + Request.QueryString["topicID"]);
                 }
             }

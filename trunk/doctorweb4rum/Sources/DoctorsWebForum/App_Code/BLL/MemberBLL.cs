@@ -341,5 +341,19 @@ namespace BLL
             }
             return result;
         }
+
+        public static int UpdateTotalPostOfMemberByMemberID(MemberProfile memberProfile)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetMemberDA().UpdateTotalPostOfMemberByMemberID(memberProfile);
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

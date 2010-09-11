@@ -32,6 +32,7 @@ namespace DAL
         Member GetBannedUser(int memberID);
         DataTable SearchForUserByUserName(String userName);
         Member[] GetMembersIsOnline();
+        int UpdateTotalPostOfMemberByMemberID(MemberProfile memberProfile);
         //int UpdateMemberAdmin(Member member);
         //int DeleteMember(String id);
     }

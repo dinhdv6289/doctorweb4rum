@@ -416,5 +416,22 @@ namespace DAL
             }
             return dataTableAllThanks;
         }
+
+        public Topic[] ViewAllTopicsByMemberID(int memberID)
+        {
+            Topic[] result;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("ViewAllTopicsByMemberID {0}", memberID);
+                result = SelectCollection<Topic>(columnNames, columnNames, cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

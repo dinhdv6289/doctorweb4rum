@@ -57,9 +57,11 @@ public partial class GUI_NewTopic : System.Web.UI.Page
                     {
                         newTopic.SubForumID = Convert.ToInt32(Request.QueryString["subForumID"]);
                         Member memberloged = (Member)Session["UserLoged"];
+                        MemberProfile memberProfile = null;
                         if (memberloged != null)
                         {
                             newTopic.MemberID = memberloged.MemberID;
+                            memberProfile = MemberBLL.GetMemberProfileByMemberID(memberloged.MemberID);
                         }
                         newTopic.Title = title;
                         newTopic.Content = contents;
@@ -71,6 +73,8 @@ public partial class GUI_NewTopic : System.Web.UI.Page
                         int result = TopicBLL.InsertTopic(newTopic, out resultStatus);
                         if (resultStatus > 0)
                         {
+                            memberProfile.TotalPosts = memberProfile.TotalPosts + 1;
+                            MemberBLL.UpdateTotalPostOfMemberByMemberID(memberProfile);
                             Response.Redirect("TopicDetails.aspx?topicID=" + resultStatus.ToString());
                         }
                     }
