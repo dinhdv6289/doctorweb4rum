@@ -335,41 +335,45 @@ GO
 EXEC TopicDetailsByTopicID 2
 GO
 
---IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'SearchTopic' AND TYPE = 'P')
---DROP PROC SearchTopic
---GO
---CREATE PROCEDURE SearchTopic
---@KeySearch			NVARCHAR(500),
---@CategoryID			INT,	
---@SubForumID			INT,
---@UserName			NVARCHAR(50),
---@FromDateCreate		DATETIME,
---@ToDateCreate		DATETIME,
---@Address			NVARCHAR(255),
---@Professional		NVARCHAR(255),
---@Experience         NVARCHAR(255)
---AS
---BEGIN
---SET @UserName = '%' + @UserName + '%';
---SET @KeySearch = '%' + @KeySearch + '%';
---SET @Address = '%' + @Address + '%';
---SET @Professional = '%' + @Professional + '%';
---SET @Experience = '%' + @Experience + '%';
---SELECT    Topics.*
---FROM         Categories INNER JOIN
---                      SubForums ON Categories.CategoryID = SubForums.CategoryID INNER JOIN
---                      Topics ON SubForums.SubForumID = Topics.SubForumID INNER JOIN
---                      Members ON Topics.MemberID = Members.MemberID
---		AND (@CategoryID = 0 OR Categories.CategoryID = @CategoryID)
---		AND (@SubForumID = 0 OR SubForums.SubForumID = @SubForumID)
---		AND (@UserName IS NULL  OR Members.UserName LIKE @UserName)
---		AND (@FromDateCreate IS NULL OR Topics.DateCreate >= @FromDateCreate)
---		AND (@ToDateCreate IS NULL OR Topics.DateCreate <= @ToDateCreate)
---		AND (@KeySearch IS NULL OR Topics.Title LIKE @KeySearch OR Topics.Content LIKE @KeySearch)
---		ORDER BY Topics.DateCreate DESC
---END
---go
---EXEC SearchTopic '', 0, 0, '', null, null
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'SearchTopic' AND TYPE = 'P')
+DROP PROC SearchTopic
+GO
+CREATE PROCEDURE SearchTopic
+@KeySearch			NVARCHAR(500),
+@CategoryID			INT,	
+@SubForumID			INT,
+@UserName			NVARCHAR(50),
+@FromDateCreate		DATETIME,
+@ToDateCreate		DATETIME,
+@Address			NVARCHAR(255),
+@Professional		NVARCHAR(255),
+@Experience         NVARCHAR(255)
+AS
+BEGIN
+SET @UserName = '%' + @UserName + '%';
+SET @KeySearch = '%' + @KeySearch + '%';
+SET @Address = '%' + @Address + '%';
+SET @Professional = '%' + @Professional + '%';
+SET @Experience = '%' + @Experience + '%';
+SELECT    Topics.*
+FROM         Categories INNER JOIN
+                      SubForums ON Categories.CategoryID = SubForums.CategoryID INNER JOIN
+                      Topics ON SubForums.SubForumID = Topics.SubForumID INNER JOIN
+                      Members ON Topics.MemberID = Members.MemberID INNER JOIN
+					  MemberProfiles ON MemberProfiles.MemberID = Members.MemberID
+		AND (@CategoryID = 0 OR Categories.CategoryID = @CategoryID)
+		AND (@SubForumID = 0 OR SubForums.SubForumID = @SubForumID)
+		AND (@UserName IS NULL  OR Members.UserName LIKE @UserName)
+		AND (@FromDateCreate IS NULL OR Topics.DateCreate >= @FromDateCreate)
+		AND (@ToDateCreate IS NULL OR Topics.DateCreate <= @ToDateCreate)
+		AND (@KeySearch IS NULL OR Topics.Title LIKE @KeySearch OR Topics.Content LIKE @KeySearch)
+		AND (@Address IS NULL OR MemberProfiles.Address LIKE @Address)
+		AND (@Professional IS NULL OR MemberProfiles.Professional LIKE @Professional)
+		AND (@Experience IS NULL OR MemberProfiles.Experience LIKE @Experience)
+		ORDER BY Topics.DateCreate DESC
+END
+go
+EXEC SearchTopic '', 0, 0, '', null, null
 go
 select * from topics
 
@@ -790,30 +794,10 @@ IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'WhatNew' AND TYPE = 'P')
 DROP PROC WhatNew
 GO
 CREATE PROCEDURE WhatNew
-@KeySearch			NVARCHAR(500),
-@CategoryID			INT,	
-@SubForumID			INT,
-@UserName			NVARCHAR(50),
-@FromDateCreate		nvarchar(30),
-@ToDateCreate		nvarchar(30)
 AS
 BEGIN
-SET @UserName = '%' + @UserName + '%';
-SET @KeySearch = '%' + @KeySearch + '%';
-SET @FromDateCreate = '%' + @FromDateCreate;
-SET @ToDateCreate = '%' + @ToDateCreate;
-SELECT    Topics.*
-FROM         Categories INNER JOIN
-                      SubForums ON Categories.CategoryID = SubForums.CategoryID INNER JOIN
-                      Topics ON SubForums.SubForumID = Topics.SubForumID INNER JOIN
-                      Members ON Topics.MemberID = Members.MemberID
-		AND (@CategoryID = 0 OR Categories.CategoryID = @CategoryID)
-		AND (@SubForumID = 0 OR SubForums.SubForumID = @SubForumID)
-		AND (@UserName IS NULL  OR Members.UserName LIKE @UserName)
-		AND (@FromDateCreate IS NULL OR Topics.DateCreate LIKE @FromDateCreate)
-		AND (@ToDateCreate IS NULL OR Topics.DateCreate LIKE @ToDateCreate)
-		AND (@KeySearch IS NULL OR Topics.Title LIKE @KeySearch OR Topics.Content LIKE @KeySearch)
-		ORDER BY Topics.DateCreate DESC
+SELECT    *
+FROM         Topics WHERE Topics.DateCreate = (DATEADD(d, 0, DATEDIFF(d, 0, getdate())))
 END
 go
 
