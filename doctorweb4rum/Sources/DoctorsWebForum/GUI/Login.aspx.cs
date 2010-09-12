@@ -39,34 +39,13 @@ public partial class GUI_Login : System.Web.UI.Page
                     MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
                     if (memberProfile != null)
                     {
+                        Session.Add("UserLoged", member);
                         string origin = Request.QueryString["ReturnURL"];
                         if (origin == null)
                         {
                             origin = "Index.aspx";
                         }
-                        Session.Add("UserLoged", member);
-
                         Response.Redirect(origin);
-                        //Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
-                        //if (role != null)
-                        //{
-                        //    if (role.RoleName.Equals("Member"))
-                        //    {
-                        //        Response.Redirect(origin);
-                        //    }
-                        //    if (role.RoleName.Equals("Moderator"))
-                        //    {
-                        //        Response.Redirect(origin);
-                        //    }
-                        //    if (role.RoleName.Equals("Super Moderator"))
-                        //    {
-                        //        Response.Redirect(origin);
-                        //    }
-                        //    if (role.RoleName.Equals("Admin"))
-                        //    {
-                        //        Response.Redirect(origin);
-                        //    }
-                        //}
                     }
                 }else
                 {

@@ -1,7 +1,6 @@
 use doctorWeb4rum
 GO
 
--- da su dung. trong visual
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'GetNewPostBySubForumID' AND TYPE = 'P')
 DROP PROC GetNewPostBySubForumID
 GO
@@ -233,23 +232,6 @@ END
 go
 
 
-select * from Roles
-
---CREATE PROC GetMemberByUserNamePassword
---	@UserName nvarchar(30),
---	@Password nvarchar(50)
---AS BEGIN 
---SELECT     Members.MemberID, Members.UserName, Members.Password, Members.Email, Members.FullName, Members.DateCreation, Members.AllowLogin, 
---           Members.IsOnline, MemberProfiles.RoleID, MemberProfiles.Blast, MemberProfiles.Avatar, MemberProfiles.Country, MemberProfiles.Address, 
---           MemberProfiles.BirthDay, MemberProfiles.Gender, MemberProfiles.Yahoo, MemberProfiles.Phone, MemberProfiles.Hospital, MemberProfiles.Blog, 
---           MemberProfiles.TotalPosts, MemberProfiles.TotalThanks, MemberProfiles.TotalThanked, MemberProfiles.CurrentExperience, MemberProfiles.MemberLevel, 
---           MemberProfiles.IPAddress, MemberProfiles.LastLogin, MemberProfiles.MyRss, MemberProfiles.Signature, MemberProfiles.AboutMe, Roles.RoleName, 
---           Roles.Description, Roles.RankImage
---FROM       Members INNER JOIN  MemberProfiles ON Members.MemberID = MemberProfiles.MemberID INNER JOIN
---           Roles ON MemberProfiles.RoleID = Roles.RoleID
---WHERE	   Members.UserName = @UserName AND Members.Password = @Password
---END
-go
 
 IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'SelectLatestMemberID' AND TYPE = 'P')
 DROP PROC SelectLatestMemberID

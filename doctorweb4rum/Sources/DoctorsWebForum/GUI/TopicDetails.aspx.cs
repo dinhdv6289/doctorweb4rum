@@ -317,6 +317,10 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
         {
             Response.Redirect("EditTopic.aspx?topicID=" + TopicID);
         }
+        else
+        {
+            Response.Redirect("Login.aspx?ReturnURL=EditTopic.aspx?topicID=" + TopicID);
+        }
     }
 
     public Boolean IsMyTopic()
