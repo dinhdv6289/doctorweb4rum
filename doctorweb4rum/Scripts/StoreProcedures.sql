@@ -907,9 +907,12 @@ DROP PROC UpdateTotalPostOfMemberByMemberID
 GO
 CREATE PROCEDURE UpdateTotalPostOfMemberByMemberID
 	@MemberID int,
-	@TotalPost int
+	@TotalPosts int
 AS
 BEGIN
-Update MemberProfiles set TotalPosts = @TotalPost where MemberID = @MemberID
+Update MemberProfiles set TotalPosts = @TotalPosts where MemberID = @MemberID
 
 END
+
+go
+
