@@ -12,9 +12,9 @@
             </a></span>
         </h1>
     </div>
-    <div class="postlist restrain" id="postlist">
-        <ol start="1" class="posts" id="posts">
-            <li id="post_14688639" class="postbit postbitim postcontainer">
+    <div class="postlist restrain">
+        <ol start="1" class="posts">
+            <li class="postbit postbitim postcontainer">
                 <div class="postdetails_noavatar">
                     <div class="posthead">
                         <span class="postdate old"><span class="date">
@@ -27,10 +27,10 @@
                         <a title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %>  is online now" href="MemberProfile.aspx?memberID=<%= GetTopic().MemberID%>" class="postuseravatarlink">
                             <img alt="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %>'s Avatar" src="<%= GetMemberProfileByMemberID(GetTopic().MemberID).Avatar%>" title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %>'s Avatar" /></a>
                             <div class="username_container">
-                                <div class="popupmenu memberaction" id="yui-gen16">
+                                <div class="popupmenu memberaction" >
                                 <% if(GetMemberByMemberID(GetTopic().MemberID).IsOnline){ %>
-                                    <a title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is online " href="MemberProfile.aspx?memberID=<%= GetTopic().MemberID%>" class="username online popupctrl"
-                                        id="yui-gen18"><strong><span class="user25">
+                                    <a title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is online " href="MemberProfile.aspx?memberID=<%= GetTopic().MemberID%>" class="username online popupctrl"><strong>
+                                    <span class="user25">
                                             <%= GetMemberByMemberID(GetTopic().MemberID).UserName %>
                                         </span></strong></a>
                                         <%}else{ %>
@@ -48,7 +48,7 @@
                                      <img border="0"alt="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is offline" src="Images/user-offline.png"
                                     class="inlineimg onlinestatus" title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is offline" />
                                     <%} %>
-                                <span class="usertitle"><%= GetMemberByMemberID(GetTopic().MemberID).FullName %> </span><span id="repdisplay_14688639_429236" class="postbit_reputation">
+                                <span class="usertitle"><%= GetMemberByMemberID(GetTopic().MemberID).FullName %> </span><span class="postbit_reputation">
                                     <img alt="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is on a distinguished road" src="Images/reputation_pos.png"
                                         class="repimg" title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is on a distinguished road" />
                                 </span>
@@ -68,7 +68,7 @@
                             <%= GetTopic().Title%>
                         </h2>
                         <div class="content">
-                            <div id="post_message_14688639">
+                            <div>
                                 <blockquote class="postcontent restore">
                                     <%= GetTopic().Content%>                                   
                                </blockquote>
@@ -77,23 +77,24 @@
                     </div>
                 </div>
                 <div class="postfoot">
-                    <div class="textcontrols floatcontainer">
         <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="True">
             <ContentTemplate>
-<SPAN class="postcontrols"><% if (IsMyTopic()){ %>
+ <div class="textcontrols floatcontainer">
+<span class="postcontrols"><% if (IsMyTopic()){ %>
 <asp:LinkButton id="QuickEditLinkButton" onclick="CheckLoginToQuickEdit" runat="server" CssClass="editpost" >Edit Topic</asp:LinkButton>
- <SPAN class="seperator">&nbsp;</SPAN>
+ <span class="seperator">&nbsp;</span>
  <% } %><asp:LinkButton id="quickReplyLinkButton" onclick="CheckLoginToNewReply" runat="server" CssClass="quickreply">Reply</asp:LinkButton> 
- <SPAN class="seperator">&nbsp;</SPAN>
+ <span class="seperator">&nbsp;</span>
   <ajaxToolkit:Rating id="topicRating" runat="Server" CssClass="ratingStar" OnChanged="topicRating_Changed" AutoPostBack="True" 
   StarCssClass="ratingItem" WaitingStarCssClass="Saved" FilledStarCssClass="Filled" EmptyStarCssClass="Empty"></ajaxToolkit:Rating> 
-  </SPAN><SPAN class="postlinking"><% if (!isThanked() && !IsMyTopic())
+  </span><span class="postlinking"><% if (!isThanked() && !IsMyTopic())
                             {%>
                                           <asp:LinkButton id="LinkButton1" onclick="LinkButton1_Click" runat="server" CssClass="post_thanks_button" >Thanks</asp:LinkButton>
-                             <%}%></SPAN>
+                             <%}%></span>
+                                                 </div>
 </ContentTemplate>
  </asp:UpdatePanel>
-                    </div>
+
                 </div>
                 <hr/>
             </li>
@@ -103,11 +104,12 @@
     <%--begin thanks--%>
             <asp:UpdatePanel ID="UpdatePanelRepeaterThanksOfTopic" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="True">
             <ContentTemplate>
+            <div>
             <asp:Panel id="panelThanksOfTopic" runat="server">
-            <ol class="floatcontainer" id="forums">
+            <ol class="floatcontainer">
                 <li class="forumbit_nopost L1">
                     <div class="module">
-                        <div class="header" id="module_group10" style="cursor: pointer;">
+                        <div class="header" style="cursor: pointer;">
                             <h2>
                                 <span class="forumtitle"><a style="color: rgb(255, 255, 255);" href="">The Following
                                     User Says Thank You to <%= GetMemberByMemberID(GetTopic().MemberID).UserName %> For This Useful Post: </a></span>
@@ -119,7 +121,7 @@
                                             <div class="titleline">
                         <asp:Repeater ID="repeaterThanksOfTopic" runat="server">
                             <ItemTemplate>
-                                <a href="MemberProfile.aspx?memberID=<%#Eval("FromMember")%>"><%#Eval("UserName")%> (<%#Eval("ThankDate")%>) </a>
+                                <a href="MemberProfile.aspx?memberID=<%#Eval("FromMember")%>"> <%#Eval("UserName")%> (<%#Eval("ThankDate")%>) </a>
                             </ItemTemplate>
                             <SeparatorTemplate>
                                 ,</SeparatorTemplate>
@@ -132,6 +134,7 @@
                 </li>
             </ol>   
             </asp:Panel>
+            </div>
     </ContentTemplate>
     </asp:UpdatePanel>
     <%--end thanks--%>
@@ -140,6 +143,7 @@
     <%--begin posts list of this topic--%>
 <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="True">
 <ContentTemplate>
+<div>
     <asp:Repeater ID="repeaterPosts" runat="server" OnItemCommand="repeaterPosts_ItemCommand">
         <ItemTemplate>
         <div class="postlist restrain" id="postlist">
@@ -203,30 +207,26 @@
                 </div>
                 
                                 <div class="postfoot">
-                    <div class="textcontrols floatcontainer">
-        <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="True">
-            <ContentTemplate>                                
-<SPAN class="postcontrols">
+                    <div class="textcontrols floatcontainer">                               
+<span class="postcontrols">
     <asp:LinkButton ID="EditPostLinkButton" runat="server" Visible='<%#IsMyPost(Convert.ToInt32(Eval("PostID"))) %>' 
     CssClass="editpost" CommandName="EditPost" CommandArgument='<%#Eval("PostID")%>'>Edit Post</asp:LinkButton>
-<SPAN class="seperator">&nbsp;</SPAN> 
+<span class="seperator">&nbsp;</span> 
 <asp:LinkButton ID="QuickReplyLinkButton" runat="server" CssClass="quickreply" CommandName="QuickReply"
  CommandArgument='<%#Eval("PostID")%>'>Reply</asp:LinkButton>
-<SPAN class="seperator">&nbsp;</SPAN>
+<span class="seperator">&nbsp;</span>
 <asp:LinkButton ID="ReplyWithQuoteLinkButton" runat="server" CssClass="newreply" CommandName="ReplyWithQuote"
  CommandArgument='<%#Eval("PostID")%>'>Reply With Quote</asp:LinkButton>
- <SPAN class="seperator">&nbsp;</SPAN>
+ <span class="seperator">&nbsp;</span>
  <ajaxToolkit:Rating id="postRating" runat="Server" CurrentRating='<%#Convert.ToInt32(Eval("RatingPoint"))%>' 
  CssClass="ratingStar" Tag='<%#Eval("PostID")%>' EmptyStarCssClass="Empty" OnChanged="Rating_Changed" FilledStarCssClass="Filled"
-  WaitingStarCssClass="Saved" StarCssClass="ratingItem" AutoPostBack="true"></ajaxToolkit:Rating> </SPAN>
+  WaitingStarCssClass="Saved" StarCssClass="ratingItem" AutoPostBack="true"></ajaxToolkit:Rating> </span>
 
                    <span class="postlinking">
 
                <asp:LinkButton ID="btThank" Visible='<%#isPostThanked(Convert.ToInt32(Eval("PostID"))) %>' 
                runat="server" CssClass="post_thanks_button" CommandName="ThankClick" CommandArgument='<%#Eval("PostID")%>'>Thanks</asp:LinkButton>
                                     </span>
- </ContentTemplate>
- </asp:UpdatePanel>
                     </div>
                 </div>
                 <hr>
@@ -266,6 +266,7 @@
     </div>
         </ItemTemplate>
     </asp:Repeater>
+    </div>
 </ContentTemplate>
 </asp:UpdatePanel>
      <%--and posts list of this topic--%>
@@ -275,12 +276,12 @@
      <br />
      <br />
                 <div class="pagination_bottom">
-            <cc1:COLLECTIONPAGER id="CollectionPager1" runat="server" ResultsLocation="None"
+            <cc1:collectionpager id="collectionpager1" runat="server" ResultsLocation="None"
              ShowFirstLast="True" BackNextLocation="Split" BackNextDisplay="HyperLinks" 
              PageSize="15" ControlCssClass="pagination" ShowLabel="False" PageNumbersDisplay="Numbers" 
              PageNumbersSeparator="&nbsp;" BackNextButtonStyle="" BackNextLinkSeparator="" BackNextStyle="" 
              ShowPageNumbers="True" SliderSize="3" UseSlider="True" IgnoreQueryString="False" 
-             ResultsFormat="Results  {0} to {1} of {2}" ResultsStyle="float:left;"></cc1:COLLECTIONPAGER>
+             ResultsFormat="Results  {0} to {1} of {2}" ResultsStyle="float:left;"></cc1:collectionpager>
             </div>
             </div>
 </asp:Content>

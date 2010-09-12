@@ -32,9 +32,9 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
                 DataSet dataSetTopicDetails = TopicBLL.TopicDetailsByTopicID(Convert.ToInt32(TopicID));
                 if (dataSetTopicDetails != null)
                 {
-                    CollectionPager1.DataSource = dataSetTopicDetails.Tables[0].DefaultView;
-                    CollectionPager1.BindToControl = repeaterPosts;
-                    repeaterPosts.DataSource = CollectionPager1.DataSourcePaged;
+                    collectionpager1.DataSource = dataSetTopicDetails.Tables[0].DefaultView;
+                    collectionpager1.BindToControl = repeaterPosts;
+                    repeaterPosts.DataSource = collectionpager1.DataSourcePaged;
                 }
                 DataSet dataThanksOfTopic = TopicBLL.GetAllThanksOfTopicByTopicID(topicID);
                 if (dataThanksOfTopic != null)
@@ -76,9 +76,9 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
             DataSet dataSetTopicDetails = TopicBLL.TopicDetailsByTopicID(Convert.ToInt32(TopicID));
             if (dataSetTopicDetails != null)
             {
-                CollectionPager1.DataSource = dataSetTopicDetails.Tables[0].DefaultView;
-                CollectionPager1.BindToControl = repeaterPosts;
-                repeaterPosts.DataSource = CollectionPager1.DataSourcePaged;
+                collectionpager1.DataSource = dataSetTopicDetails.Tables[0].DefaultView;
+                collectionpager1.BindToControl = repeaterPosts;
+                repeaterPosts.DataSource = collectionpager1.DataSourcePaged;
                 repeaterPosts.DataBind();
             }
         }
