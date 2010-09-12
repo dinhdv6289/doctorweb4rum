@@ -318,7 +318,8 @@ CREATE PROCEDURE TopicDetailsByTopicID
 AS BEGIN
 SELECT     Members.MemberID, Members.UserName, Members.Email, Members.FullName, Members.DateCreation, Members.AllowLogin, Members.IsPublic, Members.IsOnline, 
                       MemberProfiles.RoleID, MemberProfiles.Blast, MemberProfiles.Avatar, MemberProfiles.Country, MemberProfiles.Address, MemberProfiles.BirthDay, 
-                      MemberProfiles.Gender, MemberProfiles.Yahoo, MemberProfiles.Phone, MemberProfiles.Hospital, MemberProfiles.Blog, MemberProfiles.TotalPosts, 
+                      MemberProfiles.Gender, MemberProfiles.Yahoo, MemberProfiles.Phone, MemberProfiles.Hospital, MemberProfiles.Blog, 
+					  (select count(*) from Posts where Posts.MemberID = Members.MemberID) AS TotalPosts, 
                       MemberProfiles.TotalThanks, MemberProfiles.TotalThanked, MemberProfiles.LastLogin, MemberProfiles.Signature, MemberProfiles.AboutMe,MemberProfiles.Professional,MemberProfiles.Experience, Posts.PostID, Posts.TopicID, Posts.[Content], 
                       Posts.DateCreation AS DateCreationOfPosts, Posts.DateEdited, Posts.Signature AS SignatureOfPosts, Posts.QuoteID,
 			"RatingPoint" = CASE WHEN (select avg(RatePoint) from RatingPost where RatingPost.PostID = Posts.PostID group by PostID) is null THEN 0 Else (select avg(RatePoint) from RatingPost where PostID = Posts.PostID group by PostID) END,
