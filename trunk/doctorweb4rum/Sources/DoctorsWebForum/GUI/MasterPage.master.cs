@@ -50,11 +50,16 @@ public partial class MasterPage : System.Web.UI.MasterPage
                         MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
                         if (memberProfile != null)
                         {
+                            string origin = Request.QueryString["ReturnURL"];
+                            if (origin == null)
+                            {
+                                origin = "Index.aspx";
+                            }
                             Session.Add("UserLoged", member);
                             Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
                             if (role != null)
                             {
-                                Response.Redirect("Index.aspx");
+                                Response.Redirect(origin);
                                 //if (role.RoleName.Equals("Member"))
                                 //{
                                 //    Response.Redirect(origin);
