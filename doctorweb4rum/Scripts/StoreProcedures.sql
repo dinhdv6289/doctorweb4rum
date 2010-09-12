@@ -893,7 +893,6 @@ CREATE PROCEDURE UpdateTotalPostOfMemberByMemberID
 AS
 BEGIN
 Update MemberProfiles set TotalPosts = @TotalPosts where MemberID = @MemberID
-
 END
 
 go

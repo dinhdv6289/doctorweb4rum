@@ -99,19 +99,6 @@ insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopi
 values(9,'Postbaccalaureate Programs ','Discuss Postbaccalaureate Premedical Programs.',1,0,0)
 insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
 values(9,'Masters of Public Health [ MPH ]  ','For students interested in MPH either as an individual degree or in combination with another degree.',2,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(9,'Med Business [ MD/MBA, DO/MBA, DDS/MBA ] ','For those currently in combined MBA programs and those interested. Co-hosted with MD-MBA.org',3,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(9,'Topics in Healthcare   ','A place to discuss, discourse, hold forth, and maybe, just maybe, have your mind changed.',4,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(9,'Finance and Investment  ','Discussion of everything other than financial aid. Includes investment, mortgage, retirement, banking, etc. Co-hosted with Business of Medicine.',5,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(9,'Financial Aid ','Discuss financial topics, including private or military scholarships, student loans, and educational costs. Co-hosted with Business of Medicine.',6,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(9,'Public Health Service and Indian Health Service  ','Discussion of USPHS and IHS issues.',7,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(9,'Confidential Consult  ','A place to ask sensitive questions you do not feel comfortable asking elsewhere.',8,0,0)
-
 
 insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
 values(10,'Physician Scientist [ MD, MD/PhD, MD/MS, DO/PhD, DDS/PhD ] ','For students interested & current students in Physician Scientist Training Programs. Co-hosted with APSA.',1,0,0)
@@ -120,62 +107,11 @@ values(10,'Student Research and Publishing ','Co-hosted with McGill Journal of M
 
 insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
 values(11,'General International Discussion ','General international medical discussion forum.',1,0,0)
---
---
+
 insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
 values(12,'Military Medicine','Discussion of Medical Corps issues.',1,0,0)
 insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
 values(12,'Practicing Physicians','For physicians that have completed residency training and are in hospital, community or academic practice.',2,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Internship, Residency and Fellowship Positions  ','List upcoming or currently available internship, residency or fellowship positions, positions wanted and position swaps. Co-Hosted with Resident Swap.',2,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Chiefs Room','For past and current chief residents. This forum is not open to pre-med, medical students and junior residents.',3,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'General Residency Issues','General residency topics, not specialty related.Co-hosted with Scutwork.com.',4,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Internship ','Preliminary year and transitional year discussion forum',5,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Combined Residencies  ','For discussions covering topics realted to combined residency programs (ie: IM-Peds, EM-IM, etc).',6,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Anesthesiology ','',6,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Critical Care  ','Critical Care Medicine discussion forum',7,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Dermatology ','Dermatology discussion forum',8,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Emergency Medicine ','Emergency Medicine discussion forum',9,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Family Medicine  ','Family Medicine discussion forum',10,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Hospice and Palliative Medicine  ','Hospice and Palliative Care Medicine discussion forum.',11,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Internal Medicine and IM Subspecialties ','Internal Medicine discussion forum.',12,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Neonatology and Pediatric Critical Care/Cardiology ','',13,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Neurology ','Neurology discussion forum.',14,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Ob/Gyn ','Obstetrics and Gynecology discussion forum.',15,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Ophthalmology: Eye Physicians & Surgeons ','Co-hosted with the AAO Young Ophthalmologists Committee.',16,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Pain Medicine ','For practicing pain physicians and pain fellows. Co-hosted with PainRounds.com',17,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Pathology ','Pathology discussion forum.',18,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Pediatrics ','Pediatrics discussion forum.',19,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'PM&R ','Physical Medicine and Rehabilitation discussion forum.',20,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Psychiatry  ','For psychiatry residents and students interested in psychiatry. Co-hosted with PsychCentral.',21,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Radiation Oncology ','Radiation Oncology discussion forum.',22,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,' Radiology  ','Radiology discussion forum.Co-Hosted with radRounds.',23,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Sleep Medicine ','Sleep Medicine discussion forum.',24,0,0)
---insert into dbo.SubForums(CategoryID,SubForumName,Description,Priority,TotalTopics,TotalMessages)
---values(12,'Surgery and Surgical Subspecialties ','Discuss surgery and surgical subspecialties.',25,0,0)
 
 select * from SubForums
 
@@ -188,19 +124,17 @@ values('username2','password','test2@gmail.com','testtt',GetDate(),'true','true'
 insert into dbo.MemberProfiles(MemberID,RoleID,Blast,Avatar,Country,Address,BirthDay,Gender,Yahoo,
 Phone,Hospital,Blog,TotalPosts,TotalThanks,TotalThanked,LastLogin,Signature,AboutMe,Professional,Experience) 
 values(
-1,1,'Blast Content','avarta.gif','Viet Nam','Ha noi','08/18/1987','true','yahoo.com',
-'0987123123','Viet Nam Cuba','blog.com',2,2,5,getdate(),'learn','not about','Professional','10 year'
+1,1,'Blast Content','avarta.gif','India','India','08/18/1987','true','yahoo.com',
+'0987123123','India','blog.com',2,2,5,getdate(),'learn','not about','Psychology','1 Year'
 )
 
 insert into dbo.MemberProfiles(MemberID,RoleID,Blast,Avatar,Country,Address,BirthDay,Gender,Yahoo,
 Phone,Hospital,Blog,TotalPosts,TotalThanks,TotalThanked,LastLogin,Signature,AboutMe,Professional,Experience) 
 values(
-2,2,'Blast Content','avarta.gif','Viet Nam','Ha noi','08/18/1987','true','yahoo.com',
-'0987123123','Viet Nam Cuba','blog.com',2,2,5,getdate(),'learn','not about','Professional','4 year'
+2,2,'Blast Content','avarta.gif','Viet Nam','Viet Nam','08/18/1987','true','yahoo.com',
+'0987123123','Viet Nam Cuba','blog.com',2,2,5,getdate(),'learn','not about','Pre-Medical','1 Year'
 )
-select * from roles
-select * from members
-select * from MemberProfiles
+
 insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateCreate,MoveTo) 
 values(
 	1,
@@ -221,13 +155,13 @@ values(
 	1,1,'12/12/2008',1)
 
 insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateCreate,MoveTo) 
-values(2,1,'Title test','Content Test','false',1,1,'12/12/2008',1)
+values(2,1,'Title test','Content Test','false',1,1,'09/09/2010',1)
 
 insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateCreate,MoveTo) 
-values(2,1,'Title test','Content Test','false',1,1,'12/12/2008',1)
+values(2,1,'Title test','Content Test','false',1,1,getdate(),1)
 
 insert into Topics(SubForumID,MemberID,Title,[Content],IsLocked,TotalViews,TotalMessages,DateCreate,MoveTo) 
-values(2,2,'Title memberID = 2','Content Test memberID = 2','false',1,1,'10/10/2008',1)
+values(2,2,'Title memberID = 2','Content Test memberID = 2','false',1,1,getdate(),1)
 
 insert into RatingTopic(FromMember,TopicID,RatePoint,RateDate)
 values(1,1,3,getdate())
@@ -252,12 +186,4 @@ values(2,1,'test content abc',getdate(),getdate(),'true')
 
 select * from dbo.Members
 
-
-
-select * from dbo.ThankPost
-select * from dbo.ThankTopic
-select * from dbo.RatingTopic
-select count(*) from topics tp inner join thanktopic t on tp.topicid = t.topicid
-where tp.memberid = 1
-select * from topics
 
