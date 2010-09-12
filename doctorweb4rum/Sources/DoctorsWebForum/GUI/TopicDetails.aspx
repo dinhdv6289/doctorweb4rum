@@ -25,7 +25,7 @@
                     <div class="userinfo_noavatar">
                         <div class="contact">
                         <a title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %>  is online now" href="MemberProfile.aspx?memberID=<%= GetTopic().MemberID%>" class="postuseravatarlink">
-                            <img alt="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %>'s Avatar" src="<%= GetMemberProfileByMemberID(GetTopic().MemberID).Avatar%>" title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %>'s Avatar" /></a>
+                            <img alt="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %>'s Avatar" src="<%= GetMemberProfileByMemberID(GetTopic().MemberID).Avatar%>" title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %>'s Avatar" width="80px" height="80px"/></a>
                             <div class="username_container">
                                 <div class="popupmenu memberaction" >
                                 <% if(GetMemberByMemberID(GetTopic().MemberID).IsOnline){ %>
@@ -58,7 +58,9 @@
                         </div>
                         <div class="userinfo_extra">
                             <dl class="userstats">
-                                <dt>Join Date</dt><dd><%= GetMemberByMemberID(GetTopic().MemberID).DateCreation%></dd><dt>Location</dt><dd><%= GetMemberProfileByMemberID(GetTopic().MemberID).Address%></dd><dt>Posts</dt><dd><%= GetMemberProfileByMemberID(GetTopic().MemberID).TotalPosts%></dd></dl>
+                                <dt>Join Date</dt><dd><%= GetMemberByMemberID(GetTopic().MemberID).DateCreation%></dd>
+                                <dt>Location</dt><dd><%= GetMemberProfileByMemberID(GetTopic().MemberID).Address%></dd>
+                                <dt>Posts</dt><dd><%= GetMemberProfileByMemberID(GetTopic().MemberID).TotalPosts%></dd></dl>
                         </div>
                     </div>
                 </div>
@@ -159,7 +161,7 @@
                     <div class="userinfo_noavatar">
                         <div class="contact">
                         <a title="<%#Eval("UserName")%>  is online now" href="MemberProfile.aspx?memberID=<%= GetTopic().MemberID%>" class="postuseravatarlink">
-                            <img alt="<%#Eval("UserName")%>'s Avatar" src="<%#Eval("Avatar")%>" title="<%#Eval("UserName")%>'s Avatar"></a>
+                            <img alt="<%#Eval("UserName")%>'s Avatar" src="<%#Eval("Avatar")%>" title="<%#Eval("UserName")%>'s Avatar" width="80px" height="80px"></a>
                             <div class="username_container">
                                 <div class="popupmenu memberaction" id="yui-gen16">
                                     <a title="<%#ShowStatusOnlineOrOffline(Convert.ToInt32(Eval("PostID"))) %>" href="MemberProfile.aspx?memberID=<%#Eval("MemberID")%>" class="username offline popupctrl"
