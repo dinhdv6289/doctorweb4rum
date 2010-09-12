@@ -44,8 +44,7 @@ public partial class GUI_Register : System.Web.UI.Page
         String password = txtConfirmPassword.Text;
         String email = txtConfirmEmail.Text;
         String fullName = txtFullName.Text;
-        String address = txtAddress.Text;
-        String country = txtCountry.Text;
+        String address = drLocation.SelectedValue;
         String birthDay = txtBirthDay.Text;
         int gender = DropDownList1.SelectedIndex;
         String yahoo = txtYahoo.Text;
@@ -54,6 +53,8 @@ public partial class GUI_Register : System.Web.UI.Page
         String aboutMe = txtAboutMe.Text;
         Boolean isPublic = cbPublicProfile.Checked;
         Boolean haveRead = cbHaveread.Checked;
+        String professional = drProfessional.SelectedValue;
+        String experience = drExperience.SelectedValue;
         if (haveRead)
         {
             Member mem = new Member();
@@ -67,7 +68,6 @@ public partial class GUI_Register : System.Web.UI.Page
             mem.AllowLogin = true;
             MemberProfile memProfile = new MemberProfile();
             memProfile.Address = address;
-            memProfile.Country = country;
             memProfile.BirthDay = Convert.ToDateTime(birthDay);
             memProfile.Gender = true;
             if (gender == 1)
@@ -87,8 +87,8 @@ public partial class GUI_Register : System.Web.UI.Page
             memProfile.TotalPosts = 0;
             memProfile.TotalThanked = 0;
             memProfile.TotalThanks = 0;
-            memProfile.Experience = "";
-            memProfile.Professional = "";
+            memProfile.Experience = experience;
+            memProfile.Professional = professional;
             if (Page.IsValid)
             {
                 int resultStatus = 0;

@@ -20,7 +20,8 @@ namespace DAL
         int CountDaysOldOfTopicByTopicID(int topicID);
         int InsertTopic(Topic topic, out int resultStatus);
         DataSet TopicDetailsByTopicID(int topicID);
-        Topic[] SearchTopic(String KeySearch, String CategoryID, String SubForumID, String UserName, String FromDateCreate, String ToDateCreate);
+        Topic[] SearchTopic(String KeySearch, String CategoryID, String SubForumID,
+            String UserName, String FromDateCreate, String ToDateCreate, String professional, String experience,String location);
         Topic[] WhatNew();
         int[] GetRatingPoint(int topicID);
         int InsertRateTopic(RatingTopic rateTopic);

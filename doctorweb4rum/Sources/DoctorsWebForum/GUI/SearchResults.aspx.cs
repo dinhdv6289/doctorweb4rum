@@ -27,8 +27,11 @@ public partial class GUI_SearchResults : System.Web.UI.Page
                 string txtKeyUserName = (string)nameValuesCollection["txtKeyUserName"];
                 string txtFromDateCreate = (string)nameValuesCollection["txtFromDateCreate"];
                 string txtToDateCreate = (string)nameValuesCollection["txtToDateCreate"];
+                string drProfessional = (string)nameValuesCollection["drProfessional"];
+                string drExperience = (string)nameValuesCollection["drExperience"];
+                string drLocation = (string)nameValuesCollection["drLocation"];
 
-                Topic[] topics = TopicBLL.SearchTopic(keySearchString, categories, subForums, txtKeyUserName, txtFromDateCreate, txtToDateCreate);
+                Topic[] topics = TopicBLL.SearchTopic(keySearchString, categories, subForums, txtKeyUserName, txtFromDateCreate, txtToDateCreate,drProfessional,drExperience,drLocation);
                 if (topics.Length >0)
                 {
                     repeaterTopics.DataSource = topics;
