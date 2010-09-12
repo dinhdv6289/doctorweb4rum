@@ -87,12 +87,10 @@
  <SPAN class="seperator">&nbsp;</SPAN>
   <ajaxToolkit:Rating id="topicRating" runat="Server" CssClass="ratingStar" OnChanged="topicRating_Changed" AutoPostBack="True" 
   StarCssClass="ratingItem" WaitingStarCssClass="Saved" FilledStarCssClass="Filled" EmptyStarCssClass="Empty"></ajaxToolkit:Rating> 
-  </SPAN><SPAN class="postlinking"><% if (isThanked() || IsMyTopic())
-                            {
-                            }
-                               else
-                               {
-                             %><asp:LinkButton id="LinkButton1" onclick="LinkButton1_Click" runat="server" CssClass="post_thanks_button" >Thanks</asp:LinkButton> <%} %></SPAN>
+  </SPAN><SPAN class="postlinking"><% if (!isThanked() && !IsMyTopic())
+                            {%>
+                                          <asp:LinkButton id="LinkButton1" onclick="LinkButton1_Click" runat="server" CssClass="post_thanks_button" >Thanks</asp:LinkButton>
+                             <%}%></SPAN>
 </ContentTemplate>
  </asp:UpdatePanel>
                     </div>
@@ -115,29 +113,21 @@
                                     User Says Thank You to <%= GetMemberByMemberID(GetTopic().MemberID).UserName %> For This Useful Post: </a></span>
                             </h2>
                         </div>
-                        <asp:Repeater ID="repeaterThanksOfTopic" runat="server">
-                            <ItemTemplate>
-                                <ol id="c_cat4" class="childforum">
+                                                        <ol id="c_cat4" class="childforum">
                                     <li id="forum5" class="forumbit_post L2">
                                         <div class="forumrow table">
-                                           <%-- <div class="foruminfo td">--%>
-                                               <%-- <div class="forumdata">--%>
-                                                   <%-- <div class="datacontainer">--%>
-                                                        <div class="titleline">
-                                                            <h2 class="forumtitle">
-                                                                <a href="MemberProfile.aspx?memberID=<%#Eval("FromMember")%>"><%#Eval("UserName")%> (<%#Eval("ThankDate")%>) </a>
-                                                            </h2>
-                                                        </div>
-                                                   <%-- </div>--%>
-                                               <%-- </div>--%>
-                                           <%-- </div>--%>
+                                            <div class="titleline">
+                        <asp:Repeater ID="repeaterThanksOfTopic" runat="server">
+                            <ItemTemplate>
+                                <a href="MemberProfile.aspx?memberID=<%#Eval("FromMember")%>"><%#Eval("UserName")%> (<%#Eval("ThankDate")%>) </a>
+                            </ItemTemplate>
+                            <SeparatorTemplate>
+                                ,</SeparatorTemplate>
+                        </asp:Repeater>
+                                </div>
                                         </div>
                                     </li>
                                 </ol>
-                            </ItemTemplate>
-                            <SeparatorTemplate>
-                                </SeparatorTemplate>
-                        </asp:Repeater>
                     </div>
                 </li>
             </ol>   
@@ -148,6 +138,8 @@
     
     
     <%--begin posts list of this topic--%>
+<asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="True">
+<ContentTemplate>
     <asp:Repeater ID="repeaterPosts" runat="server" OnItemCommand="repeaterPosts_ItemCommand">
         <ItemTemplate>
         <div class="postlist restrain" id="postlist">
@@ -250,29 +242,21 @@
                                     User Says Thank You to <%#Eval("UserName")%> For This Useful Post: </a></span>
                             </h2>
                         </div>
-                        <asp:Repeater ID="repeaterThanksOfPost" runat="server" DataSource='<%#GetAllThanksOfPostByPostID(Convert.ToInt32(Eval("PostID"))) %>'>
+            <ol id="c_cat4" class="childforum">
+                <li id="forum5" class="forumbit_post L2">
+                    <div class="forumrow table">
+                        <div class="titleline">
+                            <asp:Repeater ID="repeaterThanksOfPost" runat="server" DataSource='<%#GetAllThanksOfPostByPostID(Convert.ToInt32(Eval("PostID"))) %>'>
                             <ItemTemplate>
-                                <ol id="c_cat4" class="childforum">
-                                    <li id="forum5" class="forumbit_post L2">
-                                        <div class="forumrow table">
-                                           <%-- <div class="foruminfo td">--%>
-                                               <%-- <div class="forumdata">--%>
-                                                   <%-- <div class="datacontainer">--%>
-                                                        <div class="titleline">
-                                                            <h2 class="forumtitle">
-                                                                <a href="MemberProfile.aspx?memberID=<%#Eval("FromMember")%>"><%#Eval("UserName")%> (<%#Eval("ThankDate")%>) </a>
-                                                            </h2>
-                                                        </div>
-                                                   <%-- </div>--%>
-                                               <%-- </div>--%>
-                                           <%-- </div>--%>
-                                        </div>
-                                    </li>
-                                </ol>
+                                <a href="MemberProfile.aspx?memberID=<%#Eval("FromMember")%>"><%#Eval("UserName")%> (<%#Eval("ThankDate")%>) </a>                                                      
                             </ItemTemplate>
                             <SeparatorTemplate>
                                 ,</SeparatorTemplate>
                         </asp:Repeater>
+                        </div>
+                    </div>
+                </li>
+            </ol>
                     </div>
                 </li>
             </ol>   
@@ -282,6 +266,8 @@
     </div>
         </ItemTemplate>
     </asp:Repeater>
+</ContentTemplate>
+</asp:UpdatePanel>
      <%--and posts list of this topic--%>
      <div class="noinlinemod below_postlist" id="below_postlist">
      <asp:LinkButton ID="replylink" runat="server" CssClass="newcontent_textcontrol" OnClick="CheckLoginToNewReply">

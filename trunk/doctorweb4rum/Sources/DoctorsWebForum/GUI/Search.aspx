@@ -75,14 +75,64 @@
                 </ul>
             </div>
             <div class="blockrow">
+                <label>
+                    Professional:</label>
+                <ul class="multifield group">
+                    <li>
+                        <asp:DropDownList ID="drProfessional" runat="server" Width="248px">
+                            <asp:ListItem Value="0">--Select Professional--</asp:ListItem>
+                            <asp:ListItem>Pre-Medical</asp:ListItem>
+                            <asp:ListItem>Veterinarian</asp:ListItem>
+                            <asp:ListItem>Dentist</asp:ListItem>
+                            <asp:ListItem>Pre-Pharmacy</asp:ListItem>
+                            <asp:ListItem>Psychology </asp:ListItem>
+                            <asp:ListItem>Optometrist</asp:ListItem>
+                            <asp:ListItem>Other Health Professions</asp:ListItem>
+                        </asp:DropDownList>
+                    </li>
+                </ul>
+            </div>
+            <div class="blockrow">
+                <label>
+                    Experience:</label>
+                <ul class="multifield group">
+                    <li>
+                        <asp:DropDownList ID="drExperience" runat="server" Width="248px">
+                            <asp:ListItem Value="0">--Select Experience--</asp:ListItem>
+                            <asp:ListItem>1 Year</asp:ListItem>
+                            <asp:ListItem>3 Year</asp:ListItem>
+                            <asp:ListItem>5 Year</asp:ListItem>
+                            <asp:ListItem>10 Year</asp:ListItem>
+                        </asp:DropDownList>
+                    </li>
+                </ul>
+            </div>
+            
+                        <div class="blockrow">
+                <label>
+                    Location:</label>
+                <ul class="multifield group">
+                    <li>
+                        <asp:DropDownList ID="drLocation" runat="server" Width="248px">
+                            <asp:ListItem Value="0">--Select Location--</asp:ListItem>
+                            <asp:ListItem>Viet Nam</asp:ListItem>
+                            <asp:ListItem>England</asp:ListItem>
+                            <asp:ListItem>India</asp:ListItem>
+                            <asp:ListItem>China</asp:ListItem>
+                        </asp:DropDownList>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="blockrow">
                 <label for="searchdate">
                     Find Posts</label>
                 <ul class="multifield group">
                     <li>
-                        <asp:TextBox ID="txtFromDateCreate" runat="server" CssClass="textbox"></asp:TextBox>
+                        From: <asp:TextBox ID="txtFromDateCreate" runat="server" CssClass="textbox"></asp:TextBox>
                     </li>
                     <li>
-                        <asp:TextBox ID="txtToDateCreate" runat="server" CssClass="textbox"></asp:TextBox>
+                        To: <asp:TextBox ID="txtToDateCreate" runat="server" CssClass="textbox"></asp:TextBox>
                     </li>
                 </ul>
             </div>

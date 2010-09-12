@@ -815,9 +815,9 @@ as
 SELECT     ThankTopic.*, Members.*
 FROM         ThankTopic INNER JOIN
                       Members ON ThankTopic.FromMember = Members.MemberID
-where ThankTopic.ThankTopicID = @TopicID
+where ThankTopic.TopicID = @TopicID
 go
-exec GetAllThanksOfTopicByTopicID 1
+exec GetAllThanksOfTopicByTopicID 8
 
 go
 

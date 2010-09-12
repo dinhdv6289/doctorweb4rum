@@ -101,13 +101,35 @@
                         </li>
                         <li>
                             <label for="passwordconfirm">
-                                Address:</label>
-                            <asp:TextBox ID="txtAddress" runat="server" CssClass="textbox"></asp:TextBox>
+                                Loation:</label>
+                            <asp:DropDownList ID="drLocation" runat="server" Width="248px">
+                            <asp:ListItem>Viet Nam</asp:ListItem>
+                            <asp:ListItem>England</asp:ListItem>
+                            <asp:ListItem>India</asp:ListItem>
+                            <asp:ListItem>China</asp:ListItem>
+                        </asp:DropDownList>
                         </li>
                         <li>
                             <label for="passwordconfirm">
-                                Country:</label>
-                            <asp:TextBox ID="txtCountry" runat="server" CssClass="textbox"></asp:TextBox>
+                                Professional:</label>
+                            <asp:DropDownList ID="drProfessional" runat="server" Width="248px">
+                            <asp:ListItem>Pre-Medical</asp:ListItem>
+                            <asp:ListItem>Veterinarian</asp:ListItem>
+                            <asp:ListItem>Dentist</asp:ListItem>
+                            <asp:ListItem>Pre-Pharmacy</asp:ListItem>
+                            <asp:ListItem>Psychology </asp:ListItem>
+                            <asp:ListItem>Optometrist</asp:ListItem>
+                            <asp:ListItem>Other Health Professions</asp:ListItem>
+                        </asp:DropDownList>
+                        </li>
+                        <li>
+                            <label>Experience: </label>
+                            <asp:DropDownList ID="drExperience" runat="server" Width="248px">
+                            <asp:ListItem>1 Year</asp:ListItem>
+                            <asp:ListItem>3 Year</asp:ListItem>
+                            <asp:ListItem>5 Year</asp:ListItem>
+                            <asp:ListItem>10 Year</asp:ListItem>
+                        </asp:DropDownList>
                         </li>
                         <li>
                             <label for="passwordconfirm">

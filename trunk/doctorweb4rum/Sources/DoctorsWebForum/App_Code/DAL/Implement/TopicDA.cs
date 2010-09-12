@@ -40,7 +40,8 @@ namespace DAL
         private String[] columnNamesForInsert = { SubForumID, MemberID, Title, Content, IsLocked, TotalViews, TotalMessages, MoveTo };
         private String[] columnNamesForEditTopic ={ Title, Content, TopicID };
 
-        public Topic[] SearchTopic(String KeySearch, String CategoryID, String SubForumID, String UserName, String FromDateCreate, String ToDateCreate)
+        public Topic[] SearchTopic(String KeySearch, String CategoryID, String SubForumID,
+            String UserName, String FromDateCreate, String ToDateCreate, String professional, String experience, String location)
         {
             Topic[] result;
             if (FromDateCreate.Length == 0 || FromDateCreate.Equals(""))
@@ -63,7 +64,8 @@ namespace DAL
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.Text;
-                cmd.CommandText = String.Format("SearchTopic '{0}', {1}, {2}, '{3}', {4}, {5}", KeySearch, CategoryID, SubForumID, UserName, FromDateCreate, ToDateCreate);
+                cmd.CommandText = String.Format("SearchTopic '{0}', {1}, {2}, '{3}', {4}, {5}, '{6}', '{7}', '{8}'", 
+                    KeySearch, CategoryID, SubForumID, UserName, FromDateCreate, ToDateCreate, professional, experience, location);
                 result = SelectCollection<Topic>(columnNames, columnNames, cmd);
             }
             catch (Exception ex)

@@ -79,6 +79,7 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
                 CollectionPager1.DataSource = dataSetTopicDetails.Tables[0].DefaultView;
                 CollectionPager1.BindToControl = repeaterPosts;
                 repeaterPosts.DataSource = CollectionPager1.DataSourcePaged;
+                repeaterPosts.DataBind();
             }
         }
     }
@@ -162,13 +163,14 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
             if (result > 0)
             {
                 LinkButton1.Visible = false;
-                DataSet dataThanksOfTopic = TopicBLL.GetAllThanksOfTopicByTopicID(topicID);
+                DataSet dataThanksOfTopic = TopicBLL.GetAllThanksOfTopicByTopicID(Convert.ToInt32(TopicID));
                 if (dataThanksOfTopic != null)
                 {
                     repeaterThanksOfTopic.DataSource = dataThanksOfTopic.Tables[0];
                     repeaterThanksOfTopic.DataBind();
                 }
                 panelThanksOfTopic.Visible = true;
+                UpdatePanelRepeaterThanksOfTopic.Update();
             }
         }
     }
@@ -177,6 +179,8 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
     {
         Boolean result = true;
         Member memberLogin = (Member)Session["UserLoged"];
+        string TopicID = Request["topicID"];
+        topicID = Convert.ToInt32(TopicID);
         if (memberLogin != null)
         {
             result = TopicBLL.isThanked(topicID, memberLogin.MemberID);
@@ -220,6 +224,9 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
                 {
                     lbt.Visible = false;
                 }
+
+                UpdatePanel3.Update();
+                loadData();
             }
         }
         if (e.CommandName.Equals("ReplyWithQuote"))
@@ -264,9 +271,8 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
     {
         Boolean result = true;
         Member memberLogin = (Member)Session["UserLoged"];
-        if (memberLogin != null)
+        if (memberLogin != null && !IsMyPost(postID))
         {
-            result = !IsMyPost(postID);
             result = !PostBLL.isThanked(postID, memberLogin.MemberID);
         }
         else
@@ -382,27 +388,16 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
     public String ShowImageStatusOnlineOrOffline(int postID)
     {
         String result = "";
-        if (Session["UserLoged"] != null)
+
+        Post p = PostBLL.GetPostByPostID(postID);
+        Member mem = MemberBLL.GetMemberByMemberID(p.MemberID);
+        if (mem.IsOnline)
         {
-            Member m = (Member)Session["UserLoged"];
-            Post p = PostBLL.GetPostByPostID(postID);
-            if (p.MemberID == m.MemberID)
-            {
-                result = "Images/user-online.png";
-            }
-            result = "Images/user-offline.png";
+            result = "Images/user-online.png";
         }
         else
         {
-            Post p = PostBLL.GetPostByPostID(postID);
-            if (p != null)
-            {
-                Member member = MemberBLL.GetMemberByMemberID(p.MemberID);
-                if (member != null)
-                {
-                    result = "Images/user-offline.png";
-                }
-            }
+            result = "Images/user-offline.png";
         }
         return result;
     }

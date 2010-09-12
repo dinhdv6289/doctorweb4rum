@@ -98,6 +98,9 @@ public partial class GUI_Search : System.Web.UI.Page
         myCol.Add("txtKeyUserName", txtKeyUserName.Text);
         myCol.Add("txtFromDateCreate", txtFromDateCreate.Text);
         myCol.Add("txtToDateCreate", txtToDateCreate.Text);
+        myCol.Add("drProfessional", drProfessional.SelectedValue);
+        myCol.Add("drExperience", drExperience.SelectedValue);
+        myCol.Add("drLocation", drLocation.SelectedValue);
         Session.Add("keysSearch", myCol);
         Response.Redirect("SearchResults.aspx");
     }
@@ -113,6 +116,9 @@ public partial class GUI_Search : System.Web.UI.Page
         myCol.Add("txtKeyUserName", txtKeyUserName.Text);
         myCol.Add("txtFromDateCreate", txtFromDateCreate.Text);
         myCol.Add("txtToDateCreate", txtToDateCreate.Text);
+        myCol.Add("drProfessional", drProfessional.SelectedValue);
+        myCol.Add("drExperience", drExperience.SelectedValue);
+        myCol.Add("drLocation", drLocation.SelectedValue);
         Session.Add("keysSearch", myCol);
         Response.Redirect("SearchResults.aspx");
     }
