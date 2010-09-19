@@ -48,9 +48,10 @@ namespace DAL
         private const String AboutMe = "AboutMe";
         private const String Professional = "Professional";
         private const String Experience = "Experience";
+        private const String IsDoctor = "IsDoctor";
 
-        private String[] columnNames = { MemberID, UserName, Password, Email, FullName, DateCreation, AllowLogin, IsPublic, IsOnline };
-        private String[] columnNamesInsert1 = { UserName, Password, Email, FullName, DateCreation, AllowLogin, IsPublic, IsOnline };
+        private String[] columnNames = { MemberID, UserName, Password, Email, FullName, DateCreation, AllowLogin, IsPublic, IsOnline, IsDoctor };
+        private String[] columnNamesInsert1 = { UserName, Password, Email, FullName, DateCreation, AllowLogin, IsPublic, IsOnline, IsDoctor };
         private String[] memberProfileColumnNames ={ MemberID, RoleID, Blast, Avatar, Country, Address, BirthDay, Gender, Yahoo, 
                                                     Phone, Hospital, Blog, TotalPosts, TotalThanks, TotalThanked, LastLogin, Signature, AboutMe,Professional,Experience};
         public Member[] GetAllMember()
@@ -77,7 +78,7 @@ namespace DAL
             {
                 string[] a = { "MemberID" };
                 object[] b = { member.MemberID };
-                object[] values = { member.UserName, member.Password, member.Email, member.FullName, member.DateCreation, member.AllowLogin, member.IsPublic, member.IsOnline };
+                object[] values = { member.UserName, member.Password, member.Email, member.FullName, member.DateCreation, member.AllowLogin, member.IsPublic, member.IsOnline,member.IsDoctor };
                 result = UpdateTable(tableName, columnNamesInsert1, values, a, b);
             }
             catch (Exception ex)
@@ -113,7 +114,7 @@ namespace DAL
             int result = 0;
             try
             {
-                Object[] values = { member.UserName, member.Password, member.Email, member.FullName, member.DateCreation, member.AllowLogin, member.IsPublic, member.IsOnline };
+                Object[] values = { member.UserName, member.Password, member.Email, member.FullName, member.DateCreation, member.AllowLogin, member.IsPublic, member.IsOnline,member.IsDoctor };
                 result = InsertTableWithReturnID(tableName, columnNamesInsert1, values, out autoID);
             }
             catch (Exception ex)
@@ -254,10 +255,10 @@ namespace DAL
             resultStatus = 0;
             int result = 0;
             String[] columnNamesInfo = {UserName, Password, Email, FullName, Country, Address, BirthDay, Gender, Yahoo, 
-                                                    Phone, Hospital, AboutMe, IsPublic, Professional,Experience};
+                                                    Phone, Hospital, AboutMe, IsPublic, IsDoctor, Professional,Experience};
             Object[] values = {member.UserName, member.Password, member.Email, member.FullName, memProfile.Country, memProfile.Address, 
                 memProfile.BirthDay, memProfile.Gender, memProfile.Yahoo,  memProfile.Phone, memProfile.Hospital, memProfile.AboutMe,
-                member.IsPublic,memProfile.Professional,memProfile.Experience};
+                member.IsPublic,member.IsDoctor,memProfile.Professional,memProfile.Experience};
             try
             {
                 result = InsertIntoTableTypeStoreReturnID("InsertMemberInfo", columnNamesInfo, values, out resultStatus);
@@ -335,10 +336,10 @@ namespace DAL
             try
             {
                 String[] columnNamesInfo = {MemberID,Email, FullName, RoleID, Blast, Avatar, Country, Address, 
-                                                    BirthDay, Yahoo, Phone, Blog,Hospital,Signature,AboutMe,Professional,Experience};
+                                                    BirthDay, Yahoo, Phone, Blog,Hospital,Signature,AboutMe,IsDoctor,Professional,Experience};
                 Object[] values = {member.MemberID , member.Email, member.FullName ,memberProfile.RoleID, memberProfile.Blast, memberProfile.Avatar, memberProfile.Country, memberProfile.Address,
                 memberProfile.BirthDay, memberProfile.Yahoo, memberProfile.Phone,  memberProfile.Blog, memberProfile.Hospital,
-                memberProfile.Signature, memberProfile.AboutMe, memberProfile.Professional,memberProfile.Experience};
+                memberProfile.Signature, memberProfile.AboutMe,member.IsDoctor, memberProfile.Professional,memberProfile.Experience};
                 result = ProcessTableTypeStore("UpdateMemberInfoByAdmin", columnNamesInfo, values);
             }
             catch (Exception ex)
@@ -354,10 +355,10 @@ namespace DAL
             try
             {
                 String[] columnNamesInfo = {MemberID,Password,Email, FullName,  Blast, Avatar, Country, Address, 
-                                                    BirthDay, Yahoo, Phone, Blog,Hospital,Signature,AboutMe,Professional,Experience};
+                                                    BirthDay, Yahoo, Phone, Blog,Hospital,Signature,AboutMe,IsDoctor,Professional,Experience};
                 Object[] values = {member.MemberID ,member.Password, member.Email,member.FullName, memberProfile.Blast, memberProfile.Avatar, memberProfile.Country, memberProfile.Address,
                 memberProfile.BirthDay, memberProfile.Yahoo, memberProfile.Phone,  memberProfile.Blog, memberProfile.Hospital,
-                memberProfile.Signature, memberProfile.AboutMe,memberProfile.Professional,memberProfile.Experience};
+                memberProfile.Signature, memberProfile.AboutMe,member.IsDoctor,memberProfile.Professional,memberProfile.Experience};
                 result = ProcessTableTypeStore("UpdateMemberInfo", columnNamesInfo, values);
 
             }
@@ -522,6 +523,22 @@ namespace DAL
                 String[] columnNamesInfo = { MemberID, TotalPosts };
                 Object[] values = { memberProfile.MemberID, memberProfile.TotalPosts };
                 result = ProcessTableTypeStore("UpdateTotalPostOfMemberByMemberID", columnNamesInfo, values);
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public int UpdateRoleByMemberID(int memberID, int roleID)
+        {
+            int result = 0;
+            try
+            {
+                String[] columnNamesInfo = { MemberID, RoleID };
+                Object[] values = { memberID, roleID };
+                result = ProcessTableTypeStore("UpdateRoleByMemberID", columnNamesInfo, values);
             }
             catch (System.Exception ex)
             {

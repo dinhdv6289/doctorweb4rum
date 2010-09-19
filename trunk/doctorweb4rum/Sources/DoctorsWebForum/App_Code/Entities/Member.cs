@@ -28,6 +28,13 @@ public class Member
     private DateTime dateCreation;
     private Boolean allowLogin;
     private Boolean isPublic;
+    private Boolean isDoctor;
+
+    public Boolean IsDoctor
+    {
+        get { return isDoctor; }
+        set { isDoctor = value; }
+    }
 
     public Boolean IsPublic
     {

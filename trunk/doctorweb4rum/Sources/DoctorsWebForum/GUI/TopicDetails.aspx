@@ -1,7 +1,9 @@
-<%@ Page Language="C#" MasterPageFile="~/GUI/MasterPage.master" AutoEventWireup="true" CodeFile="TopicDetails.aspx.cs" Inherits="GUI_TopicDetails" Title="Untitled Page" %>
+<%@ Page Language="C#" MasterPageFile="~/GUI/MasterPage.master" AutoEventWireup="true" CodeFile="TopicDetails.aspx.cs" Inherits="GUI_TopicDetails" Title="Topic Details" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <br />
+    <asp:LinkButton ID="lbtnAddNewTp" runat="server" CssClass="newcontent_textcontrol" OnClick="lbtnAddNewTopic" >
+    <span>+ </span>Add New Topic</asp:LinkButton>    
     <asp:LinkButton ID="LinkButton3" runat="server" CssClass="newcontent_textcontrol" OnClick="CheckLoginToNewReply" >
     <span>+ </span>Reply to Topic</asp:LinkButton>
     <br />
@@ -48,10 +50,23 @@
                                      <img border="0"alt="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is offline" src="Images/user-offline.png"
                                     class="inlineimg onlinestatus" title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is offline" />
                                     <%} %>
-                                <span class="usertitle"><%= GetMemberByMemberID(GetTopic().MemberID).FullName %> </span><span class="postbit_reputation">
-                                    <img alt="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is on a distinguished road" src="Images/reputation_pos.png"
-                                        class="repimg" title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is on a distinguished road" />
+                                    <% Member memberCheckAdmin = GetMemberByMemberID(GetTopic().MemberID);
+                                       MemberProfile memberProfileRole = GetMemberProfileByMemberID(GetTopic().MemberID);
+                                       Role role = BLL.RoleBLL.GetRoleByRoleID(memberProfileRole.RoleID);
+                                        %>
+                                        <% if(role.RoleName.Equals("Admin")){ %>
+                                <span class="postbit_reputation">
+                                    <img alt="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> " src="Images/MemberProfiles/Roles/adminitrator.gif"
+                                        class="repimg" title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> " />
                                 </span>
+                                <%} %>
+                                <%--end admin--%>
+                                <% if(memberCheckAdmin.IsDoctor) {%>
+                                <span class="postbit_reputation">
+                                    <img alt="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> " src="Images/MemberProfiles/Doctor/doctor.gif"
+                                        class="repimg" title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> " />
+                                </span>
+                                <%} %>
                                 <div class="imlinks">
                                 </div>
                             </div>
@@ -171,10 +186,14 @@
                                 </div>
                                 <img border="0" alt=" <%#ShowStatusOnlineOrOffline(Convert.ToInt32(Eval("PostID"))) %>" src="<%#ShowImageStatusOnlineOrOffline(Convert.ToInt32(Eval("PostID"))) %>"
                                     class="inlineimg onlinestatus" title=" <%#ShowStatusOnlineOrOffline(Convert.ToInt32(Eval("PostID"))) %>">
-                                <span class="usertitle"><%#Eval("FullName")%> </span><span id="repdisplay_14688639_429236" class="postbit_reputation">
-                                    <img alt=" <%#Eval("UserName")%> is on a distinguished road" src="Images/reputation_pos.png"
-                                        class="repimg" title=" <%#Eval("UserName")%> is on a distinguished road">
+                                <span id="repdisplay_14688639_429236" class="postbit_reputation">
+                                    <img alt=" <%#Eval("UserName")%> " src="<%#ShowImageIsAdmin(Convert.ToInt32(Eval("PostID"))) %>"
+                                        class="repimg" title=" <%#Eval("UserName")%> ">
                                 </span>
+                                <span id="Span1" class="postbit_reputation">
+                                    <img alt=" <%#Eval("UserName")%> " src="<%#ShowImageIsDoctor(Convert.ToInt32(Eval("PostID"))) %>"
+                                        class="repimg" title=" <%#Eval("UserName")%> ">
+                                </span>                                
                                 <div class="imlinks">
                                 </div>
                             </div>
@@ -272,9 +291,13 @@
 </ContentTemplate>
 </asp:UpdatePanel>
      <%--and posts list of this topic--%>
+     <asp:LinkButton ID="lbn3" runat="server" CssClass="newcontent_textcontrol" OnClick="lbtnAddNewTopic" >
+    <span>+ </span>Add New Topic</asp:LinkButton>     
+         <asp:LinkButton ID="replylink" runat="server" CssClass="newcontent_textcontrol" OnClick="CheckLoginToNewReply">
+     <span>+ </span>Reply to Topic</asp:LinkButton> 
      <div class="noinlinemod below_postlist" id="below_postlist">
-     <asp:LinkButton ID="replylink" runat="server" CssClass="newcontent_textcontrol" OnClick="CheckLoginToNewReply">
-     <span>+ </span>Reply to Topic</asp:LinkButton>
+    
+
      <br />
      <br />
                 <div class="pagination_bottom">

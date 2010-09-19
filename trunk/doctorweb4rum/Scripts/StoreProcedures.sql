@@ -41,7 +41,7 @@ CREATE PROC GetMemberOfTopicByTopicID
 	@TopicID INT
 AS BEGIN
 SELECT     Members.MemberID, Members.UserName, Members.Password, Members.Email, Members.FullName, Members.DateCreation, Members.AllowLogin, 
-                     Members.IsPublic, Members.IsOnline
+                     Members.IsPublic, Members.IsOnline, Members.IsDoctor
 FROM         Members INNER JOIN
                       Topics ON Members.MemberID = Topics.MemberID
 WHERE Topics.TopicID = @TopicID
@@ -111,7 +111,7 @@ CREATE PROC GetLastMemberPostByTopicID
 	@TopicID INT
 AS BEGIN
 SELECT     TOP(1) Posts.PostID, Members.MemberID, Members.UserName, Members.Password, Members.Email, Members.FullName, Members.DateCreation, Members.AllowLogin, 
-                      Members.IsPublic,Members.IsOnline, Posts.TopicID
+                      Members.IsPublic,Members.IsOnline,Members.IsDoctor, Posts.TopicID
 FROM         Members INNER JOIN  Posts ON Members.MemberID = Posts.MemberID
 WHERE Posts.TopicID = @TopicID
 ORDER BY Posts.PostID DESC
@@ -154,7 +154,7 @@ CREATE PROC GetMemberByUserNamePassword
 	@UserName nvarchar(30),
 	@Password nvarchar(50)
 AS BEGIN 
-SELECT     MemberID, UserName, Password, Email, FullName, DateCreation, AllowLogin, IsPublic,IsOnline
+SELECT     MemberID, UserName, Password, Email, FullName, DateCreation, AllowLogin, IsPublic,IsOnline,IsDoctor
 FROM         Members
 WHERE		UserName = @UserName AND Password = @Password
 END
@@ -261,6 +261,7 @@ CREATE PROCEDURE InsertMemberInfo
 @Hospital		NVARCHAR(100),
 @AboutMe		NVARCHAR(15),
 @IsPublic		BIT,
+@IsDoctor		BIT,
 @Professional   NVARCHAR(255), 
 @Experience		NVARCHAR(255),
 @Result			SMALLINT OUTPUT
@@ -269,8 +270,8 @@ AS	BEGIN
 			BEGIN
 				IF(NOT EXISTS(SELECT Email FROM Members WHERE Email=@Email))
 					BEGIN
-						INSERT INTO Members(UserName,[Password],Email,FullName,DateCreation,IsPublic)
-						VALUES	(@UserName,@Password,@Email,@FullName,GETDATE(),@IsPublic)
+						INSERT INTO Members(UserName,[Password],Email,FullName,DateCreation,IsPublic,IsDoctor)
+						VALUES	(@UserName,@Password,@Email,@FullName,GETDATE(),@IsPublic,@IsDoctor)
 						
 						DECLARE @MemberID	INT
 						EXEC SelectLatestMemberID @MemberID OUTPUT
@@ -298,7 +299,7 @@ GO
 CREATE PROCEDURE TopicDetailsByTopicID
 @TopicID	INT 
 AS BEGIN
-SELECT     Members.MemberID, Members.UserName, Members.Email, Members.FullName, Members.DateCreation, Members.AllowLogin, Members.IsPublic, Members.IsOnline, 
+SELECT     Members.MemberID, Members.UserName, Members.Email, Members.FullName, Members.DateCreation, Members.AllowLogin, Members.IsPublic, Members.IsOnline, Members.IsDoctor,
                       MemberProfiles.RoleID, MemberProfiles.Blast, MemberProfiles.Avatar, MemberProfiles.Country, MemberProfiles.Address, MemberProfiles.BirthDay, 
                       MemberProfiles.Gender, MemberProfiles.Yahoo, MemberProfiles.Phone, MemberProfiles.Hospital, MemberProfiles.Blog, 
 					  (select count(*) from Posts where Posts.MemberID = Members.MemberID) AS TotalPosts, 
@@ -465,13 +466,15 @@ CREATE PROCEDURE UpdateMemberInfoByAdmin
 @Hospital		NVARCHAR(100),
 @Signature      NVARCHAR(1000),
 @AboutMe		NTEXT,
+@IsDoctor		BIT,
 @Professional   NVARCHAR(255),
 @Experience     NVARCHAR(255)
 AS
 	BEGIN
 		UPDATE Members	SET
 			Email = @Email,
-			FullName = @FullName
+			FullName = @FullName,
+			IsDoctor = @IsDoctor
 		WHERE MemberID=@MemberID
 		UPDATE MemberProfiles SET
 			RoleID = @RoleID,
@@ -512,6 +515,7 @@ CREATE PROCEDURE UpdateMemberInfo
 @Hospital		NVARCHAR(100),
 @Signature      NVARCHAR(1000),
 @AboutMe		NTEXT,
+@IsDoctor		BIT,
 @Professional   NVARCHAR(255),
 @Experience     NVARCHAR(255)
 AS
@@ -519,7 +523,8 @@ AS
 		UPDATE Members	SET
 			Password = @Password,
 			Email = @Email,
-			FullName = @FullName
+			FullName = @FullName,
+			IsDoctor = @IsDoctor
 		WHERE MemberID=@MemberID
 		UPDATE MemberProfiles SET
 			Blast = @Blast,
@@ -897,3 +902,41 @@ END
 
 go
 
+-- UpdateRoleByMemberID
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'UpdateRoleByMemberID' AND TYPE = 'P')
+DROP PROC UpdateRoleByMemberID
+GO
+CREATE PROCEDURE UpdateRoleByMemberID
+	@MemberID int,
+	@RoleID int
+AS
+BEGIN
+Update MemberProfiles set RoleID = @RoleID where MemberID = @MemberID
+END
+
+go
+
+-- NewestFirstPost
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE NAME = 'NewestFirstPost' AND TYPE = 'P')
+DROP PROC NewestFirstPost
+GO
+CREATE PROCEDURE NewestFirstPost
+@TopicID	INT 
+AS BEGIN
+SELECT  Top 20   Members.MemberID, Members.UserName,Posts.PostID, Posts.TopicID, Posts.[Content], 
+           Posts.DateCreation AS DateCreationOfPosts, Posts.QuoteID,
+		   (select Posts.Content from Posts where Posts.PostID = Posts.QuoteID) as Quote
+FROM         Members INNER JOIN
+                      MemberProfiles ON Members.MemberID = MemberProfiles.MemberID INNER JOIN
+                      Posts ON Members.MemberID = Posts.MemberID
+WHERE Posts.TopicID = @TopicID
+Order by Posts.DateCreation ASC
+
+END
+
+
+GO
+
+select * from Roles
+select * from dbo.MemberProfiles
+select * from members

@@ -435,5 +435,30 @@ namespace DAL
             }
             return result;
         }
+
+        public DataSet NewestFirstPost(int topicID)
+        {
+            DataSet dataSetTopicDetails = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = String.Format("NewestFirstPost {0}", topicID);
+                dataSetTopicDetails = ExecuteDataset(cmd);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            if (dataSetTopicDetails.Tables[0].Rows.Count > 0)
+            {
+                return dataSetTopicDetails;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
     }
 }

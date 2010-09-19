@@ -2,7 +2,7 @@ use doctorWeb4rum
 GO
 /**************************** INSERT TABLE ********************************/
 INSERT INTO Roles VALUES('Member','Users',0,'member.gif')
-INSERT INTO Roles VALUES('Admin','Management Forum',500,'admin.gif')
+INSERT INTO Roles VALUES('Admin','Management Forum',0,'admin.gif')
 go
 
 insert into dbo.Categories(CategoryName,Priority) values('Pre-Medical Forums',1)
@@ -115,23 +115,23 @@ values(12,'Practicing Physicians','For physicians that have completed residency 
 
 select * from SubForums
 
-insert into dbo.Members(UserName,Password,Email,FullName,DateCreation,AllowLogin,IsPublic,IsOnline)
-values('username1','password','test@gmail.com','userName1Test',GetDate(),'true','true','false')
+insert into dbo.Members(UserName,Password,Email,FullName,DateCreation,AllowLogin,IsPublic,IsOnline,IsDoctor)
+values('username1','password','test@gmail.com','userName1Test',GetDate(),'true','true','false','false')
 
-insert into dbo.Members(UserName,Password,Email,FullName,DateCreation,AllowLogin,IsPublic,IsOnline)
-values('username2','password','test2@gmail.com','testtt',GetDate(),'true','true','false')
+insert into dbo.Members(UserName,Password,Email,FullName,DateCreation,AllowLogin,IsPublic,IsOnline,IsDoctor)
+values('username2','password','test2@gmail.com','testtt',GetDate(),'true','true','false','true')
 
 insert into dbo.MemberProfiles(MemberID,RoleID,Blast,Avatar,Country,Address,BirthDay,Gender,Yahoo,
 Phone,Hospital,Blog,TotalPosts,TotalThanks,TotalThanked,LastLogin,Signature,AboutMe,Professional,Experience) 
 values(
-1,1,'Blast Content','avarta.gif','India','India','08/18/1987','true','yahoo.com',
+1,1,'Blast Content','Images/MemberProfiles/Avatar/test.jpg','India','India','08/18/1987','true','yahoo.com',
 '0987123123','India','blog.com',2,2,5,getdate(),'learn','not about','Psychology','1 Year'
 )
 
 insert into dbo.MemberProfiles(MemberID,RoleID,Blast,Avatar,Country,Address,BirthDay,Gender,Yahoo,
 Phone,Hospital,Blog,TotalPosts,TotalThanks,TotalThanked,LastLogin,Signature,AboutMe,Professional,Experience) 
 values(
-2,2,'Blast Content','avarta.gif','Viet Nam','Viet Nam','08/18/1987','true','yahoo.com',
+2,2,'Blast Content','Images/MemberProfiles/Avatar/test2.jpg','Viet Nam','Viet Nam','08/18/1987','true','yahoo.com',
 '0987123123','Viet Nam Cuba','blog.com',2,2,5,getdate(),'learn','not about','Pre-Medical','1 Year'
 )
 

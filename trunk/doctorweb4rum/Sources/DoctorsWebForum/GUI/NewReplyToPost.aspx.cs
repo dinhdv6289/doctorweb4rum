@@ -26,6 +26,12 @@ public partial class GUI_NewReplyToPost : System.Web.UI.Page
                 int topicId = Convert.ToInt32(topicID);
                 int postId = Convert.ToInt32(postID);
                 Topic topic = TopicBLL.GetTopicByTopicID(topicId);
+                DataSet dataSetTopicDetails = TopicBLL.NewestFirstPost(topicId);
+                if (dataSetTopicDetails != null)
+                {
+                    //repeaterNewestFirstPost.DataSource = dataSetTopicDetails.Tables[0];
+                    //repeaterNewestFirstPost.DataBind();
+                }
                 this.Page.Title = topic.Title;
                 SubForum sf = SubForumBLL.GetSubForumBySubForumID(topic.SubForumID);
                 List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
@@ -90,5 +96,17 @@ public partial class GUI_NewReplyToPost : System.Web.UI.Page
             Response.Redirect("Index.aspx");
         }
 
+    }
+
+    public String GetQuote(int quoteID)
+    {
+        String quote = null;
+        if (quoteID != 0)
+        {
+            Post p = PostBLL.GetPostByPostID(Convert.ToInt32(quoteID));
+            Member mem = MemberBLL.GetMemberByMemberID(p.MemberID);
+            quote = Quote(p.Content, mem.UserName);
+        }
+        return quote;
     }
 }

@@ -33,7 +33,6 @@ namespace DAL
         DataTable SearchForUserByUserName(String userName);
         Member[] GetMembersIsOnline();
         int UpdateTotalPostOfMemberByMemberID(MemberProfile memberProfile);
-        //int UpdateMemberAdmin(Member member);
-        //int DeleteMember(String id);
+        int UpdateRoleByMemberID(int memberID, int roleID);
     }
 }

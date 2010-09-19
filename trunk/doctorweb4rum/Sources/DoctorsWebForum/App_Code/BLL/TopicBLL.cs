@@ -284,5 +284,19 @@ namespace BLL
             }
             return result;
         }
+
+        public static DataSet NewestFirstPost(int topicID)
+        {
+            DataSet dataSetTopicDetails = null;
+            try
+            {
+                dataSetTopicDetails = DataHelper.GetTopicDA().NewestFirstPost(topicID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dataSetTopicDetails;
+        }
     }
 }

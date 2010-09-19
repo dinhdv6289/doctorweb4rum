@@ -5,8 +5,14 @@
 
     <script type="text/javascript">
     $(function() {
-		$("#<%= txtFromDateCreate.ClientID %>").datepicker();
-		$("#<%= txtToDateCreate.ClientID %>").datepicker();
+		$("#<%= txtFromDateCreate.ClientID %>").datepicker({
+            changeMonth: true,
+			changeYear: true
+		});
+		$("#<%= txtToDateCreate.ClientID %>").datepicker({
+            changeMonth: true,
+			changeYear: true
+		});
 	});
     </script>
 

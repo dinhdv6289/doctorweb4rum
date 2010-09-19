@@ -28,6 +28,8 @@ public partial class GUI_NewTopic : System.Web.UI.Page
                 nodes.Add(new KeyValuePair<string, Uri>(sf.SubForumName, Request.Url));
                 ((SiteMapDataProvider)SiteMap.Provider).Stack(nodes);
                 this.Page.Title = sf.SubForumName + "  - New Topic";
+
+
             }
             else
             {

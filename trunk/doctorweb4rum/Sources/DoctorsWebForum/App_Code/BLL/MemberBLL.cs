@@ -355,5 +355,19 @@ namespace BLL
             }
             return result;
         }
+
+        public static int UpdateRoleByMemberID(int memberID, int roleID)
+        {
+            int result = 0;
+            try
+            {
+                result = DataHelper.GetMemberDA().UpdateRoleByMemberID(memberID, roleID);
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }

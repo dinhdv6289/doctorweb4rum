@@ -68,6 +68,7 @@ public partial class GUI_Register : System.Web.UI.Page
             mem.AllowLogin = true;
             MemberProfile memProfile = new MemberProfile();
             memProfile.Address = address;
+            memProfile.Country = address;
             memProfile.BirthDay = Convert.ToDateTime(birthDay);
             memProfile.Gender = true;
             if (gender == 1)
@@ -76,10 +77,9 @@ public partial class GUI_Register : System.Web.UI.Page
             }
             memProfile.Yahoo = yahoo;
             memProfile.Phone = phone;
-            memProfile.Hospital = hospital;
             memProfile.AboutMe = aboutMe;
             memProfile.LastLogin = DateTime.Now;
-            memProfile.Avatar = null;
+            memProfile.Avatar = "Images/MemberProfiles/Avatar/noavatar.jpg";
             memProfile.Blast = null;
             memProfile.Blog = null;
             memProfile.RoleID = 1;
@@ -87,8 +87,20 @@ public partial class GUI_Register : System.Web.UI.Page
             memProfile.TotalPosts = 0;
             memProfile.TotalThanked = 0;
             memProfile.TotalThanks = 0;
-            memProfile.Experience = experience;
-            memProfile.Professional = professional;
+            if (Doctor.Items[0].Selected)
+            {
+                mem.IsDoctor = true;
+                memProfile.Hospital = hospital;
+                memProfile.Experience = experience;
+                memProfile.Professional = professional;
+            }
+            else
+            {
+                mem.IsDoctor = false;
+                memProfile.Hospital = "N/A";
+                memProfile.Experience = "N/A";
+                memProfile.Professional = "N/A";
+            }
             if (Page.IsValid)
             {
                 int resultStatus = 0;
@@ -97,7 +109,7 @@ public partial class GUI_Register : System.Web.UI.Page
                 if (resultStatus == 1)
                 {
                     String contents = "Thank you for registering," + userName + ". Now you  have permission to post.";
-                    Response.Redirect("ForumMessage.aspx?typeMessage="+contents);
+                    Response.Redirect("ForumMessage.aspx?typeMessage=" + contents);
                 }
                 else if (resultStatus == -1)
                 {
@@ -124,5 +136,42 @@ public partial class GUI_Register : System.Web.UI.Page
     protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
     {
         args.IsValid = !(MemberBLL.EmailIsExist(txtEmail.Text));
+    }
+
+    //protected void cbIsDoctor_CheckedChanged(object sender, EventArgs e)
+    //{
+    //    panelIsDoctorToShow.Visible = cbIsDoctor.Checked;
+    //}
+
+    //protected void rbList_SelectedIndexChanged(object sender, EventArgs e)
+    //{
+    //    if (rbList.SelectedIndex == 1)
+    //        panelIsDoctorToShow.Visible = true;
+    //    else
+    //        panelIsDoctorToShow.Visible = false;
+    //}
+
+    //protected void btnIsDoctor_Click(object sender, EventArgs e)
+    //{
+    //    statusIsDoctor = true;
+    //    panelSubmitIsDoctor.Visible = false;
+    //    panelIsDoctorToShow.Visible = true;
+    //    panelSubmitNotIsDoctor.Visible = true;
+    //}
+
+    //protected void btnNotIsDoctor_Click(object sender, EventArgs e)
+    //{
+    //    statusIsDoctor = false;
+    //    panelSubmitNotIsDoctor.Visible = false;
+    //    panelIsDoctorToShow.Visible = false;
+    //    panelSubmitIsDoctor.Visible = true;
+    //}
+
+    protected void RadioButtonList2_PreRender(object sender, EventArgs e)
+    {
+        foreach (ListItem item in Doctor.Items)
+        {
+            item.Attributes.Add("OnClick", "javascript: showControl('" + item.Value + "');");
+        }
     }
 }
