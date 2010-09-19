@@ -5,8 +5,28 @@
 
     <script type="text/javascript">
     $(function() {
-		$("#<%= txtBirthday.ClientID %>").datepicker();
+		$("#<%= txtBirthday.ClientID %>").datepicker({
+            changeMonth: true,
+			changeYear: true
+		});
 	});
+    </script>
+
+    <script language="javascript">
+        function showControl(value) {
+            if (value == 0) {
+                document.getElementById('divShowHide').style.visibility = 'hidden';
+            } else {
+                document.getElementById('divShowHide').style.visibility = 'visible';
+            }
+        }
+
+        function GetVal() {
+            var e = document.getElementById('<%= Doctor.ClientID %>'+'_0');
+            if (e.checked)
+                return '0';
+            else return '1';
+        }
     </script>
 
     <div id="usercp_nav">
@@ -88,13 +108,6 @@
                         </div>
                         <div class="blockrow">
                             <label>
-                                Email:</label>
-                            <div class="rightcol">
-                                <asp:TextBox ID="txtEmail" runat="server" CssClass="primary textbox"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="blockrow">
-                            <label>
                                 Full Name:</label>
                             <div class="rightcol">
                                 <asp:TextBox ID="txtFullName" runat="server" CssClass="primary textbox"></asp:TextBox>
@@ -107,38 +120,58 @@
                                 <asp:Label ID="lblGender" runat="server" Enabled="False"></asp:Label>
                             </div>
                         </div>
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="True">
+                            <contenttemplate>
+                        <asp:Panel ID="panelIsDoctorToShow" runat="server">
+						<div class="blockrow">
+                            <label>
+                                Are you the Doctor ?</label>
+                           <asp:RadioButtonList ID="Doctor" runat="server"  OnPreRender="RadioButtonList2_PreRender">
+                                        <asp:ListItem Selected="True" Value="1" Text="Yes"></asp:ListItem>
+                                        <asp:ListItem  Value="0" Text="No"></asp:ListItem>
+                                </asp:RadioButtonList>
+                        </div>
+                            <div id="divShowHide">
                         <div class="blockrow">
                             <label>
-                                Date Creation:</label>
-                            <div class="rightcol">
-                                <asp:TextBox ID="txtDateCreation" runat="server" CssClass="primary textbox" Enabled="False"></asp:TextBox>
-                            </div>
-                        </div>
+                                Hospital:</label>
+                            <asp:TextBox ID="txtHospital" runat="server" CssClass="primary textbox"></asp:TextBox>
+                        </div>			
                         <div class="blockrow">
                             <label>
                                 Professional:</label>
-                            <div class="rightcol">
-                                <asp:DropDownList ID="drProfessional" runat="server" Width="248px">
+                                    <asp:DropDownList ID="drProfessional" runat="server" Width="248px">
                                     <asp:ListItem>Pre-Medical</asp:ListItem>
                                     <asp:ListItem>Veterinarian</asp:ListItem>
                                     <asp:ListItem>Dentist</asp:ListItem>
                                     <asp:ListItem>Pre-Pharmacy</asp:ListItem>
-                                    <asp:ListItem>Psychology</asp:ListItem>
+                                    <asp:ListItem>Psychology </asp:ListItem>
                                     <asp:ListItem>Optometrist</asp:ListItem>
                                     <asp:ListItem>Other Health Professions</asp:ListItem>
                                 </asp:DropDownList>
-                            </div>
                         </div>
                         <div class="blockrow">
                             <label>
                                 Experience:</label>
-                            <div class="rightcol">
                                 <asp:DropDownList ID="drExperience" runat="server" Width="248px">
                                     <asp:ListItem>1 Year</asp:ListItem>
                                     <asp:ListItem>3 Year</asp:ListItem>
                                     <asp:ListItem>5 Year</asp:ListItem>
                                     <asp:ListItem>10 Year</asp:ListItem>
+                                    <asp:ListItem>More than</asp:ListItem>
                                 </asp:DropDownList>
+                        </div>						
+                            </div>
+                        </asp:Panel>
+                        </contenttemplate>
+                        </asp:UpdatePanel>
+						
+						                                               
+                        <div class="blockrow">
+                            <label>
+                                Date Creation:</label>
+                            <div class="rightcol">
+                                <asp:TextBox ID="txtDateCreation" runat="server" CssClass="primary textbox" Enabled="False"></asp:TextBox>
                             </div>
                         </div>
                         <div class="blockrow">
@@ -150,6 +183,7 @@
                                     <asp:ListItem>England</asp:ListItem>
                                     <asp:ListItem>India</asp:ListItem>
                                     <asp:ListItem>China</asp:ListItem>
+                                    <asp:ListItem>Other</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -165,13 +199,6 @@
                                 Phone:</label>
                             <div class="rightcol">
                                 <asp:TextBox ID="txtPhone" runat="server" CssClass="primary textbox"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="blockrow">
-                            <label>
-                                Hospital:</label>
-                            <div class="rightcol">
-                                <asp:TextBox ID="txtHospital" runat="server" CssClass="primary textbox"></asp:TextBox>
                             </div>
                         </div>
                         <div class="blockrow">
@@ -374,32 +401,32 @@
                     <h3 class="blocksubhead">
                         If you would like to restrict the display of some of the blocks on your profile
                         page.</h3>
-                        <div class="section">
-                            <label>
-                                Current:</label>
-                            <div class="blockrow">
-                                <div class="rightcol">
-                                    <asp:Label ID="lblPrivacyStatus" runat="server"></asp:Label>
-                                </div>
+                    <div class="section">
+                        <label>
+                            Current:</label>
+                        <div class="blockrow">
+                            <div class="rightcol">
+                                <asp:Label ID="lblPrivacyStatus" runat="server"></asp:Label>
                             </div>
                         </div>
-                        <div class="section">
-                            <label>
-                                Change profile privacy:</label>
-                            <div class="blockrow">
-                                <div class="rightcol">
-                                    <asp:CheckBox ID="checkBoxPrivate" runat="server" />
-                                </div>
+                    </div>
+                    <div class="section">
+                        <label>
+                            Change profile privacy:</label>
+                        <div class="blockrow">
+                            <div class="rightcol">
+                                <asp:CheckBox ID="checkBoxPrivate" runat="server" />
                             </div>
                         </div>
-                        <div class="blockfoot actionbuttons settings_form_border">
-                            <div class="group">
-                                <asp:Button ID="btnChangeProfilePrivacy" OnClick="btnChangeProfilePrivacy_Click"
-                                    runat="server" CssClass="button" Text="Save"></asp:Button>
-                                <asp:Button ID="btnCancelChangeProfilePrivacy" OnClick="btnCancelChangeProfilePrivacy_Click"
-                                    runat="server" CssClass="button" Text="Cancel"></asp:Button>
-                            </div>
+                    </div>
+                    <div class="blockfoot actionbuttons settings_form_border">
+                        <div class="group">
+                            <asp:Button ID="btnChangeProfilePrivacy" OnClick="btnChangeProfilePrivacy_Click"
+                                runat="server" CssClass="button" Text="Save"></asp:Button>
+                            <asp:Button ID="btnCancelChangeProfilePrivacy" OnClick="btnCancelChangeProfilePrivacy_Click"
+                                runat="server" CssClass="button" Text="Cancel"></asp:Button>
                         </div>
+                    </div>
                 </div>
             </asp:Panel>
             <%--end profile privacy--%>

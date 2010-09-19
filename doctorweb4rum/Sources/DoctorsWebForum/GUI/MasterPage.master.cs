@@ -118,6 +118,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     }
     protected void Logoutlnk_Click(object sender, EventArgs e)
     {
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>Confirm('Are you sure ');</script>");
         Session.Remove("UserLoged");
         if (Session["id"] != null)
         {

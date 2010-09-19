@@ -31,6 +31,7 @@ namespace DAL
         int CountSubForumInTopicsBySubForumIDToDelete(int subForumID);
         DataSet GetAllThanksOfTopicByTopicID(int topicID);
         Topic[] ViewAllTopicsByMemberID(int memberID);
+        DataSet NewestFirstPost(int topicID);
 
     }
 }

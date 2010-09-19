@@ -405,4 +405,52 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
         }
         return result;
     }
+
+    public String ShowImageIsDoctor(int postID)
+    {
+        String result = "";
+
+        Post p = PostBLL.GetPostByPostID(postID);
+        Member mem = MemberBLL.GetMemberByMemberID(p.MemberID);
+        if (mem.IsDoctor)
+        {
+            result = "Images/MemberProfiles/Doctor/doctor.gif";
+        }
+        return result;
+    }
+
+    public String ShowImageIsAdmin(int postID)
+    {
+        String result = "";
+        Post p = PostBLL.GetPostByPostID(postID);
+        Member mem = MemberBLL.GetMemberByMemberID(p.MemberID);
+        MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(mem.MemberID);
+        Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
+        if (role.RoleName.Equals("Admin"))
+        {
+            result = "Images/MemberProfiles/Roles/adminitrator.gif";
+        }
+        return result;
+    }
+
+    protected void lbtnAddNewTopic(object sender, EventArgs e)
+    {
+        string TopicID = Request["topicID"];
+        if (!string.IsNullOrEmpty(TopicID))
+        {
+            Topic tp = TopicBLL.GetTopicByTopicID(Convert.ToInt32(TopicID));
+            if (tp != null)
+            {
+                if (Session["UserLoged"] != null)
+                {
+                    Response.Redirect("NewTopic.aspx?subForumID=" + tp.SubForumID);
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx?ReturnURL=NewTopic.aspx?subForumID=" + tp.SubForumID);
+                }
+            }
+
+        }
+    }
 }

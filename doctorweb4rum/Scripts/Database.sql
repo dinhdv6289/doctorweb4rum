@@ -32,7 +32,8 @@ CREATE TABLE Members
 	DateCreation	DATETIME DEFAULT GETDATE(),
 	AllowLogin		BIT DEFAULT 1,
 	IsPublic		BIT,
-	IsOnline		BIT DEFAULT 0
+	IsOnline		BIT DEFAULT 0,
+	IsDoctor		BIT
 )
 
 GO

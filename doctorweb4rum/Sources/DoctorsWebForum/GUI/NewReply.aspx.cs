@@ -28,6 +28,12 @@ public partial class GUI_NewReply : System.Web.UI.Page
                     SubForum sf = SubForumBLL.GetSubForumBySubForumID(topic.SubForumID);
                     if (sf != null)
                     {
+                        DataSet dataSetTopicDetails = TopicBLL.NewestFirstPost(topicId);
+                        if (dataSetTopicDetails != null)
+                        {
+                            repeaterNewestFirstPost.DataSource = dataSetTopicDetails.Tables[0];
+                            repeaterNewestFirstPost.DataBind();
+                        }
                         List<KeyValuePair<string, Uri>> nodes = new List<KeyValuePair<string, Uri>>();
                         nodes.Add(new KeyValuePair<string, Uri>(sf.SubForumName, new Uri(Request.Url, string.Format("ShowTopics.aspx?subForumID={0}", sf.SubForumID))));
                         nodes.Add(new KeyValuePair<string, Uri>(topic.Title, Request.Url));
@@ -100,5 +106,17 @@ public partial class GUI_NewReply : System.Web.UI.Page
             Response.Redirect("Index.aspx");
         }
 
+    }
+
+    public String GetQuote(int quoteID)
+    {
+        String quote = null;
+        if (quoteID != 0)
+        {
+            Post p = PostBLL.GetPostByPostID(Convert.ToInt32(quoteID));
+            Member mem = MemberBLL.GetMemberByMemberID(p.MemberID);
+            quote = Quote(p.Content, mem.UserName);
+        }
+        return quote;
     }
 }

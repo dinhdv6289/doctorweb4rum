@@ -60,7 +60,9 @@
     <!-- start if customfields --><H3 class="blocksubhead">Role</H3><DIV class="section"><DIV class="blockrow"><LABEL>User Group forum:</LABEL> <DIV class="rightcol"><asp:Label id="lblRoleGroup" runat="server"></asp:Label> </DIV>
         <br />
         <LABEL>Change Role:</LABEL> <DIV class="rightcol"><asp:DropDownList id="dropDownListRole" runat="server">
-                </asp:DropDownList> </DIV></DIV></DIV>
+                </asp:DropDownList> 
+                 <asp:Button ID="btnsave" runat="server" CssClass="button" Text="Change" OnClick="btnsave_click"></asp:button>
+                </DIV></DIV></DIV>
                 <H3 class="blocksubhead">Profile</H3>
                 <DIV class="section">
                 <DIV class="blockrow">
@@ -78,9 +80,9 @@
                   <DIV class="blockrow"><LABEL>Date Creation:</LABEL> 
                   <DIV class="rightcol"><asp:TextBox id="txtDateCreation" runat="server" CssClass="primary textbox" Enabled="False"></asp:TextBox> </DIV></DIV>
                   <DIV class="blockrow"><LABEL>Professional:</LABEL>
-                   <DIV class="rightcol"><asp:TextBox id="txtProfessional" runat="server" CssClass="primary textbox" ></asp:TextBox> </DIV></DIV>
+                   <DIV class="rightcol"><asp:TextBox id="txtProfessional" runat="server" CssClass="primary textbox" Enabled="False"></asp:TextBox> </DIV></DIV>
                    <DIV class="blockrow"><LABEL>Experience:</LABEL>
-                    <DIV class="rightcol"><asp:TextBox id="txtExperience" runat="server" CssClass="primary textbox"></asp:TextBox> </DIV></DIV>
+                    <DIV class="rightcol"><asp:TextBox id="txtExperience" runat="server" CssClass="primary textbox" Enabled="False"></asp:TextBox> </DIV></DIV>
                     <DIV class="blockrow"><LABEL>Country:</LABEL>
                      <DIV class="rightcol"><asp:TextBox id="txtCountry" runat="server" CssClass="primary textbox" Enabled="False"></asp:TextBox> </DIV></DIV>
                      <DIV class="blockrow"><LABEL>Address:</LABEL>
@@ -94,11 +96,11 @@
                          <DIV class="blockrow"><LABEL>Blog:</LABEL>
                           <DIV class="rightcol"><asp:TextBox id="txtBlog" runat="server" CssClass="primary textbox" Enabled="False"></asp:TextBox> </DIV></DIV>
                           <DIV class="blockrow"><LABEL>Signature:</LABEL>
-                           <DIV class="rightcol"><asp:TextBox id="txtSignature" runat="server" CssClass="primary textbox" TextMode="MultiLine"></asp:TextBox> </DIV></DIV>
+                           <DIV class="rightcol"><asp:TextBox id="txtSignature" runat="server" CssClass="primary textbox" TextMode="MultiLine" Enabled="False"></asp:TextBox> </DIV></DIV>
                            <DIV class="blockrow"><LABEL>AboutMe:</LABEL>
-                            <DIV class="rightcol"><asp:TextBox id="txtAboutMe" runat="server" CssClass="primary textbox"  TextMode="MultiLine"></asp:TextBox> </DIV></DIV>
-                            <asp:Button id="btnSave" runat="server" CssClass="button" Text="Save" OnClick="btnSave_Click"></asp:Button>
-                             <asp:Button id="btnCancel" runat="server" CssClass="button" Text="Cancel" OnClick="btnCancel_Click"></asp:Button> </DIV>
+                            <DIV class="rightcol"><asp:TextBox id="txtAboutMe" runat="server" CssClass="primary textbox"  TextMode="MultiLine" Enabled="False"></asp:TextBox> </DIV></DIV>
+                           <%-- <asp:Button id="btnSave" runat="server" CssClass="button" Text="Save" OnClick="btnSave_Click"></asp:Button>--%>
+                             <asp:Button id="btnCancel" runat="server" CssClass="button" Text="Back" OnClick="btnCancel_Click"></asp:Button> </DIV>
     </asp:Panel>
     
         <asp:Panel id="panelUpdateFailure" runat="server">

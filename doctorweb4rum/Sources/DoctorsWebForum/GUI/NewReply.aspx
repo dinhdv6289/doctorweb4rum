@@ -6,7 +6,7 @@
     <br />
     <strong>New Reply</strong>
     <div class="vbform block">
-<%--        <h2 class="blockhead">
+        <%--        <h2 class="blockhead">
             Errors Message</h2>
         <div class="blockbody postpreview">
             <blockquote class="blockrow postcontent restore preview postcontainer forumcontent"
@@ -40,4 +40,40 @@
             </div>
         </div>
     </div>
+    <br />
+    <div class="vbform block">
+        <ol id="forums" class="floatcontainer">
+            <li class="forumbit_nopost L1">
+                <div class="module">
+                    <div class="header">
+                        <h2>
+                            <span class="forumtitle">Topic Review (Newest First) </span>
+                        </h2>
+                    </div>
+                    <ol class="childforum" id="c_cat4">
+                        <%--begin repeater post--%>
+                        <asp:Repeater ID="repeaterNewestFirstPost" runat="server">
+                            <ItemTemplate>
+                                <li  class="postbit blockrow">
+                                    <div>
+                                        <div class="datetime">
+                                            <%#Eval("DateCreationOfPosts")%>
+                                        </div>
+                                        <span class="username">
+                                            <%#Eval("UserName") %>
+                                        </span>
+                                    </div>
+                                    <div class="content">
+                                        <%#GetQuote(Convert.ToInt32(Eval("QuoteID"))) %>
+                                        <%#Eval("Content") %>
+                                    </div>
+                                </li>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </ol>
+                </div>
+            </li>
+        </ol>
+    </div>
+    <%--end repeater post--%>
 </asp:Content>

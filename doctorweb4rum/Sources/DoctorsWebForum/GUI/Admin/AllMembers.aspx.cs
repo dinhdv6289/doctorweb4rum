@@ -68,11 +68,8 @@ public partial class GUI_Admin_AllMembers : System.Web.UI.Page
         DataRow row = table.NewRow();
         DataRow row2 = table.NewRow();
         row["FunctionID"] = 1;
-        row["FunctionName"] = "View / Edit Member";
+        row["FunctionName"] = "View /Edit Role";
         table.Rows.Add(row);
-        //row2["FunctionID"] = 2;
-        //row2["FunctionName"] = "Delete Member";
-        //table.Rows.Add(row2);
         return table;
     }
 
@@ -121,40 +118,15 @@ public partial class GUI_Admin_AllMembers : System.Web.UI.Page
                         panelViewAndEditMember.Visible = true;
                     }
                 }
-                //if (functionID == 2)
-                //{
-
-                //}
             }
         }
     }
 
-    protected void btnSave_Click(object sender, EventArgs e)
+    protected void btnsave_click(object sender, EventArgs e)
     {
-        DataSet dataInfo = MemberBLL.GetAllInfoOfMemberByMemberID(Convert.ToInt32(memberIDHiddend.Value));
-        if (dataInfo != null)
-        {
-            Member member = new Member();
-            member.MemberID = Convert.ToInt32(memberIDHiddend.Value);
+            int memberID = Convert.ToInt32(memberIDHiddend.Value);
             int roleID = Convert.ToInt32(dropDownListRole.SelectedValue);
-            MemberProfile memberProfile = new MemberProfile();
-            memberProfile.RoleID = roleID;
-            memberProfile.Blast = dataInfo.Tables[0].Rows[0]["Blast"].ToString();
-            memberProfile.Avatar = dataInfo.Tables[0].Rows[0]["Avatar"].ToString();
-            memberProfile.Address = txtAddress.Text;
-            memberProfile.Signature = txtSignature.Text;
-            memberProfile.AboutMe = txtAboutMe.Text;
-            memberProfile.Professional = txtProfessional.Text;
-            memberProfile.Experience = txtExperience.Text;
-            memberProfile.Blog = txtBlog.Text;
-            memberProfile.BirthDay = Convert.ToDateTime(dataInfo.Tables[0].Rows[0]["BirthDay"].ToString());
-            memberProfile.Yahoo = txtYahoo.Text;
-            memberProfile.Hospital = txtHospital.Text;
-            memberProfile.Phone = txtPhone.Text;
-            memberProfile.Country = txtCountry.Text;
-            member.FullName = txtFullName.Text;
-            member.Email = txtEmail.Text;
-            int result = MemberBLL.UpdateMemberInfoByAdmin(member, memberProfile);
+            int result = MemberBLL.UpdateRoleByMemberID(memberID, roleID);
             if (result > 0)
             {
                 panelAllMembers.Visible = false;
@@ -166,7 +138,7 @@ public partial class GUI_Admin_AllMembers : System.Web.UI.Page
                 panelViewAndEditMember.Visible = false;
                 panelUpdateFailure.Visible = true;
             }
-        }
+
 
     }
     protected void btnCancel_Click(object sender, EventArgs e)
