@@ -49,7 +49,7 @@ public partial class GUI_NewReplyToPost : System.Web.UI.Page
 
     protected void btnSubmitNewReply_Click(object sender, EventArgs e)
     {
-        if (Editor1.Content.Length >= 100)
+        if (Editor1.Content.Length >= 30)
         {
             Post newPost = new Post();
             if (Request.QueryString["topicID"] != null || Request.QueryString["topicID"].Length > 0 || Request.QueryString["postID"] != null || Request.QueryString["postID"].Length > 0)
@@ -81,7 +81,7 @@ public partial class GUI_NewReplyToPost : System.Web.UI.Page
         }
         else
         {
-            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "Errors", "<script>alert('The contents you have entered is too short. Please lengthen your contents to at least 100 Characters.');</script>");
+            this.Page.ClientScript.RegisterStartupScript(this.GetType(), "Errors", "<script>alert('The contents you have entered is too short. Please lengthen your contents to at least 30 Characters.');</script>");
         }
     }
 
