@@ -40,6 +40,7 @@ public partial class GUI_Register : System.Web.UI.Page
     }
     protected void btnCompleteRegister_Click(object sender, EventArgs e)
     {
+        
         String userName = txtUserName.Text;
         String password = txtConfirmPassword.Text;
         String email = txtConfirmEmail.Text;
@@ -69,7 +70,10 @@ public partial class GUI_Register : System.Web.UI.Page
             MemberProfile memProfile = new MemberProfile();
             memProfile.Address = address;
             memProfile.Country = address;
-            memProfile.BirthDay = Convert.ToDateTime(birthDay);
+            if(birthDay.Length>0)
+            {
+                memProfile.BirthDay = Convert.ToDateTime(birthDay);
+            }
             memProfile.Gender = true;
             if (gender == 1)
             {
@@ -132,10 +136,12 @@ public partial class GUI_Register : System.Web.UI.Page
     protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
     {
         args.IsValid = !(MemberBLL.UserNameIsExist(txtUserName.Text));
+        CustomValidator1.ErrorMessage ="UserName " + txtUserName.Text + " is used !";
     }
     protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
     {
         args.IsValid = !(MemberBLL.EmailIsExist(txtEmail.Text));
+        CustomValidator2.ErrorMessage ="Email " + txtEmail.Text + " is used !";
     }
 
     //protected void cbIsDoctor_CheckedChanged(object sender, EventArgs e)

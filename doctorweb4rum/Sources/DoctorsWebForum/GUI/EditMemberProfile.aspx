@@ -15,9 +15,9 @@
     <script language="javascript">
         function showControl(value) {
             if (value == 0) {
-                document.getElementById('divShowHide').style.visibility = 'hidden';
+                document.getElementById('divShowHide').style.display = 'none';
             } else {
-                document.getElementById('divShowHide').style.visibility = 'visible';
+                document.getElementById('divShowHide').style.display = 'block';
             }
         }
 
@@ -27,6 +27,64 @@
                 return '0';
             else return '1';
         }
+    </script>
+
+    <script type="text/javascript">
+$(document).ready(function() {
+	// validate signup form on keyup and submit
+	var validator = $("#aspnetForm").validate({
+		rules: {
+			<%=txtOldPassword.UniqueID %>: {
+				required: true,
+				minlength: 5
+			},
+			<%=txtNewPassword.UniqueID %>: {
+				required: true,
+				minlength: 5
+			},			
+			<%=txtConfirmNewPassword.UniqueID%> : {
+				required: true,
+				minlength: 5,
+				equalTo: $("#<%=txtNewPassword.ClientID %>")
+			},
+			<%=txtNewEmail.UniqueID%>: {
+				required: true,
+				email: true,
+			},
+			<%=txtConfirmNewEmailAddress.UniqueID%> : {
+				required: true,
+				email: true,
+				equalTo: $("#<%=txtNewEmail.ClientID %>")
+			}
+		},
+		messages: {
+			<%=txtOldPassword.UniqueID %>: {
+				required: "Provide a old password",
+				rangelength: jQuery.format("Enter at least {0} characters")
+			},
+			<%=txtNewPassword.UniqueID %>: {
+				required: "Provide a new password",
+				rangelength: jQuery.format("Enter at least {0} characters")
+			},			
+			<%=txtConfirmNewPassword.UniqueID %>: {
+				required: "Repeat your new password",
+				minlength: jQuery.format("Enter at least {0} characters"),
+				equalTo: "Enter the same new password as above"
+			},
+			<%=txtNewEmail.UniqueID%>: {
+				required: "Please enter a valid New email address",
+				minlength: "Please enter a valid New email address",
+				remote: jQuery.format("{0} is already in use")
+			},
+			<%=txtConfirmNewEmailAddress.UniqueID %>: {
+				required: "Please enter a valid email address",
+				minlength: "Please enter a valid email address",
+				equalTo: "Enter the same new email as above"
+			}
+		}
+	});
+
+});
     </script>
 
     <div id="usercp_nav">
@@ -306,6 +364,7 @@
                         <div class="blockrow">
                             <div class="rightcol">
                                 <asp:TextBox ID="txtOldPassword" runat="server" CssClass="primary textbox" TextMode="Password"></asp:TextBox>
+                                <label class="error" generated="true" for="txtOldPassword">&nbsp;</label>
                             </div>
                             <p class="description">
                                 You must enter your current password if you wish to change your password or email
@@ -320,10 +379,11 @@
                         <div class="blockrow">
                             <div class="rightcol">
                                 <asp:TextBox ID="txtNewPassword" runat="server" CssClass="primary textbox" TextMode="Password"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtNewPassword"
+                                <label class="error" generated="true" for="txtNewPassword">&nbsp;</label>
+                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtNewPassword"
                                     Display="Static" ErrorMessage="The password is not null."></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="txtNewPassword"
-                                    Display="Static" ErrorMessage="The password is more 6 characters.." ValidationExpression=".{6,}">*</asp:RegularExpressionValidator>
+                                    Display="Static" ErrorMessage="The password is more 6 characters.." ValidationExpression=".{6,}">*</asp:RegularExpressionValidator>--%>
                             </div>
                         </div>
                     </div>
@@ -334,10 +394,11 @@
                             <div class="rightcol">
                                 <asp:TextBox ID="txtConfirmNewPassword" runat="server" CssClass="primary textbox"
                                     TextMode="Password"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtConfirmNewPassword"
+                                    <label class="error" generated="true" for="txtConfirmNewPassword">&nbsp;</label>
+                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtConfirmNewPassword"
                                     Display="Static" ErrorMessage="The confirm password is not null."></asp:RequiredFieldValidator>
                                 <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToCompare="txtNewPassword"
-                                    ControlToValidate="txtConfirmNewPassword" Display="Static" ErrorMessage="Password do not match."></asp:CompareValidator>
+                                    ControlToValidate="txtConfirmNewPassword" Display="Static" ErrorMessage="Password do not match."></asp:CompareValidator>--%>
                             </div>
                             <p class="description">
                                 Enter a new password for your user account. Note that passwords are case-sensitive.</p>
@@ -353,13 +414,14 @@
                         <div class="blockrow">
                             <div class="rightcol">
                                 <asp:TextBox ID="txtNewEmail" runat="server" CssClass="primary textbox"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="The Email is not null."
+                                 <label class="error" generated="true" for="txtNewEmail">&nbsp;</label>
+                               <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="The Email is not null."
                                     ControlToValidate="txtNewEmail" Display="Static"></asp:RequiredFieldValidator>
                                 <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Email address is invalid."
                                     ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="txtNewEmail"
                                     Display="Static"></asp:RegularExpressionValidator>
                                 <asp:CustomValidator ID="CustomValidator2" runat="server" ControlToValidate="txtNewEmail"
-                                    Display="Static" ErrorMessage="The Email is used." OnServerValidate="CustomValidator2_ServerValidate"></asp:CustomValidator>
+                                    Display="Static" ErrorMessage="The Email is used." OnServerValidate="CustomValidator2_ServerValidate"></asp:CustomValidator>--%>
                             </div>
                             <asp:Label ID="Label3" runat="server" Text="" ForeColor="red"></asp:Label>
                         </div>
@@ -370,11 +432,12 @@
                         <div class="blockrow">
                             <div class="rightcol">
                                 <asp:TextBox ID="txtConfirmNewEmailAddress" runat="server" CssClass="primary textbox"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtConfirmNewEmailAddress"
+                                 <label class="error" generated="true" for="txtConfirmNewEmailAddress">&nbsp;</label>
+                                <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtConfirmNewEmailAddress"
                                     Display="Static" ErrorMessage="The confirm email  is not null."></asp:RequiredFieldValidator>
                                 <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtNewEmail"
                                     ControlToValidate="txtConfirmNewEmailAddress" Display="Static" ErrorMessage="Email is not match."
-                                    ToolTip="Email is not match."></asp:CompareValidator>
+                                    ToolTip="Email is not match."></asp:CompareValidator>--%>
                             </div>
                             <p class="description">
                                 Enter your new email address here. You must be able to receive email sent to this

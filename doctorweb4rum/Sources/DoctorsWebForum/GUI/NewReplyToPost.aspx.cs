@@ -29,8 +29,8 @@ public partial class GUI_NewReplyToPost : System.Web.UI.Page
                 DataSet dataSetTopicDetails = TopicBLL.NewestFirstPost(topicId);
                 if (dataSetTopicDetails != null)
                 {
-                    //repeaterNewestFirstPost.DataSource = dataSetTopicDetails.Tables[0];
-                    //repeaterNewestFirstPost.DataBind();
+                    repeaterNewestFirstPost.DataSource = dataSetTopicDetails.Tables[0];
+                    repeaterNewestFirstPost.DataBind();
                 }
                 this.Page.Title = topic.Title;
                 SubForum sf = SubForumBLL.GetSubForumBySubForumID(topic.SubForumID);
@@ -96,6 +96,12 @@ public partial class GUI_NewReplyToPost : System.Web.UI.Page
             Response.Redirect("Index.aspx");
         }
 
+    }
+
+    private string Quote(string content, string userNamePosted)
+    {
+        return "<div class=\"bbcode_container\"><div class=\"bbcode_quote\"><div class=\"quote_container\"><div class=\"bbcode_quote_container\"></div><div class=\"bbcode_postedby\"><img alt=\"Quote\" src=\"Images/quote_icon.png\" title=\"Quote\">" +
+                                "Originally Posted by <strong> " + userNamePosted + "</strong>" + "</div><div class=\"message\">" + content + "</div></div></div></div>";
     }
 
     public String GetQuote(int quoteID)
