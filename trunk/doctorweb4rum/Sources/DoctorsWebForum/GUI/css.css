@@ -3836,12 +3836,13 @@ margin-top:2em;
 padding-top:1em;
 }
 .postbit, .postbitlegacy, .eventbit {
-border:1px solid #355B4C;
+border-bottom:1px solid #355B4C;
+border-left:1px solid #355B4C;
+border-right:1px solid #355B4C;
 clear:both;
 color:#3E3E3E;
 display:block;
 float:left;
-margin-bottom:10px;
 position:relative;
 width:100%;
 }

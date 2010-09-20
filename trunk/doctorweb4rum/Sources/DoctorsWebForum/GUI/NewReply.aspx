@@ -6,16 +6,6 @@
     <br />
     <strong>New Reply</strong>
     <div class="vbform block">
-        <%--        <h2 class="blockhead">
-            Errors Message</h2>
-        <div class="blockbody postpreview">
-            <blockquote class="blockrow postcontent restore preview postcontainer forumcontent"
-                id="yui-gen20">
-                <div class="bbcode_container">
-                    <asp:Label ID="lblErrors" runat="server" ForeColor="Red"></asp:Label>
-                </div>
-            </blockquote>
-        </div>--%>
         <h2 class="blockhead">
             Your Message</h2>
         <div class="blockbody formcontrols">
@@ -45,7 +35,7 @@
         <ol id="forums" class="floatcontainer">
             <li class="forumbit_nopost L1">
                 <div class="module">
-                    <div class="header">
+                    <div class="header" style="width:102.7%;">
                         <h2>
                             <span class="forumtitle">Topic Review (Newest First) </span>
                         </h2>

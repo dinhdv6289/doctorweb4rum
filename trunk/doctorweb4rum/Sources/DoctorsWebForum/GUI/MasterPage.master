@@ -8,9 +8,10 @@
     <link href="css.css" rel="stylesheet" type="text/css" />
     <link href="css_002.css" rel="stylesheet" type="text/css" />
     <link type="text/css" href="JqueryStyle/themes/base/jquery.ui.all.css" rel="stylesheet" />
-
+   
     <script type="text/javascript" src="js/jquery-1.4.2.js"></script>
 
+    
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
 
     <script type="text/javascript" src="js/jquery.collapsible.js"></script>
@@ -18,7 +19,7 @@
     <script type="text/javascript" src="js/jquery.ui.core.js"></script>
 
     <script type="text/javascript" src="js/jquery.ui.widget.js"></script>
-
+     <script type="text/javascript" src="js/jquery.validate.js"></script>
     <script type="text/javascript" src="js/jquery.ui.datepicker.js"></script>
 
     <script type="text/javascript">
