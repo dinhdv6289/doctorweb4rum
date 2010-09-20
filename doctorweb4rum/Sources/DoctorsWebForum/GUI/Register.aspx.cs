@@ -11,6 +11,7 @@ using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
 using TuyenPV;
 using BLL;
+using System.Net.Mail;
 
 public partial class GUI_Register : System.Web.UI.Page
 {
@@ -40,7 +41,7 @@ public partial class GUI_Register : System.Web.UI.Page
     }
     protected void btnCompleteRegister_Click(object sender, EventArgs e)
     {
-        
+
         String userName = txtUserName.Text;
         String password = txtConfirmPassword.Text;
         String email = txtConfirmEmail.Text;
@@ -70,7 +71,7 @@ public partial class GUI_Register : System.Web.UI.Page
             MemberProfile memProfile = new MemberProfile();
             memProfile.Address = address;
             memProfile.Country = address;
-            if(birthDay.Length>0)
+            if (birthDay.Length > 0)
             {
                 memProfile.BirthDay = Convert.ToDateTime(birthDay);
             }
@@ -112,7 +113,8 @@ public partial class GUI_Register : System.Web.UI.Page
                 result = MemberBLL.InsertMemberInfo(mem, memProfile, out resultStatus);
                 if (resultStatus == 1)
                 {
-                    String contents = "Thank you for registering," + userName + ". Now you  have permission to post.";
+                    SendMail(userName, email);
+                    String contents = "Thank you for registering," + userName + ". An email has been dispatched to "+email +". Now you  have permission to post.";
                     Response.Redirect("ForumMessage.aspx?typeMessage=" + contents);
                 }
                 else if (resultStatus == -1)
@@ -136,12 +138,12 @@ public partial class GUI_Register : System.Web.UI.Page
     protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
     {
         args.IsValid = !(MemberBLL.UserNameIsExist(txtUserName.Text));
-        CustomValidator1.ErrorMessage ="UserName " + txtUserName.Text + " is used !";
+        CustomValidator1.ErrorMessage = "UserName " + txtUserName.Text + " is used !";
     }
     protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
     {
         args.IsValid = !(MemberBLL.EmailIsExist(txtEmail.Text));
-        CustomValidator2.ErrorMessage ="Email " + txtEmail.Text + " is used !";
+        CustomValidator2.ErrorMessage = "Email " + txtEmail.Text + " is used !";
     }
 
     //protected void cbIsDoctor_CheckedChanged(object sender, EventArgs e)
@@ -178,6 +180,29 @@ public partial class GUI_Register : System.Web.UI.Page
         foreach (ListItem item in Doctor.Items)
         {
             item.Attributes.Add("OnClick", "javascript: showControl('" + item.Value + "');");
+        }
+    }
+
+    private void SendMail(String userName,String email)
+    {
+        try
+        {
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress("doctorsweb4rum@gmail.com");
+            message.To.Add(new MailAddress(email));
+            message.Subject = "Thank you member "+ userName +" for registering at the Doctors Web Forum. ";
+            message.Body = "Dear "+userName+"\n";
+            message.Body += "Thank you for registering at the Doctors Web Forum."+"\n";
+            message.Body += "If you are still having problems signing up please contact a member of our support staff at doctorsweb4rum@gmail.com"+"\n\n";
+            message.Body +="All the best,"+"\n";
+            message.Body += "Doctors Web Forum";
+            SmtpClient client = new SmtpClient();
+            client.EnableSsl = true;
+            client.Send(message);
+        }
+        catch (Exception ex)
+        {
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "Error", "<script>alert('Error !');window.location.href='Register.aspx';</script>");
         }
     }
 }
