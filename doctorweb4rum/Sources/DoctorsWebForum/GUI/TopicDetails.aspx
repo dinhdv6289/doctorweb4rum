@@ -31,15 +31,38 @@
                             <div class="username_container">
                                 <div class="popupmenu memberaction" >
                                 <% if(GetMemberByMemberID(GetTopic().MemberID).IsOnline){ %>
-                                    <a title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is online " href="MemberProfile.aspx?memberID=<%= GetTopic().MemberID%>" class="username online popupctrl"><strong>
-                                    <span class="user25">
+                                    
+                                    
+                                    <% if (BLL.MemberBLL.GetBannedUser(GetTopic().MemberID).AllowLogin)
+                                       { %>
+                                       <a title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is online " href="MemberProfile.aspx?memberID=<%= GetTopic().MemberID%>" class="username online popupctrl">
+                                    <strong><span class="user25">
                                             <%= GetMemberByMemberID(GetTopic().MemberID).UserName %>
-                                        </span></strong></a>
+                                        </span></strong>
                                         <%}else{ %>
-                                        <a title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is offline" href="MemberProfile.aspx?memberID=<%= GetTopic().MemberID%>" class="username offline popupctrl"
-                                        id="A1"><strong><span class="user25">
+                                         <span style="text-decoration:line-through;">
                                             <%= GetMemberByMemberID(GetTopic().MemberID).UserName %>
-                                        </span></strong></a>
+                                        </span>
+                                        </a>
+                                        
+                                        Banned
+                                        <%} %>
+                                        
+                                        <%}else{ %>
+                                            
+                                        <a title="<%= GetMemberByMemberID(GetTopic().MemberID).UserName %> is offline" href="MemberProfile.aspx?memberID=<%= GetTopic().MemberID%>" class="username offline popupctrl"
+                                        id="A1">
+                                            
+                                    <% if(BLL.MemberBLL.GetBannedUser(GetTopic().MemberID).AllowLogin){ %>
+                                    <strong><span class="user25">
+                                            <%= GetMemberByMemberID(GetTopic().MemberID).UserName %>
+                                        </span></strong>
+                                        <%}else{ %>
+                                         <span style="text-decoration:line-through;">
+                                            <%= GetMemberByMemberID(GetTopic().MemberID).UserName %>
+                                        </span>
+                                        <%} %>
+                                        </a>
                                         <%} %>
                                 </div>
                                
@@ -180,9 +203,9 @@
                             <div class="username_container">
                                 <div class="popupmenu memberaction" id="yui-gen16">
                                     <a title="<%#ShowStatusOnlineOrOffline(Convert.ToInt32(Eval("PostID"))) %>" href="MemberProfile.aspx?memberID=<%#Eval("MemberID")%>" class="username offline popupctrl"
-                                        id="yui-gen18"><strong><span class="user25">
+                                        id="yui-gen18"><span class="user25" style="<%#MemberIsBanned(Eval("MemberID").ToString()) %>" >
                                             <%#Eval("UserName")%>
-                                        </span></strong></a>
+                                        </span></a> <%#ShowTextBanned(Eval("MemberID").ToString())%>
                                 </div>
                                 <img border="0" alt=" <%#ShowStatusOnlineOrOffline(Convert.ToInt32(Eval("PostID"))) %>" src="<%#ShowImageStatusOnlineOrOffline(Convert.ToInt32(Eval("PostID"))) %>"
                                     class="inlineimg onlinestatus" title=" <%#ShowStatusOnlineOrOffline(Convert.ToInt32(Eval("PostID"))) %>">

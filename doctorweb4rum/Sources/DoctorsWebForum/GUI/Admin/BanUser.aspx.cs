@@ -51,34 +51,44 @@ public partial class GUI_Admin_BanUser : System.Web.UI.Page
     {
         if (txtUserName.Text.Length > 0 || txtUserName.Text != null || txtUserName.Text == "")
         {
+
             Member member = MemberBLL.GetMemberByUserName(txtUserName.Text);
             if (member != null)
             {
                 Member memberloged = (Member)Session["UserLoged"];
                 if (!memberloged.UserName.Equals(member.UserName))
                 {
-                    if (!member.AllowLogin)
+                    MemberProfile memberProfile = MemberBLL.GetMemberProfileByMemberID(member.MemberID);
+                    Role role = RoleBLL.GetRoleByRoleID(memberProfile.RoleID);
+                    if (!role.RoleName.Equals("Admin"))
                     {
-                        lblUserBanHasBeenBanned.Text = "<b>" + txtUserName.Text + "</b>";
-                        panelBanUser.Visible = false;
-                        panelHasBeenBanned.Visible = true;
-                    }
-                    else
-                    {
-                        int result = MemberBLL.BanOrUnBanUser(member.MemberID, false);
-                        if (result > 0)
+                        if (!member.AllowLogin)
                         {
-                            lblUserBan.Text = member.UserName;
+                            lblUserBanHasBeenBanned.Text = "<b>" + txtUserName.Text + "</b>";
                             panelBanUser.Visible = false;
-                            panelMessage.Visible = true;
-                            panelInvalidUserSpecified.Visible = false;
-
+                            panelHasBeenBanned.Visible = true;
                         }
                         else
                         {
-                            panelBanUser.Visible = false;
-                            panelError.Visible = true;
+                            int result = MemberBLL.BanOrUnBanUser(member.MemberID, false);
+                            if (result > 0)
+                            {
+                                lblUserBan.Text = member.UserName;
+                                panelBanUser.Visible = false;
+                                panelMessage.Visible = true;
+                                panelInvalidUserSpecified.Visible = false;
+
+                            }
+                            else
+                            {
+                                panelBanUser.Visible = false;
+                                panelError.Visible = true;
+                            }
                         }
+                    }else
+                    {
+                        panelBanUser.Visible = false;
+                        panelInvalidUserSpecified.Visible = true;
                     }
                 }else
                 {

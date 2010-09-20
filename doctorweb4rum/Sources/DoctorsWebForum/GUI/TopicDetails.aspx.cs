@@ -453,4 +453,33 @@ public partial class GUI_TopicDetails : System.Web.UI.Page
 
         }
     }
+
+    public String MemberIsBanned(String memberID)
+    {
+        Member memberBan = MemberBLL.GetBannedUser(Convert.ToInt32(memberID));
+        String str = "";
+        if(memberBan.AllowLogin)
+        {
+            str = "";
+        }else
+        {
+            str = "text-decoration:line-through;";
+        }
+        return str;
+    }
+
+    public String ShowTextBanned(String memberID)
+    {
+        Member memberBan = MemberBLL.GetBannedUser(Convert.ToInt32(memberID));
+        String str = "";
+        if (memberBan.AllowLogin)
+        {
+            str = "";
+        }
+        else
+        {
+            str = "Banned";
+        }
+        return str;
+    }
 }
